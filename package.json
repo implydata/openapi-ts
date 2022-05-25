@@ -1,6 +1,6 @@
 {
     "name": "@implydata/openapi-typescript-codegen",
-    "version": "0.22.0",
+    "version": "0.22.1",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/implydata/openapi-typescript-codegen",
