@@ -1,15 +1,15 @@
 {
-    "name": "openapi-typescript-codegen",
+    "name": "@implydata/openapi-typescript-codegen",
     "version": "0.22.0",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
-    "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
+    "homepage": "https://github.com/implydata/openapi-typescript-codegen",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ferdikoomen/openapi-typescript-codegen.git"
+        "url": "git+https://github.com/implydata/openapi-typescript-codegen.git"
     },
     "bugs": {
-        "url": "https://github.com/ferdikoomen/openapi-typescript-codegen/issues"
+        "url": "https://github.com/implydata/openapi-typescript-codegen/issues"
     },
     "license": "MIT",
     "keywords": [
@@ -27,10 +27,16 @@
     ],
     "maintainers": [
         {
-            "name": "Ferdi Koomen",
-            "email": "info@madebyferdi.com"
+            "name": "John Gozde",
+            "email": "john.gozde@imply.io"
         }
     ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "volta": {
+        "node": "16.15.0"
+    },
     "main": "dist/index.js",
     "types": "types/index.d.ts",
     "bin": {
