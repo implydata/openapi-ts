@@ -12,8 +12,6 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param services Array of Services to write
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
- * @param useUnionTypes Use union types instead of enums
- * @param useOptions Use options or arguments functions
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
  */
@@ -21,19 +19,12 @@ export const writeClientServices = async (
     services: Service[],
     templates: Templates,
     outputPath: string,
-    useUnionTypes: boolean,
-    useOptions: boolean,
     indent: Indent,
     postfix: string
 ): Promise<void> => {
     for (const service of services) {
         const file = resolve(outputPath, `${service.name}${postfix}.ts`);
-        const templateResult = templates.exports.service({
-            ...service,
-            useUnionTypes,
-            useOptions,
-            postfix,
-        });
+        const templateResult = templates.exports.service({ ...service, postfix });
         await writeFile(file, i(f(templateResult), indent));
     }
 };

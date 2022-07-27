@@ -23,9 +23,6 @@ export type Options = {
     write?: boolean;
 };
 
-const useOptions = true;
-const useUnionTypes = true;
-
 /**
  * Generate the OpenAPI client. This method will read the OpenAPI specification and based on the
  * given language it will generate the client, including the typed models, validation schemas,
@@ -33,8 +30,6 @@ const useUnionTypes = true;
  * @param options Options
  * @param options.input The relative location of the OpenAPI spec
  * @param options.output The relative location of the output directory
- * @param options.useOptions Use options or arguments functions
- * @param options.useUnionTypes Use union types instead of enums
  * @param options.exportCore Generate core client classes
  * @param options.exportServices Generate services
  * @param options.exportModels Generate models
@@ -57,11 +52,7 @@ export const generate = async ({
 }: Options): Promise<void> => {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
-    const templates = registerHandlebarTemplates({
-        httpClient,
-        useUnionTypes,
-        useOptions,
-    });
+    const templates = registerHandlebarTemplates();
 
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
@@ -72,17 +63,12 @@ export const generate = async ({
                 clientFinal,
                 templates,
                 output,
-                httpClient,
-                useOptions,
-                useUnionTypes,
                 exportCore,
                 exportServices,
                 exportModels,
                 exportSchemas,
                 indent,
-                postfix,
-                clientName,
-                request
+                postfix
             );
             break;
         }
@@ -95,17 +81,12 @@ export const generate = async ({
                 clientFinal,
                 templates,
                 output,
-                httpClient,
-                useOptions,
-                useUnionTypes,
                 exportCore,
                 exportServices,
                 exportModels,
                 exportSchemas,
                 indent,
-                postfix,
-                clientName,
-                request
+                postfix
             );
             break;
         }
