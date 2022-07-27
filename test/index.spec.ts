@@ -1,16 +1,13 @@
 import { readFileSync } from 'fs';
 import { sync } from 'glob';
 
-import { generate, HttpClient } from '../';
+import { generate } from '../';
 
 describe('v2', () => {
     it('should generate', async () => {
         await generate({
             input: './test/spec/v2.json',
             output: './test/generated/v2/',
-            httpClient: HttpClient.FETCH,
-            useOptions: false,
-            useUnionTypes: false,
             exportCore: true,
             exportSchemas: true,
             exportModels: true,
@@ -29,9 +26,6 @@ describe('v3', () => {
         await generate({
             input: './test/spec/v3.json',
             output: './test/generated/v3/',
-            httpClient: HttpClient.FETCH,
-            useOptions: false,
-            useUnionTypes: false,
             exportCore: true,
             exportSchemas: true,
             exportModels: true,

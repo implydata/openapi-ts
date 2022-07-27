@@ -1,6 +1,5 @@
 import Handlebars from 'handlebars/runtime';
 
-import templateClient from '../templates/client.hbs';
 import templateCoreApiError from '../templates/core/ApiError.hbs';
 import templateCoreApiRequestOptions from '../templates/core/ApiRequestOptions.hbs';
 import templateCoreApiResult from '../templates/core/ApiResult.hbs';
@@ -43,7 +42,6 @@ import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
     index: Handlebars.TemplateDelegate;
-    client: Handlebars.TemplateDelegate;
     exports: {
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
@@ -71,7 +69,6 @@ export const registerHandlebarTemplates = (): Templates => {
     // Main templates (entry points for the files we write to disk)
     const templates: Templates = {
         index: Handlebars.template(templateIndex),
-        client: Handlebars.template(templateClient),
         exports: {
             model: Handlebars.template(templateExportModel),
             schema: Handlebars.template(templateExportSchema),

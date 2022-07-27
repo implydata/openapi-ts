@@ -19,29 +19,32 @@ describe('writeClientCore', () => {
 
         const templates: Templates = {
             index: () => 'index',
-            client: () => 'client',
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
             },
             core: {
-                settings: () => 'settings',
                 apiError: () => 'apiError',
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
+                functions: () => 'functions',
+                openAPI: () => 'openAPI',
                 request: () => 'request',
-                baseHttpRequest: () => 'baseHttpRequest',
-                httpRequest: () => 'httpRequest',
+                requestFetch: () => 'requestFetch',
+                requestXhr: () => 'requestXhr',
             },
         };
 
         await writeClientCore(client, templates, '/', Indent.SPACE_4);
 
-        expect(writeFile).toBeCalledWith('/OpenAPI.ts', `settings${EOL}`);
         expect(writeFile).toBeCalledWith('/ApiError.ts', `apiError${EOL}`);
         expect(writeFile).toBeCalledWith('/ApiRequestOptions.ts', `apiRequestOptions${EOL}`);
         expect(writeFile).toBeCalledWith('/ApiResult.ts', `apiResult${EOL}`);
+        expect(writeFile).toBeCalledWith('/functions.ts', `functions${EOL}`);
+        expect(writeFile).toBeCalledWith('/OpenAPI.ts', `openAPI${EOL}`);
         expect(writeFile).toBeCalledWith('/request.ts', `request${EOL}`);
+        expect(writeFile).toBeCalledWith('/requestFetch.ts', `requestFetch${EOL}`);
+        expect(writeFile).toBeCalledWith('/requestXhr.ts', `requestXhr${EOL}`);
     });
 });

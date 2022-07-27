@@ -66,7 +66,13 @@ export const registerHandlebarHelpers = (): void => {
 
     Handlebars.registerHelper(
         'enumerator',
-        function (this: any, enumerators: Enum[], options: Handlebars.HelperOptions) {
+        function (
+            this: any,
+            enumerators: Enum[],
+            _parent: string | undefined,
+            _name: string | undefined,
+            options: Handlebars.HelperOptions
+        ) {
             return options.fn(
                 enumerators
                     .map(enumerator => enumerator.value)

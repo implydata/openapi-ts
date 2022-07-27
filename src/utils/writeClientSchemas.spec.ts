@@ -1,7 +1,6 @@
 import { EOL } from 'os';
 
 import type { Model } from '../client/interfaces/Model';
-import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
 import { writeFile } from './fileSystem';
 import type { Templates } from './registerHandlebarTemplates';
@@ -33,25 +32,24 @@ describe('writeClientSchemas', () => {
 
         const templates: Templates = {
             index: () => 'index',
-            client: () => 'client',
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
             },
             core: {
-                settings: () => 'settings',
                 apiError: () => 'apiError',
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
-                cancelablePromise: () => 'cancelablePromise',
+                functions: () => 'functions',
+                openAPI: () => 'openAPI',
                 request: () => 'request',
-                baseHttpRequest: () => 'baseHttpRequest',
-                httpRequest: () => 'httpRequest',
+                requestFetch: () => 'requestFetch',
+                requestXhr: () => 'requestXhr',
             },
         };
 
-        await writeClientSchemas(models, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4);
+        await writeClientSchemas(models, templates, '/', Indent.SPACE_4);
 
         expect(writeFile).toBeCalledWith('/$User.ts', `schema${EOL}`);
     });
