@@ -4,8 +4,6 @@
 
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
-import { CancelablePromise } from './CancelablePromise';
-import type { OnCancel } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
 import { getUrl, getFormData, getRequestBody, getHeaders, isSuccess, catchErrorCodes, isString } from './functions';
 
@@ -44,8 +42,7 @@ const sendRequest = async (
     url: string,
     body: any,
     formData: FormData | undefined,
-    headers: Headers,
-    onCancel: OnCancel
+    headers: Headers
 ): Promise<XMLHttpRequest> => {
     const xhr = new XMLHttpRequest();
     xhr.open(options.method, url, true);
@@ -65,9 +62,10 @@ const sendRequest = async (
         if (options.onUploadProgress) {
             xhr.upload.onprogress = options.onUploadProgress;
         }
+        if (options.signal) {
+            options.signal.addEventListener('abort', () => xhr.abort());
+        }
         xhr.send(body ?? formData);
-
-        onCancel(() => xhr.abort());
     });
 };
 
@@ -75,36 +73,30 @@ const sendRequest = async (
  * Request method
  * @param config The OpenAPI configuration object
  * @param options The request options from the service
- * @returns CancelablePromise<T>
+ * @returns Promise<T>
  * @throws ApiError
  */
-export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
-    return new CancelablePromise(async (resolve, reject, onCancel) => {
-        try {
-            const url = getUrl(config, options);
-            const formData = getFormData(options);
-            const body = getRequestBody(options);
-            const headers = await getHeaders(config, options);
+export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptions): Promise<T> => {
+    const url = getUrl(config, options);
+    const formData = getFormData(options);
+    const body = getRequestBody(options);
+    const headers = await getHeaders(config, options);
 
-            if (!onCancel.isCancelled) {
-                const response = await sendRequest(config, options, url, body, formData, headers, onCancel);
-                const responseBody = getResponseBody(response);
-                const responseHeader = getResponseHeader(response, options.responseHeader);
+    options.signal?.throwIfAborted();
 
-                const result: ApiResult = {
-                    url,
-                    ok: isSuccess(response.status),
-                    status: response.status,
-                    statusText: response.statusText,
-                    body: responseHeader ?? responseBody,
-                };
+    const response = await sendRequest(config, options, url, body, formData, headers);
+    const responseBody = getResponseBody(response);
+    const responseHeader = getResponseHeader(response, options.responseHeader);
 
-                catchErrorCodes(options, result);
+    const result: ApiResult = {
+        url,
+        ok: isSuccess(response.status),
+        status: response.status,
+        statusText: response.statusText,
+        body: responseHeader ?? responseBody,
+    };
 
-                resolve(result.body);
-            }
-        } catch (error) {
-            reject(error);
-        }
-    });
+    catchErrorCodes(options, result);
+
+    return result.body;
 };

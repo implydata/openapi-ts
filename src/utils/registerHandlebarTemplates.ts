@@ -17,7 +17,6 @@ import axiosGetResponseHeader from '../templates/core/axios/getResponseHeader.hb
 import axiosRequest from '../templates/core/axios/request.hbs';
 import axiosSendRequest from '../templates/core/axios/sendRequest.hbs';
 import templateCoreBaseHttpRequest from '../templates/core/BaseHttpRequest.hbs';
-import templateCancelablePromise from '../templates/core/CancelablePromise.hbs';
 import fetchGetHeaders from '../templates/core/fetch/getHeaders.hbs';
 import fetchGetRequestBody from '../templates/core/fetch/getRequestBody.hbs';
 import fetchGetResponseBody from '../templates/core/fetch/getResponseBody.hbs';
@@ -96,7 +95,6 @@ export interface Templates {
         apiError: Handlebars.TemplateDelegate;
         apiRequestOptions: Handlebars.TemplateDelegate;
         apiResult: Handlebars.TemplateDelegate;
-        cancelablePromise: Handlebars.TemplateDelegate;
         request: Handlebars.TemplateDelegate;
         baseHttpRequest: Handlebars.TemplateDelegate;
         httpRequest: Handlebars.TemplateDelegate;
@@ -124,7 +122,6 @@ export const registerHandlebarTemplates = (): Templates => {
             apiError: Handlebars.template(templateCoreApiError),
             apiRequestOptions: Handlebars.template(templateCoreApiRequestOptions),
             apiResult: Handlebars.template(templateCoreApiResult),
-            cancelablePromise: Handlebars.template(templateCancelablePromise),
             request: Handlebars.template(templateCoreRequest),
             baseHttpRequest: Handlebars.template(templateCoreBaseHttpRequest),
             httpRequest: Handlebars.template(templateCoreHttpRequest),

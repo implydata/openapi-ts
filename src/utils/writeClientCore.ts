@@ -1,11 +1,9 @@
 import { resolve } from 'path';
 
 import type { Client } from '../client/interfaces/Client';
-import type { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
 import { copyFile, exists, writeFile } from './fileSystem';
 import { formatIndentation as i } from './formatIndentation';
-import { getHttpRequestName } from './getHttpRequestName';
 import { isDefined } from './isDefined';
 import type { Templates } from './registerHandlebarTemplates';
 
@@ -23,14 +21,12 @@ export const writeClientCore = async (
     client: Client,
     templates: Templates,
     outputPath: string,
-    httpClient: HttpClient,
     indent: Indent,
     clientName?: string,
     request?: string
 ): Promise<void> => {
-    const httpRequest = getHttpRequestName(httpClient);
+    const httpRequest = 'HttpRequest';
     const context = {
-        httpClient,
         clientName,
         httpRequest,
         server: client.server,
@@ -41,7 +37,6 @@ export const writeClientCore = async (
     await writeFile(resolve(outputPath, 'ApiError.ts'), i(templates.core.apiError(context), indent));
     await writeFile(resolve(outputPath, 'ApiRequestOptions.ts'), i(templates.core.apiRequestOptions(context), indent));
     await writeFile(resolve(outputPath, 'ApiResult.ts'), i(templates.core.apiResult(context), indent));
-    await writeFile(resolve(outputPath, 'CancelablePromise.ts'), i(templates.core.cancelablePromise(context), indent));
     await writeFile(resolve(outputPath, 'request.ts'), i(templates.core.request(context), indent));
 
     if (isDefined(clientName)) {

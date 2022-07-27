@@ -4,7 +4,6 @@
 
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import { BaseHttpRequest } from './BaseHttpRequest';
-import type { CancelablePromise } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
 import { request as __request } from './requestFetch';
 
@@ -16,10 +15,10 @@ export class HttpRequest extends BaseHttpRequest {
     /**
      * Request method
      * @param options The request options from the service
-     * @returns CancelablePromise<T>
+     * @returns Promise<T>
      * @throws ApiError
      */
-    public override request<T>(options: ApiRequestOptions): CancelablePromise<T> {
+    public override request<T>(options: ApiRequestOptions): Promise<T> {
         return __request(this.config, options);
     }
 }

@@ -16,4 +16,5 @@ export type ApiRequestOptions = {
     readonly errors?: Record<number, string>;
     readonly onDownloadProgress?: (event: ProgressEvent) => void;
     readonly onUploadProgress?: (event: ProgressEvent) => void;
+    readonly signal?: AbortSignal;
 };
