@@ -19,7 +19,9 @@ export type OpenAPIConfig = {
     ENCODE_PATH?: (path: string) => string;
 };
 
-export const OpenAPI: Partial<OpenAPIConfig> = {
+export const OpenAPI: OpenAPIConfig = {
+    BASE: '{{{server}}}',
+    VERSION: '{{{version}}}',
     WITH_CREDENTIALS: false,
     CREDENTIALS: 'include',
 };

@@ -6,10 +6,27 @@ import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 
 {{/if}}
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
+import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
 export class {{{name}}}{{{@root.postfix}}} {
+	public static readonly URLs = {
+	{{#each operations}}
+		'{{{name}}}': '{{{path}}}',
+	{{/each}}
+	};
+
+	/**
+	 * Configuration for the current service instance.
+	 */
+	public readonly config: OpenAPIConfig;
+
+	constructor(config?: Partial<OpenAPIConfig>) {
+		this.config = { ...OpenAPI, ...config };
+	}
+
 	{{#each operations}}
 	/**
 	{{#if deprecated}}
@@ -21,20 +38,23 @@ export class {{{name}}}{{{@root.postfix}}} {
 	{{#if description}}
 	 * {{{escapeComment description}}}
 	{{/if}}
-	{{#unless @root.useOptions}}
 	{{#if parameters}}
+	 * @param request Request
 	{{#each parameters}}
-	 * @param {{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+	 * @param request.{{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 	{{/each}}
 	{{/if}}
-	{{/unless}}
+	 * @param options Request option overrides
 	{{#each results}}
 	 * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 	{{/each}}
 	 * @throws ApiError
 	 */
-	public static {{{name}}}({{>parameters}}): Promise<{{>result}}> {
-		return __request(OpenAPI, {
+	public {{{name}}}(
+		{{>parameters}}
+
+	): Promise<{{>result}}> {
+		return __request(this.config, {
 			method: '{{{method}}}',
 			url: '{{{path}}}',
 			{{#if parametersPath}}
@@ -93,6 +113,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 				{{/each}}
 			},
 			{{/if}}
+			...options,
 		});
 	}
 
