@@ -1,6 +1,5 @@
 import Handlebars from 'handlebars/runtime';
 
-import { HttpClient } from '../HttpClient';
 import templateClient from '../templates/client.hbs';
 import angularGetHeaders from '../templates/core/angular/getHeaders.hbs';
 import angularGetRequestBody from '../templates/core/angular/getRequestBody.hbs';
@@ -58,7 +57,6 @@ import templateExportService from '../templates/exportService.hbs';
 import templateIndex from '../templates/index.hbs';
 import partialBase from '../templates/partials/base.hbs';
 import partialExportComposition from '../templates/partials/exportComposition.hbs';
-import partialExportEnum from '../templates/partials/exportEnum.hbs';
 import partialExportInterface from '../templates/partials/exportInterface.hbs';
 import partialExportType from '../templates/partials/exportType.hbs';
 import partialHeader from '../templates/partials/header.hbs';
@@ -109,12 +107,8 @@ export interface Templates {
  * Read all the Handlebar templates that we need and return on wrapper object
  * so we can easily access the templates in out generator / write functions.
  */
-export const registerHandlebarTemplates = (root: {
-    httpClient: HttpClient;
-    useOptions: boolean;
-    useUnionTypes: boolean;
-}): Templates => {
-    registerHandlebarHelpers(root);
+export const registerHandlebarTemplates = (): Templates => {
+    registerHandlebarHelpers();
 
     // Main templates (entry points for the files we write to disk)
     const templates: Templates = {
@@ -138,7 +132,6 @@ export const registerHandlebarTemplates = (root: {
     };
 
     // Partials for the generations of the models, services, etc.
-    Handlebars.registerPartial('exportEnum', Handlebars.template(partialExportEnum));
     Handlebars.registerPartial('exportInterface', Handlebars.template(partialExportInterface));
     Handlebars.registerPartial('exportComposition', Handlebars.template(partialExportComposition));
     Handlebars.registerPartial('exportType', Handlebars.template(partialExportType));

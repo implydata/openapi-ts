@@ -1,50 +1,16 @@
 {{>header}}
 
-{{#equals @root.httpClient 'angular'}}
-{{#if @root.exportClient}}
-import { Injectable } from '@angular/core';
-import type { Observable } from 'rxjs';
-{{else}}
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import type { Observable } from 'rxjs';
-{{/if}}
-
-{{/equals}}
 {{#if imports}}
 {{#each imports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 
 {{/if}}
-{{#notEquals @root.httpClient 'angular'}}
 import type { CancelablePromise } from '../core/CancelablePromise';
-{{/notEquals}}
-{{#if @root.exportClient}}
-{{#equals @root.httpClient 'angular'}}
-import { BaseHttpRequest } from '../core/BaseHttpRequest';
-{{else}}
-import type { BaseHttpRequest } from '../core/BaseHttpRequest';
-{{/equals}}
-{{else}}
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-{{/if}}
 
-{{#equals @root.httpClient 'angular'}}
-@Injectable()
-{{/equals}}
 export class {{{name}}}{{{@root.postfix}}} {
-	{{#if @root.exportClient}}
-
-	constructor(public readonly httpRequest: BaseHttpRequest) {}
-	{{else}}
-	{{#equals @root.httpClient 'angular'}}
-
-	constructor(public readonly http: HttpClient) {}
-	{{/equals}}
-	{{/if}}
-
 	{{#each operations}}
 	/**
 	{{#if deprecated}}
@@ -68,23 +34,8 @@ export class {{{name}}}{{{@root.postfix}}} {
 	{{/each}}
 	 * @throws ApiError
 	 */
-	{{#if @root.exportClient}}
-	{{#equals @root.httpClient 'angular'}}
-	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
-		return this.httpRequest.request({
-	{{else}}
-	public {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
-		return this.httpRequest.request({
-	{{/equals}}
-	{{else}}
-	{{#equals @root.httpClient 'angular'}}
-	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
-		return __request(OpenAPI, this.http, {
-	{{else}}
 	public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
 		return __request(OpenAPI, {
-	{{/equals}}
-	{{/if}}
 			method: '{{{method}}}',
 			url: '{{{path}}}',
 			{{#if parametersPath}}
