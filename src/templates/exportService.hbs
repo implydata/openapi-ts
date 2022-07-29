@@ -18,6 +18,12 @@ export class {{{name}}}{{{@root.postfix}}} {
 	{{/each}}
 	};
 
+	public static readonly KEYS = {
+	{{#each operations}}
+		'{{{name}}}': [{{#each (queryKey path)}}'{{this}}', {{/each}}],
+	{{/each}}
+	};
+
 	/**
 	 * Configuration for the current service instance.
 	 */

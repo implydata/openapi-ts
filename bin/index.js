@@ -14,6 +14,7 @@ const params = program
     .requiredOption('-o, --output <value>', 'Output directory (required)')
     .option('--exportCore <value>', 'Write core files to disk', true)
     .option('--exportServices <value>', 'Write services to disk', true)
+    .option('--exportHooks <value>', 'Write react-query hooks to disk', true)
     .option('--exportModels <value>', 'Write models to disk', true)
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
@@ -29,6 +30,7 @@ if (OpenAPI) {
         output: params.output,
         exportCore: JSON.parse(params.exportCore) === true,
         exportServices: JSON.parse(params.exportServices) === true,
+        exportHooks: JSON.parse(params.exportHooks) === true,
         exportModels: JSON.parse(params.exportModels) === true,
         exportSchemas: JSON.parse(params.exportSchemas) === true,
         indent: params.indent,

@@ -6,6 +6,7 @@ import { mkdir, rmdir } from './fileSystem';
 import { isSubDirectory } from './isSubdirectory';
 import type { Templates } from './registerHandlebarTemplates';
 import { writeClientCore } from './writeClientCore';
+import { writeClientHooks } from './writeClientHooks';
 import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
@@ -20,7 +21,7 @@ import { writeClientServices } from './writeClientServices';
  * @param exportServices Generate services
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
- * @param exportSchemas Generate schemas
+ * @param exportHooks Generate react-query hooks
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
  */
@@ -32,6 +33,7 @@ export const writeClient = async (
     exportServices: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
+    exportHooks: boolean,
     indent: Indent,
     postfix: string
 ): Promise<void> => {
@@ -40,6 +42,7 @@ export const writeClient = async (
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
+    const outputPathQueries = resolve(outputPath, 'queries');
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
@@ -67,6 +70,12 @@ export const writeClient = async (
         await rmdir(outputPathModels);
         await mkdir(outputPathModels);
         await writeClientModels(client.models, templates, outputPathModels, indent);
+    }
+
+    if (exportHooks) {
+        await rmdir(outputPathQueries);
+        await mkdir(outputPathQueries);
+        await writeClientHooks(client.services, templates, outputPathQueries, indent, postfix);
     }
 
     if (exportCore || exportServices || exportSchemas || exportModels) {

@@ -1,0 +1,118 @@
+{{>header}}
+
+import { useContext } from 'react';
+import { useQuery, useMutation } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+
+import type { ApiError } from '../core/ApiError';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
+{{#if imports}}
+{{#each imports}}
+import type { {{{this}}} } from '../models/{{{this}}}';
+{{/each}}
+{{/if}}
+import { {{{name}}}{{{@root.postfix}}} } from '../services/{{{name}}}{{{@root.postfix}}}';
+
+import { ServiceContext } from './ServiceContext';
+
+{{#each operations}}
+{{#equals method 'GET'}}
+/**
+{{#if deprecated}}
+ * @deprecated
+{{/if}}
+{{#if summary}}
+ * {{{escapeComment summary}}}
+{{/if}}
+{{#if description}}
+ * {{{escapeComment description}}}
+{{/if}}
+{{#if parameters}}
+ * @param parameters Request parameters
+{{#each parameters}}
+ * @param parameters.{{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+{{/each}}
+{{/if}}
+ * @param options Query option overrides
+{{#each results}}
+ * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+{{/each}}
+ * @throws ApiError
+ */
+export function use{{{pascalCase name}}}Query<TError = ApiError>(
+	{{#if parameters}}
+	parameters: {
+		{{#each parameters}}
+		{{#ifdef description deprecated}}
+		/**
+		{{#if description}}
+		 * {{{escapeComment description}}}
+		{{/if}}
+		{{#if deprecated}}
+		 * @deprecated
+		{{/if}}
+		 */
+		{{/ifdef}}
+		{{{name}}}{{>isRequired}}: {{>type}},
+		{{/each}}
+	},
+	{{/if}}
+	options?: UseQueryOptions<{{>result}}, TError, {{>result}}, readonly unknown[]> & ApiRequestOptions,
+): UseQueryResult<{{>result}}, TError> {
+  const service = useContext(ServiceContext).{{{camelCase @root.name}}};
+  return useQuery({
+	{{#if parameters}}
+	queryFn: () => service.{{{name}}}(parameters, options),
+	queryKey: [...{{{@root.name}}}{{{@root.postfix}}}.KEYS['{{{name}}}'], parameters],
+	{{else}}
+	queryFn: () => service.{{{name}}}(options),
+	queryKey: {{{@root.name}}}{{{@root.postfix}}}.KEYS['{{{name}}}'],
+	{{/if}}
+	...options,
+  });
+}
+{{else}}
+type {{{pascalCase name}}}Variables = {
+	{{#each parameters}}
+	{{#ifdef description deprecated}}
+	/**
+	{{#if description}}
+	 * {{{escapeComment description}}}
+	{{/if}}
+	{{#if deprecated}}
+	 * @deprecated
+	{{/if}}
+	 */
+	{{/ifdef}}
+	{{{name}}}{{>isRequired}}: {{>type}},
+	{{/each}}
+};
+
+/**
+{{#if deprecated}}
+ * @deprecated
+{{/if}}
+{{#if summary}}
+ * {{{escapeComment summary}}}
+{{/if}}
+{{#if description}}
+ * {{{escapeComment description}}}
+{{/if}}
+ * @param options Mutation option overrides
+{{#each results}}
+ * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+{{/each}}
+ * @throws ApiError
+ */
+export function use{{{pascalCase name}}}Mutation<TError = ApiError, TContext = unknown>(
+	options?: UseMutationOptions<{{>result}}, TError, {{{pascalCase name}}}Variables, TContext> & ApiRequestOptions,
+): UseMutationResult<{{>result}}, TError, {{{pascalCase name}}}Variables, TContext> {
+  const service = useContext(ServiceContext).{{{camelCase @root.name}}};
+  return useMutation({
+	mutationFn: (parameters: {{{pascalCase name}}}Variables) => service.{{{name}}}(parameters, options),
+	...options,
+  });
+}
+{{/equals}}
+
+{{/each}}

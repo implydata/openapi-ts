@@ -46,6 +46,7 @@ export const generate = async ({
     exportServices = true,
     exportModels = true,
     exportSchemas = false,
+    exportHooks = false,
     indent = Indent.SPACE_4,
     postfix = 'Service',
     write = true,
@@ -67,6 +68,7 @@ export const generate = async ({
                 exportServices,
                 exportModels,
                 exportSchemas,
+                exportHooks,
                 indent,
                 postfix
             );
@@ -85,6 +87,7 @@ export const generate = async ({
                 exportServices,
                 exportModels,
                 exportSchemas,
+                exportHooks,
                 indent,
                 postfix
             );
