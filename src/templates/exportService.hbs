@@ -14,13 +14,21 @@ import { request as __request } from '../core/request';
 export class {{{name}}}{{{@root.postfix}}} {
 	public static readonly URLs = {
 	{{#each operations}}
-		'{{{name}}}': '{{{path}}}',
+		{{{name}}}: '{{{path}}}',
 	{{/each}}
 	};
 
-	public static readonly KEYS = {
+	public static readonly QueryKeys = {
 	{{#each operations}}
-		'{{{name}}}': [{{#each (queryKey path)}}'{{this}}', {{/each}}],
+		{{#equals method 'GET'}}
+		{{{name}}}({{~#if parameters~}}parameters: {{>parametersType}}{{~/if~}}): readonly unknown[] {
+			{{#if parameters}}
+ 			return [{{#each (queryKey path)}}'{{this}}', {{/each}}parameters];
+			{{else}}
+ 			return [{{#each (queryKey path)}}'{{this}}', {{/each}}];
+			{{/if}}
+		},
+		{{/equals}}
 	{{/each}}
 	};
 

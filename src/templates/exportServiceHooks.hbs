@@ -14,8 +14,12 @@ import type { {{{this}}} } from '../models/{{{this}}}';
 import { {{{name}}}{{{@root.postfix}}} } from '../services/{{{name}}}{{{@root.postfix}}}';
 
 import { ServiceContext } from './ServiceContext';
-
 {{#each operations}}
+{{#if parameters}}
+
+export interface {{{pascalCase name}}}Params {{>parametersType}};
+{{/if}}
+
 {{#equals method 'GET'}}
 /**
 {{#if deprecated}}
@@ -29,65 +33,41 @@ import { ServiceContext } from './ServiceContext';
 {{/if}}
 {{#if parameters}}
  * @param parameters Request parameters
-{{#each parameters}}
- * @param parameters.{{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
-{{/each}}
 {{/if}}
- * @param options Query option overrides
+ * @param options Option overrides
 {{#each results}}
  * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 {{/each}}
  * @throws ApiError
  */
-export function use{{{pascalCase name}}}Query<TError = ApiError>(
+export function use{{{pascalCase name}}}<TError = ApiError>(
 	{{#if parameters}}
-	parameters: {
-		{{#each parameters}}
-		{{#ifdef description deprecated}}
-		/**
-		{{#if description}}
-		 * {{{escapeComment description}}}
-		{{/if}}
-		{{#if deprecated}}
-		 * @deprecated
-		{{/if}}
-		 */
-		{{/ifdef}}
-		{{{name}}}{{>isRequired}}: {{>type}},
-		{{/each}}
-	},
+	parameters: {{{pascalCase name}}}Params,
 	{{/if}}
-	options?: UseQueryOptions<{{>result}}, TError, {{>result}}, readonly unknown[]> & ApiRequestOptions,
+	options?: {
+		/**
+		 * Overrides for react-query
+		 */
+		query?: UseQueryOptions<{{>result}}, TError, {{>result}}, readonly unknown[]>
+		/**
+		 * Overrides for service request
+		 */
+		request?: ApiRequestOptions,
+	},
 ): UseQueryResult<{{>result}}, TError> {
   const service = useContext(ServiceContext).{{{camelCase @root.name}}};
   return useQuery({
 	{{#if parameters}}
-	queryFn: () => service.{{{name}}}(parameters, options),
-	queryKey: [...{{{@root.name}}}{{{@root.postfix}}}.KEYS['{{{name}}}'], parameters],
+	queryFn: () => service.{{{name}}}(parameters, options?.request),
+	queryKey: {{{@root.name}}}{{{@root.postfix}}}.QueryKeys.{{{name}}}(parameters),
 	{{else}}
-	queryFn: () => service.{{{name}}}(options),
-	queryKey: {{{@root.name}}}{{{@root.postfix}}}.KEYS['{{{name}}}'],
+	queryFn: () => service.{{{name}}}(options?.request),
+	queryKey: {{{@root.name}}}{{{@root.postfix}}}.QueryKeys.{{{name}}}(),
 	{{/if}}
-	...options,
+	...options?.query,
   });
 }
 {{else}}
-type {{{pascalCase name}}}Variables = {
-	{{#each parameters}}
-	{{#ifdef description deprecated}}
-	/**
-	{{#if description}}
-	 * {{{escapeComment description}}}
-	{{/if}}
-	{{#if deprecated}}
-	 * @deprecated
-	{{/if}}
-	 */
-	{{/ifdef}}
-	{{{name}}}{{>isRequired}}: {{>type}},
-	{{/each}}
-};
-
 /**
 {{#if deprecated}}
  * @deprecated
@@ -98,21 +78,30 @@ type {{{pascalCase name}}}Variables = {
 {{#if description}}
  * {{{escapeComment description}}}
 {{/if}}
- * @param options Mutation option overrides
+ * @param options Option overrides
+ * @param options.request Service request options
 {{#each results}}
  * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 {{/each}}
  * @throws ApiError
  */
-export function use{{{pascalCase name}}}Mutation<TError = ApiError, TContext = unknown>(
-	options?: UseMutationOptions<{{>result}}, TError, {{{pascalCase name}}}Variables, TContext> & ApiRequestOptions,
-): UseMutationResult<{{>result}}, TError, {{{pascalCase name}}}Variables, TContext> {
+export function use{{{pascalCase name}}}<TError = ApiError, TContext = unknown>(
+	options?: {
+		/**
+		 * Overrides for react-query mutation
+		 */
+		mutation?: UseMutationOptions<{{>result}}, TError, {{{pascalCase name}}}Params, TContext>
+		/**
+		 * Overrides for service request
+		 */
+		request?: ApiRequestOptions,
+	},
+): UseMutationResult<{{>result}}, TError, {{{pascalCase name}}}Params, TContext> {
   const service = useContext(ServiceContext).{{{camelCase @root.name}}};
   return useMutation({
-	mutationFn: (parameters: {{{pascalCase name}}}Variables) => service.{{{name}}}(parameters, options),
-	...options,
+	mutationFn: parameters => service.{{{name}}}(parameters, options?.request),
+	...options?.mutation,
   });
 }
 {{/equals}}
-
 {{/each}}
