@@ -28,6 +28,8 @@ describe('bin', () => {
             'true',
             '--exportSchemas',
             'true',
+            '--exportHooks',
+            'true',
             '--indent',
             '4',
             '--postfix',
