@@ -5,14 +5,14 @@ import { copyAsset } from './scripts/copyAsset';
 import { generateClient } from './scripts/generateClient';
 import server from './scripts/server';
 
-describe('v2.fetch', () => {
+describe('v2', () => {
     beforeAll(async () => {
-        cleanup('v2/fetch');
-        await generateClient('v2/fetch', 'v2', 'fetch');
-        copyAsset('index.html', 'v2/fetch/index.html');
-        copyAsset('main.ts', 'v2/fetch/main.ts');
-        compileWithTypescript('v2/fetch');
-        await server.start('v2/fetch');
+        cleanup('v2');
+        await generateClient('v2', 'v2');
+        copyAsset('index.html', 'v2/index.html');
+        copyAsset('main.ts', 'v2/main.ts');
+        compileWithTypescript('v2');
+        await server.start('v2');
         await browser.start();
     }, 30000);
 
@@ -26,7 +26,7 @@ describe('v2.fetch', () => {
         const result = await browser.evaluate(async () => {
             const { OpenAPI, SimpleService } = (window as any).api;
             OpenAPI.TOKEN = (window as any).tokenRequest;
-            return await SimpleService.getCallWithoutParametersAndResponse();
+            return await new SimpleService().getCallWithoutParametersAndResponse();
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
@@ -34,7 +34,7 @@ describe('v2.fetch', () => {
     it('supports complex params', async () => {
         const result = await browser.evaluate(async () => {
             const { ComplexService } = (window as any).api;
-            return await ComplexService.complexTypes({
+            return await new ComplexService().complexTypes({
                 first: {
                     second: {
                         third: 'Hello World!',

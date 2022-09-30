@@ -5,14 +5,14 @@ import { copyAsset } from './scripts/copyAsset';
 import { generateClient } from './scripts/generateClient';
 import server from './scripts/server';
 
-describe('client.fetch', () => {
+describe('v3', () => {
     beforeAll(async () => {
-        cleanup('client/fetch');
-        await generateClient('client/fetch', 'v3', 'fetch', false, false, 'ApiClient');
-        copyAsset('index.html', 'client/fetch/index.html');
-        copyAsset('main.ts', 'client/fetch/main.ts');
-        compileWithTypescript('client/fetch');
-        await server.start('client/fetch');
+        cleanup('v3');
+        await generateClient('v3', 'v3');
+        copyAsset('index.html', 'v3/index.html');
+        copyAsset('main.ts', 'v3/main.ts');
+        compileWithTypescript('v3');
+        await server.start('v3');
         await browser.start();
     }, 30000);
 
@@ -24,35 +24,30 @@ describe('client.fetch', () => {
     it('requests token', async () => {
         await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
         const result = await browser.evaluate(async () => {
-            const { ApiClient } = (window as any).api;
-            const client = new ApiClient({
-                TOKEN: (window as any).tokenRequest,
-                USERNAME: undefined,
-                PASSWORD: undefined,
-            });
-            return await client.simple.getCallWithoutParametersAndResponse();
+            const { OpenAPI, SimpleService } = (window as any).api;
+            OpenAPI.TOKEN = (window as any).tokenRequest;
+            OpenAPI.USERNAME = undefined;
+            OpenAPI.PASSWORD = undefined;
+            return await new SimpleService().getCallWithoutParametersAndResponse();
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
     it('uses credentials', async () => {
         const result = await browser.evaluate(async () => {
-            const { ApiClient } = (window as any).api;
-            const client = new ApiClient({
-                TOKEN: undefined,
-                USERNAME: 'username',
-                PASSWORD: 'password',
-            });
-            return await client.simple.getCallWithoutParametersAndResponse();
+            const { OpenAPI, SimpleService } = (window as any).api;
+            OpenAPI.TOKEN = undefined;
+            OpenAPI.USERNAME = 'username';
+            OpenAPI.PASSWORD = 'password';
+            return await new SimpleService().getCallWithoutParametersAndResponse();
         });
         expect(result.headers.authorization).toBe('Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
     });
 
     it('supports complex params', async () => {
         const result = await browser.evaluate(async () => {
-            const { ApiClient } = (window as any).api;
-            const client = new ApiClient();
-            return await client.complex.complexTypes({
+            const { ComplexService } = (window as any).api;
+            return await new ComplexService().complexTypes({
                 first: {
                     second: {
                         third: 'Hello World!',
@@ -65,18 +60,17 @@ describe('client.fetch', () => {
 
     it('support form data', async () => {
         const result = await browser.evaluate(async () => {
-            const { ApiClient } = (window as any).api;
-            const client = new ApiClient();
-            return await client.parameters.callWithParameters(
-                'valueHeader',
-                'valueQuery',
-                'valueForm',
-                'valueCookie',
-                'valuePath',
-                {
+            const { ParametersService } = (window as any).api;
+            return await new ParametersService().callWithParameters({
+                parametersHeader: 'valueHeader',
+                parameterQuery: 'valueQuery',
+                parameterForm: 'valueForm',
+                parameterCookie: 'valueCookie',
+                parameterPath: 'valuePath',
+                requestBody: {
                     prop: 'valueBody',
-                }
-            );
+                },
+            });
         });
         expect(result).toBeDefined();
     });
@@ -85,26 +79,25 @@ describe('client.fetch', () => {
         let error;
         try {
             await browser.evaluate(async () => {
-                const { ApiClient } = (window as any).api;
-                const client = new ApiClient();
-                const promise = client.simple.getCallWithoutParametersAndResponse();
+                const { SimpleService } = (window as any).api;
+                const controller = new AbortController();
+                const promise = new SimpleService().getCallWithoutParametersAndResponse({ signal: controller.signal });
                 setTimeout(() => {
-                    promise.cancel();
+                    controller.abort();
                 }, 10);
                 await promise;
             });
         } catch (e) {
             error = (e as Error).message;
         }
-        expect(error).toContain('CancelError: Request aborted');
+        expect(error).toContain('DOMException: The user aborted a request.');
     });
 
     it('should throw known error (500)', async () => {
         const error = await browser.evaluate(async () => {
             try {
-                const { ApiClient } = (window as any).api;
-                const client = new ApiClient();
-                await client.error.testErrorCode(500);
+                const { ErrorService } = (window as any).api;
+                await new ErrorService().testErrorCode({ status: 500 });
             } catch (e) {
                 const error = e as any;
                 return JSON.stringify({
@@ -137,9 +130,8 @@ describe('client.fetch', () => {
     it('should throw unknown error (409)', async () => {
         const error = await browser.evaluate(async () => {
             try {
-                const { ApiClient } = (window as any).api;
-                const client = new ApiClient();
-                await client.error.testErrorCode(409);
+                const { ErrorService } = (window as any).api;
+                await new ErrorService().testErrorCode({ status: 409 });
             } catch (e) {
                 const error = e as any;
                 return JSON.stringify({
@@ -166,5 +158,19 @@ describe('client.fetch', () => {
                 },
             })
         );
+    });
+
+    it('it should parse query params', async () => {
+        const result = await browser.evaluate(async () => {
+            const { ParametersService } = (window as any).api;
+            return (await new ParametersService().postCallWithOptionalParam({
+                parameter: {
+                    page: 0,
+                    size: 1,
+                    sort: ['location'],
+                },
+            })) as Promise<any>;
+        });
+        expect(result.query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
     });
 });

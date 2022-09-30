@@ -10,6 +10,7 @@ export type Options = {
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
+    exportHooks?: boolean;
     exportSchemas?: boolean;
     indent?: Indent | '4' | '2' | 'tab';
     postfix?: string;
