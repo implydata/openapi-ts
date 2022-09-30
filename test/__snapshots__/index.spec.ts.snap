@@ -1376,7 +1376,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/CollectionFormatHooks.t
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -1442,7 +1442,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/ComplexHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -1504,7 +1504,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/DefaultHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -1545,7 +1545,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/DefaultsHooks.ts 1`] = 
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -1718,7 +1718,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/DescriptionsHooks.ts 1`
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -1789,7 +1789,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/DuplicateHooks.ts 1`] =
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -1902,7 +1902,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/ErrorHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -1951,7 +1951,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/HeaderHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -1993,7 +1993,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/MultipleTags1Hooks.ts 1
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -2060,7 +2060,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/MultipleTags2Hooks.ts 1
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -2127,7 +2127,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/MultipleTags3Hooks.ts 1
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -2169,7 +2169,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/NoContentHooks.ts 1`] =
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -2211,7 +2211,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/ParametersHooks.ts 1`] 
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -2334,7 +2334,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/ResponseHooks.ts 1`] = 
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -2440,7 +2440,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/SimpleHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -2625,7 +2625,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/TypesHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -6809,7 +6809,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/CollectionFormatHooks.t
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -6875,7 +6875,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/ComplexHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -6982,7 +6982,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/DefaultHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7023,7 +7023,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/DefaultsHooks.ts 1`] = 
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7196,7 +7196,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/DeprecatedHooks.ts 1`] 
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7247,7 +7247,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/DescriptionsHooks.ts 1`
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7318,7 +7318,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/DuplicateHooks.ts 1`] =
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7431,7 +7431,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/ErrorHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7480,7 +7480,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/FormDataHooks.ts 1`] = 
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7533,7 +7533,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/HeaderHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7575,7 +7575,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/MultipartHooks.ts 1`] =
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7667,7 +7667,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/MultipleTags1Hooks.ts 1
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7734,7 +7734,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/MultipleTags2Hooks.ts 1
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7801,7 +7801,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/MultipleTags3Hooks.ts 1
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7843,7 +7843,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/NoContentHooks.ts 1`] =
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -7885,7 +7885,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/ParametersHooks.ts 1`] 
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -8090,7 +8090,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/RequestBodyHooks.ts 1`]
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -8143,7 +8143,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/ResponseHooks.ts 1`] = 
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -8249,7 +8249,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/SimpleHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -8434,7 +8434,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/TypesHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -8516,7 +8516,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/UploadHooks.ts 1`] = `
 /* eslint-disable */
 import { useContext } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';

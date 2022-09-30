@@ -34,6 +34,8 @@ describe('bin', () => {
             '4',
             '--postfix',
             'Service',
+            '--reactQueryImport',
+            'react-query',
         ]);
         expect(result.stdout.toString()).toBe('');
         expect(result.stderr.toString()).toBe('');

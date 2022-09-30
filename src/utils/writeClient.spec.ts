@@ -36,7 +36,19 @@ describe('writeClient', () => {
             },
         };
 
-        await writeClient(client, templates, './dist', true, true, true, true, true, Indent.SPACE_4, 'Service');
+        await writeClient(
+            client,
+            templates,
+            './dist',
+            true,
+            true,
+            true,
+            true,
+            true,
+            Indent.SPACE_4,
+            'Service',
+            'react-query'
+        );
 
         expect(rmdir).toBeCalled();
         expect(mkdir).toBeCalled();

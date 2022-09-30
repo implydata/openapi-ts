@@ -37,17 +37,18 @@ $ openapi --help
   Usage: openapi [options]
 
   Options:
-    -V, --version             output the version number
-    -i, --input <value>       OpenAPI specification, can be a path, url or string content (required)
-    -o, --output <value>      Output directory (required)
-    --exportCore              Write core files to disk (default: true)
-    --exportServices          Write services to disk (default: true)
-    --exportModels            Write models to disk (default: true)
-    --exportHooks             Write react-query hooks to disk (default: false)
-    --exportSchemas           Write schemas to disk (default: false)
-    --indent <value>          Indentation options [4, 2, tab] (default: "4")
-    --postfix <value>         Service name postfix (default: "Service")
-    -h, --help                display help for command
+    -V, --version               output the version number
+    -i, --input <value>         OpenAPI specification, can be a path, url or string content (required)
+    -o, --output <value>        Output directory (required)
+    --exportCore                Write core files to disk (default: true)
+    --exportServices            Write services to disk (default: true)
+    --exportModels              Write models to disk (default: true)
+    --exportHooks               Write react-query hooks to disk (default: false)
+    --exportSchemas             Write schemas to disk (default: false)
+    --indent <value>            Indentation options [4, 2, tab] (default: "4")
+    --postfix <value>           Service name postfix (default: "Service")
+    --reactQueryImport <value>  Import specifier for react-query (default: "@tanstack/react-query")
+    -h, --help                  display help for command
 
   Examples
     $ openapi --input ./spec.json --output ./generated

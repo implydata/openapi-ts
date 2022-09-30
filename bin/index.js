@@ -19,6 +19,7 @@ const params = program
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
     .option('--postfix <value>', 'Service name postfix', 'Service')
+    .option('--reactQueryImport <value>', 'Import specifier for react-query', '@tanstack/react-query')
     .parse(process.argv)
     .opts();
 
@@ -35,6 +36,7 @@ if (OpenAPI) {
         exportSchemas: JSON.parse(params.exportSchemas) === true,
         indent: params.indent,
         postfix: params.postfix,
+        reactQueryImport: params.reactQueryImport,
     })
         .then(() => {
             process.exit(0);

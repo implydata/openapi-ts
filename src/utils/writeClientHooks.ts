@@ -14,17 +14,19 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param outputPath Directory to write the generated files to
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
+ * @param reactQueryImport Import path for react-query
  */
 export const writeClientHooks = async (
     services: Service[],
     templates: Templates,
     outputPath: string,
     indent: Indent,
-    postfix: string
+    postfix: string,
+    reactQueryImport: string
 ): Promise<void> => {
     for (const service of services) {
         const file = resolve(outputPath, `${service.name}Hooks.ts`);
-        const templateResult = templates.exports.hooks({ ...service, postfix });
+        const templateResult = templates.exports.hooks({ ...service, postfix, reactQueryImport });
         await writeFile(file, i(f(templateResult), indent));
     }
 
