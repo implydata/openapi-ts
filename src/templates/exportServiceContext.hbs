@@ -8,33 +8,33 @@ import type { OpenAPIConfig } from '../core/OpenAPI';
 import { {{{name}}}{{{@root.postfix}}} } from '../services/{{{name}}}{{{@root.postfix}}}';
 {{/each}}
 
-export interface ServiceContextValue {
+export interface {{{@root.contextName}}}Value {
 	{{#each services}}
 	{{{camelCase name}}}: {{{name}}}{{{@root.postfix}}},
 	{{/each}}
 }
 
-export const ServiceContext = createContext<ServiceContextValue>({
+export const {{{@root.contextName}}} = createContext<{{{@root.contextName}}}Value>({
 	{{#each services}}
 	{{{camelCase name}}}: new {{{name}}}{{{@root.postfix}}}(),
 	{{/each}}
 });
-ServiceContext.displayName = 'ServiceContext';
+{{{@root.contextName}}}.displayName = '{{{@root.contextName}}}';
 
-interface ServiceContextProviderProps extends OpenAPIConfig {
+interface {{{@root.contextName}}}ProviderProps extends OpenAPIConfig {
 	children?: ReactNode;
 	{{#each services}}
 	{{{camelCase name}}}?: {{{name}}}{{{@root.postfix}}};
 	{{/each}}
 }
 
-export function ServiceContextProvider({
+export function {{{@root.contextName}}}Provider({
 	children,
 	{{#each services}}
 	{{{camelCase name}}},
 	{{/each}}
-}: ServiceContextProviderProps): JSX.Element {
-	const value: ServiceContextValue = useMemo(() => {
+}: {{{@root.contextName}}}ProviderProps): JSX.Element {
+	const value: {{{@root.contextName}}}Value = useMemo(() => {
 		const services = {
 			{{#each services}}
 			{{{camelCase name}}}: {{{camelCase name}}} ?? new {{{name}}}{{{@root.postfix}}}(),
@@ -47,5 +47,5 @@ export function ServiceContextProvider({
 		{{/each}}
 	]);
 
-	return (<ServiceContext.Provider value={value}>{children}</ServiceContext.Provider>);
+	return (<{{{@root.contextName}}}.Provider value={value}>{children}</{{{@root.contextName}}}.Provider>);
 }

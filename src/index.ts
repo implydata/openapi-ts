@@ -20,6 +20,7 @@ export type Options = {
     exportSchemas?: boolean;
     indent?: Indent;
     postfix?: string;
+    contextName?: string;
     reactQueryImport?: string;
     write?: boolean;
 };
@@ -38,6 +39,7 @@ export type Options = {
  * @param options.exportSchemas Generate schemas
  * @param options.indent Indentation options (4, 2 or tab)
  * @param options.postfix Service name postfix
+ * @param options.contextName Hook context name (default: 'ServiceContext')
  * @param options.reactQueryImport Import path for react-query (default: '@tanstack/react-query')
  * @param options.write Write the files to disk (true or false)
  */
@@ -51,6 +53,7 @@ export const generate = async ({
     exportHooks = false,
     indent = Indent.SPACE_4,
     postfix = 'Service',
+    contextName = 'ServiceContext',
     reactQueryImport = '@tanstack/react-query',
     write = true,
 }: Options): Promise<void> => {
@@ -74,6 +77,7 @@ export const generate = async ({
                 exportHooks,
                 indent,
                 postfix,
+                contextName,
                 reactQueryImport
             );
             break;
@@ -94,6 +98,7 @@ export const generate = async ({
                 exportHooks,
                 indent,
                 postfix,
+                contextName,
                 reactQueryImport
             );
             break;

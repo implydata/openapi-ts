@@ -47,6 +47,7 @@ $ openapi --help
     --exportSchemas             Write schemas to disk (default: false)
     --indent <value>            Indentation options [4, 2, tab] (default: "4")
     --postfix <value>           Service name postfix (default: "Service")
+    --contextName <value>       Hook service context name (default: "ServiceContext")
     --reactQueryImport <value>  Import specifier for react-query (default: "@tanstack/react-query")
     -h, --help                  display help for command
 

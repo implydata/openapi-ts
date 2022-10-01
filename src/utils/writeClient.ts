@@ -24,6 +24,7 @@ import { writeClientServices } from './writeClientServices';
  * @param exportHooks Generate react-query hooks
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
+ * @param contextName Hook context name
  * @param reactQueryImport Import path for react-query
  */
 export const writeClient = async (
@@ -37,6 +38,7 @@ export const writeClient = async (
     exportHooks: boolean,
     indent: Indent,
     postfix: string,
+    contextName: string,
     reactQueryImport: string
 ): Promise<void> => {
     const outputPath = resolve(process.cwd(), output);
@@ -77,7 +79,15 @@ export const writeClient = async (
     if (exportHooks) {
         await rmdir(outputPathQueries);
         await mkdir(outputPathQueries);
-        await writeClientHooks(client.services, templates, outputPathQueries, indent, postfix, reactQueryImport);
+        await writeClientHooks(
+            client.services,
+            templates,
+            outputPathQueries,
+            indent,
+            postfix,
+            contextName,
+            reactQueryImport
+        );
     }
 
     if (exportCore || exportServices || exportSchemas || exportModels) {

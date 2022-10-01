@@ -46,7 +46,8 @@ describe('writeClient', () => {
             true,
             true,
             Indent.SPACE_4,
-            'Service',
+            'MyService',
+            'MyServiceContext',
             'react-query'
         );
 

@@ -13,7 +13,7 @@ import type { {{{this}}} } from '../models/{{{this}}}';
 {{/if}}
 import { {{{name}}}{{{@root.postfix}}} } from '../services/{{{name}}}{{{@root.postfix}}}';
 
-import { ServiceContext } from './ServiceContext';
+import { {{{@root.contextName}}} } from './{{{@root.contextName}}}';
 {{#each operations}}
 {{#if parameters}}
 
@@ -55,7 +55,7 @@ export function use{{{pascalCase name}}}<TError = ApiError>(
 		request?: ApiRequestOptions,
 	},
 ): UseQueryResult<{{>result}}, TError> {
-  const service = useContext(ServiceContext).{{{camelCase @root.name}}};
+  const service = useContext({{{@root.contextName}}}).{{{camelCase @root.name}}};
   return useQuery({
 	{{#if parameters}}
 	queryFn: () => service.{{{name}}}(parameters, options?.request),
@@ -97,7 +97,7 @@ export function use{{{pascalCase name}}}<TError = ApiError, TContext = unknown>(
 		request?: ApiRequestOptions,
 	},
 ): UseMutationResult<{{>result}}, TError, {{{pascalCase name}}}Params, TContext> {
-  const service = useContext(ServiceContext).{{{camelCase @root.name}}};
+  const service = useContext({{{@root.contextName}}}).{{{camelCase @root.name}}};
   return useMutation({
 	mutationFn: parameters => service.{{{name}}}(parameters, options?.request),
 	...options?.mutation,
