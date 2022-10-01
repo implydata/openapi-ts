@@ -1831,16 +1831,16 @@ export function useDuplicateName1<TError = ApiError, TContext = unknown>(
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, DuplicateName1Params, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, DuplicateName1Params, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).duplicate;
     return rq.useMutation({
-        mutationFn: parameters => service.duplicateName1(parameters, options?.request),
+        mutationFn: () => service.duplicateName1(options?.request),
         ...options?.mutation,
     });
 }
@@ -1855,16 +1855,16 @@ export function useDuplicateName2<TError = ApiError, TContext = unknown>(
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, DuplicateName2Params, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, DuplicateName2Params, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).duplicate;
     return rq.useMutation({
-        mutationFn: parameters => service.duplicateName2(parameters, options?.request),
+        mutationFn: () => service.duplicateName2(options?.request),
         ...options?.mutation,
     });
 }
@@ -1879,16 +1879,16 @@ export function useDuplicateName3<TError = ApiError, TContext = unknown>(
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, DuplicateName3Params, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, DuplicateName3Params, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).duplicate;
     return rq.useMutation({
-        mutationFn: parameters => service.duplicateName3(parameters, options?.request),
+        mutationFn: () => service.duplicateName3(options?.request),
         ...options?.mutation,
     });
 }
@@ -1970,16 +1970,16 @@ export function useCallWithResultFromHeader<TError = ApiError, TContext = unknow
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<string, TError, CallWithResultFromHeaderParams, TContext>
+        mutation?: RQ.UseMutationOptions<string, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<string, TError, CallWithResultFromHeaderParams, TContext> {
+): RQ.UseMutationResult<string, TError, void, TContext> {
     const service = useContext(MyServiceContext).header;
     return rq.useMutation({
-        mutationFn: parameters => service.callWithResultFromHeader(parameters, options?.request),
+        mutationFn: () => service.callWithResultFromHeader(options?.request),
         ...options?.mutation,
     });
 }
@@ -2381,16 +2381,16 @@ export function useCallWithDuplicateResponses<TError = ApiError, TContext = unkn
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<ModelWithString, TError, CallWithDuplicateResponsesParams, TContext>
+        mutation?: RQ.UseMutationOptions<ModelWithString, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<ModelWithString, TError, CallWithDuplicateResponsesParams, TContext> {
+): RQ.UseMutationResult<ModelWithString, TError, void, TContext> {
     const service = useContext(MyServiceContext).response;
     return rq.useMutation({
-        mutationFn: parameters => service.callWithDuplicateResponses(parameters, options?.request),
+        mutationFn: () => service.callWithDuplicateResponses(options?.request),
         ...options?.mutation,
     });
 }
@@ -2413,7 +2413,7 @@ export function useCallWithResponses<TError = ApiError, TContext = unknown>(
             readonly '@namespace.string'?: string;
             readonly '@namespace.integer'?: number;
             readonly value?: Array<ModelWithString>;
-        } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, CallWithResponsesParams, TContext>
+        } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, void, TContext>
         /**
          * Overrides for service request
          */
@@ -2423,10 +2423,10 @@ export function useCallWithResponses<TError = ApiError, TContext = unknown>(
     readonly '@namespace.string'?: string;
     readonly '@namespace.integer'?: number;
     readonly value?: Array<ModelWithString>;
-} | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, CallWithResponsesParams, TContext> {
+} | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, void, TContext> {
     const service = useContext(MyServiceContext).response;
     return rq.useMutation({
-        mutationFn: parameters => service.callWithResponses(parameters, options?.request),
+        mutationFn: () => service.callWithResponses(options?.request),
         ...options?.mutation,
     });
 }
@@ -2482,16 +2482,16 @@ export function usePutCallWithoutParametersAndResponse<TError = ApiError, TConte
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, PutCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, PutCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.putCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.putCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -2506,16 +2506,16 @@ export function usePostCallWithoutParametersAndResponse<TError = ApiError, TCont
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, PostCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, PostCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.postCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.postCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -2530,16 +2530,16 @@ export function useDeleteCallWithoutParametersAndResponse<TError = ApiError, TCo
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, DeleteCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, DeleteCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.deleteCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.deleteCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -2554,16 +2554,16 @@ export function useOptionsCallWithoutParametersAndResponse<TError = ApiError, TC
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, OptionsCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, OptionsCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.optionsCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.optionsCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -2578,16 +2578,16 @@ export function useHeadCallWithoutParametersAndResponse<TError = ApiError, TCont
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, HeadCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, HeadCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.headCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.headCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -2602,16 +2602,16 @@ export function usePatchCallWithoutParametersAndResponse<TError = ApiError, TCon
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, PatchCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, PatchCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.patchCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.patchCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -7360,16 +7360,16 @@ export function useDuplicateName1<TError = ApiError, TContext = unknown>(
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, DuplicateName1Params, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, DuplicateName1Params, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).duplicate;
     return rq.useMutation({
-        mutationFn: parameters => service.duplicateName1(parameters, options?.request),
+        mutationFn: () => service.duplicateName1(options?.request),
         ...options?.mutation,
     });
 }
@@ -7384,16 +7384,16 @@ export function useDuplicateName2<TError = ApiError, TContext = unknown>(
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, DuplicateName2Params, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, DuplicateName2Params, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).duplicate;
     return rq.useMutation({
-        mutationFn: parameters => service.duplicateName2(parameters, options?.request),
+        mutationFn: () => service.duplicateName2(options?.request),
         ...options?.mutation,
     });
 }
@@ -7408,16 +7408,16 @@ export function useDuplicateName3<TError = ApiError, TContext = unknown>(
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, DuplicateName3Params, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, DuplicateName3Params, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).duplicate;
     return rq.useMutation({
-        mutationFn: parameters => service.duplicateName3(parameters, options?.request),
+        mutationFn: () => service.duplicateName3(options?.request),
         ...options?.mutation,
     });
 }
@@ -7552,16 +7552,16 @@ export function useCallWithResultFromHeader<TError = ApiError, TContext = unknow
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<string, TError, CallWithResultFromHeaderParams, TContext>
+        mutation?: RQ.UseMutationOptions<string, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<string, TError, CallWithResultFromHeaderParams, TContext> {
+): RQ.UseMutationResult<string, TError, void, TContext> {
     const service = useContext(ServiceContext).header;
     return rq.useMutation({
-        mutationFn: parameters => service.callWithResultFromHeader(parameters, options?.request),
+        mutationFn: () => service.callWithResultFromHeader(options?.request),
         ...options?.mutation,
     });
 }
@@ -8190,16 +8190,16 @@ export function useCallWithDuplicateResponses<TError = ApiError, TContext = unkn
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<ModelWithString, TError, CallWithDuplicateResponsesParams, TContext>
+        mutation?: RQ.UseMutationOptions<ModelWithString, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<ModelWithString, TError, CallWithDuplicateResponsesParams, TContext> {
+): RQ.UseMutationResult<ModelWithString, TError, void, TContext> {
     const service = useContext(ServiceContext).response;
     return rq.useMutation({
-        mutationFn: parameters => service.callWithDuplicateResponses(parameters, options?.request),
+        mutationFn: () => service.callWithDuplicateResponses(options?.request),
         ...options?.mutation,
     });
 }
@@ -8222,7 +8222,7 @@ export function useCallWithResponses<TError = ApiError, TContext = unknown>(
             readonly '@namespace.string'?: string;
             readonly '@namespace.integer'?: number;
             readonly value?: Array<ModelWithString>;
-        } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, CallWithResponsesParams, TContext>
+        } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, void, TContext>
         /**
          * Overrides for service request
          */
@@ -8232,10 +8232,10 @@ export function useCallWithResponses<TError = ApiError, TContext = unknown>(
     readonly '@namespace.string'?: string;
     readonly '@namespace.integer'?: number;
     readonly value?: Array<ModelWithString>;
-} | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, CallWithResponsesParams, TContext> {
+} | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, void, TContext> {
     const service = useContext(ServiceContext).response;
     return rq.useMutation({
-        mutationFn: parameters => service.callWithResponses(parameters, options?.request),
+        mutationFn: () => service.callWithResponses(options?.request),
         ...options?.mutation,
     });
 }
@@ -8291,16 +8291,16 @@ export function usePutCallWithoutParametersAndResponse<TError = ApiError, TConte
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, PutCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, PutCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.putCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.putCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -8315,16 +8315,16 @@ export function usePostCallWithoutParametersAndResponse<TError = ApiError, TCont
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, PostCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, PostCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.postCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.postCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -8339,16 +8339,16 @@ export function useDeleteCallWithoutParametersAndResponse<TError = ApiError, TCo
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, DeleteCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, DeleteCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.deleteCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.deleteCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -8363,16 +8363,16 @@ export function useOptionsCallWithoutParametersAndResponse<TError = ApiError, TC
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, OptionsCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, OptionsCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.optionsCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.optionsCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -8387,16 +8387,16 @@ export function useHeadCallWithoutParametersAndResponse<TError = ApiError, TCont
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, HeadCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, HeadCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.headCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.headCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }
@@ -8411,16 +8411,16 @@ export function usePatchCallWithoutParametersAndResponse<TError = ApiError, TCon
         /**
          * Overrides for react-query mutation
          */
-        mutation?: RQ.UseMutationOptions<void, TError, PatchCallWithoutParametersAndResponseParams, TContext>
+        mutation?: RQ.UseMutationOptions<void, TError, void, TContext>
         /**
          * Overrides for service request
          */
         request?: ApiRequestOptions,
     },
-): RQ.UseMutationResult<void, TError, PatchCallWithoutParametersAndResponseParams, TContext> {
+): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
     return rq.useMutation({
-        mutationFn: parameters => service.patchCallWithoutParametersAndResponse(parameters, options?.request),
+        mutationFn: () => service.patchCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
 }

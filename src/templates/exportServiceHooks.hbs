@@ -90,16 +90,28 @@ export function use{{{pascalCase name}}}<TError = ApiError, TContext = unknown>(
 		/**
 		 * Overrides for react-query mutation
 		 */
+		{{#if parameters}}
 		mutation?: RQ.UseMutationOptions<{{>result}}, TError, {{{pascalCase name}}}Params, TContext>
+		{{else}}
+		mutation?: RQ.UseMutationOptions<{{>result}}, TError, void, TContext>
+		{{/if}}
 		/**
 		 * Overrides for service request
 		 */
 		request?: ApiRequestOptions,
 	},
+{{#if parameters}}
 ): RQ.UseMutationResult<{{>result}}, TError, {{{pascalCase name}}}Params, TContext> {
+{{else}}
+): RQ.UseMutationResult<{{>result}}, TError, void, TContext> {
+{{/if}}
   const service = useContext({{{@root.contextName}}}).{{{camelCase @root.name}}};
   return rq.useMutation({
+	{{#if parameters}}
 	mutationFn: parameters => service.{{{name}}}(parameters, options?.request),
+	{{else}}
+	mutationFn: () => service.{{{name}}}(options?.request),
+	{{/if}}
 	...options?.mutation,
   });
 }
