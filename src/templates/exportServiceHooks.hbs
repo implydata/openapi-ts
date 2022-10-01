@@ -1,8 +1,8 @@
 {{>header}}
 
 import { useContext } from 'react';
-import { useQuery, useMutation } from 'react-query';
-import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '{{{@root.reactQueryImport}}}';
+import * as rq from 'react-query';
+import type * as RQ from '{{{@root.reactQueryImport}}}';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -48,15 +48,15 @@ export function use{{{pascalCase name}}}<TError = ApiError>(
 		/**
 		 * Overrides for react-query
 		 */
-		query?: UseQueryOptions<{{>result}}, TError, {{>result}}, readonly unknown[]>
+		query?: RQ.UseQueryOptions<{{>result}}, TError, {{>result}}, readonly unknown[]>
 		/**
 		 * Overrides for service request
 		 */
 		request?: ApiRequestOptions,
 	},
-): UseQueryResult<{{>result}}, TError> {
+): RQ.UseQueryResult<{{>result}}, TError> {
   const service = useContext({{{@root.contextName}}}).{{{camelCase @root.name}}};
-  return useQuery({
+  return rq.useQuery({
 	{{#if parameters}}
 	queryFn: () => service.{{{name}}}(parameters, options?.request),
 	queryKey: {{{@root.name}}}{{{@root.postfix}}}.QueryKeys.{{{name}}}(parameters),
@@ -90,15 +90,15 @@ export function use{{{pascalCase name}}}<TError = ApiError, TContext = unknown>(
 		/**
 		 * Overrides for react-query mutation
 		 */
-		mutation?: UseMutationOptions<{{>result}}, TError, {{{pascalCase name}}}Params, TContext>
+		mutation?: RQ.UseMutationOptions<{{>result}}, TError, {{{pascalCase name}}}Params, TContext>
 		/**
 		 * Overrides for service request
 		 */
 		request?: ApiRequestOptions,
 	},
-): UseMutationResult<{{>result}}, TError, {{{pascalCase name}}}Params, TContext> {
+): RQ.UseMutationResult<{{>result}}, TError, {{{pascalCase name}}}Params, TContext> {
   const service = useContext({{{@root.contextName}}}).{{{camelCase @root.name}}};
-  return useMutation({
+  return rq.useMutation({
 	mutationFn: parameters => service.{{{name}}}(parameters, options?.request),
 	...options?.mutation,
   });
