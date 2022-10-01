@@ -20,10 +20,6 @@ describe('bin', () => {
             './test/spec/v3.json',
             '--output',
             './test/generated/bin',
-            '--client',
-            'fetch',
-            '--useOptions',
-            '--useUnionTypes',
             '--exportCore',
             'true',
             '--exportServices',
@@ -32,10 +28,14 @@ describe('bin', () => {
             'true',
             '--exportSchemas',
             'true',
+            '--exportHooks',
+            'true',
             '--indent',
             '4',
             '--postfix',
             'Service',
+            '--reactQueryImport',
+            'react-query',
         ]);
         expect(result.stdout.toString()).toBe('');
         expect(result.stderr.toString()).toBe('');

@@ -8,16 +8,12 @@ const generate = async (input, output) => {
         input,
         output,
         httpClient: OpenAPI.HttpClient.FETCH,
-        useOptions: true,
-        useUnionTypes: false,
         exportCore: true,
         exportSchemas: true,
         exportModels: true,
         exportServices: true,
-        // clientName: 'Demo',
         // indent: OpenAPI.Indent.SPACE_2,
         // postfix: 'Service',
-        // request: './test/custom/request.ts',
     });
 };
 

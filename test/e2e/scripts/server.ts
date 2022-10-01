@@ -1,5 +1,6 @@
-import express, { Express } from 'express';
-import { Server } from 'http';
+import type { Express } from 'express';
+import express from 'express';
+import type { Server } from 'http';
 import { resolve as resolvePath } from 'path';
 
 let _app: Express;

@@ -4,14 +4,9 @@ import { EOL } from 'os';
 
 import type { Enum } from '../client/interfaces/Enum';
 import type { Model } from '../client/interfaces/Model';
-import type { HttpClient } from '../HttpClient';
 import { unique } from './unique';
 
-export const registerHandlebarHelpers = (root: {
-    httpClient: HttpClient;
-    useOptions: boolean;
-    useUnionTypes: boolean;
-}): void => {
+export const registerHandlebarHelpers = (): void => {
     Handlebars.registerHelper('ifdef', function (this: any, ...args): string {
         const options = args.pop();
         if (!args.every(value => !value)) {
@@ -45,7 +40,7 @@ export const registerHandlebarHelpers = (root: {
         'union',
         function (this: any, properties: Model[], parent: string | undefined, options: Handlebars.HelperOptions) {
             const type = Handlebars.partials['type'];
-            const types = properties.map(property => type({ ...root, ...property, parent }));
+            const types = properties.map(property => type({ ...property, parent }));
             const uniqueTypes = types.filter(unique);
             let uniqueTypesString = uniqueTypes.join(' | ');
             if (uniqueTypes.length > 1) {
@@ -59,7 +54,7 @@ export const registerHandlebarHelpers = (root: {
         'intersection',
         function (this: any, properties: Model[], parent: string | undefined, options: Handlebars.HelperOptions) {
             const type = Handlebars.partials['type'];
-            const types = properties.map(property => type({ ...root, ...property, parent }));
+            const types = properties.map(property => type({ ...property, parent }));
             const uniqueTypes = types.filter(unique);
             let uniqueTypesString = uniqueTypes.join(' & ');
             if (uniqueTypes.length > 1) {
@@ -74,13 +69,10 @@ export const registerHandlebarHelpers = (root: {
         function (
             this: any,
             enumerators: Enum[],
-            parent: string | undefined,
-            name: string | undefined,
+            _parent: string | undefined,
+            _name: string | undefined,
             options: Handlebars.HelperOptions
         ) {
-            if (!root.useUnionTypes && parent && name) {
-                return `${parent}.${name}`;
-            }
             return options.fn(
                 enumerators
                     .map(enumerator => enumerator.value)
@@ -103,5 +95,13 @@ export const registerHandlebarHelpers = (root: {
 
     Handlebars.registerHelper('camelCase', function (value: string): string {
         return camelCase(value);
+    });
+
+    Handlebars.registerHelper('pascalCase', function (value: string): string {
+        return camelCase(value, { pascalCase: true });
+    });
+
+    Handlebars.registerHelper('queryKey', function (path: string) {
+        return path.split('/').filter(Boolean);
     });
 };

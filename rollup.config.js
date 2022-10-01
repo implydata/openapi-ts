@@ -37,6 +37,8 @@ const handlebarsPlugin = () => ({
                     escapeComment: true,
                     escapeDescription: true,
                     camelCase: true,
+                    pascalCase: true,
+                    queryKey: true,
                 },
             });
             return `export default ${templateSpec};`;
@@ -69,6 +71,6 @@ export default {
         file: './dist/index.js',
         format: 'cjs',
     },
-    external: ['camelcase', 'commander', 'fs-extra', 'handlebars', 'json-schema-ref-parser'],
+    external: ['camelcase', 'commander', 'fs-extra', 'json-schema-ref-parser'],
     plugins: getPlugins(),
 };

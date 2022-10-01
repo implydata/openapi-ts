@@ -1,49 +1,45 @@
 {{>header}}
 
-{{#equals @root.httpClient 'angular'}}
-{{#if @root.exportClient}}
-import { Injectable } from '@angular/core';
-import type { Observable } from 'rxjs';
-{{else}}
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import type { Observable } from 'rxjs';
-{{/if}}
-
-{{/equals}}
 {{#if imports}}
 {{#each imports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 
 {{/if}}
-{{#notEquals @root.httpClient 'angular'}}
-import type { CancelablePromise } from '../core/CancelablePromise';
-{{/notEquals}}
-{{#if @root.exportClient}}
-{{#equals @root.httpClient 'angular'}}
-import { BaseHttpRequest } from '../core/BaseHttpRequest';
-{{else}}
-import type { BaseHttpRequest } from '../core/BaseHttpRequest';
-{{/equals}}
-{{else}}
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
+import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-{{/if}}
 
-{{#equals @root.httpClient 'angular'}}
-@Injectable()
-{{/equals}}
 export class {{{name}}}{{{@root.postfix}}} {
-	{{#if @root.exportClient}}
+	public static readonly URLs = {
+	{{#each operations}}
+		{{{name}}}: '{{{path}}}',
+	{{/each}}
+	};
 
-	constructor(public readonly httpRequest: BaseHttpRequest) {}
-	{{else}}
-	{{#equals @root.httpClient 'angular'}}
+	public static readonly QueryKeys = {
+	{{#each operations}}
+		{{#equals method 'GET'}}
+		{{{name}}}({{~#if parameters~}}parameters: {{>parametersType}}{{~/if~}}): readonly unknown[] {
+			{{#if parameters}}
+ 			return [{{#each (queryKey path)}}'{{this}}', {{/each}}parameters];
+			{{else}}
+ 			return [{{#each (queryKey path)}}'{{this}}', {{/each}}];
+			{{/if}}
+		},
+		{{/equals}}
+	{{/each}}
+	};
 
-	constructor(public readonly http: HttpClient) {}
-	{{/equals}}
-	{{/if}}
+	/**
+	 * Configuration for the current service instance.
+	 */
+	public readonly config: OpenAPIConfig;
+
+	constructor(config?: Partial<OpenAPIConfig>) {
+		this.config = { ...OpenAPI, ...config };
+	}
 
 	{{#each operations}}
 	/**
@@ -56,35 +52,23 @@ export class {{{name}}}{{{@root.postfix}}} {
 	{{#if description}}
 	 * {{{escapeComment description}}}
 	{{/if}}
-	{{#unless @root.useOptions}}
 	{{#if parameters}}
+	 * @param request Request
 	{{#each parameters}}
-	 * @param {{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+	 * @param request.{{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 	{{/each}}
 	{{/if}}
-	{{/unless}}
+	 * @param options Request option overrides
 	{{#each results}}
 	 * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 	{{/each}}
 	 * @throws ApiError
 	 */
-	{{#if @root.exportClient}}
-	{{#equals @root.httpClient 'angular'}}
-	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
-		return this.httpRequest.request({
-	{{else}}
-	public {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
-		return this.httpRequest.request({
-	{{/equals}}
-	{{else}}
-	{{#equals @root.httpClient 'angular'}}
-	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
-		return __request(OpenAPI, this.http, {
-	{{else}}
-	public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
-		return __request(OpenAPI, {
-	{{/equals}}
-	{{/if}}
+	public {{{name}}}(
+		{{>parameters}}
+
+	): Promise<{{>result}}> {
+		return __request(this.config, {
 			method: '{{{method}}}',
 			url: '{{{path}}}',
 			{{#if parametersPath}}
@@ -143,6 +127,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 				{{/each}}
 			},
 			{{/if}}
+			...options,
 		});
 	}
 

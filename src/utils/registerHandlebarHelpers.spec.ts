@@ -1,15 +1,10 @@
 import Handlebars from 'handlebars/runtime';
 
-import { HttpClient } from '../HttpClient';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 describe('registerHandlebarHelpers', () => {
     it('should register the helpers', () => {
-        registerHandlebarHelpers({
-            httpClient: HttpClient.FETCH,
-            useOptions: false,
-            useUnionTypes: false,
-        });
+        registerHandlebarHelpers();
         const helpers = Object.keys(Handlebars.helpers);
         expect(helpers).toContain('ifdef');
         expect(helpers).toContain('equals');

@@ -16,25 +16,26 @@ describe('writeClientIndex', () => {
 
         const templates: Templates = {
             index: () => 'index',
-            client: () => 'client',
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
+                hooks: () => 'hooks',
+                context: () => 'context',
             },
             core: {
-                settings: () => 'settings',
                 apiError: () => 'apiError',
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
-                cancelablePromise: () => 'cancelablePromise',
+                functions: () => 'functions',
+                openAPI: () => 'openAPI',
                 request: () => 'request',
-                baseHttpRequest: () => 'baseHttpRequest',
-                httpRequest: () => 'httpRequest',
+                requestFetch: () => 'requestFetch',
+                requestXhr: () => 'requestXhr',
             },
         };
 
-        await writeClientIndex(client, templates, '/', true, true, true, true, true, 'Service');
+        await writeClientIndex(client, templates, '/', true, true, true, true, 'Service');
 
         expect(writeFile).toBeCalledWith('/index.ts', 'index');
     });

@@ -1,0 +1,107 @@
+{{>header}}
+
+import { useContext } from 'react';
+import { useQuery, useMutation } from 'react-query';
+import type { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult } from '{{{@root.reactQueryImport}}}';
+
+import type { ApiError } from '../core/ApiError';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
+{{#if imports}}
+{{#each imports}}
+import type { {{{this}}} } from '../models/{{{this}}}';
+{{/each}}
+{{/if}}
+import { {{{name}}}{{{@root.postfix}}} } from '../services/{{{name}}}{{{@root.postfix}}}';
+
+import { ServiceContext } from './ServiceContext';
+{{#each operations}}
+{{#if parameters}}
+
+export interface {{{pascalCase name}}}Params {{>parametersType}};
+{{/if}}
+
+{{#equals method 'GET'}}
+/**
+{{#if deprecated}}
+ * @deprecated
+{{/if}}
+{{#if summary}}
+ * {{{escapeComment summary}}}
+{{/if}}
+{{#if description}}
+ * {{{escapeComment description}}}
+{{/if}}
+{{#if parameters}}
+ * @param parameters Request parameters
+{{/if}}
+ * @param options Option overrides
+{{#each results}}
+ * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+{{/each}}
+ * @throws ApiError
+ */
+export function use{{{pascalCase name}}}<TError = ApiError>(
+	{{#if parameters}}
+	parameters: {{{pascalCase name}}}Params,
+	{{/if}}
+	options?: {
+		/**
+		 * Overrides for react-query
+		 */
+		query?: UseQueryOptions<{{>result}}, TError, {{>result}}, readonly unknown[]>
+		/**
+		 * Overrides for service request
+		 */
+		request?: ApiRequestOptions,
+	},
+): UseQueryResult<{{>result}}, TError> {
+  const service = useContext(ServiceContext).{{{camelCase @root.name}}};
+  return useQuery({
+	{{#if parameters}}
+	queryFn: () => service.{{{name}}}(parameters, options?.request),
+	queryKey: {{{@root.name}}}{{{@root.postfix}}}.QueryKeys.{{{name}}}(parameters),
+	{{else}}
+	queryFn: () => service.{{{name}}}(options?.request),
+	queryKey: {{{@root.name}}}{{{@root.postfix}}}.QueryKeys.{{{name}}}(),
+	{{/if}}
+	...options?.query,
+  });
+}
+{{else}}
+/**
+{{#if deprecated}}
+ * @deprecated
+{{/if}}
+{{#if summary}}
+ * {{{escapeComment summary}}}
+{{/if}}
+{{#if description}}
+ * {{{escapeComment description}}}
+{{/if}}
+ * @param options Option overrides
+ * @param options.request Service request options
+{{#each results}}
+ * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+{{/each}}
+ * @throws ApiError
+ */
+export function use{{{pascalCase name}}}<TError = ApiError, TContext = unknown>(
+	options?: {
+		/**
+		 * Overrides for react-query mutation
+		 */
+		mutation?: UseMutationOptions<{{>result}}, TError, {{{pascalCase name}}}Params, TContext>
+		/**
+		 * Overrides for service request
+		 */
+		request?: ApiRequestOptions,
+	},
+): UseMutationResult<{{>result}}, TError, {{{pascalCase name}}}Params, TContext> {
+  const service = useContext(ServiceContext).{{{camelCase @root.name}}};
+  return useMutation({
+	mutationFn: parameters => service.{{{name}}}(parameters, options?.request),
+	...options?.mutation,
+  });
+}
+{{/equals}}
+{{/each}}

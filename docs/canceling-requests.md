@@ -1,5 +1,7 @@
 # Canceling requests
 
+TODO: UPDATE ME
+
 The generated clients support canceling of requests, this works by canceling the promise that
 is returned from the request. Each method inside a service (operation) returns a `CancelablePromise`
 object. This promise can be canceled by calling the `cancel()` method.
@@ -10,7 +12,6 @@ Below is an example of canceling the request after a certain timeout:
 import { UserService } from './myClient';
 
 const getAllUsers = async () => {
-
     const request = UserService.getAllUsers();
 
     setTimeout(() => {
@@ -36,7 +37,7 @@ interface CancelablePromise<TResult> extends Promise<TResult> {
 }
 ```
 
-- `isResolved`: Indicates if the promise was resolved.
-- `isRejected`: Indicates if the promise was rejected.
-- `isCancelled`: Indicates if the promise was canceled.
-- `cancel()`: Cancels the promise (and request) and throws a rejection error: `Request aborted`.
+-   `isResolved`: Indicates if the promise was resolved.
+-   `isRejected`: Indicates if the promise was rejected.
+-   `isCancelled`: Indicates if the promise was canceled.
+-   `cancel()`: Cancels the promise (and request) and throws a rejection error: `Request aborted`.

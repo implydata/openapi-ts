@@ -1,4 +1,5 @@
-import puppeteer, { Browser, EvaluateFn, Page } from 'puppeteer';
+import type { Browser, Page } from 'puppeteer';
+import puppeteer from 'puppeteer';
 
 let _browser: Browser;
 let _page: Page;
@@ -22,9 +23,9 @@ const stop = async () => {
     await _browser.close();
 };
 
-const evaluate = async (fn: EvaluateFn) => {
+async function evaluate<T extends (...args: any[]) => any>(fn: T) {
     return await _page.evaluate(fn);
-};
+}
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const exposeFunction = async (name: string, fn: Function) => {

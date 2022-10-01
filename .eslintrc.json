@@ -8,6 +8,7 @@
     },
     "plugins": ["simple-import-sort"],
     "rules": {
+        "@typescript-eslint/consistent-type-imports": 1,
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/no-inferrable-types": 0,
         "@typescript-eslint/no-non-null-assertion": 0,

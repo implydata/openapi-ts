@@ -1,5 +1,4 @@
 import type { Client } from '../client/interfaces/Client';
-import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
 import { mkdir, rmdir, writeFile } from './fileSystem';
 import type { Templates } from './registerHandlebarTemplates';
@@ -18,21 +17,22 @@ describe('writeClient', () => {
 
         const templates: Templates = {
             index: () => 'index',
-            client: () => 'client',
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
+                hooks: () => 'hooks',
+                context: () => 'context',
             },
             core: {
-                settings: () => 'settings',
                 apiError: () => 'apiError',
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
-                cancelablePromise: () => 'cancelablePromise',
+                functions: () => 'functions',
+                openAPI: () => 'openAPI',
                 request: () => 'request',
-                baseHttpRequest: () => 'baseHttpRequest',
-                httpRequest: () => 'httpRequest',
+                requestFetch: () => 'requestFetch',
+                requestXhr: () => 'requestXhr',
             },
         };
 
@@ -40,16 +40,14 @@ describe('writeClient', () => {
             client,
             templates,
             './dist',
-            HttpClient.FETCH,
-            false,
-            false,
+            true,
             true,
             true,
             true,
             true,
             Indent.SPACE_4,
             'Service',
-            'AppClient'
+            'react-query'
         );
 
         expect(rmdir).toBeCalled();

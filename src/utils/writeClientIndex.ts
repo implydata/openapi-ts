@@ -2,8 +2,7 @@ import { resolve } from 'path';
 
 import type { Client } from '../client/interfaces/Client';
 import { writeFile } from './fileSystem';
-import { isDefined } from './isDefined';
-import { Templates } from './registerHandlebarTemplates';
+import type { Templates } from './registerHandlebarTemplates';
 import { sortModelsByName } from './sortModelsByName';
 import { sortServicesByName } from './sortServicesByName';
 
@@ -14,39 +13,32 @@ import { sortServicesByName } from './sortServicesByName';
  * @param client Client object, containing, models, schemas and services
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
- * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core
  * @param exportServices Generate services
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
  * @param postfix Service name postfix
- * @param clientName Custom client class name
  */
 export const writeClientIndex = async (
     client: Client,
     templates: Templates,
     outputPath: string,
-    useUnionTypes: boolean,
     exportCore: boolean,
     exportServices: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
-    postfix: string,
-    clientName?: string
+    postfix: string
 ): Promise<void> => {
     const templateResult = templates.index({
         exportCore,
         exportServices,
         exportModels,
         exportSchemas,
-        useUnionTypes,
         postfix,
-        clientName,
         server: client.server,
         version: client.version,
         models: sortModelsByName(client.models),
         services: sortServicesByName(client.services),
-        exportClient: isDefined(clientName),
     });
 
     await writeFile(resolve(outputPath, 'index.ts'), templateResult);

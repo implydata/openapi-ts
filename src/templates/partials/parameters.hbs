@@ -1,28 +1,8 @@
 {{#if parameters}}
-{{#if @root.useOptions~}}
 {
 {{#each parameters}}
 {{{name}}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
-}: {
-{{#each parameters}}
-{{#ifdef description deprecated}}
-/**
-{{#if description}}
- * {{{escapeComment description}}}
+}: {{>parametersType}},
 {{/if}}
-{{#if deprecated}}
- * @deprecated
-{{/if}}
- */
-{{/ifdef}}
-{{{name}}}{{>isRequired}}: {{>type}},
-{{/each}}
-}
-{{~else}}
-
-{{#each parameters}}
-{{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
-{{/each}}
-{{/if}}
-{{/if}}
+options?: ApiRequestOptions
