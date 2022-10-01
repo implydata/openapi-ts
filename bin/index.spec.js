@@ -34,6 +34,8 @@ describe('bin', () => {
             '4',
             '--postfix',
             'Service',
+            '--contextName',
+            'MyServiceContext',
             '--reactQueryImport',
             'react-query',
         ]);
