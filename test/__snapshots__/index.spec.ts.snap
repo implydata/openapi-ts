@@ -3594,7 +3594,7 @@ export class CollectionFormatService {
              */
             parameterArrayMulti: Array<string>,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -3688,7 +3688,7 @@ export class ComplexService {
              */
             parameterReference: ModelWithString,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<Array<ModelWithString>> {
         return __request(this.config, {
             method: 'GET',
@@ -3743,7 +3743,7 @@ export class DefaultService {
      * @throws ApiError
      */
     public serviceWithEmptyTag(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -3851,7 +3851,7 @@ export class DefaultsService {
              */
             parameterModel?: ModelWithString,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -3908,7 +3908,7 @@ export class DefaultsService {
              */
             parameterModel?: ModelWithString,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -3981,7 +3981,7 @@ export class DefaultsService {
              */
             parameterStringNullableWithDefault?: string | null,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'PUT',
@@ -4081,7 +4081,7 @@ export class DescriptionsService {
              */
             parameterWithReservedCharacters?: string,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -4139,7 +4139,7 @@ export class DuplicateService {
      * @throws ApiError
      */
     public duplicateName(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -4153,7 +4153,7 @@ export class DuplicateService {
      * @throws ApiError
      */
     public duplicateName1(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -4167,7 +4167,7 @@ export class DuplicateService {
      * @throws ApiError
      */
     public duplicateName2(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'PUT',
@@ -4181,7 +4181,7 @@ export class DuplicateService {
      * @throws ApiError
      */
     public duplicateName3(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'DELETE',
@@ -4236,7 +4236,7 @@ export class ErrorService {
              */
             status: string,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<any> {
         return __request(this.config, {
             method: 'POST',
@@ -4290,7 +4290,7 @@ export class HeaderService {
      * @throws ApiError
      */
     public callWithResultFromHeader(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<string> {
         return __request(this.config, {
             method: 'POST',
@@ -4347,7 +4347,7 @@ export class MultipleTags1Service {
      * @throws ApiError
      */
     public dummyA(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -4362,7 +4362,7 @@ export class MultipleTags1Service {
      * @throws ApiError
      */
     public dummyB(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -4414,7 +4414,7 @@ export class MultipleTags2Service {
      * @throws ApiError
      */
     public dummyA(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -4429,7 +4429,7 @@ export class MultipleTags2Service {
      * @throws ApiError
      */
     public dummyB(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -4477,7 +4477,7 @@ export class MultipleTags3Service {
      * @throws ApiError
      */
     public dummyB(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -4525,7 +4525,7 @@ export class NoContentService {
      * @throws ApiError
      */
     public callWithNoContentResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -4604,7 +4604,7 @@ export class ParametersService {
              */
             parameterPath: string,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -4683,7 +4683,7 @@ export class ParametersService {
              */
             _default?: string,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -4753,7 +4753,7 @@ export class ResponseService {
      * @throws ApiError
      */
     public callWithResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
             method: 'GET',
@@ -4768,7 +4768,7 @@ export class ResponseService {
      * @throws ApiError
      */
     public callWithDuplicateResponses(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
             method: 'POST',
@@ -4791,7 +4791,7 @@ export class ResponseService {
      * @throws ApiError
      */
     public callWithResponses(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<{
         readonly '@namespace.string'?: string;
         readonly '@namespace.integer'?: number;
@@ -4853,7 +4853,7 @@ export class SimpleService {
      * @throws ApiError
      */
     public getCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -4867,7 +4867,7 @@ export class SimpleService {
      * @throws ApiError
      */
     public putCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'PUT',
@@ -4881,7 +4881,7 @@ export class SimpleService {
      * @throws ApiError
      */
     public postCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -4895,7 +4895,7 @@ export class SimpleService {
      * @throws ApiError
      */
     public deleteCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'DELETE',
@@ -4909,7 +4909,7 @@ export class SimpleService {
      * @throws ApiError
      */
     public optionsCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'OPTIONS',
@@ -4923,7 +4923,7 @@ export class SimpleService {
      * @throws ApiError
      */
     public headCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'HEAD',
@@ -4937,7 +4937,7 @@ export class SimpleService {
      * @throws ApiError
      */
     public patchCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'PATCH',
@@ -5073,7 +5073,7 @@ export class TypesService {
              */
             id?: number,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<number | string | boolean | any> {
         return __request(this.config, {
             method: 'GET',
@@ -9914,7 +9914,7 @@ export class CollectionFormatSvc {
              */
             parameterArrayMulti: Array<string> | null,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -10012,7 +10012,7 @@ export class ComplexSvc {
              */
             parameterReference: ModelWithString,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<Array<ModelWithString>> {
         return __request(this.config, {
             method: 'GET',
@@ -10057,7 +10057,7 @@ export class ComplexSvc {
                 };
             },
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
             method: 'PUT',
@@ -10109,7 +10109,7 @@ export class DefaultSvc {
      * @throws ApiError
      */
     public serviceWithEmptyTag(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -10217,7 +10217,7 @@ export class DefaultsSvc {
              */
             parameterModel?: ModelWithString | null,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -10274,7 +10274,7 @@ export class DefaultsSvc {
              */
             parameterModel?: ModelWithString,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -10347,7 +10347,7 @@ export class DefaultsSvc {
              */
             parameterStringNullableWithDefault?: string | null,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'PUT',
@@ -10415,7 +10415,7 @@ export class DeprecatedSvc {
              */
             parameter: DeprecatedModel | null,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -10508,7 +10508,7 @@ export class DescriptionsSvc {
              */
             parameterWithReservedCharacters?: any,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -10566,7 +10566,7 @@ export class DuplicateSvc {
      * @throws ApiError
      */
     public duplicateName(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -10580,7 +10580,7 @@ export class DuplicateSvc {
      * @throws ApiError
      */
     public duplicateName1(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -10594,7 +10594,7 @@ export class DuplicateSvc {
      * @throws ApiError
      */
     public duplicateName2(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'PUT',
@@ -10608,7 +10608,7 @@ export class DuplicateSvc {
      * @throws ApiError
      */
     public duplicateName3(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'DELETE',
@@ -10663,7 +10663,7 @@ export class ErrorSvc {
              */
             status: number,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<any> {
         return __request(this.config, {
             method: 'POST',
@@ -10734,7 +10734,7 @@ export class FormDataSvc {
              */
             formData?: ModelWithString,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -10784,7 +10784,7 @@ export class HeaderSvc {
      * @throws ApiError
      */
     public callWithResultFromHeader(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<string> {
         return __request(this.config, {
             method: 'POST',
@@ -10849,7 +10849,7 @@ export class MultipartSvc {
                 data?: ModelWithString | null;
             },
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -10866,7 +10866,7 @@ export class MultipartSvc {
      * @throws ApiError
      */
     public multipartResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<{
         file?: Blob;
         metadata?: {
@@ -10924,7 +10924,7 @@ export class MultipleTags1Svc {
      * @throws ApiError
      */
     public dummyA(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -10939,7 +10939,7 @@ export class MultipleTags1Svc {
      * @throws ApiError
      */
     public dummyB(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -10991,7 +10991,7 @@ export class MultipleTags2Svc {
      * @throws ApiError
      */
     public dummyA(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -11006,7 +11006,7 @@ export class MultipleTags2Svc {
      * @throws ApiError
      */
     public dummyB(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -11054,7 +11054,7 @@ export class MultipleTags3Svc {
      * @throws ApiError
      */
     public dummyB(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -11102,7 +11102,7 @@ export class NoContentSvc {
      * @throws ApiError
      */
     public callWithNoContentResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -11204,7 +11204,7 @@ export class ParametersSvc {
              */
             requestBody: ModelWithString | null,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -11293,7 +11293,7 @@ export class ParametersSvc {
              */
             _default?: string,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -11343,7 +11343,7 @@ export class ParametersSvc {
              */
             parameter?: string,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -11378,7 +11378,7 @@ export class ParametersSvc {
              */
             requestBody?: ModelWithString,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -11445,7 +11445,7 @@ export class RequestBodySvc {
              */
             requestBody?: ModelWithString,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -11504,7 +11504,7 @@ export class ResponseSvc {
      * @throws ApiError
      */
     public callWithResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
             method: 'GET',
@@ -11519,7 +11519,7 @@ export class ResponseSvc {
      * @throws ApiError
      */
     public callWithDuplicateResponses(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
             method: 'POST',
@@ -11542,7 +11542,7 @@ export class ResponseSvc {
      * @throws ApiError
      */
     public callWithResponses(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<{
         readonly '@namespace.string'?: string;
         readonly '@namespace.integer'?: number;
@@ -11604,7 +11604,7 @@ export class SimpleSvc {
      * @throws ApiError
      */
     public getCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'GET',
@@ -11618,7 +11618,7 @@ export class SimpleSvc {
      * @throws ApiError
      */
     public putCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'PUT',
@@ -11632,7 +11632,7 @@ export class SimpleSvc {
      * @throws ApiError
      */
     public postCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'POST',
@@ -11646,7 +11646,7 @@ export class SimpleSvc {
      * @throws ApiError
      */
     public deleteCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'DELETE',
@@ -11660,7 +11660,7 @@ export class SimpleSvc {
      * @throws ApiError
      */
     public optionsCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'OPTIONS',
@@ -11674,7 +11674,7 @@ export class SimpleSvc {
      * @throws ApiError
      */
     public headCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'HEAD',
@@ -11688,7 +11688,7 @@ export class SimpleSvc {
      * @throws ApiError
      */
     public patchCallWithoutParametersAndResponse(
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
             method: 'PATCH',
@@ -11824,7 +11824,7 @@ export class TypesSvc {
              */
             id?: number,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<number | string | boolean | any> {
         return __request(this.config, {
             method: 'GET',
@@ -11891,7 +11891,7 @@ export class UploadSvc {
              */
             file: Blob,
         },
-        options?: ApiRequestOptions
+        options?: Partial<ApiRequestOptions>
     ): Promise<boolean> {
         return __request(this.config, {
             method: 'POST',
