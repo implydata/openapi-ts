@@ -41,6 +41,19 @@
         "dist/index.js",
         "types/index.d.ts"
     ],
+    "volta": {
+        "node": "16.17.1"
+    },
+    "release": {
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            "@semantic-release/npm",
+            "@semantic-release/github",
+            "@semantic-release/changelog",
+            "@semantic-release/git"
+        ]
+    },
     "scripts": {
         "clean": "rimraf ./dist ./test/generated ./test/e2e/generated ./samples/generated ./coverage ./node_modules/.cache",
         "build": "rollup --config --environment NODE_ENV:development",
