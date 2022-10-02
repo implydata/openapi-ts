@@ -1723,7 +1723,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { DescriptionsService } from '../services/DescriptionsService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -1908,7 +1907,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { ErrorService } from '../services/ErrorService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -1957,7 +1955,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { HeaderService } from '../services/HeaderService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -2217,7 +2214,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { ParametersService } from '../services/ParametersService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -7206,7 +7202,7 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { DeprecatedSvc } from '../services/DeprecatedSvc';
+import type { DeprecatedModel } from '../models/DeprecatedModel';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7256,7 +7252,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { DescriptionsSvc } from '../services/DescriptionsSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7441,7 +7436,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { ErrorSvc } from '../services/ErrorSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7490,7 +7484,7 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { FormDataSvc } from '../services/FormDataSvc';
+import type { ModelWithString } from '../models/ModelWithString';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7542,7 +7536,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { HeaderSvc } from '../services/HeaderSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -8101,7 +8094,7 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { RequestBodySvc } from '../services/RequestBodySvc';
+import type { ModelWithString } from '../models/ModelWithString';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -8528,7 +8521,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { UploadSvc } from '../services/UploadSvc';
 
 import { ServiceContext } from './ServiceContext';
 

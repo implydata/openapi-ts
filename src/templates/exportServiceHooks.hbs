@@ -11,14 +11,14 @@ import type * as RQ from '{{{@root.reactQueryImport}}}';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-{{#if @root.hasQueries}}
 {{#if imports}}
 {{#each imports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-{{/if}}
+{{#if @root.hasQueries}}
 import { {{{name}}}{{{@root.postfix}}} } from '../services/{{{name}}}{{{@root.postfix}}}';
+{{/if}}
 
 import { {{{@root.contextName}}} } from './{{{@root.contextName}}}';
 {{#each operations}}
