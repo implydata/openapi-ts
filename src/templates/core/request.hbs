@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import { CancelError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { OpenAPIConfig } from './OpenAPI';
 import { request as requestFetch } from './requestFetch';
@@ -12,12 +13,28 @@ import { request as requestFetch } from './requestFetch';
  * @param options The request options from the service
  * @returns Promise<T>
  * @throws ApiError
+ * @throws CancelError
  */
 export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptions): Promise<T> => {
-    if (options.onDownloadProgress || options.onUploadProgress) {
-        const { request: requestXhr } = await import('./requestXhr');
-        return requestXhr(config, options);
-    }
-
-    return requestFetch(config, options);
+	try {
+		let result: T;
+		if (options.onDownloadProgress || options.onUploadProgress) {
+			const { request: requestXhr } = await import('./requestXhr');
+			result = await requestXhr(config, options);
+		} else {
+			result = await requestFetch(config, options);
+		}
+		return result;
+	} catch (e) {
+		let error = e;
+		if (e instanceof Error && e.name === 'AbortError') {
+			error = new CancelError(options, 'Request aborted', { cause: e });
+		} else if (options.signal?.aborted && options.signal?.reason) {
+			error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
+		}
+		if (typeof config.TRANSFORM_ERROR === 'function') {
+			error = config.TRANSFORM_ERROR(error, config, options);
+		}
+		throw error;
+	}
 };

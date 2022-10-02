@@ -8,6 +8,10 @@ exports[`v2 should generate: ./test/generated/v2/core/ApiError.ts 1`] = `
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 
+interface ErrorOptions {
+    cause?: unknown;
+}
+
 export class ApiError extends Error {
     public readonly url: string;
     public readonly status: number;
@@ -15,8 +19,14 @@ export class ApiError extends Error {
     public readonly body: any;
     public readonly request: ApiRequestOptions;
 
-    constructor(request: ApiRequestOptions, response: ApiResult, message: string) {
-        super(message);
+    constructor(request: ApiRequestOptions, response: ApiResult, message: string, options?: ErrorOptions) {
+        // @ts-ignore -- \\"options\\" only available in ES2022+
+        super(message, options);
+
+        // Maintains proper stack trace for where our error was thrown (only available on V8)
+        if (Error.captureStackTrace) {
+          Error.captureStackTrace(this, ApiError);
+        }
 
         this.name = 'ApiError';
         this.url = response.url;
@@ -24,6 +34,27 @@ export class ApiError extends Error {
         this.statusText = response.statusText;
         this.body = response.body;
         this.request = request;
+    }
+}
+
+export class CancelError extends Error {
+  public readonly request: ApiRequestOptions;
+
+    constructor(request: ApiRequestOptions, message: string, options?: ErrorOptions) {
+        // @ts-ignore -- \\"options\\" only available in ES2022+
+        super(message, options);
+
+        // Maintains proper stack trace for where our error was thrown (only available on V8)
+        if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, CancelError);
+        }
+
+        this.name = 'CancelError';
+        this.request = request;
+    }
+
+    public get isCancelled(): boolean {
+        return true;
     }
 }
 "
@@ -73,6 +104,7 @@ exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ApiError, CancelError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
@@ -88,6 +120,11 @@ export type OpenAPIConfig = {
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
     ENCODE_PATH?: (path: string) => string;
+    TRANSFORM_ERROR?: <E extends Error>(
+        error: ApiError | CancelError,
+        config: OpenAPIConfig,
+        options: ApiRequestOptions,
+    ) => E;
 };
 
 export const OpenAPI: OpenAPIConfig = {
@@ -326,6 +363,7 @@ exports[`v2 should generate: ./test/generated/v2/core/request.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
+import { CancelError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { OpenAPIConfig } from './OpenAPI';
 import { request as requestFetch } from './requestFetch';
@@ -336,14 +374,30 @@ import { request as requestFetch } from './requestFetch';
  * @param options The request options from the service
  * @returns Promise<T>
  * @throws ApiError
+ * @throws CancelError
  */
 export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptions): Promise<T> => {
-    if (options.onDownloadProgress || options.onUploadProgress) {
-        const { request: requestXhr } = await import('./requestXhr');
-        return requestXhr(config, options);
+    try {
+        let result: T;
+        if (options.onDownloadProgress || options.onUploadProgress) {
+            const { request: requestXhr } = await import('./requestXhr');
+            result = await requestXhr(config, options);
+        } else {
+            result = await requestFetch(config, options);
+        }
+        return result;
+    } catch (e) {
+        let error = e;
+        if (e instanceof Error && e.name === 'AbortError') {
+            error = new CancelError(options, 'Request aborted', { cause: e });
+        } else if (options.signal?.aborted && options.signal?.reason) {
+            error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
+        }
+        if (typeof config.TRANSFORM_ERROR === 'function') {
+            error = config.TRANSFORM_ERROR(error, config, options);
+        }
+        throw error;
     }
-
-    return requestFetch(config, options);
 };
 "
 `;
@@ -5106,6 +5160,10 @@ exports[`v3 should generate: ./test/generated/v3/core/ApiError.ts 1`] = `
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 
+interface ErrorOptions {
+    cause?: unknown;
+}
+
 export class ApiError extends Error {
     public readonly url: string;
     public readonly status: number;
@@ -5113,8 +5171,14 @@ export class ApiError extends Error {
     public readonly body: any;
     public readonly request: ApiRequestOptions;
 
-    constructor(request: ApiRequestOptions, response: ApiResult, message: string) {
-        super(message);
+    constructor(request: ApiRequestOptions, response: ApiResult, message: string, options?: ErrorOptions) {
+        // @ts-ignore -- \\"options\\" only available in ES2022+
+        super(message, options);
+
+        // Maintains proper stack trace for where our error was thrown (only available on V8)
+        if (Error.captureStackTrace) {
+          Error.captureStackTrace(this, ApiError);
+        }
 
         this.name = 'ApiError';
         this.url = response.url;
@@ -5122,6 +5186,27 @@ export class ApiError extends Error {
         this.statusText = response.statusText;
         this.body = response.body;
         this.request = request;
+    }
+}
+
+export class CancelError extends Error {
+  public readonly request: ApiRequestOptions;
+
+    constructor(request: ApiRequestOptions, message: string, options?: ErrorOptions) {
+        // @ts-ignore -- \\"options\\" only available in ES2022+
+        super(message, options);
+
+        // Maintains proper stack trace for where our error was thrown (only available on V8)
+        if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, CancelError);
+        }
+
+        this.name = 'CancelError';
+        this.request = request;
+    }
+
+    public get isCancelled(): boolean {
+        return true;
     }
 }
 "
@@ -5171,6 +5256,7 @@ exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ApiError, CancelError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
@@ -5186,6 +5272,11 @@ export type OpenAPIConfig = {
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
     ENCODE_PATH?: (path: string) => string;
+    TRANSFORM_ERROR?: <E extends Error>(
+        error: ApiError | CancelError,
+        config: OpenAPIConfig,
+        options: ApiRequestOptions,
+    ) => E;
 };
 
 export const OpenAPI: OpenAPIConfig = {
@@ -5424,6 +5515,7 @@ exports[`v3 should generate: ./test/generated/v3/core/request.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
+import { CancelError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { OpenAPIConfig } from './OpenAPI';
 import { request as requestFetch } from './requestFetch';
@@ -5434,14 +5526,30 @@ import { request as requestFetch } from './requestFetch';
  * @param options The request options from the service
  * @returns Promise<T>
  * @throws ApiError
+ * @throws CancelError
  */
 export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptions): Promise<T> => {
-    if (options.onDownloadProgress || options.onUploadProgress) {
-        const { request: requestXhr } = await import('./requestXhr');
-        return requestXhr(config, options);
+    try {
+        let result: T;
+        if (options.onDownloadProgress || options.onUploadProgress) {
+            const { request: requestXhr } = await import('./requestXhr');
+            result = await requestXhr(config, options);
+        } else {
+            result = await requestFetch(config, options);
+        }
+        return result;
+    } catch (e) {
+        let error = e;
+        if (e instanceof Error && e.name === 'AbortError') {
+            error = new CancelError(options, 'Request aborted', { cause: e });
+        } else if (options.signal?.aborted && options.signal?.reason) {
+            error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
+        }
+        if (typeof config.TRANSFORM_ERROR === 'function') {
+            error = config.TRANSFORM_ERROR(error, config, options);
+        }
+        throw error;
     }
-
-    return requestFetch(config, options);
 };
 "
 `;
