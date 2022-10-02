@@ -28,7 +28,16 @@ export const writeClientHooks = async (
 ): Promise<void> => {
     for (const service of services) {
         const file = resolve(outputPath, `${service.name}Hooks.ts`);
-        const templateResult = templates.exports.hooks({ ...service, postfix, contextName, reactQueryImport });
+        const hasQueries = service.operations.some(operation => operation.method === 'GET');
+        const hasMutations = service.operations.some(operation => operation.method !== 'GET');
+        const templateResult = templates.exports.hooks({
+            ...service,
+            postfix,
+            contextName,
+            reactQueryImport,
+            hasQueries,
+            hasMutations,
+        });
         await writeFile(file, i(f(templateResult), indent));
     }
 

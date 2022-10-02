@@ -1,15 +1,22 @@
 {{>header}}
 
 import { useContext } from 'react';
-import * as rq from 'react-query';
+{{#if @root.hasQueries}}
+import { useQuery } from '{{{@root.reactQueryImport}}}';
+{{/if}}
+{{#if @root.hasMutations}}
+import { useMutation } from '{{{@root.reactQueryImport}}}';
+{{/if}}
 import type * as RQ from '{{{@root.reactQueryImport}}}';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
+{{#if @root.hasQueries}}
 {{#if imports}}
 {{#each imports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
+{{/if}}
 {{/if}}
 import { {{{name}}}{{{@root.postfix}}} } from '../services/{{{name}}}{{{@root.postfix}}}';
 
@@ -56,7 +63,7 @@ export function use{{{pascalCase name}}}<TError = ApiError>(
 	},
 ): RQ.UseQueryResult<{{>result}}, TError> {
   const service = useContext({{{@root.contextName}}}).{{{camelCase @root.name}}};
-  return rq.useQuery({
+  return useQuery({
 	{{#if parameters}}
 	queryFn: () => service.{{{name}}}(parameters, options?.request),
 	queryKey: {{{@root.name}}}{{{@root.postfix}}}.QueryKeys.{{{name}}}(parameters),
@@ -106,7 +113,7 @@ export function use{{{pascalCase name}}}<TError = ApiError, TContext = unknown>(
 ): RQ.UseMutationResult<{{>result}}, TError, void, TContext> {
 {{/if}}
   const service = useContext({{{@root.contextName}}}).{{{camelCase @root.name}}};
-  return rq.useMutation({
+  return useMutation({
 	{{#if parameters}}
 	mutationFn: parameters => service.{{{name}}}(parameters, options?.request),
 	{{else}}

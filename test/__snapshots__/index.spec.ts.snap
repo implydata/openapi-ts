@@ -1375,7 +1375,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/CollectionFormatHooks.t
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -1426,7 +1426,7 @@ export function useCollectionFormat<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).collectionFormat;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.collectionFormat(parameters, options?.request),
         queryKey: CollectionFormatService.QueryKeys.collectionFormat(parameters),
         ...options?.query,
@@ -1441,7 +1441,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/ComplexHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -1488,7 +1488,7 @@ export function useComplexTypes<TError = ApiError>(
     },
 ): RQ.UseQueryResult<Array<ModelWithString>, TError> {
     const service = useContext(MyServiceContext).complex;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.complexTypes(parameters, options?.request),
         queryKey: ComplexService.QueryKeys.complexTypes(parameters),
         ...options?.query,
@@ -1503,7 +1503,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/DefaultHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -1529,7 +1529,7 @@ export function useServiceWithEmptyTag<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).default;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.serviceWithEmptyTag(options?.request),
         queryKey: DefaultService.QueryKeys.serviceWithEmptyTag(),
         ...options?.query,
@@ -1544,7 +1544,8 @@ exports[`v2 should generate: ./test/generated/v2/queries/DefaultsHooks.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -1596,7 +1597,7 @@ export function useCallWithDefaultParameters<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).defaults;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.callWithDefaultParameters(parameters, options?.request),
         queryKey: DefaultsService.QueryKeys.callWithDefaultParameters(parameters),
         ...options?.query,
@@ -1644,7 +1645,7 @@ export function useCallWithDefaultOptionalParameters<TError = ApiError, TContext
     },
 ): RQ.UseMutationResult<void, TError, CallWithDefaultOptionalParametersParams, TContext> {
     const service = useContext(MyServiceContext).defaults;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callWithDefaultOptionalParameters(parameters, options?.request),
         ...options?.mutation,
     });
@@ -1703,7 +1704,7 @@ export function useCallToTestOrderOfParams<TError = ApiError, TContext = unknown
     },
 ): RQ.UseMutationResult<void, TError, CallToTestOrderOfParamsParams, TContext> {
     const service = useContext(MyServiceContext).defaults;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callToTestOrderOfParams(parameters, options?.request),
         ...options?.mutation,
     });
@@ -1717,7 +1718,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/DescriptionsHooks.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -1774,7 +1775,7 @@ export function useCallWithDescriptions<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, CallWithDescriptionsParams, TContext> {
     const service = useContext(MyServiceContext).descriptions;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callWithDescriptions(parameters, options?.request),
         ...options?.mutation,
     });
@@ -1788,7 +1789,8 @@ exports[`v2 should generate: ./test/generated/v2/queries/DuplicateHooks.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -1814,7 +1816,7 @@ export function useDuplicateName<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).duplicate;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.duplicateName(options?.request),
         queryKey: DuplicateService.QueryKeys.duplicateName(),
         ...options?.query,
@@ -1839,7 +1841,7 @@ export function useDuplicateName1<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).duplicate;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.duplicateName1(options?.request),
         ...options?.mutation,
     });
@@ -1863,7 +1865,7 @@ export function useDuplicateName2<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).duplicate;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.duplicateName2(options?.request),
         ...options?.mutation,
     });
@@ -1887,7 +1889,7 @@ export function useDuplicateName3<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).duplicate;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.duplicateName3(options?.request),
         ...options?.mutation,
     });
@@ -1901,7 +1903,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/ErrorHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -1936,7 +1938,7 @@ export function useTestErrorCode<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<any, TError, TestErrorCodeParams, TContext> {
     const service = useContext(MyServiceContext).error;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.testErrorCode(parameters, options?.request),
         ...options?.mutation,
     });
@@ -1950,7 +1952,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/HeaderHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -1978,7 +1980,7 @@ export function useCallWithResultFromHeader<TError = ApiError, TContext = unknow
     },
 ): RQ.UseMutationResult<string, TError, void, TContext> {
     const service = useContext(MyServiceContext).header;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.callWithResultFromHeader(options?.request),
         ...options?.mutation,
     });
@@ -1992,7 +1994,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/MultipleTags1Hooks.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -2019,7 +2021,7 @@ export function useDummyA<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).multipleTags1;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyA(options?.request),
         queryKey: MultipleTags1Service.QueryKeys.dummyA(),
         ...options?.query,
@@ -2044,7 +2046,7 @@ export function useDummyB<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).multipleTags1;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyB(options?.request),
         queryKey: MultipleTags1Service.QueryKeys.dummyB(),
         ...options?.query,
@@ -2059,7 +2061,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/MultipleTags2Hooks.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -2086,7 +2088,7 @@ export function useDummyA<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).multipleTags2;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyA(options?.request),
         queryKey: MultipleTags2Service.QueryKeys.dummyA(),
         ...options?.query,
@@ -2111,7 +2113,7 @@ export function useDummyB<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).multipleTags2;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyB(options?.request),
         queryKey: MultipleTags2Service.QueryKeys.dummyB(),
         ...options?.query,
@@ -2126,7 +2128,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/MultipleTags3Hooks.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -2153,7 +2155,7 @@ export function useDummyB<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).multipleTags3;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyB(options?.request),
         queryKey: MultipleTags3Service.QueryKeys.dummyB(),
         ...options?.query,
@@ -2168,7 +2170,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/NoContentHooks.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -2195,7 +2197,7 @@ export function useCallWithNoContentResponse<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).noContent;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.callWithNoContentResponse(options?.request),
         queryKey: NoContentService.QueryKeys.callWithNoContentResponse(),
         ...options?.query,
@@ -2210,7 +2212,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/ParametersHooks.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -2260,7 +2262,7 @@ export function useCallWithParameters<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, CallWithParametersParams, TContext> {
     const service = useContext(MyServiceContext).parameters;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callWithParameters(parameters, options?.request),
         ...options?.mutation,
     });
@@ -2319,7 +2321,7 @@ export function useCallWithWeirdParameterNames<TError = ApiError, TContext = unk
     },
 ): RQ.UseMutationResult<void, TError, CallWithWeirdParameterNamesParams, TContext> {
     const service = useContext(MyServiceContext).parameters;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callWithWeirdParameterNames(parameters, options?.request),
         ...options?.mutation,
     });
@@ -2333,7 +2335,8 @@ exports[`v2 should generate: ./test/generated/v2/queries/ResponseHooks.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -2363,7 +2366,7 @@ export function useCallWithResponse<TError = ApiError>(
     },
 ): RQ.UseQueryResult<ModelWithString, TError> {
     const service = useContext(MyServiceContext).response;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.callWithResponse(options?.request),
         queryKey: ResponseService.QueryKeys.callWithResponse(),
         ...options?.query,
@@ -2389,7 +2392,7 @@ export function useCallWithDuplicateResponses<TError = ApiError, TContext = unkn
     },
 ): RQ.UseMutationResult<ModelWithString, TError, void, TContext> {
     const service = useContext(MyServiceContext).response;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.callWithDuplicateResponses(options?.request),
         ...options?.mutation,
     });
@@ -2425,7 +2428,7 @@ export function useCallWithResponses<TError = ApiError, TContext = unknown>(
     readonly value?: Array<ModelWithString>;
 } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, void, TContext> {
     const service = useContext(MyServiceContext).response;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.callWithResponses(options?.request),
         ...options?.mutation,
     });
@@ -2439,7 +2442,8 @@ exports[`v2 should generate: ./test/generated/v2/queries/SimpleHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -2465,7 +2469,7 @@ export function useGetCallWithoutParametersAndResponse<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(MyServiceContext).simple;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.getCallWithoutParametersAndResponse(options?.request),
         queryKey: SimpleService.QueryKeys.getCallWithoutParametersAndResponse(),
         ...options?.query,
@@ -2490,7 +2494,7 @@ export function usePutCallWithoutParametersAndResponse<TError = ApiError, TConte
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.putCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -2514,7 +2518,7 @@ export function usePostCallWithoutParametersAndResponse<TError = ApiError, TCont
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.postCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -2538,7 +2542,7 @@ export function useDeleteCallWithoutParametersAndResponse<TError = ApiError, TCo
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.deleteCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -2562,7 +2566,7 @@ export function useOptionsCallWithoutParametersAndResponse<TError = ApiError, TC
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.optionsCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -2586,7 +2590,7 @@ export function useHeadCallWithoutParametersAndResponse<TError = ApiError, TCont
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.headCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -2610,7 +2614,7 @@ export function usePatchCallWithoutParametersAndResponse<TError = ApiError, TCon
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(MyServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.patchCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -2624,7 +2628,7 @@ exports[`v2 should generate: ./test/generated/v2/queries/TypesHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from 'react-query';
 import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -2691,7 +2695,7 @@ export function useTypes<TError = ApiError>(
     },
 ): RQ.UseQueryResult<number | string | boolean | any, TError> {
     const service = useContext(MyServiceContext).types;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.types(parameters, options?.request),
         queryKey: TypesService.QueryKeys.types(parameters),
         ...options?.query,
@@ -6808,7 +6812,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/CollectionFormatHooks.t
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -6859,7 +6863,7 @@ export function useCollectionFormat<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).collectionFormat;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.collectionFormat(parameters, options?.request),
         queryKey: CollectionFormatSvc.QueryKeys.collectionFormat(parameters),
         ...options?.query,
@@ -6874,7 +6878,8 @@ exports[`v3 should generate: ./test/generated/v3/queries/ComplexHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -6924,7 +6929,7 @@ export function useComplexTypes<TError = ApiError>(
     },
 ): RQ.UseQueryResult<Array<ModelWithString>, TError> {
     const service = useContext(ServiceContext).complex;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.complexTypes(parameters, options?.request),
         queryKey: ComplexSvc.QueryKeys.complexTypes(parameters),
         ...options?.query,
@@ -6967,7 +6972,7 @@ export function useComplexParams<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<ModelWithString, TError, ComplexParamsParams, TContext> {
     const service = useContext(ServiceContext).complex;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.complexParams(parameters, options?.request),
         ...options?.mutation,
     });
@@ -6981,7 +6986,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/DefaultHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7007,7 +7012,7 @@ export function useServiceWithEmptyTag<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).default;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.serviceWithEmptyTag(options?.request),
         queryKey: DefaultSvc.QueryKeys.serviceWithEmptyTag(),
         ...options?.query,
@@ -7022,7 +7027,8 @@ exports[`v3 should generate: ./test/generated/v3/queries/DefaultsHooks.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7074,7 +7080,7 @@ export function useCallWithDefaultParameters<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).defaults;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.callWithDefaultParameters(parameters, options?.request),
         queryKey: DefaultsSvc.QueryKeys.callWithDefaultParameters(parameters),
         ...options?.query,
@@ -7122,7 +7128,7 @@ export function useCallWithDefaultOptionalParameters<TError = ApiError, TContext
     },
 ): RQ.UseMutationResult<void, TError, CallWithDefaultOptionalParametersParams, TContext> {
     const service = useContext(ServiceContext).defaults;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callWithDefaultOptionalParameters(parameters, options?.request),
         ...options?.mutation,
     });
@@ -7181,7 +7187,7 @@ export function useCallToTestOrderOfParams<TError = ApiError, TContext = unknown
     },
 ): RQ.UseMutationResult<void, TError, CallToTestOrderOfParamsParams, TContext> {
     const service = useContext(ServiceContext).defaults;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callToTestOrderOfParams(parameters, options?.request),
         ...options?.mutation,
     });
@@ -7195,12 +7201,11 @@ exports[`v3 should generate: ./test/generated/v3/queries/DeprecatedHooks.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import type { DeprecatedModel } from '../models/DeprecatedModel';
 import { DeprecatedSvc } from '../services/DeprecatedSvc';
 
 import { ServiceContext } from './ServiceContext';
@@ -7232,7 +7237,7 @@ export function useDeprecatedCall<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, DeprecatedCallParams, TContext> {
     const service = useContext(ServiceContext).deprecated;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.deprecatedCall(parameters, options?.request),
         ...options?.mutation,
     });
@@ -7246,7 +7251,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/DescriptionsHooks.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7303,7 +7308,7 @@ export function useCallWithDescriptions<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, CallWithDescriptionsParams, TContext> {
     const service = useContext(ServiceContext).descriptions;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callWithDescriptions(parameters, options?.request),
         ...options?.mutation,
     });
@@ -7317,7 +7322,8 @@ exports[`v3 should generate: ./test/generated/v3/queries/DuplicateHooks.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7343,7 +7349,7 @@ export function useDuplicateName<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).duplicate;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.duplicateName(options?.request),
         queryKey: DuplicateSvc.QueryKeys.duplicateName(),
         ...options?.query,
@@ -7368,7 +7374,7 @@ export function useDuplicateName1<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).duplicate;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.duplicateName1(options?.request),
         ...options?.mutation,
     });
@@ -7392,7 +7398,7 @@ export function useDuplicateName2<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).duplicate;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.duplicateName2(options?.request),
         ...options?.mutation,
     });
@@ -7416,7 +7422,7 @@ export function useDuplicateName3<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).duplicate;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.duplicateName3(options?.request),
         ...options?.mutation,
     });
@@ -7430,7 +7436,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/ErrorHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7465,7 +7471,7 @@ export function useTestErrorCode<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<any, TError, TestErrorCodeParams, TContext> {
     const service = useContext(ServiceContext).error;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.testErrorCode(parameters, options?.request),
         ...options?.mutation,
     });
@@ -7479,12 +7485,11 @@ exports[`v3 should generate: ./test/generated/v3/queries/FormDataHooks.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import type { ModelWithString } from '../models/ModelWithString';
 import { FormDataSvc } from '../services/FormDataSvc';
 
 import { ServiceContext } from './ServiceContext';
@@ -7518,7 +7523,7 @@ export function usePostApiFormData<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, PostApiFormDataParams, TContext> {
     const service = useContext(ServiceContext).formData;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.postApiFormData(parameters, options?.request),
         ...options?.mutation,
     });
@@ -7532,7 +7537,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/HeaderHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7560,7 +7565,7 @@ export function useCallWithResultFromHeader<TError = ApiError, TContext = unknow
     },
 ): RQ.UseMutationResult<string, TError, void, TContext> {
     const service = useContext(ServiceContext).header;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.callWithResultFromHeader(options?.request),
         ...options?.mutation,
     });
@@ -7574,7 +7579,8 @@ exports[`v3 should generate: ./test/generated/v3/queries/MultipartHooks.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7609,7 +7615,7 @@ export function useMultipartRequest<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, MultipartRequestParams, TContext> {
     const service = useContext(ServiceContext).multipart;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.multipartRequest(parameters, options?.request),
         ...options?.mutation,
     });
@@ -7651,7 +7657,7 @@ export function useMultipartResponse<TError = ApiError>(
     };
 }, TError> {
     const service = useContext(ServiceContext).multipart;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.multipartResponse(options?.request),
         queryKey: MultipartSvc.QueryKeys.multipartResponse(),
         ...options?.query,
@@ -7666,7 +7672,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/MultipleTags1Hooks.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7693,7 +7699,7 @@ export function useDummyA<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).multipleTags1;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyA(options?.request),
         queryKey: MultipleTags1Svc.QueryKeys.dummyA(),
         ...options?.query,
@@ -7718,7 +7724,7 @@ export function useDummyB<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).multipleTags1;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyB(options?.request),
         queryKey: MultipleTags1Svc.QueryKeys.dummyB(),
         ...options?.query,
@@ -7733,7 +7739,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/MultipleTags2Hooks.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7760,7 +7766,7 @@ export function useDummyA<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).multipleTags2;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyA(options?.request),
         queryKey: MultipleTags2Svc.QueryKeys.dummyA(),
         ...options?.query,
@@ -7785,7 +7791,7 @@ export function useDummyB<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).multipleTags2;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyB(options?.request),
         queryKey: MultipleTags2Svc.QueryKeys.dummyB(),
         ...options?.query,
@@ -7800,7 +7806,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/MultipleTags3Hooks.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7827,7 +7833,7 @@ export function useDummyB<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).multipleTags3;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.dummyB(options?.request),
         queryKey: MultipleTags3Svc.QueryKeys.dummyB(),
         ...options?.query,
@@ -7842,7 +7848,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/NoContentHooks.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7869,7 +7875,7 @@ export function useCallWithNoContentResponse<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).noContent;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.callWithNoContentResponse(options?.request),
         queryKey: NoContentSvc.QueryKeys.callWithNoContentResponse(),
         ...options?.query,
@@ -7884,7 +7890,8 @@ exports[`v3 should generate: ./test/generated/v3/queries/ParametersHooks.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -7940,7 +7947,7 @@ export function useCallWithParameters<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, CallWithParametersParams, TContext> {
     const service = useContext(ServiceContext).parameters;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callWithParameters(parameters, options?.request),
         ...options?.mutation,
     });
@@ -8003,7 +8010,7 @@ export function useCallWithWeirdParameterNames<TError = ApiError, TContext = unk
     },
 ): RQ.UseMutationResult<void, TError, CallWithWeirdParameterNamesParams, TContext> {
     const service = useContext(ServiceContext).parameters;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.callWithWeirdParameterNames(parameters, options?.request),
         ...options?.mutation,
     });
@@ -8039,7 +8046,7 @@ export function useGetCallWithOptionalParam<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).parameters;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.getCallWithOptionalParam(parameters, options?.request),
         queryKey: ParametersSvc.QueryKeys.getCallWithOptionalParam(parameters),
         ...options?.query,
@@ -8075,7 +8082,7 @@ export function usePostCallWithOptionalParam<TError = ApiError, TContext = unkno
     },
 ): RQ.UseMutationResult<void, TError, PostCallWithOptionalParamParams, TContext> {
     const service = useContext(ServiceContext).parameters;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.postCallWithOptionalParam(parameters, options?.request),
         ...options?.mutation,
     });
@@ -8089,12 +8096,11 @@ exports[`v3 should generate: ./test/generated/v3/queries/RequestBodyHooks.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import type { ModelWithString } from '../models/ModelWithString';
 import { RequestBodySvc } from '../services/RequestBodySvc';
 
 import { ServiceContext } from './ServiceContext';
@@ -8128,7 +8134,7 @@ export function usePostApiRequestBody<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<void, TError, PostApiRequestBodyParams, TContext> {
     const service = useContext(ServiceContext).requestBody;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.postApiRequestBody(parameters, options?.request),
         ...options?.mutation,
     });
@@ -8142,7 +8148,8 @@ exports[`v3 should generate: ./test/generated/v3/queries/ResponseHooks.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -8172,7 +8179,7 @@ export function useCallWithResponse<TError = ApiError>(
     },
 ): RQ.UseQueryResult<ModelWithString, TError> {
     const service = useContext(ServiceContext).response;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.callWithResponse(options?.request),
         queryKey: ResponseSvc.QueryKeys.callWithResponse(),
         ...options?.query,
@@ -8198,7 +8205,7 @@ export function useCallWithDuplicateResponses<TError = ApiError, TContext = unkn
     },
 ): RQ.UseMutationResult<ModelWithString, TError, void, TContext> {
     const service = useContext(ServiceContext).response;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.callWithDuplicateResponses(options?.request),
         ...options?.mutation,
     });
@@ -8234,7 +8241,7 @@ export function useCallWithResponses<TError = ApiError, TContext = unknown>(
     readonly value?: Array<ModelWithString>;
 } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends, TError, void, TContext> {
     const service = useContext(ServiceContext).response;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.callWithResponses(options?.request),
         ...options?.mutation,
     });
@@ -8248,7 +8255,8 @@ exports[`v3 should generate: ./test/generated/v3/queries/SimpleHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -8274,7 +8282,7 @@ export function useGetCallWithoutParametersAndResponse<TError = ApiError>(
     },
 ): RQ.UseQueryResult<void, TError> {
     const service = useContext(ServiceContext).simple;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.getCallWithoutParametersAndResponse(options?.request),
         queryKey: SimpleSvc.QueryKeys.getCallWithoutParametersAndResponse(),
         ...options?.query,
@@ -8299,7 +8307,7 @@ export function usePutCallWithoutParametersAndResponse<TError = ApiError, TConte
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.putCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -8323,7 +8331,7 @@ export function usePostCallWithoutParametersAndResponse<TError = ApiError, TCont
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.postCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -8347,7 +8355,7 @@ export function useDeleteCallWithoutParametersAndResponse<TError = ApiError, TCo
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.deleteCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -8371,7 +8379,7 @@ export function useOptionsCallWithoutParametersAndResponse<TError = ApiError, TC
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.optionsCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -8395,7 +8403,7 @@ export function useHeadCallWithoutParametersAndResponse<TError = ApiError, TCont
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.headCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -8419,7 +8427,7 @@ export function usePatchCallWithoutParametersAndResponse<TError = ApiError, TCon
     },
 ): RQ.UseMutationResult<void, TError, void, TContext> {
     const service = useContext(ServiceContext).simple;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: () => service.patchCallWithoutParametersAndResponse(options?.request),
         ...options?.mutation,
     });
@@ -8433,7 +8441,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/TypesHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -8500,7 +8508,7 @@ export function useTypes<TError = ApiError>(
     },
 ): RQ.UseQueryResult<number | string | boolean | any, TError> {
     const service = useContext(ServiceContext).types;
-    return rq.useQuery({
+    return useQuery({
         queryFn: () => service.types(parameters, options?.request),
         queryKey: TypesSvc.QueryKeys.types(parameters),
         ...options?.query,
@@ -8515,7 +8523,7 @@ exports[`v3 should generate: ./test/generated/v3/queries/UploadHooks.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import { useContext } from 'react';
-import * as rq from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
@@ -8550,7 +8558,7 @@ export function useUploadFile<TError = ApiError, TContext = unknown>(
     },
 ): RQ.UseMutationResult<boolean, TError, UploadFileParams, TContext> {
     const service = useContext(ServiceContext).upload;
-    return rq.useMutation({
+    return useMutation({
         mutationFn: parameters => service.uploadFile(parameters, options?.request),
         ...options?.mutation,
     });
