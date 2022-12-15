@@ -20,7 +20,6 @@ describe('writeClientIndex', () => {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
-                context: () => 'context',
             },
             core: {
                 apiError: () => 'apiError',
