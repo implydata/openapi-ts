@@ -15,7 +15,6 @@
 -   Frontend ❤️ OpenAPI, but we do not want to use JAVA codegen in our builds
 -   Quick, lightweight, robust and framework-agnostic 🚀
 -   Supports generation of TypeScript clients
--   Supports generation of react-query hooks (queries, mutations) for each operation
 -   Supports fetch by default but switches to XHR (via dynamic import) when upload progress is needed
 -   Supports OpenAPI specification v2.0 and v3.0
 -   Supports JSON and YAML files for input
@@ -43,17 +42,14 @@ $ openapi --help
     --exportCore                Write core files to disk (default: true)
     --exportServices            Write services to disk (default: true)
     --exportModels              Write models to disk (default: true)
-    --exportHooks               Write react-query hooks to disk (default: false)
     --exportSchemas             Write schemas to disk (default: false)
     --indent <value>            Indentation options [4, 2, tab] (default: "4")
     --postfix <value>           Service name postfix (default: "Service")
-    --contextName <value>       Hook service context name (default: "ServiceContext")
-    --reactQueryImport <value>  Import specifier for react-query (default: "@tanstack/react-query")
     -h, --help                  display help for command
 
   Examples
     $ openapi --input ./spec.json --output ./generated
-    $ openapi --input ./spec.json --output ./generated --exportHooks --indent 2
+    $ openapi --input ./spec.json --output ./generated --indent 2 --postfix API
 ```
 
 # Documentation

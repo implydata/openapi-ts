@@ -28,16 +28,10 @@ describe('bin', () => {
             'true',
             '--exportSchemas',
             'true',
-            '--exportHooks',
-            'true',
             '--indent',
             '4',
             '--postfix',
             'Service',
-            '--contextName',
-            'MyServiceContext',
-            '--reactQueryImport',
-            'react-query',
         ]);
         expect(result.stdout.toString()).toBe('');
         expect(result.stderr.toString()).toBe('');

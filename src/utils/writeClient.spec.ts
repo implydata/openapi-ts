@@ -21,7 +21,6 @@ describe('writeClient', () => {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
-                hooks: () => 'hooks',
                 context: () => 'context',
             },
             core: {
@@ -36,20 +35,7 @@ describe('writeClient', () => {
             },
         };
 
-        await writeClient(
-            client,
-            templates,
-            './dist',
-            true,
-            true,
-            true,
-            true,
-            true,
-            Indent.SPACE_4,
-            'MyService',
-            'MyServiceContext',
-            'react-query'
-        );
+        await writeClient(client, templates, './dist', true, true, true, true, Indent.SPACE_4, 'MyService');
 
         expect(rmdir).toBeCalled();
         expect(mkdir).toBeCalled();

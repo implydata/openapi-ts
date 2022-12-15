@@ -12,7 +12,6 @@ import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
 import templateExportServiceContext from '../templates/exportServiceContext.hbs';
-import templateExportServiceHooks from '../templates/exportServiceHooks.hbs';
 import templateIndex from '../templates/index.hbs';
 import partialBase from '../templates/partials/base.hbs';
 import partialExportComposition from '../templates/partials/exportComposition.hbs';
@@ -49,7 +48,6 @@ export interface Templates {
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
         service: Handlebars.TemplateDelegate;
-        hooks: Handlebars.TemplateDelegate;
         context: Handlebars.TemplateDelegate;
     };
     core: {
@@ -78,7 +76,6 @@ export const registerHandlebarTemplates = (): Templates => {
             model: Handlebars.template(templateExportModel),
             schema: Handlebars.template(templateExportSchema),
             service: Handlebars.template(templateExportService),
-            hooks: Handlebars.template(templateExportServiceHooks),
             context: Handlebars.template(templateExportServiceContext),
         },
         core: {

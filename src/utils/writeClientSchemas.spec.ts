@@ -36,7 +36,6 @@ describe('writeClientSchemas', () => {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
-                hooks: () => 'hooks',
                 context: () => 'context',
             },
             core: {

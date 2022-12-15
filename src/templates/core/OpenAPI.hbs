@@ -2,32 +2,26 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { ApiError, CancelError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
 
-export type OpenAPIConfig = {
-	BASE: string;
-	VERSION: string;
-	WITH_CREDENTIALS: boolean;
-	CREDENTIALS: 'include' | 'omit' | 'same-origin';
-	TOKEN?: string | Resolver<string>;
-	USERNAME?: string | Resolver<string>;
-	PASSWORD?: string | Resolver<string>;
-	HEADERS?: Headers | Resolver<Headers>;
-	ENCODE_PATH?: (path: string) => string;
-	TRANSFORM_ERROR?: <E extends Error>(
-		error: ApiError | CancelError,
-		config: OpenAPIConfig,
-		options: ApiRequestOptions,
-	) => E;
-};
+export interface OpenAPIConfig {
+	apiVersion: string;
+	baseUrl: string;
+	withCredentials: boolean;
+	credentials: 'include' | 'omit' | 'same-origin';
+	token?: string | Resolver<string>;
+	username?: string | Resolver<string>;
+	password?: string | Resolver<string>;
+	headers?: Headers | Resolver<Headers>;
+	encodePath?: (path: string) => string;
+}
 
 export const OpenAPI: OpenAPIConfig = {
-	BASE: '{{{server}}}',
-	VERSION: '{{{version}}}',
-	WITH_CREDENTIALS: false,
-	CREDENTIALS: 'include',
+	apiVersion: '{{{version}}}',
+	baseUrl: '{{{server}}}',
+	withCredentials: false,
+	credentials: 'include',
 };

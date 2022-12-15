@@ -66,6 +66,7 @@ exports[`v2 should generate: ./test/generated/v2/core/ApiRequestOptions.ts 1`] =
 /* eslint-disable */
 
 export type ApiRequestOptions = {
+    readonly operation: string;
     readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
     readonly url: string;
     readonly path?: Record<string, any>;
@@ -1434,7 +1435,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { CollectionFormatService } from '../services/CollectionFormatService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -1482,7 +1482,7 @@ export function useCollectionFormat<TError = ApiError>(
     const service = useContext(MyServiceContext).collectionFormat;
     return useQuery({
         queryFn: () => service.collectionFormat(parameters, options?.request),
-        queryKey: CollectionFormatService.QueryKeys.collectionFormat(parameters),
+        queryKey: service.queryKeys.collectionFormat(parameters),
         ...options?.query,
     });
 }
@@ -1501,7 +1501,6 @@ import type * as RQ from 'react-query';
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
-import { ComplexService } from '../services/ComplexService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -1544,7 +1543,7 @@ export function useComplexTypes<TError = ApiError>(
     const service = useContext(MyServiceContext).complex;
     return useQuery({
         queryFn: () => service.complexTypes(parameters, options?.request),
-        queryKey: ComplexService.QueryKeys.complexTypes(parameters),
+        queryKey: service.queryKeys.complexTypes(parameters),
         ...options?.query,
     });
 }
@@ -1562,7 +1561,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { DefaultService } from '../services/DefaultService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -1585,7 +1583,7 @@ export function useServiceWithEmptyTag<TError = ApiError>(
     const service = useContext(MyServiceContext).default;
     return useQuery({
         queryFn: () => service.serviceWithEmptyTag(options?.request),
-        queryKey: DefaultService.QueryKeys.serviceWithEmptyTag(),
+        queryKey: service.queryKeys.serviceWithEmptyTag(),
         ...options?.query,
     });
 }
@@ -1605,7 +1603,6 @@ import type * as RQ from 'react-query';
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
-import { DefaultsService } from '../services/DefaultsService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -1653,7 +1650,7 @@ export function useCallWithDefaultParameters<TError = ApiError>(
     const service = useContext(MyServiceContext).defaults;
     return useQuery({
         queryFn: () => service.callWithDefaultParameters(parameters, options?.request),
-        queryKey: DefaultsService.QueryKeys.callWithDefaultParameters(parameters),
+        queryKey: service.queryKeys.callWithDefaultParameters(parameters),
         ...options?.query,
     });
 }
@@ -1848,7 +1845,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { DuplicateService } from '../services/DuplicateService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -1871,7 +1867,7 @@ export function useDuplicateName<TError = ApiError>(
     const service = useContext(MyServiceContext).duplicate;
     return useQuery({
         queryFn: () => service.duplicateName(options?.request),
-        queryKey: DuplicateService.QueryKeys.duplicateName(),
+        queryKey: service.queryKeys.duplicateName(),
         ...options?.query,
     });
 }
@@ -2050,7 +2046,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { MultipleTags1Service } from '../services/MultipleTags1Service';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -2074,7 +2069,7 @@ export function useDummyA<TError = ApiError>(
     const service = useContext(MyServiceContext).multipleTags1;
     return useQuery({
         queryFn: () => service.dummyA(options?.request),
-        queryKey: MultipleTags1Service.QueryKeys.dummyA(),
+        queryKey: service.queryKeys.dummyA(),
         ...options?.query,
     });
 }
@@ -2099,7 +2094,7 @@ export function useDummyB<TError = ApiError>(
     const service = useContext(MyServiceContext).multipleTags1;
     return useQuery({
         queryFn: () => service.dummyB(options?.request),
-        queryKey: MultipleTags1Service.QueryKeys.dummyB(),
+        queryKey: service.queryKeys.dummyB(),
         ...options?.query,
     });
 }
@@ -2117,7 +2112,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { MultipleTags2Service } from '../services/MultipleTags2Service';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -2141,7 +2135,7 @@ export function useDummyA<TError = ApiError>(
     const service = useContext(MyServiceContext).multipleTags2;
     return useQuery({
         queryFn: () => service.dummyA(options?.request),
-        queryKey: MultipleTags2Service.QueryKeys.dummyA(),
+        queryKey: service.queryKeys.dummyA(),
         ...options?.query,
     });
 }
@@ -2166,7 +2160,7 @@ export function useDummyB<TError = ApiError>(
     const service = useContext(MyServiceContext).multipleTags2;
     return useQuery({
         queryFn: () => service.dummyB(options?.request),
-        queryKey: MultipleTags2Service.QueryKeys.dummyB(),
+        queryKey: service.queryKeys.dummyB(),
         ...options?.query,
     });
 }
@@ -2184,7 +2178,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { MultipleTags3Service } from '../services/MultipleTags3Service';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -2208,7 +2201,7 @@ export function useDummyB<TError = ApiError>(
     const service = useContext(MyServiceContext).multipleTags3;
     return useQuery({
         queryFn: () => service.dummyB(options?.request),
-        queryKey: MultipleTags3Service.QueryKeys.dummyB(),
+        queryKey: service.queryKeys.dummyB(),
         ...options?.query,
     });
 }
@@ -2226,7 +2219,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { NoContentService } from '../services/NoContentService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -2250,7 +2242,7 @@ export function useCallWithNoContentResponse<TError = ApiError>(
     const service = useContext(MyServiceContext).noContent;
     return useQuery({
         queryFn: () => service.callWithNoContentResponse(options?.request),
-        queryKey: NoContentService.QueryKeys.callWithNoContentResponse(),
+        queryKey: service.queryKeys.callWithNoContentResponse(),
         ...options?.query,
     });
 }
@@ -2394,7 +2386,6 @@ import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
-import { ResponseService } from '../services/ResponseService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -2418,7 +2409,7 @@ export function useCallWithResponse<TError = ApiError>(
     const service = useContext(MyServiceContext).response;
     return useQuery({
         queryFn: () => service.callWithResponse(options?.request),
-        queryKey: ResponseService.QueryKeys.callWithResponse(),
+        queryKey: service.queryKeys.callWithResponse(),
         ...options?.query,
     });
 }
@@ -2498,7 +2489,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { SimpleService } from '../services/SimpleService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -2521,7 +2511,7 @@ export function useGetCallWithoutParametersAndResponse<TError = ApiError>(
     const service = useContext(MyServiceContext).simple;
     return useQuery({
         queryFn: () => service.getCallWithoutParametersAndResponse(options?.request),
-        queryKey: SimpleService.QueryKeys.getCallWithoutParametersAndResponse(),
+        queryKey: service.queryKeys.getCallWithoutParametersAndResponse(),
         ...options?.query,
     });
 }
@@ -2683,7 +2673,6 @@ import type * as RQ from 'react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { TypesService } from '../services/TypesService';
 
 import { MyServiceContext } from './MyServiceContext';
 
@@ -2747,7 +2736,7 @@ export function useTypes<TError = ApiError>(
     const service = useContext(MyServiceContext).types;
     return useQuery({
         queryFn: () => service.types(parameters, options?.request),
-        queryKey: TypesService.QueryKeys.types(parameters),
+        queryKey: service.queryKeys.types(parameters),
         ...options?.query,
     });
 }
@@ -3573,7 +3562,7 @@ export class CollectionFormatService {
         collectionFormat: '/api/v{api-version}/collectionFormat',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         collectionFormat(parameters: {
             /**
              * This is an array parameter that is sent as csv format (comma-separated values)
@@ -3604,6 +3593,16 @@ export class CollectionFormatService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'CollectionFormat';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = CollectionFormatService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -3651,6 +3650,7 @@ export class CollectionFormatService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'CollectionFormat.collectionFormat',
             method: 'GET',
             url: '/api/v{api-version}/collectionFormat',
             query: {
@@ -3684,7 +3684,7 @@ export class ComplexService {
         complexTypes: '/api/v{api-version}/complex',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         complexTypes(parameters: {
             /**
              * Parameter containing object
@@ -3709,6 +3709,16 @@ export class ComplexService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Complex';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = ComplexService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -3745,6 +3755,7 @@ export class ComplexService {
         options?: Partial<ApiRequestOptions>
     ): Promise<Array<ModelWithString>> {
         return __request(this.config, {
+            operation: 'Complex.complexTypes',
             method: 'GET',
             url: '/api/v{api-version}/complex',
             query: {
@@ -3777,7 +3788,7 @@ export class DefaultService {
         serviceWithEmptyTag: '/api/v{api-version}/no-tag',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         serviceWithEmptyTag(): readonly unknown[] {
             return ['api', 'v{api-version}', 'no-tag', ];
         },
@@ -3787,6 +3798,16 @@ export class DefaultService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Default';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DefaultService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -3800,6 +3821,7 @@ export class DefaultService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Default.serviceWithEmptyTag',
             method: 'GET',
             url: '/api/v{api-version}/no-tag',
             ...options,
@@ -3828,7 +3850,7 @@ export class DefaultsService {
         callToTestOrderOfParams: '/api/v{api-version}/defaults',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         callWithDefaultParameters(parameters: {
             /**
              * This is a simple string with default value
@@ -3859,6 +3881,16 @@ export class DefaultsService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Defaults';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DefaultsService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -3908,6 +3940,7 @@ export class DefaultsService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Defaults.callWithDefaultParameters',
             method: 'GET',
             url: '/api/v{api-version}/defaults',
             query: {
@@ -3965,6 +3998,7 @@ export class DefaultsService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Defaults.callWithDefaultOptionalParameters',
             method: 'POST',
             url: '/api/v{api-version}/defaults',
             query: {
@@ -4038,6 +4072,7 @@ export class DefaultsService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Defaults.callToTestOrderOfParams',
             method: 'PUT',
             url: '/api/v{api-version}/defaults',
             query: {
@@ -4072,13 +4107,23 @@ export class DescriptionsService {
         callWithDescriptions: '/api/v{api-version}/descriptions/',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Descriptions';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DescriptionsService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4138,6 +4183,7 @@ export class DescriptionsService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Descriptions.callWithDescriptions',
             method: 'POST',
             url: '/api/v{api-version}/descriptions/',
             query: {
@@ -4173,7 +4219,7 @@ export class DuplicateService {
         duplicateName3: '/api/v{api-version}/duplicate',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         duplicateName(): readonly unknown[] {
             return ['api', 'v{api-version}', 'duplicate', ];
         },
@@ -4183,6 +4229,16 @@ export class DuplicateService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Duplicate';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DuplicateService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4196,6 +4252,7 @@ export class DuplicateService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Duplicate.duplicateName',
             method: 'GET',
             url: '/api/v{api-version}/duplicate',
             ...options,
@@ -4210,6 +4267,7 @@ export class DuplicateService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Duplicate.duplicateName1',
             method: 'POST',
             url: '/api/v{api-version}/duplicate',
             ...options,
@@ -4224,6 +4282,7 @@ export class DuplicateService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Duplicate.duplicateName2',
             method: 'PUT',
             url: '/api/v{api-version}/duplicate',
             ...options,
@@ -4238,6 +4297,7 @@ export class DuplicateService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Duplicate.duplicateName3',
             method: 'DELETE',
             url: '/api/v{api-version}/duplicate',
             ...options,
@@ -4262,13 +4322,23 @@ export class ErrorService {
         testErrorCode: '/api/v{api-version}/error',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Error';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = ErrorService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4293,6 +4363,7 @@ export class ErrorService {
         options?: Partial<ApiRequestOptions>
     ): Promise<any> {
         return __request(this.config, {
+            operation: 'Error.testErrorCode',
             method: 'POST',
             url: '/api/v{api-version}/error',
             query: {
@@ -4326,13 +4397,23 @@ export class HeaderService {
         callWithResultFromHeader: '/api/v{api-version}/header',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Header';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = HeaderService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4347,6 +4428,7 @@ export class HeaderService {
         options?: Partial<ApiRequestOptions>
     ): Promise<string> {
         return __request(this.config, {
+            operation: 'Header.callWithResultFromHeader',
             method: 'POST',
             url: '/api/v{api-version}/header',
             responseHeader: 'operation-location',
@@ -4377,7 +4459,7 @@ export class MultipleTags1Service {
         dummyB: '/api/v{api-version}/multiple-tags/b',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         dummyA(): readonly unknown[] {
             return ['api', 'v{api-version}', 'multiple-tags', 'a', ];
         },
@@ -4390,6 +4472,16 @@ export class MultipleTags1Service {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'MultipleTags1';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = MultipleTags1Service.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4404,6 +4496,7 @@ export class MultipleTags1Service {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags1.dummyA',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/a',
             ...options,
@@ -4419,6 +4512,7 @@ export class MultipleTags1Service {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags1.dummyB',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/b',
             ...options,
@@ -4444,7 +4538,7 @@ export class MultipleTags2Service {
         dummyB: '/api/v{api-version}/multiple-tags/b',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         dummyA(): readonly unknown[] {
             return ['api', 'v{api-version}', 'multiple-tags', 'a', ];
         },
@@ -4457,6 +4551,16 @@ export class MultipleTags2Service {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'MultipleTags2';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = MultipleTags2Service.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4471,6 +4575,7 @@ export class MultipleTags2Service {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags2.dummyA',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/a',
             ...options,
@@ -4486,6 +4591,7 @@ export class MultipleTags2Service {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags2.dummyB',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/b',
             ...options,
@@ -4510,7 +4616,7 @@ export class MultipleTags3Service {
         dummyB: '/api/v{api-version}/multiple-tags/b',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         dummyB(): readonly unknown[] {
             return ['api', 'v{api-version}', 'multiple-tags', 'b', ];
         },
@@ -4520,6 +4626,16 @@ export class MultipleTags3Service {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'MultipleTags3';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = MultipleTags3Service.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4534,6 +4650,7 @@ export class MultipleTags3Service {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags3.dummyB',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/b',
             ...options,
@@ -4558,7 +4675,7 @@ export class NoContentService {
         callWithNoContentResponse: '/api/v{api-version}/no-content',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         callWithNoContentResponse(): readonly unknown[] {
             return ['api', 'v{api-version}', 'no-content', ];
         },
@@ -4568,6 +4685,16 @@ export class NoContentService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'NoContent';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = NoContentService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4582,6 +4709,7 @@ export class NoContentService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'NoContent.callWithNoContentResponse',
             method: 'GET',
             url: '/api/v{api-version}/no-content',
             ...options,
@@ -4607,13 +4735,23 @@ export class ParametersService {
         callWithWeirdParameterNames: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Parameters';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = ParametersService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4661,6 +4799,7 @@ export class ParametersService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Parameters.callWithParameters',
             method: 'POST',
             url: '/api/v{api-version}/parameters/{parameterPath}',
             path: {
@@ -4740,6 +4879,7 @@ export class ParametersService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Parameters.callWithWeirdParameterNames',
             method: 'POST',
             url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}',
             path: {
@@ -4786,7 +4926,7 @@ export class ResponseService {
         callWithResponses: '/api/v{api-version}/response',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         callWithResponse(): readonly unknown[] {
             return ['api', 'v{api-version}', 'response', ];
         },
@@ -4796,6 +4936,16 @@ export class ResponseService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Response';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = ResponseService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4810,6 +4960,7 @@ export class ResponseService {
         options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
+            operation: 'Response.callWithResponse',
             method: 'GET',
             url: '/api/v{api-version}/response',
             ...options,
@@ -4825,6 +4976,7 @@ export class ResponseService {
         options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
+            operation: 'Response.callWithDuplicateResponses',
             method: 'POST',
             url: '/api/v{api-version}/response',
             errors: {
@@ -4852,6 +5004,7 @@ export class ResponseService {
         readonly value?: Array<ModelWithString>;
     } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
         return __request(this.config, {
+            operation: 'Response.callWithResponses',
             method: 'PUT',
             url: '/api/v{api-version}/response',
             errors: {
@@ -4887,7 +5040,7 @@ export class SimpleService {
         patchCallWithoutParametersAndResponse: '/api/v{api-version}/simple',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         getCallWithoutParametersAndResponse(): readonly unknown[] {
             return ['api', 'v{api-version}', 'simple', ];
         },
@@ -4897,6 +5050,16 @@ export class SimpleService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Simple';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = SimpleService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -4910,6 +5073,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.getCallWithoutParametersAndResponse',
             method: 'GET',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -4924,6 +5088,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.putCallWithoutParametersAndResponse',
             method: 'PUT',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -4938,6 +5103,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.postCallWithoutParametersAndResponse',
             method: 'POST',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -4952,6 +5118,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.deleteCallWithoutParametersAndResponse',
             method: 'DELETE',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -4966,6 +5133,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.optionsCallWithoutParametersAndResponse',
             method: 'OPTIONS',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -4980,6 +5148,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.headCallWithoutParametersAndResponse',
             method: 'HEAD',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -4994,6 +5163,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.patchCallWithoutParametersAndResponse',
             method: 'PATCH',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -5018,7 +5188,7 @@ export class TypesService {
         types: '/api/v{api-version}/types',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         types(parameters: {
             /**
              * This is an array parameter
@@ -5061,6 +5231,16 @@ export class TypesService {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Types';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = TypesService.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -5130,6 +5310,7 @@ export class TypesService {
         options?: Partial<ApiRequestOptions>
     ): Promise<number | string | boolean | any> {
         return __request(this.config, {
+            operation: 'Types.types',
             method: 'GET',
             url: '/api/v{api-version}/types',
             path: {
@@ -5218,6 +5399,7 @@ exports[`v3 should generate: ./test/generated/v3/core/ApiRequestOptions.ts 1`] =
 /* eslint-disable */
 
 export type ApiRequestOptions = {
+    readonly operation: string;
     readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
     readonly url: string;
     readonly path?: Record<string, any>;
@@ -6921,7 +7103,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { CollectionFormatSvc } from '../services/CollectionFormatSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -6969,7 +7150,7 @@ export function useCollectionFormat<TError = ApiError>(
     const service = useContext(ServiceContext).collectionFormat;
     return useQuery({
         queryFn: () => service.collectionFormat(parameters, options?.request),
-        queryKey: CollectionFormatSvc.QueryKeys.collectionFormat(parameters),
+        queryKey: service.queryKeys.collectionFormat(parameters),
         ...options?.query,
     });
 }
@@ -6992,7 +7173,6 @@ import type { ModelWithArray } from '../models/ModelWithArray';
 import type { ModelWithDictionary } from '../models/ModelWithDictionary';
 import type { ModelWithEnum } from '../models/ModelWithEnum';
 import type { ModelWithString } from '../models/ModelWithString';
-import { ComplexSvc } from '../services/ComplexSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7035,7 +7215,7 @@ export function useComplexTypes<TError = ApiError>(
     const service = useContext(ServiceContext).complex;
     return useQuery({
         queryFn: () => service.complexTypes(parameters, options?.request),
-        queryKey: ComplexSvc.QueryKeys.complexTypes(parameters),
+        queryKey: service.queryKeys.complexTypes(parameters),
         ...options?.query,
     });
 }
@@ -7095,7 +7275,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { DefaultSvc } from '../services/DefaultSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7118,7 +7297,7 @@ export function useServiceWithEmptyTag<TError = ApiError>(
     const service = useContext(ServiceContext).default;
     return useQuery({
         queryFn: () => service.serviceWithEmptyTag(options?.request),
-        queryKey: DefaultSvc.QueryKeys.serviceWithEmptyTag(),
+        queryKey: service.queryKeys.serviceWithEmptyTag(),
         ...options?.query,
     });
 }
@@ -7138,7 +7317,6 @@ import type * as RQ from '@tanstack/react-query';
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
-import { DefaultsSvc } from '../services/DefaultsSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7186,7 +7364,7 @@ export function useCallWithDefaultParameters<TError = ApiError>(
     const service = useContext(ServiceContext).defaults;
     return useQuery({
         queryFn: () => service.callWithDefaultParameters(parameters, options?.request),
-        queryKey: DefaultsSvc.QueryKeys.callWithDefaultParameters(parameters),
+        queryKey: service.queryKeys.callWithDefaultParameters(parameters),
         ...options?.query,
     });
 }
@@ -7431,7 +7609,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { DuplicateSvc } from '../services/DuplicateSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7454,7 +7631,7 @@ export function useDuplicateName<TError = ApiError>(
     const service = useContext(ServiceContext).duplicate;
     return useQuery({
         queryFn: () => service.duplicateName(options?.request),
-        queryKey: DuplicateSvc.QueryKeys.duplicateName(),
+        queryKey: service.queryKeys.duplicateName(),
         ...options?.query,
     });
 }
@@ -7687,7 +7864,6 @@ import type * as RQ from '@tanstack/react-query';
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
-import { MultipartSvc } from '../services/MultipartSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7760,7 +7936,7 @@ export function useMultipartResponse<TError = ApiError>(
     const service = useContext(ServiceContext).multipart;
     return useQuery({
         queryFn: () => service.multipartResponse(options?.request),
-        queryKey: MultipartSvc.QueryKeys.multipartResponse(),
+        queryKey: service.queryKeys.multipartResponse(),
         ...options?.query,
     });
 }
@@ -7778,7 +7954,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { MultipleTags1Svc } from '../services/MultipleTags1Svc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7802,7 +7977,7 @@ export function useDummyA<TError = ApiError>(
     const service = useContext(ServiceContext).multipleTags1;
     return useQuery({
         queryFn: () => service.dummyA(options?.request),
-        queryKey: MultipleTags1Svc.QueryKeys.dummyA(),
+        queryKey: service.queryKeys.dummyA(),
         ...options?.query,
     });
 }
@@ -7827,7 +8002,7 @@ export function useDummyB<TError = ApiError>(
     const service = useContext(ServiceContext).multipleTags1;
     return useQuery({
         queryFn: () => service.dummyB(options?.request),
-        queryKey: MultipleTags1Svc.QueryKeys.dummyB(),
+        queryKey: service.queryKeys.dummyB(),
         ...options?.query,
     });
 }
@@ -7845,7 +8020,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { MultipleTags2Svc } from '../services/MultipleTags2Svc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7869,7 +8043,7 @@ export function useDummyA<TError = ApiError>(
     const service = useContext(ServiceContext).multipleTags2;
     return useQuery({
         queryFn: () => service.dummyA(options?.request),
-        queryKey: MultipleTags2Svc.QueryKeys.dummyA(),
+        queryKey: service.queryKeys.dummyA(),
         ...options?.query,
     });
 }
@@ -7894,7 +8068,7 @@ export function useDummyB<TError = ApiError>(
     const service = useContext(ServiceContext).multipleTags2;
     return useQuery({
         queryFn: () => service.dummyB(options?.request),
-        queryKey: MultipleTags2Svc.QueryKeys.dummyB(),
+        queryKey: service.queryKeys.dummyB(),
         ...options?.query,
     });
 }
@@ -7912,7 +8086,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { MultipleTags3Svc } from '../services/MultipleTags3Svc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7936,7 +8109,7 @@ export function useDummyB<TError = ApiError>(
     const service = useContext(ServiceContext).multipleTags3;
     return useQuery({
         queryFn: () => service.dummyB(options?.request),
-        queryKey: MultipleTags3Svc.QueryKeys.dummyB(),
+        queryKey: service.queryKeys.dummyB(),
         ...options?.query,
     });
 }
@@ -7954,7 +8127,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { NoContentSvc } from '../services/NoContentSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -7978,7 +8150,7 @@ export function useCallWithNoContentResponse<TError = ApiError>(
     const service = useContext(ServiceContext).noContent;
     return useQuery({
         queryFn: () => service.callWithNoContentResponse(options?.request),
-        queryKey: NoContentSvc.QueryKeys.callWithNoContentResponse(),
+        queryKey: service.queryKeys.callWithNoContentResponse(),
         ...options?.query,
     });
 }
@@ -7999,7 +8171,6 @@ import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { Pageable } from '../models/Pageable';
-import { ParametersSvc } from '../services/ParametersSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -8149,7 +8320,7 @@ export function useGetCallWithOptionalParam<TError = ApiError>(
     const service = useContext(ServiceContext).parameters;
     return useQuery({
         queryFn: () => service.getCallWithOptionalParam(parameters, options?.request),
-        queryKey: ParametersSvc.QueryKeys.getCallWithOptionalParam(parameters),
+        queryKey: service.queryKeys.getCallWithOptionalParam(parameters),
         ...options?.query,
     });
 }
@@ -8258,7 +8429,6 @@ import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
-import { ResponseSvc } from '../services/ResponseSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -8282,7 +8452,7 @@ export function useCallWithResponse<TError = ApiError>(
     const service = useContext(ServiceContext).response;
     return useQuery({
         queryFn: () => service.callWithResponse(options?.request),
-        queryKey: ResponseSvc.QueryKeys.callWithResponse(),
+        queryKey: service.queryKeys.callWithResponse(),
         ...options?.query,
     });
 }
@@ -8362,7 +8532,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { SimpleSvc } from '../services/SimpleSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -8385,7 +8554,7 @@ export function useGetCallWithoutParametersAndResponse<TError = ApiError>(
     const service = useContext(ServiceContext).simple;
     return useQuery({
         queryFn: () => service.getCallWithoutParametersAndResponse(options?.request),
-        queryKey: SimpleSvc.QueryKeys.getCallWithoutParametersAndResponse(),
+        queryKey: service.queryKeys.getCallWithoutParametersAndResponse(),
         ...options?.query,
     });
 }
@@ -8547,7 +8716,6 @@ import type * as RQ from '@tanstack/react-query';
 
 import type { ApiError } from '../core/ApiError';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
-import { TypesSvc } from '../services/TypesSvc';
 
 import { ServiceContext } from './ServiceContext';
 
@@ -8611,7 +8779,7 @@ export function useTypes<TError = ApiError>(
     const service = useContext(ServiceContext).types;
     return useQuery({
         queryFn: () => service.types(parameters, options?.request),
-        queryKey: TypesSvc.QueryKeys.types(parameters),
+        queryKey: service.queryKeys.types(parameters),
         ...options?.query,
     });
 }
@@ -9947,7 +10115,7 @@ export class CollectionFormatSvc {
         collectionFormat: '/api/v{api-version}/collectionFormat',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         collectionFormat(parameters: {
             /**
              * This is an array parameter that is sent as csv format (comma-separated values)
@@ -9978,6 +10146,16 @@ export class CollectionFormatSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'CollectionFormat';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = CollectionFormatSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10025,6 +10203,7 @@ export class CollectionFormatSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'CollectionFormat.collectionFormat',
             method: 'GET',
             url: '/api/v{api-version}/collectionFormat',
             query: {
@@ -10062,7 +10241,7 @@ export class ComplexSvc {
         complexParams: '/api/v{api-version}/complex/{id}',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         complexTypes(parameters: {
             /**
              * Parameter containing object
@@ -10087,6 +10266,16 @@ export class ComplexSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Complex';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = ComplexSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10123,6 +10312,7 @@ export class ComplexSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<Array<ModelWithString>> {
         return __request(this.config, {
+            operation: 'Complex.complexTypes',
             method: 'GET',
             url: '/api/v{api-version}/complex',
             query: {
@@ -10168,6 +10358,7 @@ export class ComplexSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
+            operation: 'Complex.complexParams',
             method: 'PUT',
             url: '/api/v{api-version}/complex/{id}',
             path: {
@@ -10197,7 +10388,7 @@ export class DefaultSvc {
         serviceWithEmptyTag: '/api/v{api-version}/no-tag',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         serviceWithEmptyTag(): readonly unknown[] {
             return ['api', 'v{api-version}', 'no-tag', ];
         },
@@ -10207,6 +10398,16 @@ export class DefaultSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Default';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DefaultSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10220,6 +10421,7 @@ export class DefaultSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Default.serviceWithEmptyTag',
             method: 'GET',
             url: '/api/v{api-version}/no-tag',
             ...options,
@@ -10248,7 +10450,7 @@ export class DefaultsSvc {
         callToTestOrderOfParams: '/api/v{api-version}/defaults',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         callWithDefaultParameters(parameters: {
             /**
              * This is a simple string with default value
@@ -10279,6 +10481,16 @@ export class DefaultsSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Defaults';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DefaultsSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10328,6 +10540,7 @@ export class DefaultsSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Defaults.callWithDefaultParameters',
             method: 'GET',
             url: '/api/v{api-version}/defaults',
             query: {
@@ -10385,6 +10598,7 @@ export class DefaultsSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Defaults.callWithDefaultOptionalParameters',
             method: 'POST',
             url: '/api/v{api-version}/defaults',
             query: {
@@ -10458,6 +10672,7 @@ export class DefaultsSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Defaults.callToTestOrderOfParams',
             method: 'PUT',
             url: '/api/v{api-version}/defaults',
             query: {
@@ -10494,13 +10709,23 @@ export class DeprecatedSvc {
         deprecatedCall: '/api/v{api-version}/parameters/deprecated',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Deprecated';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DeprecatedSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10526,6 +10751,7 @@ export class DeprecatedSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Deprecated.deprecatedCall',
             method: 'POST',
             url: '/api/v{api-version}/parameters/deprecated',
             headers: {
@@ -10553,13 +10779,23 @@ export class DescriptionsSvc {
         callWithDescriptions: '/api/v{api-version}/descriptions/',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Descriptions';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DescriptionsSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10619,6 +10855,7 @@ export class DescriptionsSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Descriptions.callWithDescriptions',
             method: 'POST',
             url: '/api/v{api-version}/descriptions/',
             query: {
@@ -10654,7 +10891,7 @@ export class DuplicateSvc {
         duplicateName3: '/api/v{api-version}/duplicate',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         duplicateName(): readonly unknown[] {
             return ['api', 'v{api-version}', 'duplicate', ];
         },
@@ -10664,6 +10901,16 @@ export class DuplicateSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Duplicate';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = DuplicateSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10677,6 +10924,7 @@ export class DuplicateSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Duplicate.duplicateName',
             method: 'GET',
             url: '/api/v{api-version}/duplicate',
             ...options,
@@ -10691,6 +10939,7 @@ export class DuplicateSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Duplicate.duplicateName1',
             method: 'POST',
             url: '/api/v{api-version}/duplicate',
             ...options,
@@ -10705,6 +10954,7 @@ export class DuplicateSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Duplicate.duplicateName2',
             method: 'PUT',
             url: '/api/v{api-version}/duplicate',
             ...options,
@@ -10719,6 +10969,7 @@ export class DuplicateSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Duplicate.duplicateName3',
             method: 'DELETE',
             url: '/api/v{api-version}/duplicate',
             ...options,
@@ -10743,13 +10994,23 @@ export class ErrorSvc {
         testErrorCode: '/api/v{api-version}/error',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Error';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = ErrorSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10774,6 +11035,7 @@ export class ErrorSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<any> {
         return __request(this.config, {
+            operation: 'Error.testErrorCode',
             method: 'POST',
             url: '/api/v{api-version}/error',
             query: {
@@ -10809,13 +11071,23 @@ export class FormDataSvc {
         postApiFormData: '/api/v{api-version}/formData/',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'FormData';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = FormDataSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10845,6 +11117,7 @@ export class FormDataSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'FormData.postApiFormData',
             method: 'POST',
             url: '/api/v{api-version}/formData/',
             query: {
@@ -10874,13 +11147,23 @@ export class HeaderSvc {
         callWithResultFromHeader: '/api/v{api-version}/header',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Header';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = HeaderSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10895,6 +11178,7 @@ export class HeaderSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<string> {
         return __request(this.config, {
+            operation: 'Header.callWithResultFromHeader',
             method: 'POST',
             url: '/api/v{api-version}/header',
             responseHeader: 'operation-location',
@@ -10927,7 +11211,7 @@ export class MultipartSvc {
         multipartResponse: '/api/v{api-version}/multipart',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         multipartResponse(): readonly unknown[] {
             return ['api', 'v{api-version}', 'multipart', ];
         },
@@ -10937,6 +11221,16 @@ export class MultipartSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Multipart';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = MultipartSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -10960,6 +11254,7 @@ export class MultipartSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Multipart.multipartRequest',
             method: 'POST',
             url: '/api/v{api-version}/multipart',
             formData: formData,
@@ -10983,6 +11278,7 @@ export class MultipartSvc {
         };
     }> {
         return __request(this.config, {
+            operation: 'Multipart.multipartResponse',
             method: 'GET',
             url: '/api/v{api-version}/multipart',
             ...options,
@@ -11008,7 +11304,7 @@ export class MultipleTags1Svc {
         dummyB: '/api/v{api-version}/multiple-tags/b',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         dummyA(): readonly unknown[] {
             return ['api', 'v{api-version}', 'multiple-tags', 'a', ];
         },
@@ -11021,6 +11317,16 @@ export class MultipleTags1Svc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'MultipleTags1';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = MultipleTags1Svc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11035,6 +11341,7 @@ export class MultipleTags1Svc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags1.dummyA',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/a',
             ...options,
@@ -11050,6 +11357,7 @@ export class MultipleTags1Svc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags1.dummyB',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/b',
             ...options,
@@ -11075,7 +11383,7 @@ export class MultipleTags2Svc {
         dummyB: '/api/v{api-version}/multiple-tags/b',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         dummyA(): readonly unknown[] {
             return ['api', 'v{api-version}', 'multiple-tags', 'a', ];
         },
@@ -11088,6 +11396,16 @@ export class MultipleTags2Svc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'MultipleTags2';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = MultipleTags2Svc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11102,6 +11420,7 @@ export class MultipleTags2Svc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags2.dummyA',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/a',
             ...options,
@@ -11117,6 +11436,7 @@ export class MultipleTags2Svc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags2.dummyB',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/b',
             ...options,
@@ -11141,7 +11461,7 @@ export class MultipleTags3Svc {
         dummyB: '/api/v{api-version}/multiple-tags/b',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         dummyB(): readonly unknown[] {
             return ['api', 'v{api-version}', 'multiple-tags', 'b', ];
         },
@@ -11151,6 +11471,16 @@ export class MultipleTags3Svc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'MultipleTags3';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = MultipleTags3Svc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11165,6 +11495,7 @@ export class MultipleTags3Svc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'MultipleTags3.dummyB',
             method: 'GET',
             url: '/api/v{api-version}/multiple-tags/b',
             ...options,
@@ -11189,7 +11520,7 @@ export class NoContentSvc {
         callWithNoContentResponse: '/api/v{api-version}/no-content',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         callWithNoContentResponse(): readonly unknown[] {
             return ['api', 'v{api-version}', 'no-content', ];
         },
@@ -11199,6 +11530,16 @@ export class NoContentSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'NoContent';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = NoContentSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11213,6 +11554,7 @@ export class NoContentSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'NoContent.callWithNoContentResponse',
             method: 'GET',
             url: '/api/v{api-version}/no-content',
             ...options,
@@ -11243,7 +11585,7 @@ export class ParametersSvc {
         postCallWithOptionalParam: '/api/v{api-version}/parameters/',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         getCallWithOptionalParam(parameters: {
             /**
              * This is a required parameter
@@ -11262,6 +11604,16 @@ export class ParametersSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Parameters';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = ParametersSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11315,6 +11667,7 @@ export class ParametersSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Parameters.callWithParameters',
             method: 'POST',
             url: '/api/v{api-version}/parameters/{parameterPath}',
             path: {
@@ -11404,6 +11757,7 @@ export class ParametersSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Parameters.callWithWeirdParameterNames',
             method: 'POST',
             url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}',
             path: {
@@ -11454,6 +11808,7 @@ export class ParametersSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Parameters.getCallWithOptionalParam',
             method: 'GET',
             url: '/api/v{api-version}/parameters/',
             query: {
@@ -11489,6 +11844,7 @@ export class ParametersSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Parameters.postCallWithOptionalParam',
             method: 'POST',
             url: '/api/v{api-version}/parameters/',
             query: {
@@ -11520,13 +11876,23 @@ export class RequestBodySvc {
         postApiRequestBody: '/api/v{api-version}/requestBody/',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'RequestBody';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = RequestBodySvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11556,6 +11922,7 @@ export class RequestBodySvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'RequestBody.postApiRequestBody',
             method: 'POST',
             url: '/api/v{api-version}/requestBody/',
             query: {
@@ -11591,7 +11958,7 @@ export class ResponseSvc {
         callWithResponses: '/api/v{api-version}/response',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         callWithResponse(): readonly unknown[] {
             return ['api', 'v{api-version}', 'response', ];
         },
@@ -11601,6 +11968,16 @@ export class ResponseSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Response';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = ResponseSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11615,6 +11992,7 @@ export class ResponseSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
+            operation: 'Response.callWithResponse',
             method: 'GET',
             url: '/api/v{api-version}/response',
             ...options,
@@ -11630,6 +12008,7 @@ export class ResponseSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<ModelWithString> {
         return __request(this.config, {
+            operation: 'Response.callWithDuplicateResponses',
             method: 'POST',
             url: '/api/v{api-version}/response',
             errors: {
@@ -11657,6 +12036,7 @@ export class ResponseSvc {
         readonly value?: Array<ModelWithString>;
     } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
         return __request(this.config, {
+            operation: 'Response.callWithResponses',
             method: 'PUT',
             url: '/api/v{api-version}/response',
             errors: {
@@ -11692,7 +12072,7 @@ export class SimpleSvc {
         patchCallWithoutParametersAndResponse: '/api/v{api-version}/simple',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         getCallWithoutParametersAndResponse(): readonly unknown[] {
             return ['api', 'v{api-version}', 'simple', ];
         },
@@ -11702,6 +12082,16 @@ export class SimpleSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Simple';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = SimpleSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11715,6 +12105,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.getCallWithoutParametersAndResponse',
             method: 'GET',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -11729,6 +12120,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.putCallWithoutParametersAndResponse',
             method: 'PUT',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -11743,6 +12135,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.postCallWithoutParametersAndResponse',
             method: 'POST',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -11757,6 +12150,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.deleteCallWithoutParametersAndResponse',
             method: 'DELETE',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -11771,6 +12165,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.optionsCallWithoutParametersAndResponse',
             method: 'OPTIONS',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -11785,6 +12180,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.headCallWithoutParametersAndResponse',
             method: 'HEAD',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -11799,6 +12195,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<void> {
         return __request(this.config, {
+            operation: 'Simple.patchCallWithoutParametersAndResponse',
             method: 'PATCH',
             url: '/api/v{api-version}/simple',
             ...options,
@@ -11823,7 +12220,7 @@ export class TypesSvc {
         types: '/api/v{api-version}/types',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
         types(parameters: {
             /**
              * This is an array parameter
@@ -11866,6 +12263,16 @@ export class TypesSvc {
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Types';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = TypesSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -11935,6 +12342,7 @@ export class TypesSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<number | string | boolean | any> {
         return __request(this.config, {
+            operation: 'Types.types',
             method: 'GET',
             url: '/api/v{api-version}/types',
             path: {
@@ -11971,13 +12379,23 @@ export class UploadSvc {
         uploadFile: '/api/v{api-version}/upload',
     };
 
-    public static readonly QueryKeys = {
+    public static readonly DefaultQueryKeys = {
     };
 
     /**
      * Configuration for the current service instance.
      */
     public readonly config: OpenAPIConfig;
+
+    /**
+     * Service name.
+     */
+    public readonly name = 'Upload';
+
+    /**
+     * Query keys for the current service instance.
+     */
+    public readonly queryKeys = UploadSvc.DefaultQueryKeys;
 
     constructor(config?: Partial<OpenAPIConfig>) {
         this.config = { ...OpenAPI, ...config };
@@ -12002,6 +12420,7 @@ export class UploadSvc {
         options?: Partial<ApiRequestOptions>
     ): Promise<boolean> {
         return __request(this.config, {
+            operation: 'Upload.uploadFile',
             method: 'POST',
             url: '/api/v{api-version}/upload',
             formData: {

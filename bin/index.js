@@ -14,13 +14,10 @@ const params = program
     .requiredOption('-o, --output <value>', 'Output directory (required)')
     .option('--exportCore <value>', 'Write core files to disk', true)
     .option('--exportServices <value>', 'Write services to disk', true)
-    .option('--exportHooks <value>', 'Write react-query hooks to disk', true)
     .option('--exportModels <value>', 'Write models to disk', true)
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
     .option('--postfix <value>', 'Service name postfix', 'Service')
-    .option('--contextName <value>', 'Hook service context name', 'ServiceContext')
-    .option('--reactQueryImport <value>', 'Import specifier for react-query', '@tanstack/react-query')
     .parse(process.argv)
     .opts();
 
@@ -32,13 +29,10 @@ if (OpenAPI) {
         output: params.output,
         exportCore: JSON.parse(params.exportCore) === true,
         exportServices: JSON.parse(params.exportServices) === true,
-        exportHooks: JSON.parse(params.exportHooks) === true,
         exportModels: JSON.parse(params.exportModels) === true,
         exportSchemas: JSON.parse(params.exportSchemas) === true,
         indent: params.indent,
         postfix: params.postfix,
-        contextName: params.contextName,
-        reactQueryImport: params.reactQueryImport,
     })
         .then(() => {
             process.exit(0);

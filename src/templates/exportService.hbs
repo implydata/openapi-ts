@@ -6,31 +6,24 @@ import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 
 {{/if}}
-import type { ApiRequestOptions } from '../core/ApiRequestOptions';
+import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-export class {{{name}}}{{{@root.postfix}}} {
-	public static readonly URLs = {
-	{{#each operations}}
-		{{{name}}}: '{{{path}}}',
-	{{/each}}
-	};
+type Operations ={{~#each operations}} | '{{{name}}}'{{/each}};
 
-	public static readonly QueryKeys = {
-	{{#each operations}}
-		{{#equals method 'GET'}}
-		{{{name}}}({{~#if parameters~}}parameters: {{>parametersType}}{{~/if~}}): readonly unknown[] {
-			{{#if parameters}}
- 			return [{{#each (queryKey path)}}'{{this}}', {{/each}}parameters];
-			{{else}}
- 			return [{{#each (queryKey path)}}'{{this}}', {{/each}}];
-			{{/if}}
-		},
-		{{/equals}}
-	{{/each}}
-	};
+const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
+{{#each operations}}
+	'{{{name}}}': { method: '{{{method}}}', url: '{{{path}}}' },
+{{/each}}
+};
+
+export class {{{name}}}{{{@root.postfix}}} {
+	/**
+	 * Service URLs and methods.
+	 */
+	public static readonly URLs = URLs;
 
 	/**
 	 * Configuration for the current service instance.
@@ -66,11 +59,10 @@ export class {{{name}}}{{{@root.postfix}}} {
 	 */
 	public {{{name}}}(
 		{{>parameters}}
-
+		options?: Partial<ApiRequestOptions>,
 	): Promise<{{>result}}> {
 		return __request(this.config, {
-			method: '{{{method}}}',
-			url: '{{{path}}}',
+			...URLs['{{{name}}}'],
 			{{#if parametersPath}}
 			path: {
 				{{#each parametersPath}}

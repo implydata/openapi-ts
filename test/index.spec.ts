@@ -12,9 +12,6 @@ describe('v2', () => {
             exportSchemas: true,
             exportModels: true,
             exportServices: true,
-            exportHooks: true,
-            contextName: 'MyServiceContext',
-            reactQueryImport: 'react-query',
         });
 
         sync('./test/generated/v2/**/*.ts').forEach(file => {
@@ -33,7 +30,6 @@ describe('v3', () => {
             exportSchemas: true,
             exportModels: true,
             exportServices: true,
-            exportHooks: true,
             postfix: 'Svc',
         });
 
