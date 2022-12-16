@@ -8,9 +8,10 @@ import templateCoreOpenAPI from '../templates/core/OpenAPI.hbs';
 import templateCoreRequest from '../templates/core/request.hbs';
 import templateCoreRequestFetch from '../templates/core/requestFetch.hbs';
 import templateCoreRequestXhr from '../templates/core/requestXhr.hbs';
+import templateExportClient from '../templates/exportClient.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
+import templateExportOperation from '../templates/exportOperation.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
-import templateExportService from '../templates/exportService.hbs';
 import templateIndex from '../templates/index.hbs';
 import partialBase from '../templates/partials/base.hbs';
 import partialExportComposition from '../templates/partials/exportComposition.hbs';
@@ -44,9 +45,10 @@ import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 export interface Templates {
     index: Handlebars.TemplateDelegate;
     exports: {
+        client: Handlebars.TemplateDelegate;
         model: Handlebars.TemplateDelegate;
+        operation: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
-        service: Handlebars.TemplateDelegate;
     };
     core: {
         apiError: Handlebars.TemplateDelegate;
@@ -71,9 +73,10 @@ export const registerHandlebarTemplates = (): Templates => {
     const templates: Templates = {
         index: Handlebars.template(templateIndex),
         exports: {
+            client: Handlebars.template(templateExportClient),
             model: Handlebars.template(templateExportModel),
             schema: Handlebars.template(templateExportSchema),
-            service: Handlebars.template(templateExportService),
+            operation: Handlebars.template(templateExportOperation),
         },
         core: {
             apiError: Handlebars.template(templateCoreApiError),

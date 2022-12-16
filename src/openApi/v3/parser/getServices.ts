@@ -38,11 +38,13 @@ export const getServices = (openApi: OpenApi): Service[] => {
                                     name: operation.service,
                                     operations: [],
                                     imports: [],
+                                    errorImports: [],
                                 };
 
                                 // Push the operation in the service
                                 service.operations.push(operation);
                                 service.imports.push(...operation.imports);
+                                service.errorImports.push(...operation.errorImports);
                                 services.set(operation.service, service);
                             });
                             break;

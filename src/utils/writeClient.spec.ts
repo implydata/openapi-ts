@@ -20,7 +20,8 @@ describe('writeClient', () => {
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
-                service: () => 'service',
+                client: () => 'service',
+                operation: () => 'operation',
             },
             core: {
                 apiError: () => 'apiError',
@@ -34,7 +35,7 @@ describe('writeClient', () => {
             },
         };
 
-        await writeClient(client, templates, './dist', true, true, true, true, Indent.SPACE_4, 'MyService');
+        await writeClient(client, templates, './dist', true, true, true, true, true, Indent.SPACE_4, 'MyService');
 
         expect(rmdir).toBeCalled();
         expect(mkdir).toBeCalled();

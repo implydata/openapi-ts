@@ -6,7 +6,7 @@ describe('registerHandlebarTemplates', () => {
         expect(templates.index).toBeDefined();
         expect(templates.exports.model).toBeDefined();
         expect(templates.exports.schema).toBeDefined();
-        expect(templates.exports.service).toBeDefined();
+        expect(templates.exports.client).toBeDefined();
         expect(templates.core.apiError).toBeDefined();
         expect(templates.core.apiRequestOptions).toBeDefined();
         expect(templates.core.apiResult).toBeDefined();

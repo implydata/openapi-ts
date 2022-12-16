@@ -2,6 +2,7 @@ import type { OperationParameter } from './OperationParameter';
 
 export interface OperationParameters {
     imports: string[];
+    errorImports: string[];
     parameters: OperationParameter[];
     parametersPath: OperationParameter[];
     parametersQuery: OperationParameter[];

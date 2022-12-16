@@ -14,9 +14,10 @@ import { sortServicesByName } from './sortServicesByName';
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
  * @param exportCore Generate core
- * @param exportServices Generate services
+ * @param exportClients Generate clients
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
+ * @param exportOperations Generate request/response types
  * @param postfix Service name postfix
  */
 export const writeClientIndex = async (
@@ -24,16 +25,18 @@ export const writeClientIndex = async (
     templates: Templates,
     outputPath: string,
     exportCore: boolean,
-    exportServices: boolean,
+    exportClients: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
+    exportOperations: boolean,
     postfix: string
 ): Promise<void> => {
     const templateResult = templates.index({
         exportCore,
-        exportServices,
+        exportClients,
         exportModels,
         exportSchemas,
+        exportOperations,
         postfix,
         server: client.server,
         version: client.version,

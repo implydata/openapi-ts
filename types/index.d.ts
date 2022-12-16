@@ -8,9 +8,10 @@ export type Options = {
     input: string | Record<string, any>;
     output: string;
     exportCore?: boolean;
-    exportServices?: boolean;
+    exportClients?: boolean;
     exportModels?: boolean;
     exportSchemas?: boolean;
+    exportOperations?: boolean;
     indent?: Indent | '4' | '2' | 'tab';
     postfix?: string;
     write?: boolean;

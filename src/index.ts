@@ -14,8 +14,9 @@ export type Options = {
     input: string | Record<string, any>;
     output: string;
     exportCore?: boolean;
-    exportServices?: boolean;
+    exportClients?: boolean;
     exportModels?: boolean;
+    exportOperations?: boolean;
     exportSchemas?: boolean;
     indent?: Indent;
     postfix?: string;
@@ -32,8 +33,9 @@ export type Options = {
  * @param options.input The relative location of the OpenAPI spec
  * @param options.output The relative location of the output directory
  * @param options.exportCore Generate core client classes
- * @param options.exportServices Generate services
+ * @param options.exportClients Generate clients
  * @param options.exportModels Generate models
+ * @param options.exportOperations Generate request/response types
  * @param options.exportSchemas Generate schemas
  * @param options.indent Indentation options (4, 2 or tab)
  * @param options.postfix Service name postfix
@@ -43,8 +45,9 @@ export const generate = async ({
     input,
     output,
     exportCore = true,
-    exportServices = true,
+    exportClients = true,
     exportModels = true,
+    exportOperations = false,
     exportSchemas = false,
     indent = Indent.SPACE_4,
     postfix = 'Service',
@@ -64,9 +67,10 @@ export const generate = async ({
                 templates,
                 output,
                 exportCore,
-                exportServices,
+                exportClients,
                 exportModels,
                 exportSchemas,
+                exportOperations,
                 indent,
                 postfix
             );
@@ -82,9 +86,10 @@ export const generate = async ({
                 templates,
                 output,
                 exportCore,
-                exportServices,
+                exportClients,
                 exportModels,
                 exportSchemas,
+                exportOperations,
                 indent,
                 postfix
             );

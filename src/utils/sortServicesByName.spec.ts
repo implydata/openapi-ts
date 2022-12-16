@@ -7,16 +7,19 @@ describe('sortServicesByName', () => {
             name: 'John',
             operations: [],
             imports: [],
+            errorImports: [],
         };
         const jane: Service = {
             name: 'Jane',
             operations: [],
             imports: [],
+            errorImports: [],
         };
         const doe: Service = {
             name: 'Doe',
             operations: [],
             imports: [],
+            errorImports: [],
         };
 
         const services: Service[] = [john, jane, doe];

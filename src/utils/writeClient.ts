@@ -10,6 +10,7 @@ import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
+import { writeOperations } from './writeOperations';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -17,9 +18,10 @@ import { writeClientServices } from './writeClientServices';
  * @param templates Templates wrapper with all loaded Handlebars templates
  * @param output The relative location of the output directory
  * @param exportCore Generate core client classes
- * @param exportServices Generate services
+ * @param exportClients Generate clients
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
+ * @param exportOperations Generate request/response types
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
  * @param contextName Hook context name
@@ -30,17 +32,19 @@ export const writeClient = async (
     templates: Templates,
     output: string,
     exportCore: boolean,
-    exportServices: boolean,
+    exportClients: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
+    exportOperations: boolean,
     indent: Indent,
     postfix: string
 ): Promise<void> => {
     const outputPath = resolve(process.cwd(), output);
     const outputPathCore = resolve(outputPath, 'core');
+    const outputPathClients = resolve(outputPath, 'services');
     const outputPathModels = resolve(outputPath, 'models');
+    const outputPathOperations = resolve(outputPath, 'operations');
     const outputPathSchemas = resolve(outputPath, 'schemas');
-    const outputPathServices = resolve(outputPath, 'services');
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
@@ -52,10 +56,10 @@ export const writeClient = async (
         await writeClientCore(client, templates, outputPathCore, indent);
     }
 
-    if (exportServices) {
-        await rmdir(outputPathServices);
-        await mkdir(outputPathServices);
-        await writeClientServices(client.services, templates, outputPathServices, indent, postfix);
+    if (exportClients) {
+        await rmdir(outputPathClients);
+        await mkdir(outputPathClients);
+        await writeClientServices(client.services, templates, outputPathClients, indent, postfix);
     }
 
     if (exportSchemas) {
@@ -70,16 +74,23 @@ export const writeClient = async (
         await writeClientModels(client.models, templates, outputPathModels, indent);
     }
 
-    if (exportCore || exportServices || exportSchemas || exportModels) {
+    if (exportOperations) {
+        await rmdir(outputPathOperations);
+        await mkdir(outputPathOperations);
+        await writeOperations(client.services, templates, outputPathOperations, indent, postfix);
+    }
+
+    if (exportCore || exportClients || exportSchemas || exportModels) {
         await mkdir(outputPath);
         await writeClientIndex(
             client,
             templates,
             outputPath,
             exportCore,
-            exportServices,
+            exportClients,
             exportModels,
             exportSchemas,
+            exportOperations,
             postfix
         );
     }

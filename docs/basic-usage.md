@@ -6,16 +6,17 @@ $ openapi --help
   Usage: openapi [options]
 
   Options:
-    -V, --version             output the version number
-    -i, --input <value>       OpenAPI specification, can be a path, url or string content (required)
-    -o, --output <value>      Output directory (required)
-    --exportCore <value>      Write core files to disk (default: true)
-    --exportServices <value>  Write services to disk (default: true)
-    --exportModels <value>    Write models to disk (default: true)
-    --exportSchemas <value>   Write schemas to disk (default: false)
-    --indent <value>          Indentation options [4, 2, tab] (default: "4")
-    --postfix <value>         Service name postfix (default: "Service")
-    -h, --help                display help for command
+    -V, --version              output the version number
+    -i, --input <value>        OpenAPI specification, can be a path, url or string content (required)
+    -o, --output <value>       Output directory (required)
+    --exportCore <value>       Write core files to disk (default: true)
+    --exportClients <value>    Write clients to disk (default: true)
+    --exportModels <value>     Write models to disk (default: true)
+    --exportOperations <value> Write operation request/response types to disk (default: false)
+    --exportSchemas <value>    Write schemas to disk (default: false)
+    --indent <value>           Indentation options [4, 2, tab] (default: "4")
+    --postfix <value>          Service name postfix (default: "Service")
+    -h, --help                 display help for command
 
   Examples
     $ openapi --input ./spec.json --output ./generated

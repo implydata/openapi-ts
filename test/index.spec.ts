@@ -11,7 +11,8 @@ describe('v2', () => {
             exportCore: true,
             exportSchemas: true,
             exportModels: true,
-            exportServices: true,
+            exportClients: true,
+            exportOperations: true,
         });
 
         sync('./test/generated/v2/**/*.ts').forEach(file => {
@@ -29,7 +30,8 @@ describe('v3', () => {
             exportCore: true,
             exportSchemas: true,
             exportModels: true,
-            exportServices: true,
+            exportClients: true,
+            exportOperations: true,
             postfix: 'Svc',
         });
 

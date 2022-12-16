@@ -12,6 +12,7 @@ export const postProcessServiceOperations = (service: Service): Operation[] => {
         // properties of models. These methods will extend the type if needed.
         clone.imports.push(...flatMap(clone.parameters, parameter => parameter.imports));
         clone.imports.push(...flatMap(clone.results, result => result.imports));
+        clone.errorImports.push(...flatMap(clone.errors, error => error.imports));
 
         // Check if the operation name is unique, if not then prefix this with a number
         const name = clone.name;

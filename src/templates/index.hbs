@@ -21,11 +21,21 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{/each}}
 {{/if}}
 {{/if}}
-{{#if @root.exportServices}}
+{{#if @root.exportClients}}
 {{#if services}}
 
 {{#each services}}
 export { {{{name}}}{{{@root.postfix}}} } from './services/{{{name}}}{{{@root.postfix}}}';
+{{/each}}
+{{/if}}
+{{/if}}
+{{#if @root.exportOperations}}
+{{#if services}}
+
+{{#each services}}
+{{#each operations}}
+export type { {{{pascalCase name}}}Operation } from './operations/{{{../name}}}{{{@root.postfix}}}';
+{{/each}}
 {{/each}}
 {{/if}}
 {{/if}}

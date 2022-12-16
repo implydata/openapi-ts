@@ -19,7 +19,8 @@ describe('writeClientIndex', () => {
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
-                service: () => 'service',
+                client: () => 'service',
+                operation: () => 'operation',
             },
             core: {
                 apiError: () => 'apiError',
@@ -33,7 +34,7 @@ describe('writeClientIndex', () => {
             },
         };
 
-        await writeClientIndex(client, templates, '/', true, true, true, true, 'Service');
+        await writeClientIndex(client, templates, '/', true, true, true, true, true, 'Service');
 
         expect(writeFile).toBeCalledWith('/index.ts', 'index');
     });

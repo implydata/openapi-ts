@@ -15,6 +15,7 @@ describe('writeClientServices', () => {
                 name: 'User',
                 operations: [],
                 imports: [],
+                errorImports: [],
             },
         ];
 
@@ -23,7 +24,8 @@ describe('writeClientServices', () => {
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
-                service: () => 'service',
+                client: () => 'service',
+                operation: () => 'operation',
             },
             core: {
                 apiError: () => 'apiError',

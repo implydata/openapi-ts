@@ -35,7 +35,8 @@ describe('writeClientModels', () => {
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
-                service: () => 'service',
+                client: () => 'service',
+                operation: () => 'operation',
             },
             core: {
                 apiError: () => 'apiError',

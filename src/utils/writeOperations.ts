@@ -8,14 +8,14 @@ import { formatIndentation as i } from './formatIndentation';
 import type { Templates } from './registerHandlebarTemplates';
 
 /**
- * Generate Services using the Handlebar template and write to disk.
+ * Generate request/response types using the Handlebar template and write to disk.
  * @param services Array of Services to write
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
  */
-export const writeClientServices = async (
+export const writeOperations = async (
     services: Service[],
     templates: Templates,
     outputPath: string,
@@ -24,7 +24,7 @@ export const writeClientServices = async (
 ): Promise<void> => {
     for (const service of services) {
         const file = resolve(outputPath, `${service.name}${postfix}.ts`);
-        const templateResult = templates.exports.client({ ...service, postfix });
+        const templateResult = templates.exports.operation({ ...service, postfix });
         await writeFile(file, i(f(templateResult), indent));
     }
 };
