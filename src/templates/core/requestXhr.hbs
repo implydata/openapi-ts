@@ -46,7 +46,7 @@ const sendRequest = async (
 ): Promise<XMLHttpRequest> => {
 	const xhr = new XMLHttpRequest();
 	xhr.open(options.method, url, true);
-	xhr.withCredentials = config.WITH_CREDENTIALS;
+	xhr.withCredentials = config.withCredentials;
 
 	headers.forEach((value, key) => {
 		xhr.setRequestHeader(key, value);

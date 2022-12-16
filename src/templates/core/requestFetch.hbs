@@ -22,8 +22,8 @@ const sendRequest = async (
 		signal: options.signal,
 	};
 
-	if (config.WITH_CREDENTIALS) {
-		request.credentials = config.CREDENTIALS;
+	if (config.withCredentials) {
+		request.credentials = config.credentials;
 	}
 
 	return await fetch(url, request);

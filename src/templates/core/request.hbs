@@ -32,9 +32,6 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
 		} else if (options.signal?.aborted && options.signal?.reason) {
 			error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
 		}
-		if (typeof config.TRANSFORM_ERROR === 'function') {
-			error = config.TRANSFORM_ERROR(error, config, options);
-		}
 		throw error;
 	}
 };

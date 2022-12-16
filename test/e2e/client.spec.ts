@@ -26,9 +26,9 @@ describe('client', () => {
         const result = await browser.evaluate(async () => {
             const { ApiClient } = (window as any).api;
             const client = new ApiClient({
-                TOKEN: (window as any).tokenRequest,
-                USERNAME: undefined,
-                PASSWORD: undefined,
+                token: (window as any).tokenRequest,
+                username: undefined,
+                password: undefined,
             });
             return await client.simple.getCallWithoutParametersAndResponse();
         });
@@ -39,9 +39,9 @@ describe('client', () => {
         const result = await browser.evaluate(async () => {
             const { ApiClient } = (window as any).api;
             const client = new ApiClient({
-                TOKEN: undefined,
-                USERNAME: 'username',
-                PASSWORD: 'password',
+                token: undefined,
+                username: 'username',
+                password: 'password',
             });
             return await client.simple.getCallWithoutParametersAndResponse();
         });
@@ -99,7 +99,7 @@ describe('client', () => {
         } catch (e) {
             error = (e as Error).message;
         }
-        expect(error).toContain('DOMException: The user aborted a request.');
+        expect(error).toContain('CancelError: Request aborted');
     });
 
     it('should throw known error (500)', async () => {

@@ -25,9 +25,9 @@ describe('v3', () => {
         await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
         const result = await browser.evaluate(async () => {
             const { OpenAPI, SimpleService } = (window as any).api;
-            OpenAPI.TOKEN = (window as any).tokenRequest;
-            OpenAPI.USERNAME = undefined;
-            OpenAPI.PASSWORD = undefined;
+            OpenAPI.token = (window as any).tokenRequest;
+            OpenAPI.username = undefined;
+            OpenAPI.password = undefined;
             return await new SimpleService().getCallWithoutParametersAndResponse();
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
@@ -36,9 +36,9 @@ describe('v3', () => {
     it('uses credentials', async () => {
         const result = await browser.evaluate(async () => {
             const { OpenAPI, SimpleService } = (window as any).api;
-            OpenAPI.TOKEN = undefined;
-            OpenAPI.USERNAME = 'username';
-            OpenAPI.PASSWORD = 'password';
+            OpenAPI.token = undefined;
+            OpenAPI.username = 'username';
+            OpenAPI.password = 'password';
             return await new SimpleService().getCallWithoutParametersAndResponse();
         });
         expect(result.headers.authorization).toBe('Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
@@ -90,7 +90,7 @@ describe('v3', () => {
         } catch (e) {
             error = (e as Error).message;
         }
-        expect(error).toContain('DOMException: The user aborted a request.');
+        expect(error).toContain('CancelError: Request aborted');
     });
 
     it('should throw known error (500)', async () => {
