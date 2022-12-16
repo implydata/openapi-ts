@@ -55,7 +55,7 @@
         "clean": "rimraf ./dist ./test/generated ./test/e2e/generated ./samples/generated ./coverage ./node_modules/.cache",
         "build": "./bundle.js build",
         "build:watch": "./bundle.js build --watch",
-        "release": "./bundle.js build --mode production",
+        "release": "tsc && ./bundle.js build --mode production",
         "validate": "tsc --project tsconfig.json --noEmit",
         "run": "node ./test/index.js",
         "test": "jest --selectProjects UNIT",
