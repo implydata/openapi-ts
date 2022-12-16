@@ -398,9 +398,6 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
         } else if (options.signal?.aborted && options.signal?.reason) {
             error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
         }
-        if (typeof config.TRANSFORM_ERROR === 'function') {
-            error = config.TRANSFORM_ERROR(error, config, options);
-        }
         throw error;
     }
 };
@@ -432,8 +429,8 @@ const sendRequest = async (
         signal: options.signal,
     };
 
-    if (config.WITH_CREDENTIALS) {
-        request.credentials = config.CREDENTIALS;
+    if (config.withCredentials) {
+        request.credentials = config.credentials;
     }
 
     return await fetch(url, request);
@@ -551,7 +548,7 @@ const sendRequest = async (
 ): Promise<XMLHttpRequest> => {
     const xhr = new XMLHttpRequest();
     xhr.open(options.method, url, true);
-    xhr.withCredentials = config.WITH_CREDENTIALS;
+    xhr.withCredentials = config.withCredentials;
 
     headers.forEach((value, key) => {
         xhr.setRequestHeader(key, value);
@@ -4831,9 +4828,6 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
         } else if (options.signal?.aborted && options.signal?.reason) {
             error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
         }
-        if (typeof config.TRANSFORM_ERROR === 'function') {
-            error = config.TRANSFORM_ERROR(error, config, options);
-        }
         throw error;
     }
 };
@@ -4865,8 +4859,8 @@ const sendRequest = async (
         signal: options.signal,
     };
 
-    if (config.WITH_CREDENTIALS) {
-        request.credentials = config.CREDENTIALS;
+    if (config.withCredentials) {
+        request.credentials = config.credentials;
     }
 
     return await fetch(url, request);
@@ -4984,7 +4978,7 @@ const sendRequest = async (
 ): Promise<XMLHttpRequest> => {
     const xhr = new XMLHttpRequest();
     xhr.open(options.method, url, true);
-    xhr.withCredentials = config.WITH_CREDENTIALS;
+    xhr.withCredentials = config.withCredentials;
 
     headers.forEach((value, key) => {
         xhr.setRequestHeader(key, value);
