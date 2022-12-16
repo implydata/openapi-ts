@@ -1,4 +1,4 @@
-import RefParser from 'json-schema-ref-parser';
+import { bundle } from '@apidevtools/json-schema-ref-parser';
 
 /**
  * Load and parse te open api spec. If the file extension is ".yml" or ".yaml"
@@ -7,5 +7,5 @@ import RefParser from 'json-schema-ref-parser';
  * @param location: Path or url
  */
 export const getOpenApiSpec = async (location: string): Promise<any> => {
-    return await RefParser.bundle(location, location, {});
+    return await bundle(location, location, {});
 };

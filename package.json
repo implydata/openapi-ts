@@ -69,10 +69,10 @@
         "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b"
     },
     "dependencies": {
+        "@apidevtools/json-schema-ref-parser": "^9.1.0",
         "camelcase": "^6.3.0",
         "commander": "^9.3.0",
-        "fs-extra": "^10.1.0",
-        "json-schema-ref-parser": "^9.0.9"
+        "fs-extra": "^10.1.0"
     },
     "devDependencies": {
         "@babel/cli": "7.18.10",
