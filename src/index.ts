@@ -22,6 +22,7 @@ export type Options = {
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
+    exportOperations?: boolean;
     exportSchemas?: boolean;
     indent?: Indent;
     postfixServices?: string;
@@ -34,21 +35,22 @@ export type Options = {
  * Generate the OpenAPI client. This method will read the OpenAPI specification and based on the
  * given language it will generate the client, including the typed models, validation schemas,
  * service layer, etc.
- * @param input The relative location of the OpenAPI spec
- * @param output The relative location of the output directory
- * @param httpClient The selected httpClient (fetch, xhr, node or axios)
- * @param clientName Custom client class name
- * @param useOptions Use options or arguments functions
- * @param useUnionTypes Use union types instead of enums
- * @param exportCore Generate core client classes
- * @param exportServices Generate services
- * @param exportModels Generate models
- * @param exportSchemas Generate schemas
- * @param indent Indentation options (4, 2 or tab)
- * @param postfixServices Service name postfix
- * @param postfixModels Model name postfix
- * @param request Path to custom request file
- * @param write Write the files to disk (true or false)
+ * @param options.input The relative location of the OpenAPI spec
+ * @param options.output The relative location of the output directory
+ * @param options.httpClient The selected httpClient (fetch, xhr, node or axios)
+ * @param options.clientName Custom client class name
+ * @param options.useOptions Use options or arguments functions
+ * @param options.useUnionTypes Use union types instead of enums
+ * @param options.exportCore Generate core client classes
+ * @param options.exportServices Generate services
+ * @param options.exportModels Generate models
+ * @param options.exportOperations Generate request/response types
+ * @param options.exportSchemas Generate schemas
+ * @param options.indent Indentation options (4, 2 or tab)
+ * @param options.postfixServices Service name postfix
+ * @param options.postfixModels Model name postfix
+ * @param options.request Path to custom request file
+ * @param options.write Write the files to disk (true or false)
  */
 export const generate = async ({
     input,
@@ -60,6 +62,7 @@ export const generate = async ({
     exportCore = true,
     exportServices = true,
     exportModels = true,
+    exportOperations = false,
     exportSchemas = false,
     indent = Indent.SPACE_4,
     postfixServices = 'Service',
@@ -91,6 +94,7 @@ export const generate = async ({
                 exportServices,
                 exportModels,
                 exportSchemas,
+                exportOperations,
                 indent,
                 postfixServices,
                 postfixModels,
@@ -115,6 +119,7 @@ export const generate = async ({
                 exportServices,
                 exportModels,
                 exportSchemas,
+                exportOperations,
                 indent,
                 postfixServices,
                 postfixModels,

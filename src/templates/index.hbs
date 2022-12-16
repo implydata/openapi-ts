@@ -45,3 +45,13 @@ export { {{{name}}}{{{@root.postfixServices}}} } from './services/{{{name}}}{{{@
 {{/each}}
 {{/if}}
 {{/if}}
+{{#if @root.exportOperations}}
+{{#if services}}
+
+{{#each services}}
+{{#each operations}}
+export type { {{{pascalCase name}}}Operation } from './operations/{{{../name}}}{{{@root.postfixServices}}}';
+{{/each}}
+{{/each}}
+{{/if}}
+{{/if}}

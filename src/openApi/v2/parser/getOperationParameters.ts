@@ -7,6 +7,7 @@ import { getRef } from './getRef';
 export const getOperationParameters = (openApi: OpenApi, parameters: OpenApiParameter[]): OperationParameters => {
     const operationParameters: OperationParameters = {
         imports: [],
+        errorImports: [],
         parameters: [],
         parametersPath: [],
         parametersQuery: [],

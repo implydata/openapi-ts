@@ -7,16 +7,19 @@ describe('getServiceNames', () => {
             name: 'John',
             operations: [],
             imports: [],
+            errorImports: [],
         };
         const jane: Service = {
             name: 'Jane',
             operations: [],
             imports: [],
+            errorImports: [],
         };
         const doe: Service = {
             name: 'Doe',
             operations: [],
             imports: [],
+            errorImports: [],
         };
 
         const services = [john, jane, doe];

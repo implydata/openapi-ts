@@ -684,6 +684,39 @@ export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
+
+export type { CollectionFormatOperation } from './operations/CollectionFormatService';
+export type { ComplexTypesOperation } from './operations/ComplexService';
+export type { ServiceWithEmptyTagOperation } from './operations/DefaultService';
+export type { CallWithDefaultParametersOperation } from './operations/DefaultsService';
+export type { CallWithDefaultOptionalParametersOperation } from './operations/DefaultsService';
+export type { CallToTestOrderOfParamsOperation } from './operations/DefaultsService';
+export type { CallWithDescriptionsOperation } from './operations/DescriptionsService';
+export type { DuplicateNameOperation } from './operations/DuplicateService';
+export type { DuplicateName1Operation } from './operations/DuplicateService';
+export type { DuplicateName2Operation } from './operations/DuplicateService';
+export type { DuplicateName3Operation } from './operations/DuplicateService';
+export type { TestErrorCodeOperation } from './operations/ErrorService';
+export type { CallWithResultFromHeaderOperation } from './operations/HeaderService';
+export type { DummyAOperation } from './operations/MultipleTags1Service';
+export type { DummyBOperation } from './operations/MultipleTags1Service';
+export type { DummyAOperation } from './operations/MultipleTags2Service';
+export type { DummyBOperation } from './operations/MultipleTags2Service';
+export type { DummyBOperation } from './operations/MultipleTags3Service';
+export type { CallWithNoContentResponseOperation } from './operations/NoContentService';
+export type { CallWithParametersOperation } from './operations/ParametersService';
+export type { CallWithWeirdParameterNamesOperation } from './operations/ParametersService';
+export type { CallWithResponseOperation } from './operations/ResponseService';
+export type { CallWithDuplicateResponsesOperation } from './operations/ResponseService';
+export type { CallWithResponsesOperation } from './operations/ResponseService';
+export type { GetCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { PutCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { PostCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { DeleteCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { OptionsCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { HeadCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { PatchCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { TypesOperation } from './operations/TypesService';
 "
 `;
 
@@ -1456,6 +1489,629 @@ exports[`v2 should generate: test/generated/v2/models/SimpleStringWithPattern.ts
  * This is a simple string
  */
 export type SimpleStringWithPattern = string;
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/CollectionFormatService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CollectionFormatOperation {
+    request: {
+        query: {
+            /**
+             * This is an array parameter that is sent as csv format (comma-separated values)
+             */
+            'parameterArrayCSV': string;
+            /**
+             * This is an array parameter that is sent as ssv format (space-separated values)
+             */
+            'parameterArraySSV': string;
+            /**
+             * This is an array parameter that is sent as tsv format (tab-separated values)
+             */
+            'parameterArrayTSV': string;
+            /**
+             * This is an array parameter that is sent as pipes format (pipe-separated values)
+             */
+            'parameterArrayPipes': string;
+            /**
+             * This is an array parameter that is sent as multi format (multiple parameter instances)
+             */
+            'parameterArrayMulti': string;
+        };
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/ComplexService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface ComplexTypesOperation {
+    request: {
+        query: {
+            /**
+             * Parameter containing object
+             */
+            'parameterObject': any;
+            /**
+             * Parameter containing reference
+             */
+            'parameterReference': ModelWithString;
+        };
+    };
+    response: | ModelWithString | any | any;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/DefaultService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface ServiceWithEmptyTagOperation {
+    request: {
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/DefaultsService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface CallWithDefaultParametersOperation {
+    request: {
+        query: {
+            /**
+             * This is a simple string with default value
+             */
+            'parameterString': string;
+            /**
+             * This is a simple number with default value
+             */
+            'parameterNumber': number;
+            /**
+             * This is a simple boolean with default value
+             */
+            'parameterBoolean': boolean;
+            /**
+             * This is a simple enum with default value
+             */
+            'parameterEnum': string;
+            /**
+             * This is a simple model with default value
+             */
+            'parameterModel': ModelWithString;
+        };
+    };
+    response:;
+}
+/**
+ */
+export interface CallWithDefaultOptionalParametersOperation {
+    request: {
+        query: {
+            /**
+             * This is a simple string that is optional with default value
+             */
+            'parameterString': string;
+            /**
+             * This is a simple number that is optional with default value
+             */
+            'parameterNumber': number;
+            /**
+             * This is a simple boolean that is optional with default value
+             */
+            'parameterBoolean': boolean;
+            /**
+             * This is a simple enum that is optional with default value
+             */
+            'parameterEnum': string;
+            /**
+             * This is a simple model that is optional with default value
+             */
+            'parameterModel': ModelWithString;
+        };
+    };
+    response:;
+}
+/**
+ */
+export interface CallToTestOrderOfParamsOperation {
+    request: {
+        query: {
+            /**
+             * This is a optional string with default
+             */
+            'parameterOptionalStringWithDefault': string;
+            /**
+             * This is a optional string with empty default
+             */
+            'parameterOptionalStringWithEmptyDefault': string;
+            /**
+             * This is a optional string with no default
+             */
+            'parameterOptionalStringWithNoDefault': string;
+            /**
+             * This is a string with default
+             */
+            'parameterStringWithDefault': string;
+            /**
+             * This is a string with empty default
+             */
+            'parameterStringWithEmptyDefault': string;
+            /**
+             * This is a string with no default
+             */
+            'parameterStringWithNoDefault': string;
+            /**
+             * This is a string that can be null with no default
+             */
+            'parameterStringNullableWithNoDefault': string;
+            /**
+             * This is a string that can be null with default
+             */
+            'parameterStringNullableWithDefault': string;
+        };
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/DescriptionsService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CallWithDescriptionsOperation {
+    request: {
+        query: {
+            /**
+             * Testing multiline comments in string: First line
+             * Second line
+             *
+             * Fourth line
+             */
+            'parameterWithBreaks': string;
+            /**
+             * Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
+             */
+            'parameterWithBackticks': string;
+            /**
+             * Testing slashes in string: \\backwards\\\\\\ and /forwards/// should work
+             */
+            'parameterWithSlashes': string;
+            /**
+             * Testing expression placeholders in string: \${expression} should work
+             */
+            'parameterWithExpressionPlaceholders': string;
+            /**
+             * Testing quotes in string: 'single quote''' and "double quotes""" should work
+             */
+            'parameterWithQuotes': string;
+            /**
+             * Testing reserved characters in string: * inline * and ** inline ** should work
+             */
+            'parameterWithReservedCharacters': string;
+        };
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/DuplicateService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface DuplicateNameOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface DuplicateName1Operation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface DuplicateName2Operation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface DuplicateName3Operation {
+    request: {
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/ErrorService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface TestErrorCodeOperation {
+    request: {
+        query: {
+            /**
+             * Status code to return
+             */
+            'status': string;
+        };
+    };
+    response: | any | any | any | any | any;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/HeaderService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CallWithResultFromHeaderOperation {
+    request: {
+    };
+    response: | string | any | any;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/MultipleTags1Service.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface DummyAOperation {
+    request: {
+    };
+    response: | void;
+}
+/**
+ */
+export interface DummyBOperation {
+    request: {
+    };
+    response: | void;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/MultipleTags2Service.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface DummyAOperation {
+    request: {
+    };
+    response: | void;
+}
+/**
+ */
+export interface DummyBOperation {
+    request: {
+    };
+    response: | void;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/MultipleTags3Service.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface DummyBOperation {
+    request: {
+    };
+    response: | void;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/NoContentService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CallWithNoContentResponseOperation {
+    request: {
+    };
+    response: | void;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/ParametersService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CallWithParametersOperation {
+    request: {
+        path: {
+            /**
+             * This is the parameter that goes into the path
+             */
+            'parameterPath': string;
+        };
+        headers: {
+            /**
+             * This is the parameter that goes into the header
+             */
+            'parameterHeader': string;
+        };
+        query: {
+            /**
+             * This is the parameter that goes into the query params
+             */
+            'parameterQuery': string;
+        };
+        formData: {
+            /**
+             * This is the parameter that goes into the form data
+             */
+            'parameterForm': string;
+        };
+        /**
+         * This is the parameter that is sent as request body
+         */
+        body: string;
+    };
+    response:;
+}
+/**
+ */
+export interface CallWithWeirdParameterNamesOperation {
+    request: {
+        path: {
+            /**
+             * This is the parameter that goes into the path
+             */
+            'parameter.path.1': string;
+            /**
+             * This is the parameter that goes into the path
+             */
+            'parameter-path-2': string;
+            /**
+             * This is the parameter that goes into the path
+             */
+            'PARAMETER-PATH-3': string;
+        };
+        headers: {
+            /**
+             * This is the parameter that goes into the request header
+             */
+            'parameter.header': string;
+        };
+        query: {
+            /**
+             * This is the parameter with a reserved keyword
+             */
+            'default': string;
+            /**
+             * This is the parameter that goes into the request query params
+             */
+            'parameter-query': string;
+        };
+        formData: {
+            /**
+             * This is the parameter that goes into the request form data
+             */
+            'parameter_form': string;
+        };
+        /**
+         * This is the parameter that is sent as request body
+         */
+        body: string;
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/ResponseService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelThatExtends } from '../models/ModelThatExtends';
+import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
+import type { ModelWithString } from '../models/ModelWithString';
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface CallWithResponseOperation {
+    request: {
+    };
+    response: | ModelWithString;
+}
+/**
+ */
+export interface CallWithDuplicateResponsesOperation {
+    request: {
+    };
+    response: | ModelWithString | ModelWithString | ModelWithString | ModelWithString;
+}
+/**
+ */
+export interface CallWithResponsesOperation {
+    request: {
+    };
+    response: | any | ModelWithString | ModelThatExtends | ModelThatExtendsExtends | ModelWithString | ModelWithString | ModelWithString;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/SimpleService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface GetCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface PutCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface PostCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface DeleteCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface OptionsCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface HeadCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface PatchCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/operations/TypesService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface TypesOperation {
+    request: {
+        path: {
+            /**
+             * This is a number parameter
+             */
+            'id': number;
+        };
+        query: {
+            /**
+             * This is a number parameter
+             */
+            'parameterNumber': number;
+            /**
+             * This is a string parameter
+             */
+            'parameterString': string;
+            /**
+             * This is a boolean parameter
+             */
+            'parameterBoolean': boolean;
+            /**
+             * This is an object parameter
+             */
+            'parameterObject': any;
+            /**
+             * This is an array parameter
+             */
+            'parameterArray': string;
+            /**
+             * This is a dictionary parameter
+             */
+            'parameterDictionary': string;
+            /**
+             * This is an enum parameter
+             */
+            'parameterEnum': string;
+        };
+    };
+    response: | number | string | boolean | any;
+}
+
 "
 `;
 
@@ -3824,6 +4480,48 @@ export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
 export { UploadService } from './services/UploadService';
+
+export type { CollectionFormatOperation } from './operations/CollectionFormatService';
+export type { ComplexTypesOperation } from './operations/ComplexService';
+export type { ComplexParamsOperation } from './operations/ComplexService';
+export type { ServiceWithEmptyTagOperation } from './operations/DefaultService';
+export type { CallWithDefaultParametersOperation } from './operations/DefaultsService';
+export type { CallWithDefaultOptionalParametersOperation } from './operations/DefaultsService';
+export type { CallToTestOrderOfParamsOperation } from './operations/DefaultsService';
+export type { DeprecatedCallOperation } from './operations/DeprecatedService';
+export type { CallWithDescriptionsOperation } from './operations/DescriptionsService';
+export type { DuplicateNameOperation } from './operations/DuplicateService';
+export type { DuplicateName1Operation } from './operations/DuplicateService';
+export type { DuplicateName2Operation } from './operations/DuplicateService';
+export type { DuplicateName3Operation } from './operations/DuplicateService';
+export type { TestErrorCodeOperation } from './operations/ErrorService';
+export type { PostApiFormDataOperation } from './operations/FormDataService';
+export type { CallWithResultFromHeaderOperation } from './operations/HeaderService';
+export type { MultipartRequestOperation } from './operations/MultipartService';
+export type { MultipartResponseOperation } from './operations/MultipartService';
+export type { DummyAOperation } from './operations/MultipleTags1Service';
+export type { DummyBOperation } from './operations/MultipleTags1Service';
+export type { DummyAOperation } from './operations/MultipleTags2Service';
+export type { DummyBOperation } from './operations/MultipleTags2Service';
+export type { DummyBOperation } from './operations/MultipleTags3Service';
+export type { CallWithNoContentResponseOperation } from './operations/NoContentService';
+export type { CallWithParametersOperation } from './operations/ParametersService';
+export type { CallWithWeirdParameterNamesOperation } from './operations/ParametersService';
+export type { GetCallWithOptionalParamOperation } from './operations/ParametersService';
+export type { PostCallWithOptionalParamOperation } from './operations/ParametersService';
+export type { PostApiRequestBodyOperation } from './operations/RequestBodyService';
+export type { CallWithResponseOperation } from './operations/ResponseService';
+export type { CallWithDuplicateResponsesOperation } from './operations/ResponseService';
+export type { CallWithResponsesOperation } from './operations/ResponseService';
+export type { GetCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { PutCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { PostCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { DeleteCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { OptionsCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { HeadCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { PatchCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { TypesOperation } from './operations/TypesService';
+export type { UploadFileOperation } from './operations/UploadService';
 "
 `;
 
@@ -4949,6 +5647,842 @@ exports[`v3 should generate: test/generated/v3/models/SimpleStringWithPattern.ts
  * This is a simple string
  */
 export type SimpleStringWithPattern = string | null;
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/CollectionFormatService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CollectionFormatOperation {
+    request: {
+        query: {
+            /**
+             * This is an array parameter that is sent as csv format (comma-separated values)
+             */
+            'parameterArrayCSV': string;
+            /**
+             * This is an array parameter that is sent as ssv format (space-separated values)
+             */
+            'parameterArraySSV': string;
+            /**
+             * This is an array parameter that is sent as tsv format (tab-separated values)
+             */
+            'parameterArrayTSV': string;
+            /**
+             * This is an array parameter that is sent as pipes format (pipe-separated values)
+             */
+            'parameterArrayPipes': string;
+            /**
+             * This is an array parameter that is sent as multi format (multiple parameter instances)
+             */
+            'parameterArrayMulti': string;
+        };
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/ComplexService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelWithArray } from '../models/ModelWithArray';
+import type { ModelWithDictionary } from '../models/ModelWithDictionary';
+import type { ModelWithEnum } from '../models/ModelWithEnum';
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface ComplexTypesOperation {
+    request: {
+        query: {
+            /**
+             * Parameter containing object
+             */
+            'parameterObject': any;
+            /**
+             * Parameter containing reference
+             */
+            'parameterReference': ModelWithString;
+        };
+    };
+    response: | ModelWithString | any | any;
+}
+/**
+ */
+export interface ComplexParamsOperation {
+    request: {
+        path: {
+            'id': number;
+        };
+        body: any;
+        mediaType: 'application/json-patch+json';
+    };
+    response: | ModelWithString;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/DefaultService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface ServiceWithEmptyTagOperation {
+    request: {
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/DefaultsService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface CallWithDefaultParametersOperation {
+    request: {
+        query: {
+            /**
+             * This is a simple string with default value
+             */
+            'parameterString': string;
+            /**
+             * This is a simple number with default value
+             */
+            'parameterNumber': number;
+            /**
+             * This is a simple boolean with default value
+             */
+            'parameterBoolean': boolean;
+            /**
+             * This is a simple enum with default value
+             */
+            'parameterEnum': string;
+            /**
+             * This is a simple model with default value
+             */
+            'parameterModel': ModelWithString;
+        };
+    };
+    response:;
+}
+/**
+ */
+export interface CallWithDefaultOptionalParametersOperation {
+    request: {
+        query: {
+            /**
+             * This is a simple string that is optional with default value
+             */
+            'parameterString': string;
+            /**
+             * This is a simple number that is optional with default value
+             */
+            'parameterNumber': number;
+            /**
+             * This is a simple boolean that is optional with default value
+             */
+            'parameterBoolean': boolean;
+            /**
+             * This is a simple enum that is optional with default value
+             */
+            'parameterEnum': string;
+            /**
+             * This is a simple model that is optional with default value
+             */
+            'parameterModel': ModelWithString;
+        };
+    };
+    response:;
+}
+/**
+ */
+export interface CallToTestOrderOfParamsOperation {
+    request: {
+        query: {
+            /**
+             * This is a optional string with default
+             */
+            'parameterOptionalStringWithDefault': string;
+            /**
+             * This is a optional string with empty default
+             */
+            'parameterOptionalStringWithEmptyDefault': string;
+            /**
+             * This is a optional string with no default
+             */
+            'parameterOptionalStringWithNoDefault': string;
+            /**
+             * This is a string with default
+             */
+            'parameterStringWithDefault': string;
+            /**
+             * This is a string with empty default
+             */
+            'parameterStringWithEmptyDefault': string;
+            /**
+             * This is a string with no default
+             */
+            'parameterStringWithNoDefault': string;
+            /**
+             * This is a string that can be null with no default
+             */
+            'parameterStringNullableWithNoDefault': string;
+            /**
+             * This is a string that can be null with default
+             */
+            'parameterStringNullableWithDefault': string;
+        };
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/DeprecatedService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { DeprecatedModel } from '../models/DeprecatedModel';
+/**
+ * @deprecated
+ */
+export interface DeprecatedCallOperation {
+    request: {
+        headers: {
+            /**
+             * This parameter is deprecated
+             */
+            'parameter': DeprecatedModel;
+        };
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/DescriptionsService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CallWithDescriptionsOperation {
+    request: {
+        query: {
+            /**
+             * Testing multiline comments in string: First line
+             * Second line
+             *
+             * Fourth line
+             */
+            'parameterWithBreaks': any;
+            /**
+             * Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
+             */
+            'parameterWithBackticks': any;
+            /**
+             * Testing slashes in string: \\backwards\\\\\\ and /forwards/// should work
+             */
+            'parameterWithSlashes': any;
+            /**
+             * Testing expression placeholders in string: \${expression} should work
+             */
+            'parameterWithExpressionPlaceholders': any;
+            /**
+             * Testing quotes in string: 'single quote''' and "double quotes""" should work
+             */
+            'parameterWithQuotes': any;
+            /**
+             * Testing reserved characters in string: * inline * and ** inline ** should work
+             */
+            'parameterWithReservedCharacters': any;
+        };
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/DuplicateService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface DuplicateNameOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface DuplicateName1Operation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface DuplicateName2Operation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface DuplicateName3Operation {
+    request: {
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/ErrorService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface TestErrorCodeOperation {
+    request: {
+        query: {
+            /**
+             * Status code to return
+             */
+            'status': number;
+        };
+    };
+    response: | any | any | any | any | any;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/FormDataService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface PostApiFormDataOperation {
+    request: {
+        query: {
+            /**
+             * This is a reusable parameter
+             */
+            'parameter': string;
+        };
+        /**
+         * A reusable request body
+         */
+        formData: ModelWithString;
+        /**
+         * A reusable request body
+         */
+        mediaType: 'multipart/form-data';
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/HeaderService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CallWithResultFromHeaderOperation {
+    request: {
+    };
+    response: | string | any | any;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/MultipartService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface MultipartRequestOperation {
+    request: {
+        formData: any;
+        mediaType: 'multipart/form-data';
+    };
+    response:;
+}
+/**
+ */
+export interface MultipartResponseOperation {
+    request: {
+    };
+    response: | any;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/MultipleTags1Service.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface DummyAOperation {
+    request: {
+    };
+    response: | void;
+}
+/**
+ */
+export interface DummyBOperation {
+    request: {
+    };
+    response: | void;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/MultipleTags2Service.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface DummyAOperation {
+    request: {
+    };
+    response: | void;
+}
+/**
+ */
+export interface DummyBOperation {
+    request: {
+    };
+    response: | void;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/MultipleTags3Service.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface DummyBOperation {
+    request: {
+    };
+    response: | void;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/NoContentService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface CallWithNoContentResponseOperation {
+    request: {
+    };
+    response: | void;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/ParametersService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelWithString } from '../models/ModelWithString';
+import type { Pageable } from '../models/Pageable';
+/**
+ */
+export interface CallWithParametersOperation {
+    request: {
+        path: {
+            /**
+             * This is the parameter that goes into the path
+             */
+            'parameterPath': string;
+        };
+        cookies: {
+            /**
+             * This is the parameter that goes into the cookie
+             */
+            'parameterCookie': string;
+        };
+        headers: {
+            /**
+             * This is the parameter that goes into the header
+             */
+            'parameterHeader': string;
+        };
+        query: {
+            /**
+             * This is the parameter that goes into the query params
+             */
+            'parameterQuery': string;
+        };
+        formData: {
+            /**
+             * This is the parameter that goes into the form data
+             */
+            'parameterForm': string;
+        };
+        /**
+         * This is the parameter that goes into the body
+         */
+        body: ModelWithString;
+        /**
+         * This is the parameter that goes into the body
+         */
+        mediaType: 'application/json';
+    };
+    response:;
+}
+/**
+ */
+export interface CallWithWeirdParameterNamesOperation {
+    request: {
+        path: {
+            /**
+             * This is the parameter that goes into the path
+             */
+            'parameter.path.1': string;
+            /**
+             * This is the parameter that goes into the path
+             */
+            'parameter-path-2': string;
+            /**
+             * This is the parameter that goes into the path
+             */
+            'PARAMETER-PATH-3': string;
+        };
+        cookies: {
+            /**
+             * This is the parameter that goes into the cookie
+             */
+            'PARAMETER-COOKIE': string;
+        };
+        headers: {
+            /**
+             * This is the parameter that goes into the request header
+             */
+            'parameter.header': string;
+        };
+        query: {
+            /**
+             * This is the parameter with a reserved keyword
+             */
+            'default': string;
+            /**
+             * This is the parameter that goes into the request query params
+             */
+            'parameter-query': string;
+        };
+        formData: {
+            /**
+             * This is the parameter that goes into the request form data
+             */
+            'parameter_form': string;
+        };
+        /**
+         * This is the parameter that goes into the body
+         */
+        body: ModelWithString;
+        /**
+         * This is the parameter that goes into the body
+         */
+        mediaType: 'application/json';
+    };
+    response:;
+}
+/**
+ */
+export interface GetCallWithOptionalParamOperation {
+    request: {
+        query: {
+            /**
+             * This is an optional parameter
+             */
+            'parameter': string;
+        };
+        /**
+         * This is a required parameter
+         */
+        body: ModelWithString;
+        /**
+         * This is a required parameter
+         */
+        mediaType: 'application/json';
+    };
+    response:;
+}
+/**
+ */
+export interface PostCallWithOptionalParamOperation {
+    request: {
+        query: {
+            /**
+             * This is a required parameter
+             */
+            'parameter': Pageable;
+        };
+        /**
+         * This is an optional parameter
+         */
+        body: ModelWithString;
+        /**
+         * This is an optional parameter
+         */
+        mediaType: 'application/json';
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/RequestBodyService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface PostApiRequestBodyOperation {
+    request: {
+        query: {
+            /**
+             * This is a reusable parameter
+             */
+            'parameter': string;
+        };
+        /**
+         * A reusable request body
+         */
+        body: ModelWithString;
+        /**
+         * A reusable request body
+         */
+        mediaType: 'application/json';
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/ResponseService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { ModelThatExtends } from '../models/ModelThatExtends';
+import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
+import type { ModelWithString } from '../models/ModelWithString';
+import type { ModelWithString } from '../models/ModelWithString';
+/**
+ */
+export interface CallWithResponseOperation {
+    request: {
+    };
+    response: | ModelWithString;
+}
+/**
+ */
+export interface CallWithDuplicateResponsesOperation {
+    request: {
+    };
+    response: | ModelWithString | ModelWithString | ModelWithString | ModelWithString;
+}
+/**
+ */
+export interface CallWithResponsesOperation {
+    request: {
+    };
+    response: | any | ModelWithString | ModelThatExtends | ModelThatExtendsExtends | ModelWithString | ModelWithString | ModelWithString;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/SimpleService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface GetCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface PutCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface PostCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface DeleteCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface OptionsCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface HeadCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+/**
+ */
+export interface PatchCallWithoutParametersAndResponseOperation {
+    request: {
+    };
+    response:;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/TypesService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface TypesOperation {
+    request: {
+        path: {
+            /**
+             * This is a number parameter
+             */
+            'id': number;
+        };
+        query: {
+            /**
+             * This is a number parameter
+             */
+            'parameterNumber': number;
+            /**
+             * This is a string parameter
+             */
+            'parameterString': string;
+            /**
+             * This is a boolean parameter
+             */
+            'parameterBoolean': boolean;
+            /**
+             * This is an object parameter
+             */
+            'parameterObject': any;
+            /**
+             * This is an array parameter
+             */
+            'parameterArray': string;
+            /**
+             * This is a dictionary parameter
+             */
+            'parameterDictionary': any;
+            /**
+             * This is an enum parameter
+             */
+            'parameterEnum': string;
+        };
+    };
+    response: | number | string | boolean | any;
+}
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/operations/UploadService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ */
+export interface UploadFileOperation {
+    request: {
+        formData: {
+            /**
+             * Supply a file reference for upload
+             */
+            'file': binary;
+        };
+    };
+    response: | boolean;
+}
+
 "
 `;
 

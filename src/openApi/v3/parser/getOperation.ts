@@ -43,6 +43,7 @@ export const getOperation = (
         parametersBody: pathParams.parametersBody,
         imports: [],
         errors: [],
+        errorImports: [],
         results: [],
         responseHeader: null,
     };
@@ -72,12 +73,16 @@ export const getOperation = (
     if (op.responses) {
         const operationResponses = getOperationResponses(openApi, op.responses);
         const operationResults = getOperationResults(operationResponses);
-        operation.errors = getOperationErrors(operationResponses);
+        const operationErrors = getOperationErrors(operationResponses);
         operation.responseHeader = getOperationResponseHeader(operationResults);
 
         operationResults.forEach(operationResult => {
             operation.results.push(operationResult);
             operation.imports.push(...operationResult.imports);
+        });
+        operationErrors.forEach(operationError => {
+            operation.errors.push(operationError);
+            operation.errorImports.push(...operationError.imports);
         });
     }
 

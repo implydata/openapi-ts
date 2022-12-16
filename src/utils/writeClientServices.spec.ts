@@ -17,6 +17,7 @@ describe('writeClientServices', () => {
                 name: 'User',
                 operations: [],
                 imports: [],
+                errorImports: [],
             },
         ];
 
@@ -27,6 +28,7 @@ describe('writeClientServices', () => {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
+                operation: () => 'operation',
             },
             core: {
                 settings: () => 'settings',

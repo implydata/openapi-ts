@@ -13,6 +13,7 @@ import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
+import { writeOperations } from './writeOperations';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -26,7 +27,7 @@ import { writeClientServices } from './writeClientServices';
  * @param exportServices Generate services
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
- * @param exportSchemas Generate schemas
+ * @param exportOperations Generate request/response types
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
@@ -44,6 +45,7 @@ export const writeClient = async (
     exportServices: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
+    exportOperations: boolean,
     indent: Indent,
     postfixServices: string,
     postfixModels: string,
@@ -53,6 +55,7 @@ export const writeClient = async (
     const outputPath = resolve(process.cwd(), output);
     const outputPathCore = resolve(outputPath, 'core');
     const outputPathModels = resolve(outputPath, 'models');
+    const outputPathOperations = resolve(outputPath, 'operations');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
 
@@ -99,6 +102,12 @@ export const writeClient = async (
         await writeClientClass(client, templates, outputPath, httpClient, clientName, indent, postfixServices);
     }
 
+    if (exportOperations) {
+        await rmdir(outputPathOperations);
+        await mkdir(outputPathOperations);
+        await writeOperations(client.services, templates, outputPathOperations, indent, postfixServices);
+    }
+
     if (exportCore || exportServices || exportSchemas || exportModels) {
         await mkdir(outputPath);
         await writeClientIndex(
@@ -110,6 +119,7 @@ export const writeClient = async (
             exportServices,
             exportModels,
             exportSchemas,
+            exportOperations,
             postfixServices,
             postfixModels,
             clientName
