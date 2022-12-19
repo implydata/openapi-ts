@@ -1,5 +1,6 @@
 {{>header}}
 
+import type { OperationsType, ParametersType } from '../models/_symbols';
 {{#if imports}}
 {{#each imports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
@@ -11,19 +12,50 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations ={{~#each operations}} | '{{{name}}}'{{/each}};
+export type {{{name}}}Operation ={{~#each operations}}{{~#unless @first}} |{{/unless}} '{{{@root.name}}}.{{{name}}}'{{/each}};
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
+const URLs: Record<{{{name}}}Operation, { method: ApiRequestMethod; url: string; operation: {{{name}}}Operation }> = {
 {{#each operations}}
-	'{{{name}}}': { method: '{{{method}}}', url: '{{{path}}}' },
+	'{{{@root.name}}}.{{{name}}}': { method: '{{{method}}}', url: '{{{path}}}', operation: '{{{@root.name}}}.{{{name}}}' },
 {{/each}}
 };
 
+export interface {{{name}}}Parameters {
+{{#each operations}}
+	'{{{@root.name}}}.{{{name}}}': [{{~#each parameters}}{{{name}}}{{~#unless isRequired}}?{{/unless}}: {{>type}}{{~#unless @last}}, {{/unless}}{{/each}}];
+{{/each}}
+}
+
+const KEY = '{{{name}}}';
+
 export class {{{name}}}{{{@root.postfix}}} {
+	declare [OperationsType]: ApiKeysOperation;
+	declare [ParametersType]: ApiKeysParameters;
+
+	/**
+	 * Service prefix for operation names.
+	 */
+	public static readonly PREFIX = KEY;
+
 	/**
 	 * Service URLs and methods.
 	 */
 	public static readonly URLs = URLs;
+
+	/**
+	 * Operation query keys.
+	 */
+	public static readonly QUERY_KEYS = {
+	{{#each operations}}
+		{{{name}}}({{~#if parameters~}}...params: Partial<{{{@root.name}}}Parameters['{{{@root.name}}}.{{{name}}}']>{{~/if~}}): readonly unknown[] {
+			{{#if parameters}}
+ 			return [KEY, '{{{method}}}', {{#each (queryKey path)}}'{{this}}', {{/each}}...params];
+			{{else}}
+ 			return [KEY, '{{{method}}}', {{#each (queryKey path)}}'{{this}}', {{/each}}];
+			{{/if}}
+		},
+	{{/each}}
+	};
 
 	/**
 	 * Configuration for the current service instance.
@@ -46,9 +78,8 @@ export class {{{name}}}{{{@root.postfix}}} {
 	 * {{{escapeComment description}}}
 	{{/if}}
 	{{#if parameters}}
-	 * @param request Request
 	{{#each parameters}}
-	 * @param request.{{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+	 * @param {{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 	{{/each}}
 	{{/if}}
 	 * @param options Request option overrides
@@ -62,7 +93,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 		options?: Partial<ApiRequestOptions>,
 	): Promise<{{>result}}> {
 		return __request(this.config, {
-			...URLs['{{{name}}}'],
+			...URLs['{{{@root.name}}}.{{{name}}}'],
 			{{#if parametersPath}}
 			path: {
 				{{#each parametersPath}}

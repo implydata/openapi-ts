@@ -8,6 +8,7 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 {{#if @root.exportModels}}
 {{#if models}}
 
+export type { OperationsType, ParametersType } from './models/_symbols';
 {{#each models}}
 export type { {{{name}}} } from './models/{{{name}}}';
 {{/each}}
@@ -25,7 +26,7 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{#if services}}
 
 {{#each services}}
-export { {{{name}}}{{{@root.postfix}}} } from './services/{{{name}}}{{{@root.postfix}}}';
+export * from './services/{{{name}}}{{{@root.postfix}}}';
 {{/each}}
 {{/if}}
 {{/if}}

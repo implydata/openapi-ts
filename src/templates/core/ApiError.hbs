@@ -13,6 +13,7 @@ export class ApiError extends Error {
 	public readonly statusText: string;
 	public readonly body: any;
 	public readonly request: ApiRequestOptions;
+	public readonly operation: string;
 
 	constructor(request: ApiRequestOptions, response: ApiResult, message: string, options?: ErrorOptions) {
 		// @ts-ignore -- "options" only available in ES2022+
@@ -29,11 +30,13 @@ export class ApiError extends Error {
 		this.statusText = response.statusText;
 		this.body = response.body;
 		this.request = request;
+		this.operation = request.operation;
 	}
 }
 
 export class CancelError extends Error {
-  public readonly request: ApiRequestOptions;
+	public readonly request: ApiRequestOptions;
+	public readonly operation: string;
 
 	constructor(request: ApiRequestOptions, message: string, options?: ErrorOptions) {
 		// @ts-ignore -- "options" only available in ES2022+
@@ -46,6 +49,7 @@ export class CancelError extends Error {
 
 		this.name = 'CancelError';
 		this.request = request;
+		this.operation = request.operation;
 	}
 
 	public get isCancelled(): boolean {

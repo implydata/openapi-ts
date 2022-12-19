@@ -2,7 +2,7 @@ import { resolve } from 'path';
 
 import type { Client } from '../client/interfaces/Client';
 import type { Indent } from '../Indent';
-import { mkdir, rmdir } from './fileSystem';
+import { mkdir, rmdir, writeFile } from './fileSystem';
 import { isSubDirectory } from './isSubdirectory';
 import type { Templates } from './registerHandlebarTemplates';
 import { writeClientCore } from './writeClientCore';
@@ -72,6 +72,12 @@ export const writeClient = async (
         await rmdir(outputPathModels);
         await mkdir(outputPathModels);
         await writeClientModels(client.models, templates, outputPathModels, indent);
+
+        const symbolsFile = resolve(outputPathModels, '_symbols.ts');
+        await writeFile(
+            symbolsFile,
+            `export declare const OperationsType: unique symbol;\nexport declare const ParametersType: unique symbol;\n`
+        );
     }
 
     if (exportOperations) {

@@ -1,7 +1,5 @@
 {{#if parameters}}
-{
 {{#each parameters}}
-{{{name}}}{{#if default}} = {{{default}}}{{/if}},
+{{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
-}: {{>parametersType}},
 {{/if}}
