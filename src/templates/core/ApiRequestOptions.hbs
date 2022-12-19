@@ -1,6 +1,4 @@
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
+{{>header}}
 
 import type { ApiResult } from './ApiResult';
 
@@ -8,6 +6,7 @@ export type ApiRequestMethod = 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | '
 
 export interface ApiRequestOptions {
 	readonly method: ApiRequestMethod;
+	readonly operation: string;
 	readonly url: string;
 	readonly path?: Record<string, any>;
 	readonly cookies?: Record<string, any>;
