@@ -1,5 +1,6 @@
 {{>header}}
 
+import type { OperationsType, ParametersType } from '../models/_symbols';
 {{#equals @root.httpClient 'angular'}}
 {{#if @root.exportClient}}
 import { Injectable } from '@angular/core';
@@ -31,12 +32,29 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 {{/if}}
 
+export type {{{name}}}Operation ={{~#each operations}}{{~#unless @first}} |{{/unless}} '{{{@root.name}}}.{{{name}}}'{{/each}};
+
+const URLs: Record<{{{name}}}Operation, { method: ApiRequestMethod; url: string; operation: {{{name}}}Operation }> = {
+{{#each operations}}
+	'{{{@root.name}}}.{{{name}}}': { method: '{{{method}}}', url: '{{{path}}}', operation: '{{{@root.name}}}.{{{name}}}' },
+{{/each}}
+};
+
+export interface {{{name}}}Parameters {
+{{#each operations}}
+	'{{{@root.name}}}.{{{name}}}': [{{~#each parameters}}{{{name}}}{{~#unless isRequired}}?{{/unless}}: {{>type}}{{~#unless @last}}, {{/unless}}{{/each}}];
+{{/each}}
+}
+
 {{#equals @root.httpClient 'angular'}}
 @Injectable({
   providedIn: 'root',
 })
 {{/equals}}
 export class {{{name}}}{{{@root.postfix}}} {
+	declare [OperationsType]: ApiKeysOperation;
+	declare [ParametersType]: ApiKeysParameters;
+
 	{{#if @root.exportClient}}
 
 	constructor(public readonly httpRequest: BaseHttpRequest) {}
@@ -87,8 +105,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 		return __request(OpenAPI, {
 	{{/equals}}
 	{{/if}}
-			method: '{{{method}}}',
-			url: '{{{path}}}',
+			...URLs['{{{@root.name}}}.{{{name}}}'],
 			{{#if parametersPath}}
 			path: {
 				{{#each parametersPath}}

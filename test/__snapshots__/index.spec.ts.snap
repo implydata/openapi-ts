@@ -14,6 +14,7 @@ export class ApiError extends Error {
     public readonly statusText: string;
     public readonly body: any;
     public readonly request: ApiRequestOptions;
+    public readonly operation: string;
 
     constructor(request: ApiRequestOptions, response: ApiResult, message: string) {
         super(message);
@@ -24,6 +25,7 @@ export class ApiError extends Error {
         this.statusText = response.statusText;
         this.body = response.body;
         this.request = request;
+        this.operation = request.operation;
     }
 }
 "
@@ -570,6 +572,7 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { OperationsType, ParametersType } from './models/_symbols';
 export type { _default } from './models/_default';
 export type { ArrayWithArray } from './models/ArrayWithArray';
 export type { ArrayWithBooleans } from './models/ArrayWithBooleans';
@@ -668,22 +671,22 @@ export { $SimpleReference } from './schemas/$SimpleReference';
 export { $SimpleString } from './schemas/$SimpleString';
 export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 
-export { CollectionFormatService } from './services/CollectionFormatService';
-export { ComplexService } from './services/ComplexService';
-export { DefaultService } from './services/DefaultService';
-export { DefaultsService } from './services/DefaultsService';
-export { DescriptionsService } from './services/DescriptionsService';
-export { DuplicateService } from './services/DuplicateService';
-export { ErrorService } from './services/ErrorService';
-export { HeaderService } from './services/HeaderService';
-export { MultipleTags1Service } from './services/MultipleTags1Service';
-export { MultipleTags2Service } from './services/MultipleTags2Service';
-export { MultipleTags3Service } from './services/MultipleTags3Service';
-export { NoContentService } from './services/NoContentService';
-export { ParametersService } from './services/ParametersService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
+export * from './services/CollectionFormatService';
+export * from './services/ComplexService';
+export * from './services/DefaultService';
+export * from './services/DefaultsService';
+export * from './services/DescriptionsService';
+export * from './services/DuplicateService';
+export * from './services/ErrorService';
+export * from './services/HeaderService';
+export * from './services/MultipleTags1Service';
+export * from './services/MultipleTags2Service';
+export * from './services/MultipleTags3Service';
+export * from './services/NoContentService';
+export * from './services/ParametersService';
+export * from './services/ResponseService';
+export * from './services/SimpleService';
+export * from './services/TypesService';
 
 export type { CollectionFormatOperation } from './operations/CollectionFormatService';
 export type { ComplexTypesOperation } from './operations/ComplexService';
@@ -729,6 +732,12 @@ export type _default = {
     name?: string;
 };
 
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/models/_symbols.ts 1`] = `
+"export declare const OperationsType: unique symbol;
+export declare const ParametersType: unique symbol;
 "
 `;
 
@@ -2989,10 +2998,20 @@ exports[`v2 should generate: test/generated/v2/services/CollectionFormatService.
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type CollectionFormatOperation = 'CollectionFormat.collectionFormat';
+const URLs: Record<CollectionFormatOperation, { method: ApiRequestMethod; url: string; operation: CollectionFormatOperation }> = {
+    'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
+};
+export interface CollectionFormatParameters {
+    'CollectionFormat.collectionFormat': [parameterArrayCsv: Array<string>, parameterArraySsv: Array<string>, parameterArrayTsv: Array<string>, parameterArrayPipes: Array<string>, parameterArrayMulti: Array<string>];
+}
 export class CollectionFormatService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterArrayCsv This is an array parameter that is sent as csv format (comma-separated values)
      * @param parameterArraySsv This is an array parameter that is sent as ssv format (space-separated values)
@@ -3009,8 +3028,7 @@ export class CollectionFormatService {
         parameterArrayMulti: Array<string>,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/collectionFormat',
+            ...URLs['CollectionFormat.collectionFormat'],
             query: {
                 'parameterArrayCSV': parameterArrayCsv,
                 'parameterArraySSV': parameterArraySsv,
@@ -3029,11 +3047,27 @@ exports[`v2 should generate: test/generated/v2/services/ComplexService.ts 1`] = 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type ComplexOperation = 'Complex.complexTypes';
+const URLs: Record<ComplexOperation, { method: ApiRequestMethod; url: string; operation: ComplexOperation }> = {
+    'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
+};
+export interface ComplexParameters {
+    'Complex.complexTypes': [parameterObject: {
+        first?: {
+            second?: {
+                third?: string;
+            };
+        };
+    }, parameterReference: ModelWithString];
+}
 export class ComplexService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterObject Parameter containing object
      * @param parameterReference Parameter containing reference
@@ -3051,8 +3085,7 @@ export class ComplexService {
         parameterReference: ModelWithString,
     ): CancelablePromise<Array<ModelWithString>> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/complex',
+            ...URLs['Complex.complexTypes'],
             query: {
                 'parameterObject': parameterObject,
                 'parameterReference': parameterReference,
@@ -3072,17 +3105,26 @@ exports[`v2 should generate: test/generated/v2/services/DefaultService.ts 1`] = 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DefaultOperation = 'Default.serviceWithEmptyTag';
+const URLs: Record<DefaultOperation, { method: ApiRequestMethod; url: string; operation: DefaultOperation }> = {
+    'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
+};
+export interface DefaultParameters {
+    'Default.serviceWithEmptyTag': [];
+}
 export class DefaultService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @throws ApiError
      */
     public static serviceWithEmptyTag(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/no-tag',
+            ...URLs['Default.serviceWithEmptyTag'],
         });
     }
 }
@@ -3094,11 +3136,25 @@ exports[`v2 should generate: test/generated/v2/services/DefaultsService.ts 1`] =
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DefaultsOperation = 'Defaults.callWithDefaultParameters' | 'Defaults.callWithDefaultOptionalParameters' | 'Defaults.callToTestOrderOfParams';
+const URLs: Record<DefaultsOperation, { method: ApiRequestMethod; url: string; operation: DefaultsOperation }> = {
+    'Defaults.callWithDefaultParameters': { method: 'GET', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultParameters' },
+    'Defaults.callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultOptionalParameters' },
+    'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
+};
+export interface DefaultsParameters {
+    'Defaults.callWithDefaultParameters': [parameterString: string, parameterNumber: number, parameterBoolean: boolean, parameterEnum: 'Success' | 'Warning' | 'Error', parameterModel: ModelWithString];
+    'Defaults.callWithDefaultOptionalParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
+    'Defaults.callToTestOrderOfParams': [parameterStringWithNoDefault: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault: string, parameterStringWithEmptyDefault: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null];
+}
 export class DefaultsService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterString This is a simple string with default value
      * @param parameterNumber This is a simple number with default value
@@ -3117,8 +3173,7 @@ export class DefaultsService {
         },
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/defaults',
+            ...URLs['Defaults.callWithDefaultParameters'],
             query: {
                 'parameterString': parameterString,
                 'parameterNumber': parameterNumber,
@@ -3146,8 +3201,7 @@ export class DefaultsService {
         },
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/defaults',
+            ...URLs['Defaults.callWithDefaultOptionalParameters'],
             query: {
                 'parameterString': parameterString,
                 'parameterNumber': parameterNumber,
@@ -3179,8 +3233,7 @@ export class DefaultsService {
         parameterStringNullableWithDefault: string | null = null,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/defaults',
+            ...URLs['Defaults.callToTestOrderOfParams'],
             query: {
                 'parameterOptionalStringWithDefault': parameterOptionalStringWithDefault,
                 'parameterOptionalStringWithEmptyDefault': parameterOptionalStringWithEmptyDefault,
@@ -3202,10 +3255,20 @@ exports[`v2 should generate: test/generated/v2/services/DescriptionsService.ts 1
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DescriptionsOperation = 'Descriptions.callWithDescriptions';
+const URLs: Record<DescriptionsOperation, { method: ApiRequestMethod; url: string; operation: DescriptionsOperation }> = {
+    'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
+};
+export interface DescriptionsParameters {
+    'Descriptions.callWithDescriptions': [parameterWithBreaks?: string, parameterWithBackticks?: string, parameterWithSlashes?: string, parameterWithExpressionPlaceholders?: string, parameterWithQuotes?: string, parameterWithReservedCharacters?: string];
+}
 export class DescriptionsService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterWithBreaks Testing multiline comments in string: First line
      * Second line
@@ -3227,8 +3290,7 @@ export class DescriptionsService {
         parameterWithReservedCharacters?: string,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/descriptions/',
+            ...URLs['Descriptions.callWithDescriptions'],
             query: {
                 'parameterWithBreaks': parameterWithBreaks,
                 'parameterWithBackticks': parameterWithBackticks,
@@ -3248,17 +3310,32 @@ exports[`v2 should generate: test/generated/v2/services/DuplicateService.ts 1`] 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DuplicateOperation = 'Duplicate.duplicateName' | 'Duplicate.duplicateName1' | 'Duplicate.duplicateName2' | 'Duplicate.duplicateName3';
+const URLs: Record<DuplicateOperation, { method: ApiRequestMethod; url: string; operation: DuplicateOperation }> = {
+    'Duplicate.duplicateName': { method: 'GET', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName' },
+    'Duplicate.duplicateName1': { method: 'POST', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName1' },
+    'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
+    'Duplicate.duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName3' },
+};
+export interface DuplicateParameters {
+    'Duplicate.duplicateName': [];
+    'Duplicate.duplicateName1': [];
+    'Duplicate.duplicateName2': [];
+    'Duplicate.duplicateName3': [];
+}
 export class DuplicateService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @throws ApiError
      */
     public static duplicateName(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/duplicate',
+            ...URLs['Duplicate.duplicateName'],
         });
     }
     /**
@@ -3266,8 +3343,7 @@ export class DuplicateService {
      */
     public static duplicateName1(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/duplicate',
+            ...URLs['Duplicate.duplicateName1'],
         });
     }
     /**
@@ -3275,8 +3351,7 @@ export class DuplicateService {
      */
     public static duplicateName2(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/duplicate',
+            ...URLs['Duplicate.duplicateName2'],
         });
     }
     /**
@@ -3284,8 +3359,7 @@ export class DuplicateService {
      */
     public static duplicateName3(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'DELETE',
-            url: '/api/v{api-version}/duplicate',
+            ...URLs['Duplicate.duplicateName3'],
         });
     }
 }
@@ -3297,10 +3371,20 @@ exports[`v2 should generate: test/generated/v2/services/ErrorService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type ErrorOperation = 'Error.testErrorCode';
+const URLs: Record<ErrorOperation, { method: ApiRequestMethod; url: string; operation: ErrorOperation }> = {
+    'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
+};
+export interface ErrorParameters {
+    'Error.testErrorCode': [status: string];
+}
 export class ErrorService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param status Status code to return
      * @returns any Custom message: Successful response
@@ -3310,8 +3394,7 @@ export class ErrorService {
         status: string,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/error',
+            ...URLs['Error.testErrorCode'],
             query: {
                 'status': status,
             },
@@ -3332,18 +3415,27 @@ exports[`v2 should generate: test/generated/v2/services/HeaderService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type HeaderOperation = 'Header.callWithResultFromHeader';
+const URLs: Record<HeaderOperation, { method: ApiRequestMethod; url: string; operation: HeaderOperation }> = {
+    'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
+};
+export interface HeaderParameters {
+    'Header.callWithResultFromHeader': [];
+}
 export class HeaderService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns string Successful response
      * @throws ApiError
      */
     public static callWithResultFromHeader(): CancelablePromise<string> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/header',
+            ...URLs['Header.callWithResultFromHeader'],
             responseHeader: 'operation-location',
             errors: {
                 400: \`400 server error\`,
@@ -3360,18 +3452,29 @@ exports[`v2 should generate: test/generated/v2/services/MultipleTags1Service.ts 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type MultipleTags1Operation = 'MultipleTags1.dummyA' | 'MultipleTags1.dummyB';
+const URLs: Record<MultipleTags1Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags1Operation }> = {
+    'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
+    'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
+};
+export interface MultipleTags1Parameters {
+    'MultipleTags1.dummyA': [];
+    'MultipleTags1.dummyB': [];
+}
 export class MultipleTags1Service {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns void
      * @throws ApiError
      */
     public static dummyA(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/a',
+            ...URLs['MultipleTags1.dummyA'],
         });
     }
     /**
@@ -3380,8 +3483,7 @@ export class MultipleTags1Service {
      */
     public static dummyB(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/b',
+            ...URLs['MultipleTags1.dummyB'],
         });
     }
 }
@@ -3393,18 +3495,29 @@ exports[`v2 should generate: test/generated/v2/services/MultipleTags2Service.ts 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type MultipleTags2Operation = 'MultipleTags2.dummyA' | 'MultipleTags2.dummyB';
+const URLs: Record<MultipleTags2Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags2Operation }> = {
+    'MultipleTags2.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags2.dummyA' },
+    'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
+};
+export interface MultipleTags2Parameters {
+    'MultipleTags2.dummyA': [];
+    'MultipleTags2.dummyB': [];
+}
 export class MultipleTags2Service {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns void
      * @throws ApiError
      */
     public static dummyA(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/a',
+            ...URLs['MultipleTags2.dummyA'],
         });
     }
     /**
@@ -3413,8 +3526,7 @@ export class MultipleTags2Service {
      */
     public static dummyB(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/b',
+            ...URLs['MultipleTags2.dummyB'],
         });
     }
 }
@@ -3426,18 +3538,27 @@ exports[`v2 should generate: test/generated/v2/services/MultipleTags3Service.ts 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type MultipleTags3Operation = 'MultipleTags3.dummyB';
+const URLs: Record<MultipleTags3Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags3Operation }> = {
+    'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
+};
+export interface MultipleTags3Parameters {
+    'MultipleTags3.dummyB': [];
+}
 export class MultipleTags3Service {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns void
      * @throws ApiError
      */
     public static dummyB(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/b',
+            ...URLs['MultipleTags3.dummyB'],
         });
     }
 }
@@ -3449,18 +3570,27 @@ exports[`v2 should generate: test/generated/v2/services/NoContentService.ts 1`] 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type NoContentOperation = 'NoContent.callWithNoContentResponse';
+const URLs: Record<NoContentOperation, { method: ApiRequestMethod; url: string; operation: NoContentOperation }> = {
+    'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
+};
+export interface NoContentParameters {
+    'NoContent.callWithNoContentResponse': [];
+}
 export class NoContentService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns void
      * @throws ApiError
      */
     public static callWithNoContentResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/no-content',
+            ...URLs['NoContent.callWithNoContentResponse'],
         });
     }
 }
@@ -3472,10 +3602,22 @@ exports[`v2 should generate: test/generated/v2/services/ParametersService.ts 1`]
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type ParametersOperation = 'Parameters.callWithParameters' | 'Parameters.callWithWeirdParameterNames';
+const URLs: Record<ParametersOperation, { method: ApiRequestMethod; url: string; operation: ParametersOperation }> = {
+    'Parameters.callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}', operation: 'Parameters.callWithParameters' },
+    'Parameters.callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', operation: 'Parameters.callWithWeirdParameterNames' },
+};
+export interface ParametersParameters {
+    'Parameters.callWithParameters': [parameterHeader: string, parameterQuery: string, parameterForm: string, parameterBody: string, parameterPath: string];
+    'Parameters.callWithWeirdParameterNames': [parameterHeader: string, parameterQuery: string, parameterForm: string, parameterBody: string, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string];
+}
 export class ParametersService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterHeader This is the parameter that goes into the header
      * @param parameterQuery This is the parameter that goes into the query params
@@ -3492,8 +3634,7 @@ export class ParametersService {
         parameterPath: string,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/parameters/{parameterPath}',
+            ...URLs['Parameters.callWithParameters'],
             path: {
                 'parameterPath': parameterPath,
             },
@@ -3531,8 +3672,7 @@ export class ParametersService {
         _default?: string,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}',
+            ...URLs['Parameters.callWithWeirdParameterNames'],
             path: {
                 'parameter.path.1': parameterPath1,
                 'parameter-path-2': parameterPath2,
@@ -3560,21 +3700,34 @@ exports[`v2 should generate: test/generated/v2/services/ResponseService.ts 1`] =
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type ResponseOperation = 'Response.callWithResponse' | 'Response.callWithDuplicateResponses' | 'Response.callWithResponses';
+const URLs: Record<ResponseOperation, { method: ApiRequestMethod; url: string; operation: ResponseOperation }> = {
+    'Response.callWithResponse': { method: 'GET', url: '/api/v{api-version}/response', operation: 'Response.callWithResponse' },
+    'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
+    'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
+};
+export interface ResponseParameters {
+    'Response.callWithResponse': [];
+    'Response.callWithDuplicateResponses': [];
+    'Response.callWithResponses': [];
+}
 export class ResponseService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
     public static callWithResponse(): CancelablePromise<ModelWithString> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/response',
+            ...URLs['Response.callWithResponse'],
         });
     }
     /**
@@ -3583,8 +3736,7 @@ export class ResponseService {
      */
     public static callWithDuplicateResponses(): CancelablePromise<ModelWithString> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/response',
+            ...URLs['Response.callWithDuplicateResponses'],
             errors: {
                 500: \`Message for 500 error\`,
                 501: \`Message for 501 error\`,
@@ -3605,8 +3757,7 @@ export class ResponseService {
         readonly value?: Array<ModelWithString>;
     } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/response',
+            ...URLs['Response.callWithResponses'],
             errors: {
                 500: \`Message for 500 error\`,
                 501: \`Message for 501 error\`,
@@ -3623,17 +3774,38 @@ exports[`v2 should generate: test/generated/v2/services/SimpleService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type SimpleOperation = 'Simple.getCallWithoutParametersAndResponse' | 'Simple.putCallWithoutParametersAndResponse' | 'Simple.postCallWithoutParametersAndResponse' | 'Simple.deleteCallWithoutParametersAndResponse' | 'Simple.optionsCallWithoutParametersAndResponse' | 'Simple.headCallWithoutParametersAndResponse' | 'Simple.patchCallWithoutParametersAndResponse';
+const URLs: Record<SimpleOperation, { method: ApiRequestMethod; url: string; operation: SimpleOperation }> = {
+    'Simple.getCallWithoutParametersAndResponse': { method: 'GET', url: '/api/v{api-version}/simple', operation: 'Simple.getCallWithoutParametersAndResponse' },
+    'Simple.putCallWithoutParametersAndResponse': { method: 'PUT', url: '/api/v{api-version}/simple', operation: 'Simple.putCallWithoutParametersAndResponse' },
+    'Simple.postCallWithoutParametersAndResponse': { method: 'POST', url: '/api/v{api-version}/simple', operation: 'Simple.postCallWithoutParametersAndResponse' },
+    'Simple.deleteCallWithoutParametersAndResponse': { method: 'DELETE', url: '/api/v{api-version}/simple', operation: 'Simple.deleteCallWithoutParametersAndResponse' },
+    'Simple.optionsCallWithoutParametersAndResponse': { method: 'OPTIONS', url: '/api/v{api-version}/simple', operation: 'Simple.optionsCallWithoutParametersAndResponse' },
+    'Simple.headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple', operation: 'Simple.headCallWithoutParametersAndResponse' },
+    'Simple.patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple', operation: 'Simple.patchCallWithoutParametersAndResponse' },
+};
+export interface SimpleParameters {
+    'Simple.getCallWithoutParametersAndResponse': [];
+    'Simple.putCallWithoutParametersAndResponse': [];
+    'Simple.postCallWithoutParametersAndResponse': [];
+    'Simple.deleteCallWithoutParametersAndResponse': [];
+    'Simple.optionsCallWithoutParametersAndResponse': [];
+    'Simple.headCallWithoutParametersAndResponse': [];
+    'Simple.patchCallWithoutParametersAndResponse': [];
+}
 export class SimpleService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @throws ApiError
      */
     public static getCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.getCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -3641,8 +3813,7 @@ export class SimpleService {
      */
     public static putCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.putCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -3650,8 +3821,7 @@ export class SimpleService {
      */
     public static postCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.postCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -3659,8 +3829,7 @@ export class SimpleService {
      */
     public static deleteCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'DELETE',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.deleteCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -3668,8 +3837,7 @@ export class SimpleService {
      */
     public static optionsCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'OPTIONS',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.optionsCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -3677,8 +3845,7 @@ export class SimpleService {
      */
     public static headCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'HEAD',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.headCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -3686,8 +3853,7 @@ export class SimpleService {
      */
     public static patchCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'PATCH',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.patchCallWithoutParametersAndResponse'],
         });
     }
 }
@@ -3699,10 +3865,20 @@ exports[`v2 should generate: test/generated/v2/services/TypesService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type TypesOperation = 'Types.types';
+const URLs: Record<TypesOperation, { method: ApiRequestMethod; url: string; operation: TypesOperation }> = {
+    'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
+};
+export interface TypesParameters {
+    'Types.types': [parameterArray: Array<string>, parameterDictionary: Record<string, string>, parameterEnum: 'Success' | 'Warning' | 'Error', parameterNumber: number, parameterString: string, parameterBoolean: boolean, parameterObject: any, id?: number];
+}
 export class TypesService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterArray This is an array parameter
      * @param parameterDictionary This is a dictionary parameter
@@ -3729,8 +3905,7 @@ export class TypesService {
         id?: number,
     ): CancelablePromise<number | string | boolean | any> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/types',
+            ...URLs['Types.types'],
             path: {
                 'id': id,
             },
@@ -3763,6 +3938,7 @@ export class ApiError extends Error {
     public readonly statusText: string;
     public readonly body: any;
     public readonly request: ApiRequestOptions;
+    public readonly operation: string;
 
     constructor(request: ApiRequestOptions, response: ApiResult, message: string) {
         super(message);
@@ -3773,6 +3949,7 @@ export class ApiError extends Error {
         this.statusText = response.statusText;
         this.body = response.body;
         this.request = request;
+        this.operation = request.operation;
     }
 }
 "
@@ -4319,6 +4496,7 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { OperationsType, ParametersType } from './models/_symbols';
 export type { _default } from './models/_default';
 export type { ArrayWithArray } from './models/ArrayWithArray';
 export type { ArrayWithBooleans } from './models/ArrayWithBooleans';
@@ -4459,27 +4637,27 @@ export { $SimpleReference } from './schemas/$SimpleReference';
 export { $SimpleString } from './schemas/$SimpleString';
 export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 
-export { CollectionFormatService } from './services/CollectionFormatService';
-export { ComplexService } from './services/ComplexService';
-export { DefaultService } from './services/DefaultService';
-export { DefaultsService } from './services/DefaultsService';
-export { DeprecatedService } from './services/DeprecatedService';
-export { DescriptionsService } from './services/DescriptionsService';
-export { DuplicateService } from './services/DuplicateService';
-export { ErrorService } from './services/ErrorService';
-export { FormDataService } from './services/FormDataService';
-export { HeaderService } from './services/HeaderService';
-export { MultipartService } from './services/MultipartService';
-export { MultipleTags1Service } from './services/MultipleTags1Service';
-export { MultipleTags2Service } from './services/MultipleTags2Service';
-export { MultipleTags3Service } from './services/MultipleTags3Service';
-export { NoContentService } from './services/NoContentService';
-export { ParametersService } from './services/ParametersService';
-export { RequestBodyService } from './services/RequestBodyService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
-export { UploadService } from './services/UploadService';
+export * from './services/CollectionFormatService';
+export * from './services/ComplexService';
+export * from './services/DefaultService';
+export * from './services/DefaultsService';
+export * from './services/DeprecatedService';
+export * from './services/DescriptionsService';
+export * from './services/DuplicateService';
+export * from './services/ErrorService';
+export * from './services/FormDataService';
+export * from './services/HeaderService';
+export * from './services/MultipartService';
+export * from './services/MultipleTags1Service';
+export * from './services/MultipleTags2Service';
+export * from './services/MultipleTags3Service';
+export * from './services/NoContentService';
+export * from './services/ParametersService';
+export * from './services/RequestBodyService';
+export * from './services/ResponseService';
+export * from './services/SimpleService';
+export * from './services/TypesService';
+export * from './services/UploadService';
 
 export type { CollectionFormatOperation } from './operations/CollectionFormatService';
 export type { ComplexTypesOperation } from './operations/ComplexService';
@@ -4534,6 +4712,12 @@ export type _default = {
     name?: string;
 };
 
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/models/_symbols.ts 1`] = `
+"export declare const OperationsType: unique symbol;
+export declare const ParametersType: unique symbol;
 "
 `;
 
@@ -7896,10 +8080,20 @@ exports[`v3 should generate: test/generated/v3/services/CollectionFormatService.
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type CollectionFormatOperation = 'CollectionFormat.collectionFormat';
+const URLs: Record<CollectionFormatOperation, { method: ApiRequestMethod; url: string; operation: CollectionFormatOperation }> = {
+    'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
+};
+export interface CollectionFormatParameters {
+    'CollectionFormat.collectionFormat': [parameterArrayCsv: Array<string> | null, parameterArraySsv: Array<string> | null, parameterArrayTsv: Array<string> | null, parameterArrayPipes: Array<string> | null, parameterArrayMulti: Array<string> | null];
+}
 export class CollectionFormatService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterArrayCsv This is an array parameter that is sent as csv format (comma-separated values)
      * @param parameterArraySsv This is an array parameter that is sent as ssv format (space-separated values)
@@ -7916,8 +8110,7 @@ export class CollectionFormatService {
         parameterArrayMulti: Array<string> | null,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/collectionFormat',
+            ...URLs['CollectionFormat.collectionFormat'],
             query: {
                 'parameterArrayCSV': parameterArrayCsv,
                 'parameterArraySSV': parameterArraySsv,
@@ -7936,6 +8129,7 @@ exports[`v3 should generate: test/generated/v3/services/ComplexService.ts 1`] = 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelWithArray } from '../models/ModelWithArray';
 import type { ModelWithDictionary } from '../models/ModelWithDictionary';
 import type { ModelWithEnum } from '../models/ModelWithEnum';
@@ -7943,7 +8137,36 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type ComplexOperation = 'Complex.complexTypes' | 'Complex.complexParams';
+const URLs: Record<ComplexOperation, { method: ApiRequestMethod; url: string; operation: ComplexOperation }> = {
+    'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
+    'Complex.complexParams': { method: 'PUT', url: '/api/v{api-version}/complex/{id}', operation: 'Complex.complexParams' },
+};
+export interface ComplexParameters {
+    'Complex.complexTypes': [parameterObject: {
+        first?: {
+            second?: {
+                third?: string;
+            };
+        };
+    }, parameterReference: ModelWithString];
+    'Complex.complexParams': [id: number, requestBody?: {
+        readonly key: string | null;
+        name: string | null;
+        enabled?: boolean;
+        readonly type: 'Monkey' | 'Horse' | 'Bird';
+        listOfModels?: Array<ModelWithString> | null;
+        listOfStrings?: Array<string> | null;
+        parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+        readonly user?: {
+            readonly id?: number;
+            readonly name?: string | null;
+        };
+    }];
+}
 export class ComplexService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterObject Parameter containing object
      * @param parameterReference Parameter containing reference
@@ -7961,8 +8184,7 @@ export class ComplexService {
         parameterReference: ModelWithString,
     ): CancelablePromise<Array<ModelWithString>> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/complex',
+            ...URLs['Complex.complexTypes'],
             query: {
                 'parameterObject': parameterObject,
                 'parameterReference': parameterReference,
@@ -7996,8 +8218,7 @@ export class ComplexService {
         },
     ): CancelablePromise<ModelWithString> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/complex/{id}',
+            ...URLs['Complex.complexParams'],
             path: {
                 'id': id,
             },
@@ -8014,17 +8235,26 @@ exports[`v3 should generate: test/generated/v3/services/DefaultService.ts 1`] = 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DefaultOperation = 'Default.serviceWithEmptyTag';
+const URLs: Record<DefaultOperation, { method: ApiRequestMethod; url: string; operation: DefaultOperation }> = {
+    'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
+};
+export interface DefaultParameters {
+    'Default.serviceWithEmptyTag': [];
+}
 export class DefaultService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @throws ApiError
      */
     public static serviceWithEmptyTag(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/no-tag',
+            ...URLs['Default.serviceWithEmptyTag'],
         });
     }
 }
@@ -8036,11 +8266,25 @@ exports[`v3 should generate: test/generated/v3/services/DefaultsService.ts 1`] =
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DefaultsOperation = 'Defaults.callWithDefaultParameters' | 'Defaults.callWithDefaultOptionalParameters' | 'Defaults.callToTestOrderOfParams';
+const URLs: Record<DefaultsOperation, { method: ApiRequestMethod; url: string; operation: DefaultsOperation }> = {
+    'Defaults.callWithDefaultParameters': { method: 'GET', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultParameters' },
+    'Defaults.callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultOptionalParameters' },
+    'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
+};
+export interface DefaultsParameters {
+    'Defaults.callWithDefaultParameters': [parameterString?: string | null, parameterNumber?: number | null, parameterBoolean?: boolean | null, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString | null];
+    'Defaults.callWithDefaultOptionalParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
+    'Defaults.callToTestOrderOfParams': [parameterStringWithNoDefault: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault: string, parameterStringWithEmptyDefault: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null];
+}
 export class DefaultsService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterString This is a simple string with default value
      * @param parameterNumber This is a simple number with default value
@@ -8059,8 +8303,7 @@ export class DefaultsService {
         },
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/defaults',
+            ...URLs['Defaults.callWithDefaultParameters'],
             query: {
                 'parameterString': parameterString,
                 'parameterNumber': parameterNumber,
@@ -8088,8 +8331,7 @@ export class DefaultsService {
         },
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/defaults',
+            ...URLs['Defaults.callWithDefaultOptionalParameters'],
             query: {
                 'parameterString': parameterString,
                 'parameterNumber': parameterNumber,
@@ -8121,8 +8363,7 @@ export class DefaultsService {
         parameterStringNullableWithDefault: string | null = null,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/defaults',
+            ...URLs['Defaults.callToTestOrderOfParams'],
             query: {
                 'parameterOptionalStringWithDefault': parameterOptionalStringWithDefault,
                 'parameterOptionalStringWithEmptyDefault': parameterOptionalStringWithEmptyDefault,
@@ -8144,11 +8385,21 @@ exports[`v3 should generate: test/generated/v3/services/DeprecatedService.ts 1`]
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { DeprecatedModel } from '../models/DeprecatedModel';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DeprecatedOperation = 'Deprecated.deprecatedCall';
+const URLs: Record<DeprecatedOperation, { method: ApiRequestMethod; url: string; operation: DeprecatedOperation }> = {
+    'Deprecated.deprecatedCall': { method: 'POST', url: '/api/v{api-version}/parameters/deprecated', operation: 'Deprecated.deprecatedCall' },
+};
+export interface DeprecatedParameters {
+    'Deprecated.deprecatedCall': [parameter: DeprecatedModel | null];
+}
 export class DeprecatedService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @deprecated
      * @param parameter This parameter is deprecated
@@ -8158,8 +8409,7 @@ export class DeprecatedService {
         parameter: DeprecatedModel | null,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/parameters/deprecated',
+            ...URLs['Deprecated.deprecatedCall'],
             headers: {
                 'parameter': parameter,
             },
@@ -8174,10 +8424,20 @@ exports[`v3 should generate: test/generated/v3/services/DescriptionsService.ts 1
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DescriptionsOperation = 'Descriptions.callWithDescriptions';
+const URLs: Record<DescriptionsOperation, { method: ApiRequestMethod; url: string; operation: DescriptionsOperation }> = {
+    'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
+};
+export interface DescriptionsParameters {
+    'Descriptions.callWithDescriptions': [parameterWithBreaks?: any, parameterWithBackticks?: any, parameterWithSlashes?: any, parameterWithExpressionPlaceholders?: any, parameterWithQuotes?: any, parameterWithReservedCharacters?: any];
+}
 export class DescriptionsService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterWithBreaks Testing multiline comments in string: First line
      * Second line
@@ -8199,8 +8459,7 @@ export class DescriptionsService {
         parameterWithReservedCharacters?: any,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/descriptions/',
+            ...URLs['Descriptions.callWithDescriptions'],
             query: {
                 'parameterWithBreaks': parameterWithBreaks,
                 'parameterWithBackticks': parameterWithBackticks,
@@ -8220,17 +8479,32 @@ exports[`v3 should generate: test/generated/v3/services/DuplicateService.ts 1`] 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type DuplicateOperation = 'Duplicate.duplicateName' | 'Duplicate.duplicateName1' | 'Duplicate.duplicateName2' | 'Duplicate.duplicateName3';
+const URLs: Record<DuplicateOperation, { method: ApiRequestMethod; url: string; operation: DuplicateOperation }> = {
+    'Duplicate.duplicateName': { method: 'GET', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName' },
+    'Duplicate.duplicateName1': { method: 'POST', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName1' },
+    'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
+    'Duplicate.duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName3' },
+};
+export interface DuplicateParameters {
+    'Duplicate.duplicateName': [];
+    'Duplicate.duplicateName1': [];
+    'Duplicate.duplicateName2': [];
+    'Duplicate.duplicateName3': [];
+}
 export class DuplicateService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @throws ApiError
      */
     public static duplicateName(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/duplicate',
+            ...URLs['Duplicate.duplicateName'],
         });
     }
     /**
@@ -8238,8 +8512,7 @@ export class DuplicateService {
      */
     public static duplicateName1(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/duplicate',
+            ...URLs['Duplicate.duplicateName1'],
         });
     }
     /**
@@ -8247,8 +8520,7 @@ export class DuplicateService {
      */
     public static duplicateName2(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/duplicate',
+            ...URLs['Duplicate.duplicateName2'],
         });
     }
     /**
@@ -8256,8 +8528,7 @@ export class DuplicateService {
      */
     public static duplicateName3(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'DELETE',
-            url: '/api/v{api-version}/duplicate',
+            ...URLs['Duplicate.duplicateName3'],
         });
     }
 }
@@ -8269,10 +8540,20 @@ exports[`v3 should generate: test/generated/v3/services/ErrorService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type ErrorOperation = 'Error.testErrorCode';
+const URLs: Record<ErrorOperation, { method: ApiRequestMethod; url: string; operation: ErrorOperation }> = {
+    'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
+};
+export interface ErrorParameters {
+    'Error.testErrorCode': [status: number];
+}
 export class ErrorService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param status Status code to return
      * @returns any Custom message: Successful response
@@ -8282,8 +8563,7 @@ export class ErrorService {
         status: number,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/error',
+            ...URLs['Error.testErrorCode'],
             query: {
                 'status': status,
             },
@@ -8304,11 +8584,21 @@ exports[`v3 should generate: test/generated/v3/services/FormDataService.ts 1`] =
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type FormDataOperation = 'FormData.postApiFormData';
+const URLs: Record<FormDataOperation, { method: ApiRequestMethod; url: string; operation: FormDataOperation }> = {
+    'FormData.postApiFormData': { method: 'POST', url: '/api/v{api-version}/formData/', operation: 'FormData.postApiFormData' },
+};
+export interface FormDataParameters {
+    'FormData.postApiFormData': [parameter?: string, formData?: ModelWithString];
+}
 export class FormDataService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameter This is a reusable parameter
      * @param formData A reusable request body
@@ -8319,8 +8609,7 @@ export class FormDataService {
         formData?: ModelWithString,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/formData/',
+            ...URLs['FormData.postApiFormData'],
             query: {
                 'parameter': parameter,
             },
@@ -8337,18 +8626,27 @@ exports[`v3 should generate: test/generated/v3/services/HeaderService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type HeaderOperation = 'Header.callWithResultFromHeader';
+const URLs: Record<HeaderOperation, { method: ApiRequestMethod; url: string; operation: HeaderOperation }> = {
+    'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
+};
+export interface HeaderParameters {
+    'Header.callWithResultFromHeader': [];
+}
 export class HeaderService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns string Successful response
      * @throws ApiError
      */
     public static callWithResultFromHeader(): CancelablePromise<string> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/header',
+            ...URLs['Header.callWithResultFromHeader'],
             responseHeader: 'operation-location',
             errors: {
                 400: \`400 server error\`,
@@ -8365,11 +8663,26 @@ exports[`v3 should generate: test/generated/v3/services/MultipartService.ts 1`] 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type MultipartOperation = 'Multipart.multipartRequest' | 'Multipart.multipartResponse';
+const URLs: Record<MultipartOperation, { method: ApiRequestMethod; url: string; operation: MultipartOperation }> = {
+    'Multipart.multipartRequest': { method: 'POST', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartRequest' },
+    'Multipart.multipartResponse': { method: 'GET', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartResponse' },
+};
+export interface MultipartParameters {
+    'Multipart.multipartRequest': [formData?: {
+        content?: Blob;
+        data?: ModelWithString | null;
+    }];
+    'Multipart.multipartResponse': [];
+}
 export class MultipartService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param formData
      * @throws ApiError
@@ -8381,8 +8694,7 @@ export class MultipartService {
         },
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/multipart',
+            ...URLs['Multipart.multipartRequest'],
             formData: formData,
             mediaType: 'multipart/form-data',
         });
@@ -8399,8 +8711,7 @@ export class MultipartService {
         };
     }> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multipart',
+            ...URLs['Multipart.multipartResponse'],
         });
     }
 }
@@ -8412,18 +8723,29 @@ exports[`v3 should generate: test/generated/v3/services/MultipleTags1Service.ts 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type MultipleTags1Operation = 'MultipleTags1.dummyA' | 'MultipleTags1.dummyB';
+const URLs: Record<MultipleTags1Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags1Operation }> = {
+    'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
+    'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
+};
+export interface MultipleTags1Parameters {
+    'MultipleTags1.dummyA': [];
+    'MultipleTags1.dummyB': [];
+}
 export class MultipleTags1Service {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns void
      * @throws ApiError
      */
     public static dummyA(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/a',
+            ...URLs['MultipleTags1.dummyA'],
         });
     }
     /**
@@ -8432,8 +8754,7 @@ export class MultipleTags1Service {
      */
     public static dummyB(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/b',
+            ...URLs['MultipleTags1.dummyB'],
         });
     }
 }
@@ -8445,18 +8766,29 @@ exports[`v3 should generate: test/generated/v3/services/MultipleTags2Service.ts 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type MultipleTags2Operation = 'MultipleTags2.dummyA' | 'MultipleTags2.dummyB';
+const URLs: Record<MultipleTags2Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags2Operation }> = {
+    'MultipleTags2.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags2.dummyA' },
+    'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
+};
+export interface MultipleTags2Parameters {
+    'MultipleTags2.dummyA': [];
+    'MultipleTags2.dummyB': [];
+}
 export class MultipleTags2Service {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns void
      * @throws ApiError
      */
     public static dummyA(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/a',
+            ...URLs['MultipleTags2.dummyA'],
         });
     }
     /**
@@ -8465,8 +8797,7 @@ export class MultipleTags2Service {
      */
     public static dummyB(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/b',
+            ...URLs['MultipleTags2.dummyB'],
         });
     }
 }
@@ -8478,18 +8809,27 @@ exports[`v3 should generate: test/generated/v3/services/MultipleTags3Service.ts 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type MultipleTags3Operation = 'MultipleTags3.dummyB';
+const URLs: Record<MultipleTags3Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags3Operation }> = {
+    'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
+};
+export interface MultipleTags3Parameters {
+    'MultipleTags3.dummyB': [];
+}
 export class MultipleTags3Service {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns void
      * @throws ApiError
      */
     public static dummyB(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/multiple-tags/b',
+            ...URLs['MultipleTags3.dummyB'],
         });
     }
 }
@@ -8501,18 +8841,27 @@ exports[`v3 should generate: test/generated/v3/services/NoContentService.ts 1`] 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type NoContentOperation = 'NoContent.callWithNoContentResponse';
+const URLs: Record<NoContentOperation, { method: ApiRequestMethod; url: string; operation: NoContentOperation }> = {
+    'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
+};
+export interface NoContentParameters {
+    'NoContent.callWithNoContentResponse': [];
+}
 export class NoContentService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns void
      * @throws ApiError
      */
     public static callWithNoContentResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/no-content',
+            ...URLs['NoContent.callWithNoContentResponse'],
         });
     }
 }
@@ -8524,12 +8873,28 @@ exports[`v3 should generate: test/generated/v3/services/ParametersService.ts 1`]
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { Pageable } from '../models/Pageable';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type ParametersOperation = 'Parameters.callWithParameters' | 'Parameters.callWithWeirdParameterNames' | 'Parameters.getCallWithOptionalParam' | 'Parameters.postCallWithOptionalParam';
+const URLs: Record<ParametersOperation, { method: ApiRequestMethod; url: string; operation: ParametersOperation }> = {
+    'Parameters.callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}', operation: 'Parameters.callWithParameters' },
+    'Parameters.callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', operation: 'Parameters.callWithWeirdParameterNames' },
+    'Parameters.getCallWithOptionalParam': { method: 'GET', url: '/api/v{api-version}/parameters/', operation: 'Parameters.getCallWithOptionalParam' },
+    'Parameters.postCallWithOptionalParam': { method: 'POST', url: '/api/v{api-version}/parameters/', operation: 'Parameters.postCallWithOptionalParam' },
+};
+export interface ParametersParameters {
+    'Parameters.callWithParameters': [parameterHeader: string | null, parameterQuery: string | null, parameterForm: string | null, parameterCookie: string | null, parameterPath: string | null, requestBody: ModelWithString | null];
+    'Parameters.callWithWeirdParameterNames': [parameterHeader: string | null, parameterQuery: string | null, parameterForm: string | null, parameterCookie: string | null, requestBody: ModelWithString | null, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string];
+    'Parameters.getCallWithOptionalParam': [requestBody: ModelWithString, parameter?: string];
+    'Parameters.postCallWithOptionalParam': [parameter: Pageable, requestBody?: ModelWithString];
+}
 export class ParametersService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterHeader This is the parameter that goes into the header
      * @param parameterQuery This is the parameter that goes into the query params
@@ -8548,8 +8913,7 @@ export class ParametersService {
         requestBody: ModelWithString | null,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/parameters/{parameterPath}',
+            ...URLs['Parameters.callWithParameters'],
             path: {
                 'parameterPath': parameterPath,
             },
@@ -8593,8 +8957,7 @@ export class ParametersService {
         _default?: string,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}',
+            ...URLs['Parameters.callWithWeirdParameterNames'],
             path: {
                 'parameter.path.1': parameterPath1,
                 'parameter-path-2': parameterPath2,
@@ -8627,8 +8990,7 @@ export class ParametersService {
         parameter?: string,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/parameters/',
+            ...URLs['Parameters.getCallWithOptionalParam'],
             query: {
                 'parameter': parameter,
             },
@@ -8646,8 +9008,7 @@ export class ParametersService {
         requestBody?: ModelWithString,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/parameters/',
+            ...URLs['Parameters.postCallWithOptionalParam'],
             query: {
                 'parameter': parameter,
             },
@@ -8664,11 +9025,21 @@ exports[`v3 should generate: test/generated/v3/services/RequestBodyService.ts 1`
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type RequestBodyOperation = 'RequestBody.postApiRequestBody';
+const URLs: Record<RequestBodyOperation, { method: ApiRequestMethod; url: string; operation: RequestBodyOperation }> = {
+    'RequestBody.postApiRequestBody': { method: 'POST', url: '/api/v{api-version}/requestBody/', operation: 'RequestBody.postApiRequestBody' },
+};
+export interface RequestBodyParameters {
+    'RequestBody.postApiRequestBody': [parameter?: string, requestBody?: ModelWithString];
+}
 export class RequestBodyService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameter This is a reusable parameter
      * @param requestBody A reusable request body
@@ -8679,8 +9050,7 @@ export class RequestBodyService {
         requestBody?: ModelWithString,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/requestBody/',
+            ...URLs['RequestBody.postApiRequestBody'],
             query: {
                 'parameter': parameter,
             },
@@ -8697,21 +9067,34 @@ exports[`v3 should generate: test/generated/v3/services/ResponseService.ts 1`] =
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type ResponseOperation = 'Response.callWithResponse' | 'Response.callWithDuplicateResponses' | 'Response.callWithResponses';
+const URLs: Record<ResponseOperation, { method: ApiRequestMethod; url: string; operation: ResponseOperation }> = {
+    'Response.callWithResponse': { method: 'GET', url: '/api/v{api-version}/response', operation: 'Response.callWithResponse' },
+    'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
+    'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
+};
+export interface ResponseParameters {
+    'Response.callWithResponse': [];
+    'Response.callWithDuplicateResponses': [];
+    'Response.callWithResponses': [];
+}
 export class ResponseService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @returns ModelWithString
      * @throws ApiError
      */
     public static callWithResponse(): CancelablePromise<ModelWithString> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/response',
+            ...URLs['Response.callWithResponse'],
         });
     }
     /**
@@ -8720,8 +9103,7 @@ export class ResponseService {
      */
     public static callWithDuplicateResponses(): CancelablePromise<ModelWithString> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/response',
+            ...URLs['Response.callWithDuplicateResponses'],
             errors: {
                 500: \`Message for 500 error\`,
                 501: \`Message for 501 error\`,
@@ -8742,8 +9124,7 @@ export class ResponseService {
         readonly value?: Array<ModelWithString>;
     } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/response',
+            ...URLs['Response.callWithResponses'],
             errors: {
                 500: \`Message for 500 error\`,
                 501: \`Message for 501 error\`,
@@ -8760,17 +9141,38 @@ exports[`v3 should generate: test/generated/v3/services/SimpleService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type SimpleOperation = 'Simple.getCallWithoutParametersAndResponse' | 'Simple.putCallWithoutParametersAndResponse' | 'Simple.postCallWithoutParametersAndResponse' | 'Simple.deleteCallWithoutParametersAndResponse' | 'Simple.optionsCallWithoutParametersAndResponse' | 'Simple.headCallWithoutParametersAndResponse' | 'Simple.patchCallWithoutParametersAndResponse';
+const URLs: Record<SimpleOperation, { method: ApiRequestMethod; url: string; operation: SimpleOperation }> = {
+    'Simple.getCallWithoutParametersAndResponse': { method: 'GET', url: '/api/v{api-version}/simple', operation: 'Simple.getCallWithoutParametersAndResponse' },
+    'Simple.putCallWithoutParametersAndResponse': { method: 'PUT', url: '/api/v{api-version}/simple', operation: 'Simple.putCallWithoutParametersAndResponse' },
+    'Simple.postCallWithoutParametersAndResponse': { method: 'POST', url: '/api/v{api-version}/simple', operation: 'Simple.postCallWithoutParametersAndResponse' },
+    'Simple.deleteCallWithoutParametersAndResponse': { method: 'DELETE', url: '/api/v{api-version}/simple', operation: 'Simple.deleteCallWithoutParametersAndResponse' },
+    'Simple.optionsCallWithoutParametersAndResponse': { method: 'OPTIONS', url: '/api/v{api-version}/simple', operation: 'Simple.optionsCallWithoutParametersAndResponse' },
+    'Simple.headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple', operation: 'Simple.headCallWithoutParametersAndResponse' },
+    'Simple.patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple', operation: 'Simple.patchCallWithoutParametersAndResponse' },
+};
+export interface SimpleParameters {
+    'Simple.getCallWithoutParametersAndResponse': [];
+    'Simple.putCallWithoutParametersAndResponse': [];
+    'Simple.postCallWithoutParametersAndResponse': [];
+    'Simple.deleteCallWithoutParametersAndResponse': [];
+    'Simple.optionsCallWithoutParametersAndResponse': [];
+    'Simple.headCallWithoutParametersAndResponse': [];
+    'Simple.patchCallWithoutParametersAndResponse': [];
+}
 export class SimpleService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @throws ApiError
      */
     public static getCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.getCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -8778,8 +9180,7 @@ export class SimpleService {
      */
     public static putCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.putCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -8787,8 +9188,7 @@ export class SimpleService {
      */
     public static postCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.postCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -8796,8 +9196,7 @@ export class SimpleService {
      */
     public static deleteCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'DELETE',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.deleteCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -8805,8 +9204,7 @@ export class SimpleService {
      */
     public static optionsCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'OPTIONS',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.optionsCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -8814,8 +9212,7 @@ export class SimpleService {
      */
     public static headCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'HEAD',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.headCallWithoutParametersAndResponse'],
         });
     }
     /**
@@ -8823,8 +9220,7 @@ export class SimpleService {
      */
     public static patchCallWithoutParametersAndResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
-            method: 'PATCH',
-            url: '/api/v{api-version}/simple',
+            ...URLs['Simple.patchCallWithoutParametersAndResponse'],
         });
     }
 }
@@ -8836,10 +9232,20 @@ exports[`v3 should generate: test/generated/v3/services/TypesService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type TypesOperation = 'Types.types';
+const URLs: Record<TypesOperation, { method: ApiRequestMethod; url: string; operation: TypesOperation }> = {
+    'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
+};
+export interface TypesParameters {
+    'Types.types': [parameterArray: Array<string> | null, parameterDictionary: Record<string, any> | null, parameterEnum: 'Success' | 'Warning' | 'Error' | null, parameterNumber: number, parameterString: string | null, parameterBoolean: boolean | null, parameterObject: Record<string, any> | null, id?: number];
+}
 export class TypesService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param parameterArray This is an array parameter
      * @param parameterDictionary This is a dictionary parameter
@@ -8866,8 +9272,7 @@ export class TypesService {
         id?: number,
     ): CancelablePromise<number | string | boolean | Record<string, any>> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v{api-version}/types',
+            ...URLs['Types.types'],
             path: {
                 'id': id,
             },
@@ -8891,10 +9296,20 @@ exports[`v3 should generate: test/generated/v3/services/UploadService.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { OperationsType, ParametersType } from '../models/_symbols';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+export type UploadOperation = 'Upload.uploadFile';
+const URLs: Record<UploadOperation, { method: ApiRequestMethod; url: string; operation: UploadOperation }> = {
+    'Upload.uploadFile': { method: 'POST', url: '/api/v{api-version}/upload', operation: 'Upload.uploadFile' },
+};
+export interface UploadParameters {
+    'Upload.uploadFile': [file: Blob];
+}
 export class UploadService {
+    declare [OperationsType]: ApiKeysOperation;
+    declare [ParametersType]: ApiKeysParameters;
     /**
      * @param file Supply a file reference for upload
      * @returns boolean
@@ -8904,8 +9319,7 @@ export class UploadService {
         file: Blob,
     ): CancelablePromise<boolean> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v{api-version}/upload',
+            ...URLs['Upload.uploadFile'],
             formData: {
                 'file': file,
             },
