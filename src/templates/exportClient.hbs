@@ -29,8 +29,8 @@ export interface {{{name}}}Parameters {
 const KEY = '{{{name}}}';
 
 export class {{{name}}}{{{@root.postfix}}} {
-	declare [OperationsType]: ApiKeysOperation;
-	declare [ParametersType]: ApiKeysParameters;
+	declare [OperationsType]: {{{name}}}Operation;
+	declare [ParametersType]: {{{name}}}Parameters;
 
 	/**
 	 * Service prefix for operation names.
