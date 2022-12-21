@@ -2956,10 +2956,6 @@ const URLs: Record<CollectionFormatOperation, { method: ApiRequestMethod; url: s
     'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
 };
 
-interface CollectionFormatParameters {
-    'CollectionFormat.collectionFormat': [parameterArrayCsv?: Array<string>, parameterArraySsv?: Array<string>, parameterArrayTsv?: Array<string>, parameterArrayPipes?: Array<string>, parameterArrayMulti?: Array<string>];
-}
-
 const KEY = 'CollectionFormat';
 
 export class CollectionFormatService {
@@ -2979,7 +2975,7 @@ export class CollectionFormatService {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        collectionFormat(...params: Partial<CollectionFormatParameters['CollectionFormat.collectionFormat']>): readonly unknown[] {
+        collectionFormat(...params: [parameterArrayCsv?: Array<string>, parameterArraySsv?: Array<string>, parameterArrayTsv?: Array<string>, parameterArrayPipes?: Array<string>, parameterArrayMulti?: Array<string>]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'collectionFormat', ...params];
         },
     };
@@ -3045,16 +3041,6 @@ const URLs: Record<ComplexOperation, { method: ApiRequestMethod; url: string; op
     'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
 };
 
-interface ComplexParameters {
-    'Complex.complexTypes': [parameterObject?: {
-        first?: {
-            second?: {
-                third?: string;
-            };
-        };
-    }, parameterReference?: ModelWithString];
-}
-
 const KEY = 'Complex';
 
 export class ComplexService {
@@ -3074,7 +3060,13 @@ export class ComplexService {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        complexTypes(...params: Partial<ComplexParameters['Complex.complexTypes']>): readonly unknown[] {
+        complexTypes(...params: [parameterObject?: {
+            first?: {
+                second?: {
+                    third?: string;
+                };
+            };
+        }, parameterReference?: ModelWithString]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'complex', ...params];
         },
     };
@@ -3139,10 +3131,6 @@ export type DefaultOperation = 'Default.serviceWithEmptyTag';
 const URLs: Record<DefaultOperation, { method: ApiRequestMethod; url: string; operation: DefaultOperation }> = {
     'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
 };
-
-interface DefaultParameters {
-    'Default.serviceWithEmptyTag': [];
-}
 
 const KEY = 'Default';
 
@@ -3214,12 +3202,6 @@ const URLs: Record<DefaultsOperation, { method: ApiRequestMethod; url: string; o
     'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
 };
 
-interface DefaultsParameters {
-    'Defaults.callWithDefaultParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
-    'Defaults.callWithDefaultOptionalParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
-    'Defaults.callToTestOrderOfParams': [parameterStringWithNoDefault?: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault?: string, parameterStringWithEmptyDefault?: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null];
-}
-
 const KEY = 'Defaults';
 
 export class DefaultsService {
@@ -3239,13 +3221,13 @@ export class DefaultsService {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        callWithDefaultParameters(...params: Partial<DefaultsParameters['Defaults.callWithDefaultParameters']>): readonly unknown[] {
+        callWithDefaultParameters(...params: [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'defaults', ...params];
         },
-        callWithDefaultOptionalParameters(...params: Partial<DefaultsParameters['Defaults.callWithDefaultOptionalParameters']>): readonly unknown[] {
+        callWithDefaultOptionalParameters(...params: [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'defaults', ...params];
         },
-        callToTestOrderOfParams(...params: Partial<DefaultsParameters['Defaults.callToTestOrderOfParams']>): readonly unknown[] {
+        callToTestOrderOfParams(...params: [parameterStringWithNoDefault?: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault?: string, parameterStringWithEmptyDefault?: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null]): readonly unknown[] {
             return [KEY, 'PUT', 'api', 'v{api-version}', 'defaults', ...params];
         },
     };
@@ -3382,10 +3364,6 @@ const URLs: Record<DescriptionsOperation, { method: ApiRequestMethod; url: strin
     'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
 };
 
-interface DescriptionsParameters {
-    'Descriptions.callWithDescriptions': [parameterWithBreaks?: string, parameterWithBackticks?: string, parameterWithSlashes?: string, parameterWithExpressionPlaceholders?: string, parameterWithQuotes?: string, parameterWithReservedCharacters?: string];
-}
-
 const KEY = 'Descriptions';
 
 export class DescriptionsService {
@@ -3405,7 +3383,7 @@ export class DescriptionsService {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        callWithDescriptions(...params: Partial<DescriptionsParameters['Descriptions.callWithDescriptions']>): readonly unknown[] {
+        callWithDescriptions(...params: [parameterWithBreaks?: string, parameterWithBackticks?: string, parameterWithSlashes?: string, parameterWithExpressionPlaceholders?: string, parameterWithQuotes?: string, parameterWithReservedCharacters?: string]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'descriptions', ...params];
         },
     };
@@ -3477,13 +3455,6 @@ const URLs: Record<DuplicateOperation, { method: ApiRequestMethod; url: string; 
     'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
     'Duplicate.duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName3' },
 };
-
-interface DuplicateParameters {
-    'Duplicate.duplicateName': [];
-    'Duplicate.duplicateName1': [];
-    'Duplicate.duplicateName2': [];
-    'Duplicate.duplicateName3': [];
-}
 
 const KEY = 'Duplicate';
 
@@ -3599,10 +3570,6 @@ const URLs: Record<ErrorOperation, { method: ApiRequestMethod; url: string; oper
     'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
 };
 
-interface ErrorParameters {
-    'Error.testErrorCode': [status?: string];
-}
-
 const KEY = 'Error';
 
 export class ErrorService {
@@ -3622,7 +3589,7 @@ export class ErrorService {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        testErrorCode(...params: Partial<ErrorParameters['Error.testErrorCode']>): readonly unknown[] {
+        testErrorCode(...params: [status?: string]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'error', ...params];
         },
     };
@@ -3680,10 +3647,6 @@ export type HeaderOperation = 'Header.callWithResultFromHeader';
 const URLs: Record<HeaderOperation, { method: ApiRequestMethod; url: string; operation: HeaderOperation }> = {
     'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
 };
-
-interface HeaderParameters {
-    'Header.callWithResultFromHeader': [];
-}
 
 const KEY = 'Header';
 
@@ -3757,11 +3720,6 @@ const URLs: Record<MultipleTags1Operation, { method: ApiRequestMethod; url: stri
     'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
     'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
 };
-
-interface MultipleTags1Parameters {
-    'MultipleTags1.dummyA': [];
-    'MultipleTags1.dummyB': [];
-}
 
 const KEY = 'MultipleTags1';
 
@@ -3848,11 +3806,6 @@ const URLs: Record<MultipleTags2Operation, { method: ApiRequestMethod; url: stri
     'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
 };
 
-interface MultipleTags2Parameters {
-    'MultipleTags2.dummyA': [];
-    'MultipleTags2.dummyB': [];
-}
-
 const KEY = 'MultipleTags2';
 
 export class MultipleTags2Service {
@@ -3937,10 +3890,6 @@ const URLs: Record<MultipleTags3Operation, { method: ApiRequestMethod; url: stri
     'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
 };
 
-interface MultipleTags3Parameters {
-    'MultipleTags3.dummyB': [];
-}
-
 const KEY = 'MultipleTags3';
 
 export class MultipleTags3Service {
@@ -4007,10 +3956,6 @@ export type NoContentOperation = 'NoContent.callWithNoContentResponse';
 const URLs: Record<NoContentOperation, { method: ApiRequestMethod; url: string; operation: NoContentOperation }> = {
     'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
 };
-
-interface NoContentParameters {
-    'NoContent.callWithNoContentResponse': [];
-}
 
 const KEY = 'NoContent';
 
@@ -4080,11 +4025,6 @@ const URLs: Record<ParametersOperation, { method: ApiRequestMethod; url: string;
     'Parameters.callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', operation: 'Parameters.callWithWeirdParameterNames' },
 };
 
-interface ParametersParameters {
-    'Parameters.callWithParameters': [parameterHeader?: string, parameterQuery?: string, parameterForm?: string, parameterBody?: string, parameterPath?: string];
-    'Parameters.callWithWeirdParameterNames': [parameterHeader?: string, parameterQuery?: string, parameterForm?: string, parameterBody?: string, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string];
-}
-
 const KEY = 'Parameters';
 
 export class ParametersService {
@@ -4104,10 +4044,10 @@ export class ParametersService {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        callWithParameters(...params: Partial<ParametersParameters['Parameters.callWithParameters']>): readonly unknown[] {
+        callWithParameters(...params: [parameterHeader?: string, parameterQuery?: string, parameterForm?: string, parameterBody?: string, parameterPath?: string]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', '{parameterPath}', ...params];
         },
-        callWithWeirdParameterNames(...params: Partial<ParametersParameters['Parameters.callWithWeirdParameterNames']>): readonly unknown[] {
+        callWithWeirdParameterNames(...params: [parameterHeader?: string, parameterQuery?: string, parameterForm?: string, parameterBody?: string, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', '{parameter.path.1}', '{parameter-path-2}', '{PARAMETER-PATH-3}', ...params];
         },
     };
@@ -4227,12 +4167,6 @@ const URLs: Record<ResponseOperation, { method: ApiRequestMethod; url: string; o
     'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
     'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
 };
-
-interface ResponseParameters {
-    'Response.callWithResponse': [];
-    'Response.callWithDuplicateResponses': [];
-    'Response.callWithResponses': [];
-}
 
 const KEY = 'Response';
 
@@ -4357,16 +4291,6 @@ const URLs: Record<SimpleOperation, { method: ApiRequestMethod; url: string; ope
     'Simple.headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple', operation: 'Simple.headCallWithoutParametersAndResponse' },
     'Simple.patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple', operation: 'Simple.patchCallWithoutParametersAndResponse' },
 };
-
-interface SimpleParameters {
-    'Simple.getCallWithoutParametersAndResponse': [];
-    'Simple.putCallWithoutParametersAndResponse': [];
-    'Simple.postCallWithoutParametersAndResponse': [];
-    'Simple.deleteCallWithoutParametersAndResponse': [];
-    'Simple.optionsCallWithoutParametersAndResponse': [];
-    'Simple.headCallWithoutParametersAndResponse': [];
-    'Simple.patchCallWithoutParametersAndResponse': [];
-}
 
 const KEY = 'Simple';
 
@@ -4530,10 +4454,6 @@ const URLs: Record<TypesOperation, { method: ApiRequestMethod; url: string; oper
     'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
 };
 
-interface TypesParameters {
-    'Types.types': [parameterArray?: Array<string>, parameterDictionary?: Record<string, string>, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterNumber?: number, parameterString?: string, parameterBoolean?: boolean, parameterObject?: any, id?: number];
-}
-
 const KEY = 'Types';
 
 export class TypesService {
@@ -4553,7 +4473,7 @@ export class TypesService {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        types(...params: Partial<TypesParameters['Types.types']>): readonly unknown[] {
+        types(...params: [parameterArray?: Array<string>, parameterDictionary?: Record<string, string>, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterNumber?: number, parameterString?: string, parameterBoolean?: boolean, parameterObject?: any, id?: number]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'types', ...params];
         },
     };
@@ -8609,10 +8529,6 @@ const URLs: Record<CollectionFormatOperation, { method: ApiRequestMethod; url: s
     'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
 };
 
-interface CollectionFormatParameters {
-    'CollectionFormat.collectionFormat': [parameterArrayCsv?: Array<string> | null, parameterArraySsv?: Array<string> | null, parameterArrayTsv?: Array<string> | null, parameterArrayPipes?: Array<string> | null, parameterArrayMulti?: Array<string> | null];
-}
-
 const KEY = 'CollectionFormat';
 
 export class CollectionFormatSvc {
@@ -8632,7 +8548,7 @@ export class CollectionFormatSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        collectionFormat(...params: Partial<CollectionFormatParameters['CollectionFormat.collectionFormat']>): readonly unknown[] {
+        collectionFormat(...params: [parameterArrayCsv?: Array<string> | null, parameterArraySsv?: Array<string> | null, parameterArrayTsv?: Array<string> | null, parameterArrayPipes?: Array<string> | null, parameterArrayMulti?: Array<string> | null]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'collectionFormat', ...params];
         },
     };
@@ -8702,29 +8618,6 @@ const URLs: Record<ComplexOperation, { method: ApiRequestMethod; url: string; op
     'Complex.complexParams': { method: 'PUT', url: '/api/v{api-version}/complex/{id}', operation: 'Complex.complexParams' },
 };
 
-interface ComplexParameters {
-    'Complex.complexTypes': [parameterObject?: {
-        first?: {
-            second?: {
-                third?: string;
-            };
-        };
-    }, parameterReference?: ModelWithString];
-    'Complex.complexParams': [id?: number, requestBody?: {
-        readonly key: string | null;
-        name: string | null;
-        enabled?: boolean;
-        readonly type: 'Monkey' | 'Horse' | 'Bird';
-        listOfModels?: Array<ModelWithString> | null;
-        listOfStrings?: Array<string> | null;
-        parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
-        readonly user?: {
-            readonly id?: number;
-            readonly name?: string | null;
-        };
-    }];
-}
-
 const KEY = 'Complex';
 
 export class ComplexSvc {
@@ -8744,10 +8637,28 @@ export class ComplexSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        complexTypes(...params: Partial<ComplexParameters['Complex.complexTypes']>): readonly unknown[] {
+        complexTypes(...params: [parameterObject?: {
+            first?: {
+                second?: {
+                    third?: string;
+                };
+            };
+        }, parameterReference?: ModelWithString]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'complex', ...params];
         },
-        complexParams(...params: Partial<ComplexParameters['Complex.complexParams']>): readonly unknown[] {
+        complexParams(...params: [id?: number, requestBody?: {
+            readonly key: string | null;
+            name: string | null;
+            enabled?: boolean;
+            readonly type: 'Monkey' | 'Horse' | 'Bird';
+            listOfModels?: Array<ModelWithString> | null;
+            listOfStrings?: Array<string> | null;
+            parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+            readonly user?: {
+                readonly id?: number;
+                readonly name?: string | null;
+            };
+        }]): readonly unknown[] {
             return [KEY, 'PUT', 'api', 'v{api-version}', 'complex', '{id}', ...params];
         },
     };
@@ -8848,10 +8759,6 @@ const URLs: Record<DefaultOperation, { method: ApiRequestMethod; url: string; op
     'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
 };
 
-interface DefaultParameters {
-    'Default.serviceWithEmptyTag': [];
-}
-
 const KEY = 'Default';
 
 export class DefaultSvc {
@@ -8922,12 +8829,6 @@ const URLs: Record<DefaultsOperation, { method: ApiRequestMethod; url: string; o
     'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
 };
 
-interface DefaultsParameters {
-    'Defaults.callWithDefaultParameters': [parameterString?: string | null, parameterNumber?: number | null, parameterBoolean?: boolean | null, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString | null];
-    'Defaults.callWithDefaultOptionalParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
-    'Defaults.callToTestOrderOfParams': [parameterStringWithNoDefault?: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault?: string, parameterStringWithEmptyDefault?: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null];
-}
-
 const KEY = 'Defaults';
 
 export class DefaultsSvc {
@@ -8947,13 +8848,13 @@ export class DefaultsSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        callWithDefaultParameters(...params: Partial<DefaultsParameters['Defaults.callWithDefaultParameters']>): readonly unknown[] {
+        callWithDefaultParameters(...params: [parameterString?: string | null, parameterNumber?: number | null, parameterBoolean?: boolean | null, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString | null]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'defaults', ...params];
         },
-        callWithDefaultOptionalParameters(...params: Partial<DefaultsParameters['Defaults.callWithDefaultOptionalParameters']>): readonly unknown[] {
+        callWithDefaultOptionalParameters(...params: [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'defaults', ...params];
         },
-        callToTestOrderOfParams(...params: Partial<DefaultsParameters['Defaults.callToTestOrderOfParams']>): readonly unknown[] {
+        callToTestOrderOfParams(...params: [parameterStringWithNoDefault?: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault?: string, parameterStringWithEmptyDefault?: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null]): readonly unknown[] {
             return [KEY, 'PUT', 'api', 'v{api-version}', 'defaults', ...params];
         },
     };
@@ -9092,10 +8993,6 @@ const URLs: Record<DeprecatedOperation, { method: ApiRequestMethod; url: string;
     'Deprecated.deprecatedCall': { method: 'POST', url: '/api/v{api-version}/parameters/deprecated', operation: 'Deprecated.deprecatedCall' },
 };
 
-interface DeprecatedParameters {
-    'Deprecated.deprecatedCall': [parameter?: DeprecatedModel | null];
-}
-
 const KEY = 'Deprecated';
 
 export class DeprecatedSvc {
@@ -9115,7 +9012,7 @@ export class DeprecatedSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        deprecatedCall(...params: Partial<DeprecatedParameters['Deprecated.deprecatedCall']>): readonly unknown[] {
+        deprecatedCall(...params: [parameter?: DeprecatedModel | null]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', 'deprecated', ...params];
         },
     };
@@ -9168,10 +9065,6 @@ const URLs: Record<DescriptionsOperation, { method: ApiRequestMethod; url: strin
     'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
 };
 
-interface DescriptionsParameters {
-    'Descriptions.callWithDescriptions': [parameterWithBreaks?: any, parameterWithBackticks?: any, parameterWithSlashes?: any, parameterWithExpressionPlaceholders?: any, parameterWithQuotes?: any, parameterWithReservedCharacters?: any];
-}
-
 const KEY = 'Descriptions';
 
 export class DescriptionsSvc {
@@ -9191,7 +9084,7 @@ export class DescriptionsSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        callWithDescriptions(...params: Partial<DescriptionsParameters['Descriptions.callWithDescriptions']>): readonly unknown[] {
+        callWithDescriptions(...params: [parameterWithBreaks?: any, parameterWithBackticks?: any, parameterWithSlashes?: any, parameterWithExpressionPlaceholders?: any, parameterWithQuotes?: any, parameterWithReservedCharacters?: any]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'descriptions', ...params];
         },
     };
@@ -9263,13 +9156,6 @@ const URLs: Record<DuplicateOperation, { method: ApiRequestMethod; url: string; 
     'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
     'Duplicate.duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName3' },
 };
-
-interface DuplicateParameters {
-    'Duplicate.duplicateName': [];
-    'Duplicate.duplicateName1': [];
-    'Duplicate.duplicateName2': [];
-    'Duplicate.duplicateName3': [];
-}
 
 const KEY = 'Duplicate';
 
@@ -9385,10 +9271,6 @@ const URLs: Record<ErrorOperation, { method: ApiRequestMethod; url: string; oper
     'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
 };
 
-interface ErrorParameters {
-    'Error.testErrorCode': [status?: number];
-}
-
 const KEY = 'Error';
 
 export class ErrorSvc {
@@ -9408,7 +9290,7 @@ export class ErrorSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        testErrorCode(...params: Partial<ErrorParameters['Error.testErrorCode']>): readonly unknown[] {
+        testErrorCode(...params: [status?: number]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'error', ...params];
         },
     };
@@ -9469,10 +9351,6 @@ const URLs: Record<FormDataOperation, { method: ApiRequestMethod; url: string; o
     'FormData.postApiFormData': { method: 'POST', url: '/api/v{api-version}/formData/', operation: 'FormData.postApiFormData' },
 };
 
-interface FormDataParameters {
-    'FormData.postApiFormData': [parameter?: string, formData?: ModelWithString];
-}
-
 const KEY = 'FormData';
 
 export class FormDataSvc {
@@ -9492,7 +9370,7 @@ export class FormDataSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        postApiFormData(...params: Partial<FormDataParameters['FormData.postApiFormData']>): readonly unknown[] {
+        postApiFormData(...params: [parameter?: string, formData?: ModelWithString]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'formData', ...params];
         },
     };
@@ -9547,10 +9425,6 @@ export type HeaderOperation = 'Header.callWithResultFromHeader';
 const URLs: Record<HeaderOperation, { method: ApiRequestMethod; url: string; operation: HeaderOperation }> = {
     'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
 };
-
-interface HeaderParameters {
-    'Header.callWithResultFromHeader': [];
-}
 
 const KEY = 'Header';
 
@@ -9627,14 +9501,6 @@ const URLs: Record<MultipartOperation, { method: ApiRequestMethod; url: string; 
     'Multipart.multipartResponse': { method: 'GET', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartResponse' },
 };
 
-interface MultipartParameters {
-    'Multipart.multipartRequest': [formData?: {
-        content?: Blob;
-        data?: ModelWithString | null;
-    }];
-    'Multipart.multipartResponse': [];
-}
-
 const KEY = 'Multipart';
 
 export class MultipartSvc {
@@ -9654,7 +9520,10 @@ export class MultipartSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        multipartRequest(...params: Partial<MultipartParameters['Multipart.multipartRequest']>): readonly unknown[] {
+        multipartRequest(...params: [formData?: {
+            content?: Blob;
+            data?: ModelWithString | null;
+        }]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'multipart', ...params];
         },
         multipartResponse(): readonly unknown[] {
@@ -9731,11 +9600,6 @@ const URLs: Record<MultipleTags1Operation, { method: ApiRequestMethod; url: stri
     'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
     'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
 };
-
-interface MultipleTags1Parameters {
-    'MultipleTags1.dummyA': [];
-    'MultipleTags1.dummyB': [];
-}
 
 const KEY = 'MultipleTags1';
 
@@ -9822,11 +9686,6 @@ const URLs: Record<MultipleTags2Operation, { method: ApiRequestMethod; url: stri
     'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
 };
 
-interface MultipleTags2Parameters {
-    'MultipleTags2.dummyA': [];
-    'MultipleTags2.dummyB': [];
-}
-
 const KEY = 'MultipleTags2';
 
 export class MultipleTags2Svc {
@@ -9911,10 +9770,6 @@ const URLs: Record<MultipleTags3Operation, { method: ApiRequestMethod; url: stri
     'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
 };
 
-interface MultipleTags3Parameters {
-    'MultipleTags3.dummyB': [];
-}
-
 const KEY = 'MultipleTags3';
 
 export class MultipleTags3Svc {
@@ -9981,10 +9836,6 @@ export type NoContentOperation = 'NoContent.callWithNoContentResponse';
 const URLs: Record<NoContentOperation, { method: ApiRequestMethod; url: string; operation: NoContentOperation }> = {
     'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
 };
-
-interface NoContentParameters {
-    'NoContent.callWithNoContentResponse': [];
-}
 
 const KEY = 'NoContent';
 
@@ -10059,13 +9910,6 @@ const URLs: Record<ParametersOperation, { method: ApiRequestMethod; url: string;
     'Parameters.postCallWithOptionalParam': { method: 'POST', url: '/api/v{api-version}/parameters/', operation: 'Parameters.postCallWithOptionalParam' },
 };
 
-interface ParametersParameters {
-    'Parameters.callWithParameters': [parameterHeader?: string | null, parameterQuery?: string | null, parameterForm?: string | null, parameterCookie?: string | null, parameterPath?: string | null, requestBody?: ModelWithString | null];
-    'Parameters.callWithWeirdParameterNames': [parameterHeader?: string | null, parameterQuery?: string | null, parameterForm?: string | null, parameterCookie?: string | null, requestBody?: ModelWithString | null, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string];
-    'Parameters.getCallWithOptionalParam': [requestBody?: ModelWithString, parameter?: string];
-    'Parameters.postCallWithOptionalParam': [parameter?: Pageable, requestBody?: ModelWithString];
-}
-
 const KEY = 'Parameters';
 
 export class ParametersSvc {
@@ -10085,16 +9929,16 @@ export class ParametersSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        callWithParameters(...params: Partial<ParametersParameters['Parameters.callWithParameters']>): readonly unknown[] {
+        callWithParameters(...params: [parameterHeader?: string | null, parameterQuery?: string | null, parameterForm?: string | null, parameterCookie?: string | null, parameterPath?: string | null, requestBody?: ModelWithString | null]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', '{parameterPath}', ...params];
         },
-        callWithWeirdParameterNames(...params: Partial<ParametersParameters['Parameters.callWithWeirdParameterNames']>): readonly unknown[] {
+        callWithWeirdParameterNames(...params: [parameterHeader?: string | null, parameterQuery?: string | null, parameterForm?: string | null, parameterCookie?: string | null, requestBody?: ModelWithString | null, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', '{parameter.path.1}', '{parameter-path-2}', '{PARAMETER-PATH-3}', ...params];
         },
-        getCallWithOptionalParam(...params: Partial<ParametersParameters['Parameters.getCallWithOptionalParam']>): readonly unknown[] {
+        getCallWithOptionalParam(...params: [requestBody?: ModelWithString, parameter?: string]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'parameters', ...params];
         },
-        postCallWithOptionalParam(...params: Partial<ParametersParameters['Parameters.postCallWithOptionalParam']>): readonly unknown[] {
+        postCallWithOptionalParam(...params: [parameter?: Pageable, requestBody?: ModelWithString]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', ...params];
         },
     };
@@ -10267,10 +10111,6 @@ const URLs: Record<RequestBodyOperation, { method: ApiRequestMethod; url: string
     'RequestBody.postApiRequestBody': { method: 'POST', url: '/api/v{api-version}/requestBody/', operation: 'RequestBody.postApiRequestBody' },
 };
 
-interface RequestBodyParameters {
-    'RequestBody.postApiRequestBody': [parameter?: string, requestBody?: ModelWithString];
-}
-
 const KEY = 'RequestBody';
 
 export class RequestBodySvc {
@@ -10290,7 +10130,7 @@ export class RequestBodySvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        postApiRequestBody(...params: Partial<RequestBodyParameters['RequestBody.postApiRequestBody']>): readonly unknown[] {
+        postApiRequestBody(...params: [parameter?: string, requestBody?: ModelWithString]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'requestBody', ...params];
         },
     };
@@ -10351,12 +10191,6 @@ const URLs: Record<ResponseOperation, { method: ApiRequestMethod; url: string; o
     'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
     'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
 };
-
-interface ResponseParameters {
-    'Response.callWithResponse': [];
-    'Response.callWithDuplicateResponses': [];
-    'Response.callWithResponses': [];
-}
 
 const KEY = 'Response';
 
@@ -10481,16 +10315,6 @@ const URLs: Record<SimpleOperation, { method: ApiRequestMethod; url: string; ope
     'Simple.headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple', operation: 'Simple.headCallWithoutParametersAndResponse' },
     'Simple.patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple', operation: 'Simple.patchCallWithoutParametersAndResponse' },
 };
-
-interface SimpleParameters {
-    'Simple.getCallWithoutParametersAndResponse': [];
-    'Simple.putCallWithoutParametersAndResponse': [];
-    'Simple.postCallWithoutParametersAndResponse': [];
-    'Simple.deleteCallWithoutParametersAndResponse': [];
-    'Simple.optionsCallWithoutParametersAndResponse': [];
-    'Simple.headCallWithoutParametersAndResponse': [];
-    'Simple.patchCallWithoutParametersAndResponse': [];
-}
 
 const KEY = 'Simple';
 
@@ -10654,10 +10478,6 @@ const URLs: Record<TypesOperation, { method: ApiRequestMethod; url: string; oper
     'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
 };
 
-interface TypesParameters {
-    'Types.types': [parameterArray?: Array<string> | null, parameterDictionary?: any, parameterEnum?: 'Success' | 'Warning' | 'Error' | null, parameterNumber?: number, parameterString?: string | null, parameterBoolean?: boolean | null, parameterObject?: any, id?: number];
-}
-
 const KEY = 'Types';
 
 export class TypesSvc {
@@ -10677,7 +10497,7 @@ export class TypesSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        types(...params: Partial<TypesParameters['Types.types']>): readonly unknown[] {
+        types(...params: [parameterArray?: Array<string> | null, parameterDictionary?: any, parameterEnum?: 'Success' | 'Warning' | 'Error' | null, parameterNumber?: number, parameterString?: string | null, parameterBoolean?: boolean | null, parameterObject?: any, id?: number]): readonly unknown[] {
             return [KEY, 'GET', 'api', 'v{api-version}', 'types', ...params];
         },
     };
@@ -10756,10 +10576,6 @@ const URLs: Record<UploadOperation, { method: ApiRequestMethod; url: string; ope
     'Upload.uploadFile': { method: 'POST', url: '/api/v{api-version}/upload', operation: 'Upload.uploadFile' },
 };
 
-interface UploadParameters {
-    'Upload.uploadFile': [file?: Blob];
-}
-
 const KEY = 'Upload';
 
 export class UploadSvc {
@@ -10779,7 +10595,7 @@ export class UploadSvc {
      * Operation query keys.
      */
     public static readonly QUERY_KEYS = {
-        uploadFile(...params: Partial<UploadParameters['Upload.uploadFile']>): readonly unknown[] {
+        uploadFile(...params: [file?: Blob]): readonly unknown[] {
             return [KEY, 'POST', 'api', 'v{api-version}', 'upload', ...params];
         },
     };

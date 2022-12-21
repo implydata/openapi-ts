@@ -20,12 +20,6 @@ const URLs: Record<{{{name}}}Operation, { method: ApiRequestMethod; url: string;
 {{/each}}
 };
 
-interface {{{name}}}Parameters {
-{{#each operations}}
-	'{{{@root.name}}}.{{{name}}}': [{{~#each parameters}}{{{name}}}?: {{>type}}{{~#unless @last}}, {{/unless}}{{/each}}];
-{{/each}}
-}
-
 const KEY = '{{{name}}}';
 
 export class {{{name}}}{{{@root.postfix}}} {
@@ -46,7 +40,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 	 */
 	public static readonly QUERY_KEYS = {
 	{{#each operations}}
-		{{{name}}}({{~#if parameters~}}...params: Partial<{{{@root.name}}}Parameters['{{{@root.name}}}.{{{name}}}']>{{~/if~}}): readonly unknown[] {
+		{{{name}}}({{~#if parameters~}}...params: [{{~#each parameters}}{{{name}}}?: {{>type}}{{~#unless @last}}, {{/unless}}{{/each}}]{{~/if~}}): readonly unknown[] {
 			{{#if parameters}}
  			return [KEY, '{{{method}}}', {{#each (queryKey path)}}'{{this}}', {{/each}}...params];
 			{{else}}
