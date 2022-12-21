@@ -1,6 +1,6 @@
 {{>header}}
 
-import type { OperationsType, ParametersType } from '../models/_symbols';
+import type { OperationsType } from '../models/_symbols';
 {{#equals @root.httpClient 'angular'}}
 {{#if @root.exportClient}}
 import { Injectable } from '@angular/core';
@@ -40,9 +40,9 @@ const URLs: Record<{{{name}}}Operation, { method: ApiRequestMethod; url: string;
 {{/each}}
 };
 
-export interface {{{name}}}Parameters {
+interface {{{name}}}Parameters {
 {{#each operations}}
-	'{{{@root.name}}}.{{{name}}}': [{{~#each parameters}}{{{name}}}{{~#unless isRequired}}?{{/unless}}: {{>type}}{{~#unless @last}}, {{/unless}}{{/each}}];
+	'{{{@root.name}}}.{{{name}}}': [{{~#each parameters}}{{{name}}}?: {{>type}}{{~#unless @last}}, {{/unless}}{{/each}}];
 {{/each}}
 }
 
@@ -53,7 +53,6 @@ export interface {{{name}}}Parameters {
 {{/equals}}
 export class {{{name}}}{{{@root.postfix}}} {
 	declare [OperationsType]: {{{name}}}Operation;
-	declare [ParametersType]: {{{name}}}Parameters;
 
 	{{#if @root.exportClient}}
 
