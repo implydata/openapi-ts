@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`v2 should generate: ./test/generated/v2/core/ApiError.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 
@@ -18,6 +17,7 @@ export class ApiError extends Error {
     public readonly statusText: string;
     public readonly body: any;
     public readonly request: ApiRequestOptions;
+    public readonly operation: string;
 
     constructor(request: ApiRequestOptions, response: ApiResult, message: string, options?: ErrorOptions) {
         // @ts-ignore -- \\"options\\" only available in ES2022+
@@ -34,11 +34,13 @@ export class ApiError extends Error {
         this.statusText = response.statusText;
         this.body = response.body;
         this.request = request;
+        this.operation = request.operation;
     }
 }
 
 export class CancelError extends Error {
-  public readonly request: ApiRequestOptions;
+    public readonly request: ApiRequestOptions;
+    public readonly operation: string;
 
     constructor(request: ApiRequestOptions, message: string, options?: ErrorOptions) {
         // @ts-ignore -- \\"options\\" only available in ES2022+
@@ -51,6 +53,7 @@ export class CancelError extends Error {
 
         this.name = 'CancelError';
         this.request = request;
+        this.operation = request.operation;
     }
 
     public get isCancelled(): boolean {
@@ -61,16 +64,16 @@ export class CancelError extends Error {
 `;
 
 exports[`v2 should generate: ./test/generated/v2/core/ApiRequestOptions.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiResult } from './ApiResult';
 
 export type ApiRequestMethod = 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
 
 export interface ApiRequestOptions {
     readonly method: ApiRequestMethod;
+    readonly operation: string;
     readonly url: string;
     readonly path?: Record<string, any>;
     readonly cookies?: Record<string, any>;
@@ -94,10 +97,9 @@ export interface ApiRequestOptions {
 `;
 
 exports[`v2 should generate: ./test/generated/v2/core/ApiResult.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 export interface ApiResult {
     readonly url: string;
     readonly ok: boolean;
@@ -109,10 +111,9 @@ export interface ApiResult {
 `;
 
 exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiRequestOptions } from './ApiRequestOptions';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
@@ -140,10 +141,9 @@ export const OpenAPI: OpenAPIConfig = {
 `;
 
 exports[`v2 should generate: ./test/generated/v2/core/functions.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import { ApiError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
@@ -364,10 +364,9 @@ export const resolve = async <T>(options: ApiRequestOptions, resolver?: T | Reso
 `;
 
 exports[`v2 should generate: ./test/generated/v2/core/request.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import { CancelError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { OpenAPIConfig } from './OpenAPI';
@@ -405,10 +404,9 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
 `;
 
 exports[`v2 should generate: ./test/generated/v2/core/requestFetch.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import type { OpenAPIConfig } from './OpenAPI';
@@ -500,10 +498,9 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
 `;
 
 exports[`v2 should generate: ./test/generated/v2/core/requestXhr.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import type { OpenAPIConfig } from './OpenAPI';
@@ -613,6 +610,7 @@ export { ApiError } from './core/ApiError';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { OperationsType } from './models/_symbols';
 export type { ArrayWithArray } from './models/ArrayWithArray';
 export type { ArrayWithBooleans } from './models/ArrayWithBooleans';
 export type { ArrayWithNumbers } from './models/ArrayWithNumbers';
@@ -709,22 +707,22 @@ export { $SimpleReference } from './schemas/$SimpleReference';
 export { $SimpleString } from './schemas/$SimpleString';
 export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 
-export { CollectionFormatService } from './services/CollectionFormatService';
-export { ComplexService } from './services/ComplexService';
-export { DefaultService } from './services/DefaultService';
-export { DefaultsService } from './services/DefaultsService';
-export { DescriptionsService } from './services/DescriptionsService';
-export { DuplicateService } from './services/DuplicateService';
-export { ErrorService } from './services/ErrorService';
-export { HeaderService } from './services/HeaderService';
-export { MultipleTags1Service } from './services/MultipleTags1Service';
-export { MultipleTags2Service } from './services/MultipleTags2Service';
-export { MultipleTags3Service } from './services/MultipleTags3Service';
-export { NoContentService } from './services/NoContentService';
-export { ParametersService } from './services/ParametersService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
+export * from './services/CollectionFormatService';
+export * from './services/ComplexService';
+export * from './services/DefaultService';
+export * from './services/DefaultsService';
+export * from './services/DescriptionsService';
+export * from './services/DuplicateService';
+export * from './services/ErrorService';
+export * from './services/HeaderService';
+export * from './services/MultipleTags1Service';
+export * from './services/MultipleTags2Service';
+export * from './services/MultipleTags3Service';
+export * from './services/NoContentService';
+export * from './services/ParametersService';
+export * from './services/ResponseService';
+export * from './services/SimpleService';
+export * from './services/TypesService';
 
 export type { CollectionFormatOperation } from './operations/CollectionFormatService';
 export type { ComplexTypesOperation } from './operations/ComplexService';
@@ -758,6 +756,11 @@ export type { OptionsCallWithoutParametersAndResponseOperation } from './operati
 export type { HeadCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
 export type { PatchCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
 export type { TypesOperation } from './operations/TypesService';
+"
+`;
+
+exports[`v2 should generate: ./test/generated/v2/models/_symbols.ts 1`] = `
+"export declare const OperationsType: unique symbol;
 "
 `;
 
@@ -2941,22 +2944,45 @@ exports[`v2 should generate: ./test/generated/v2/services/CollectionFormatServic
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'collectionFormat';
+export type CollectionFormatOperation = 'CollectionFormat.collectionFormat';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat' },
+const URLs: Record<CollectionFormatOperation, { method: ApiRequestMethod; url: string; operation: CollectionFormatOperation }> = {
+    'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
 };
 
+interface CollectionFormatParameters {
+    'CollectionFormat.collectionFormat': [parameterArrayCsv?: Array<string>, parameterArraySsv?: Array<string>, parameterArrayTsv?: Array<string>, parameterArrayPipes?: Array<string>, parameterArrayMulti?: Array<string>];
+}
+
+const KEY = 'CollectionFormat';
+
 export class CollectionFormatService {
+    declare [OperationsType]: CollectionFormatOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        collectionFormat(...params: Partial<CollectionFormatParameters['CollectionFormat.collectionFormat']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'collectionFormat', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -2968,48 +2994,24 @@ export class CollectionFormatService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterArrayCsv This is an array parameter that is sent as csv format (comma-separated values)
-     * @param request.parameterArraySsv This is an array parameter that is sent as ssv format (space-separated values)
-     * @param request.parameterArrayTsv This is an array parameter that is sent as tsv format (tab-separated values)
-     * @param request.parameterArrayPipes This is an array parameter that is sent as pipes format (pipe-separated values)
-     * @param request.parameterArrayMulti This is an array parameter that is sent as multi format (multiple parameter instances)
+     * @param parameterArrayCsv This is an array parameter that is sent as csv format (comma-separated values)
+     * @param parameterArraySsv This is an array parameter that is sent as ssv format (space-separated values)
+     * @param parameterArrayTsv This is an array parameter that is sent as tsv format (tab-separated values)
+     * @param parameterArrayPipes This is an array parameter that is sent as pipes format (pipe-separated values)
+     * @param parameterArrayMulti This is an array parameter that is sent as multi format (multiple parameter instances)
      * @param options Request option overrides
      * @throws ApiError
      */
     public collectionFormat(
-        {
-            parameterArrayCsv,
-            parameterArraySsv,
-            parameterArrayTsv,
-            parameterArrayPipes,
-            parameterArrayMulti,
-        }: {
-            /**
-             * This is an array parameter that is sent as csv format (comma-separated values)
-             */
-            parameterArrayCsv: Array<string>,
-            /**
-             * This is an array parameter that is sent as ssv format (space-separated values)
-             */
-            parameterArraySsv: Array<string>,
-            /**
-             * This is an array parameter that is sent as tsv format (tab-separated values)
-             */
-            parameterArrayTsv: Array<string>,
-            /**
-             * This is an array parameter that is sent as pipes format (pipe-separated values)
-             */
-            parameterArrayPipes: Array<string>,
-            /**
-             * This is an array parameter that is sent as multi format (multiple parameter instances)
-             */
-            parameterArrayMulti: Array<string>,
-        },
+        parameterArrayCsv: Array<string>,
+        parameterArraySsv: Array<string>,
+        parameterArrayTsv: Array<string>,
+        parameterArrayPipes: Array<string>,
+        parameterArrayMulti: Array<string>,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['collectionFormat'],
+            ...URLs['CollectionFormat.collectionFormat'],
             query: {
                 'parameterArrayCSV': parameterArrayCsv,
                 'parameterArraySSV': parameterArraySsv,
@@ -3029,6 +3031,7 @@ exports[`v2 should generate: ./test/generated/v2/services/ComplexService.ts 1`] 
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -3036,17 +3039,45 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'complexTypes';
+export type ComplexOperation = 'Complex.complexTypes';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'complexTypes': { method: 'GET', url: '/api/v{api-version}/complex' },
+const URLs: Record<ComplexOperation, { method: ApiRequestMethod; url: string; operation: ComplexOperation }> = {
+    'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
 };
 
+interface ComplexParameters {
+    'Complex.complexTypes': [parameterObject?: {
+        first?: {
+            second?: {
+                third?: string;
+            };
+        };
+    }, parameterReference?: ModelWithString];
+}
+
+const KEY = 'Complex';
+
 export class ComplexService {
+    declare [OperationsType]: ComplexOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        complexTypes(...params: Partial<ComplexParameters['Complex.complexTypes']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'complex', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3058,37 +3089,25 @@ export class ComplexService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterObject Parameter containing object
-     * @param request.parameterReference Parameter containing reference
+     * @param parameterObject Parameter containing object
+     * @param parameterReference Parameter containing reference
      * @param options Request option overrides
      * @returns ModelWithString Successful response
      * @throws ApiError
      */
     public complexTypes(
-        {
-            parameterObject,
-            parameterReference,
-        }: {
-            /**
-             * Parameter containing object
-             */
-            parameterObject: {
-                first?: {
-                    second?: {
-                        third?: string;
-                    };
+        parameterObject: {
+            first?: {
+                second?: {
+                    third?: string;
                 };
-            },
-            /**
-             * Parameter containing reference
-             */
-            parameterReference: ModelWithString,
+            };
         },
+        parameterReference: ModelWithString,
         options?: Partial<ApiRequestOptions>,
     ): Promise<Array<ModelWithString>> {
         return __request(this.config, {
-            ...URLs['complexTypes'],
+            ...URLs['Complex.complexTypes'],
             query: {
                 'parameterObject': parameterObject,
                 'parameterReference': parameterReference,
@@ -3109,22 +3128,45 @@ exports[`v2 should generate: ./test/generated/v2/services/DefaultService.ts 1`] 
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'serviceWithEmptyTag';
+export type DefaultOperation = 'Default.serviceWithEmptyTag';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag' },
+const URLs: Record<DefaultOperation, { method: ApiRequestMethod; url: string; operation: DefaultOperation }> = {
+    'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
 };
 
+interface DefaultParameters {
+    'Default.serviceWithEmptyTag': [];
+}
+
+const KEY = 'Default';
+
 export class DefaultService {
+    declare [OperationsType]: DefaultOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        serviceWithEmptyTag(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'no-tag', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3143,7 +3185,7 @@ export class DefaultService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['serviceWithEmptyTag'],
+            ...URLs['Default.serviceWithEmptyTag'],
             ...options,
         });
     }
@@ -3156,6 +3198,7 @@ exports[`v2 should generate: ./test/generated/v2/services/DefaultsService.ts 1`]
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -3163,19 +3206,49 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithDefaultParameters' | 'callWithDefaultOptionalParameters' | 'callToTestOrderOfParams';
+export type DefaultsOperation = 'Defaults.callWithDefaultParameters' | 'Defaults.callWithDefaultOptionalParameters' | 'Defaults.callToTestOrderOfParams';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithDefaultParameters': { method: 'GET', url: '/api/v{api-version}/defaults' },
-    'callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults' },
-    'callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults' },
+const URLs: Record<DefaultsOperation, { method: ApiRequestMethod; url: string; operation: DefaultsOperation }> = {
+    'Defaults.callWithDefaultParameters': { method: 'GET', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultParameters' },
+    'Defaults.callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultOptionalParameters' },
+    'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
 };
 
+interface DefaultsParameters {
+    'Defaults.callWithDefaultParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
+    'Defaults.callWithDefaultOptionalParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
+    'Defaults.callToTestOrderOfParams': [parameterStringWithNoDefault?: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault?: string, parameterStringWithEmptyDefault?: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null];
+}
+
+const KEY = 'Defaults';
+
 export class DefaultsService {
+    declare [OperationsType]: DefaultsOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithDefaultParameters(...params: Partial<DefaultsParameters['Defaults.callWithDefaultParameters']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'defaults', ...params];
+        },
+        callWithDefaultOptionalParameters(...params: Partial<DefaultsParameters['Defaults.callWithDefaultOptionalParameters']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'defaults', ...params];
+        },
+        callToTestOrderOfParams(...params: Partial<DefaultsParameters['Defaults.callToTestOrderOfParams']>): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'defaults', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3187,50 +3260,26 @@ export class DefaultsService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterString This is a simple string with default value
-     * @param request.parameterNumber This is a simple number with default value
-     * @param request.parameterBoolean This is a simple boolean with default value
-     * @param request.parameterEnum This is a simple enum with default value
-     * @param request.parameterModel This is a simple model with default value
+     * @param parameterString This is a simple string with default value
+     * @param parameterNumber This is a simple number with default value
+     * @param parameterBoolean This is a simple boolean with default value
+     * @param parameterEnum This is a simple enum with default value
+     * @param parameterModel This is a simple model with default value
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithDefaultParameters(
-        {
-            parameterString = 'Hello World!',
-            parameterNumber = 123,
-            parameterBoolean = true,
-            parameterEnum = 'Success',
-            parameterModel = {
-                \\"prop\\": \\"Hello World!\\"
-            },
-        }: {
-            /**
-             * This is a simple string with default value
-             */
-            parameterString?: string,
-            /**
-             * This is a simple number with default value
-             */
-            parameterNumber?: number,
-            /**
-             * This is a simple boolean with default value
-             */
-            parameterBoolean?: boolean,
-            /**
-             * This is a simple enum with default value
-             */
-            parameterEnum?: 'Success' | 'Warning' | 'Error',
-            /**
-             * This is a simple model with default value
-             */
-            parameterModel?: ModelWithString,
+        parameterString: string = 'Hello World!',
+        parameterNumber: number = 123,
+        parameterBoolean: boolean = true,
+        parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
+        parameterModel: ModelWithString = {
+            \\"prop\\": \\"Hello World!\\"
         },
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithDefaultParameters'],
+            ...URLs['Defaults.callWithDefaultParameters'],
             query: {
                 'parameterString': parameterString,
                 'parameterNumber': parameterNumber,
@@ -3243,50 +3292,26 @@ export class DefaultsService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterString This is a simple string that is optional with default value
-     * @param request.parameterNumber This is a simple number that is optional with default value
-     * @param request.parameterBoolean This is a simple boolean that is optional with default value
-     * @param request.parameterEnum This is a simple enum that is optional with default value
-     * @param request.parameterModel This is a simple model that is optional with default value
+     * @param parameterString This is a simple string that is optional with default value
+     * @param parameterNumber This is a simple number that is optional with default value
+     * @param parameterBoolean This is a simple boolean that is optional with default value
+     * @param parameterEnum This is a simple enum that is optional with default value
+     * @param parameterModel This is a simple model that is optional with default value
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithDefaultOptionalParameters(
-        {
-            parameterString = 'Hello World!',
-            parameterNumber = 123,
-            parameterBoolean = true,
-            parameterEnum = 'Success',
-            parameterModel = {
-                \\"prop\\": \\"Hello World!\\"
-            },
-        }: {
-            /**
-             * This is a simple string that is optional with default value
-             */
-            parameterString?: string,
-            /**
-             * This is a simple number that is optional with default value
-             */
-            parameterNumber?: number,
-            /**
-             * This is a simple boolean that is optional with default value
-             */
-            parameterBoolean?: boolean,
-            /**
-             * This is a simple enum that is optional with default value
-             */
-            parameterEnum?: 'Success' | 'Warning' | 'Error',
-            /**
-             * This is a simple model that is optional with default value
-             */
-            parameterModel?: ModelWithString,
+        parameterString: string = 'Hello World!',
+        parameterNumber: number = 123,
+        parameterBoolean: boolean = true,
+        parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
+        parameterModel: ModelWithString = {
+            \\"prop\\": \\"Hello World!\\"
         },
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithDefaultOptionalParameters'],
+            ...URLs['Defaults.callWithDefaultOptionalParameters'],
             query: {
                 'parameterString': parameterString,
                 'parameterNumber': parameterNumber,
@@ -3299,66 +3324,30 @@ export class DefaultsService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterStringWithNoDefault This is a string with no default
-     * @param request.parameterOptionalStringWithDefault This is a optional string with default
-     * @param request.parameterOptionalStringWithEmptyDefault This is a optional string with empty default
-     * @param request.parameterOptionalStringWithNoDefault This is a optional string with no default
-     * @param request.parameterStringWithDefault This is a string with default
-     * @param request.parameterStringWithEmptyDefault This is a string with empty default
-     * @param request.parameterStringNullableWithNoDefault This is a string that can be null with no default
-     * @param request.parameterStringNullableWithDefault This is a string that can be null with default
+     * @param parameterStringWithNoDefault This is a string with no default
+     * @param parameterOptionalStringWithDefault This is a optional string with default
+     * @param parameterOptionalStringWithEmptyDefault This is a optional string with empty default
+     * @param parameterOptionalStringWithNoDefault This is a optional string with no default
+     * @param parameterStringWithDefault This is a string with default
+     * @param parameterStringWithEmptyDefault This is a string with empty default
+     * @param parameterStringNullableWithNoDefault This is a string that can be null with no default
+     * @param parameterStringNullableWithDefault This is a string that can be null with default
      * @param options Request option overrides
      * @throws ApiError
      */
     public callToTestOrderOfParams(
-        {
-            parameterStringWithNoDefault,
-            parameterOptionalStringWithDefault = 'Hello World!',
-            parameterOptionalStringWithEmptyDefault = '',
-            parameterOptionalStringWithNoDefault,
-            parameterStringWithDefault = 'Hello World!',
-            parameterStringWithEmptyDefault = '',
-            parameterStringNullableWithNoDefault,
-            parameterStringNullableWithDefault = null,
-        }: {
-            /**
-             * This is a string with no default
-             */
-            parameterStringWithNoDefault: string,
-            /**
-             * This is a optional string with default
-             */
-            parameterOptionalStringWithDefault?: string,
-            /**
-             * This is a optional string with empty default
-             */
-            parameterOptionalStringWithEmptyDefault?: string,
-            /**
-             * This is a optional string with no default
-             */
-            parameterOptionalStringWithNoDefault?: string,
-            /**
-             * This is a string with default
-             */
-            parameterStringWithDefault?: string,
-            /**
-             * This is a string with empty default
-             */
-            parameterStringWithEmptyDefault?: string,
-            /**
-             * This is a string that can be null with no default
-             */
-            parameterStringNullableWithNoDefault?: string | null,
-            /**
-             * This is a string that can be null with default
-             */
-            parameterStringNullableWithDefault?: string | null,
-        },
+        parameterStringWithNoDefault: string,
+        parameterOptionalStringWithDefault: string = 'Hello World!',
+        parameterOptionalStringWithEmptyDefault: string = '',
+        parameterOptionalStringWithNoDefault?: string,
+        parameterStringWithDefault: string = 'Hello World!',
+        parameterStringWithEmptyDefault: string = '',
+        parameterStringNullableWithNoDefault?: string | null,
+        parameterStringNullableWithDefault: string | null = null,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callToTestOrderOfParams'],
+            ...URLs['Defaults.callToTestOrderOfParams'],
             query: {
                 'parameterOptionalStringWithDefault': parameterOptionalStringWithDefault,
                 'parameterOptionalStringWithEmptyDefault': parameterOptionalStringWithEmptyDefault,
@@ -3381,22 +3370,45 @@ exports[`v2 should generate: ./test/generated/v2/services/DescriptionsService.ts
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithDescriptions';
+export type DescriptionsOperation = 'Descriptions.callWithDescriptions';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/' },
+const URLs: Record<DescriptionsOperation, { method: ApiRequestMethod; url: string; operation: DescriptionsOperation }> = {
+    'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
 };
 
+interface DescriptionsParameters {
+    'Descriptions.callWithDescriptions': [parameterWithBreaks?: string, parameterWithBackticks?: string, parameterWithSlashes?: string, parameterWithExpressionPlaceholders?: string, parameterWithQuotes?: string, parameterWithReservedCharacters?: string];
+}
+
+const KEY = 'Descriptions';
+
 export class DescriptionsService {
+    declare [OperationsType]: DescriptionsOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithDescriptions(...params: Partial<DescriptionsParameters['Descriptions.callWithDescriptions']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'descriptions', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3408,60 +3420,29 @@ export class DescriptionsService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterWithBreaks Testing multiline comments in string: First line
+     * @param parameterWithBreaks Testing multiline comments in string: First line
      * Second line
      *
      * Fourth line
-     * @param request.parameterWithBackticks Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
-     * @param request.parameterWithSlashes Testing slashes in string: \\\\backwards\\\\\\\\\\\\ and /forwards/// should work
-     * @param request.parameterWithExpressionPlaceholders Testing expression placeholders in string: \${expression} should work
-     * @param request.parameterWithQuotes Testing quotes in string: 'single quote''' and \\"double quotes\\"\\"\\" should work
-     * @param request.parameterWithReservedCharacters Testing reserved characters in string: * inline * and ** inline ** should work
+     * @param parameterWithBackticks Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
+     * @param parameterWithSlashes Testing slashes in string: \\\\backwards\\\\\\\\\\\\ and /forwards/// should work
+     * @param parameterWithExpressionPlaceholders Testing expression placeholders in string: \${expression} should work
+     * @param parameterWithQuotes Testing quotes in string: 'single quote''' and \\"double quotes\\"\\"\\" should work
+     * @param parameterWithReservedCharacters Testing reserved characters in string: * inline * and ** inline ** should work
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithDescriptions(
-        {
-            parameterWithBreaks,
-            parameterWithBackticks,
-            parameterWithSlashes,
-            parameterWithExpressionPlaceholders,
-            parameterWithQuotes,
-            parameterWithReservedCharacters,
-        }: {
-            /**
-             * Testing multiline comments in string: First line
-             * Second line
-             *
-             * Fourth line
-             */
-            parameterWithBreaks?: string,
-            /**
-             * Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
-             */
-            parameterWithBackticks?: string,
-            /**
-             * Testing slashes in string: \\\\backwards\\\\\\\\\\\\ and /forwards/// should work
-             */
-            parameterWithSlashes?: string,
-            /**
-             * Testing expression placeholders in string: \${expression} should work
-             */
-            parameterWithExpressionPlaceholders?: string,
-            /**
-             * Testing quotes in string: 'single quote''' and \\"double quotes\\"\\"\\" should work
-             */
-            parameterWithQuotes?: string,
-            /**
-             * Testing reserved characters in string: * inline * and ** inline ** should work
-             */
-            parameterWithReservedCharacters?: string,
-        },
+        parameterWithBreaks?: string,
+        parameterWithBackticks?: string,
+        parameterWithSlashes?: string,
+        parameterWithExpressionPlaceholders?: string,
+        parameterWithQuotes?: string,
+        parameterWithReservedCharacters?: string,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithDescriptions'],
+            ...URLs['Descriptions.callWithDescriptions'],
             query: {
                 'parameterWithBreaks': parameterWithBreaks,
                 'parameterWithBackticks': parameterWithBackticks,
@@ -3482,25 +3463,60 @@ exports[`v2 should generate: ./test/generated/v2/services/DuplicateService.ts 1`
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'duplicateName' | 'duplicateName1' | 'duplicateName2' | 'duplicateName3';
+export type DuplicateOperation = 'Duplicate.duplicateName' | 'Duplicate.duplicateName1' | 'Duplicate.duplicateName2' | 'Duplicate.duplicateName3';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'duplicateName': { method: 'GET', url: '/api/v{api-version}/duplicate' },
-    'duplicateName1': { method: 'POST', url: '/api/v{api-version}/duplicate' },
-    'duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate' },
-    'duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate' },
+const URLs: Record<DuplicateOperation, { method: ApiRequestMethod; url: string; operation: DuplicateOperation }> = {
+    'Duplicate.duplicateName': { method: 'GET', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName' },
+    'Duplicate.duplicateName1': { method: 'POST', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName1' },
+    'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
+    'Duplicate.duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName3' },
 };
 
+interface DuplicateParameters {
+    'Duplicate.duplicateName': [];
+    'Duplicate.duplicateName1': [];
+    'Duplicate.duplicateName2': [];
+    'Duplicate.duplicateName3': [];
+}
+
+const KEY = 'Duplicate';
+
 export class DuplicateService {
+    declare [OperationsType]: DuplicateOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        duplicateName(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'duplicate', ];
+        },
+        duplicateName1(): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'duplicate', ];
+        },
+        duplicateName2(): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'duplicate', ];
+        },
+        duplicateName3(): readonly unknown[] {
+            return [KEY, 'DELETE', 'api', 'v{api-version}', 'duplicate', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3519,7 +3535,7 @@ export class DuplicateService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['duplicateName'],
+            ...URLs['Duplicate.duplicateName'],
             ...options,
         });
     }
@@ -3532,7 +3548,7 @@ export class DuplicateService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['duplicateName1'],
+            ...URLs['Duplicate.duplicateName1'],
             ...options,
         });
     }
@@ -3545,7 +3561,7 @@ export class DuplicateService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['duplicateName2'],
+            ...URLs['Duplicate.duplicateName2'],
             ...options,
         });
     }
@@ -3558,7 +3574,7 @@ export class DuplicateService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['duplicateName3'],
+            ...URLs['Duplicate.duplicateName3'],
             ...options,
         });
     }
@@ -3571,22 +3587,45 @@ exports[`v2 should generate: ./test/generated/v2/services/ErrorService.ts 1`] = 
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'testErrorCode';
+export type ErrorOperation = 'Error.testErrorCode';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'testErrorCode': { method: 'POST', url: '/api/v{api-version}/error' },
+const URLs: Record<ErrorOperation, { method: ApiRequestMethod; url: string; operation: ErrorOperation }> = {
+    'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
 };
 
+interface ErrorParameters {
+    'Error.testErrorCode': [status?: string];
+}
+
+const KEY = 'Error';
+
 export class ErrorService {
+    declare [OperationsType]: ErrorOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        testErrorCode(...params: Partial<ErrorParameters['Error.testErrorCode']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'error', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3598,25 +3637,17 @@ export class ErrorService {
     }
 
     /**
-     * @param request Request
-     * @param request.status Status code to return
+     * @param status Status code to return
      * @param options Request option overrides
      * @returns any Custom message: Successful response
      * @throws ApiError
      */
     public testErrorCode(
-        {
-            status,
-        }: {
-            /**
-             * Status code to return
-             */
-            status: string,
-        },
+        status: string,
         options?: Partial<ApiRequestOptions>,
     ): Promise<any> {
         return __request(this.config, {
-            ...URLs['testErrorCode'],
+            ...URLs['Error.testErrorCode'],
             query: {
                 'status': status,
             },
@@ -3638,22 +3669,45 @@ exports[`v2 should generate: ./test/generated/v2/services/HeaderService.ts 1`] =
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithResultFromHeader';
+export type HeaderOperation = 'Header.callWithResultFromHeader';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header' },
+const URLs: Record<HeaderOperation, { method: ApiRequestMethod; url: string; operation: HeaderOperation }> = {
+    'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
 };
 
+interface HeaderParameters {
+    'Header.callWithResultFromHeader': [];
+}
+
+const KEY = 'Header';
+
 export class HeaderService {
+    declare [OperationsType]: HeaderOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithResultFromHeader(): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'header', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3673,7 +3727,7 @@ export class HeaderService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<string> {
         return __request(this.config, {
-            ...URLs['callWithResultFromHeader'],
+            ...URLs['Header.callWithResultFromHeader'],
             responseHeader: 'operation-location',
             errors: {
                 400: \`400 server error\`,
@@ -3691,23 +3745,50 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags1Service.t
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'dummyA' | 'dummyB';
+export type MultipleTags1Operation = 'MultipleTags1.dummyA' | 'MultipleTags1.dummyB';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a' },
-    'dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b' },
+const URLs: Record<MultipleTags1Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags1Operation }> = {
+    'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
+    'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
 };
 
+interface MultipleTags1Parameters {
+    'MultipleTags1.dummyA': [];
+    'MultipleTags1.dummyB': [];
+}
+
+const KEY = 'MultipleTags1';
+
 export class MultipleTags1Service {
+    declare [OperationsType]: MultipleTags1Operation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        dummyA(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'a', ];
+        },
+        dummyB(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'b', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3727,7 +3808,7 @@ export class MultipleTags1Service {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyA'],
+            ...URLs['MultipleTags1.dummyA'],
             ...options,
         });
     }
@@ -3741,7 +3822,7 @@ export class MultipleTags1Service {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyB'],
+            ...URLs['MultipleTags1.dummyB'],
             ...options,
         });
     }
@@ -3754,23 +3835,50 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags2Service.t
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'dummyA' | 'dummyB';
+export type MultipleTags2Operation = 'MultipleTags2.dummyA' | 'MultipleTags2.dummyB';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a' },
-    'dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b' },
+const URLs: Record<MultipleTags2Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags2Operation }> = {
+    'MultipleTags2.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags2.dummyA' },
+    'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
 };
 
+interface MultipleTags2Parameters {
+    'MultipleTags2.dummyA': [];
+    'MultipleTags2.dummyB': [];
+}
+
+const KEY = 'MultipleTags2';
+
 export class MultipleTags2Service {
+    declare [OperationsType]: MultipleTags2Operation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        dummyA(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'a', ];
+        },
+        dummyB(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'b', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3790,7 +3898,7 @@ export class MultipleTags2Service {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyA'],
+            ...URLs['MultipleTags2.dummyA'],
             ...options,
         });
     }
@@ -3804,7 +3912,7 @@ export class MultipleTags2Service {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyB'],
+            ...URLs['MultipleTags2.dummyB'],
             ...options,
         });
     }
@@ -3817,22 +3925,45 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags3Service.t
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'dummyB';
+export type MultipleTags3Operation = 'MultipleTags3.dummyB';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b' },
+const URLs: Record<MultipleTags3Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags3Operation }> = {
+    'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
 };
 
+interface MultipleTags3Parameters {
+    'MultipleTags3.dummyB': [];
+}
+
+const KEY = 'MultipleTags3';
+
 export class MultipleTags3Service {
+    declare [OperationsType]: MultipleTags3Operation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        dummyB(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'b', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3852,7 +3983,7 @@ export class MultipleTags3Service {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyB'],
+            ...URLs['MultipleTags3.dummyB'],
             ...options,
         });
     }
@@ -3865,22 +3996,45 @@ exports[`v2 should generate: ./test/generated/v2/services/NoContentService.ts 1`
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithNoContentResponse';
+export type NoContentOperation = 'NoContent.callWithNoContentResponse';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content' },
+const URLs: Record<NoContentOperation, { method: ApiRequestMethod; url: string; operation: NoContentOperation }> = {
+    'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
 };
 
+interface NoContentParameters {
+    'NoContent.callWithNoContentResponse': [];
+}
+
+const KEY = 'NoContent';
+
 export class NoContentService {
+    declare [OperationsType]: NoContentOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithNoContentResponse(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'no-content', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3900,7 +4054,7 @@ export class NoContentService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithNoContentResponse'],
+            ...URLs['NoContent.callWithNoContentResponse'],
             ...options,
         });
     }
@@ -3913,23 +4067,50 @@ exports[`v2 should generate: ./test/generated/v2/services/ParametersService.ts 1
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithParameters' | 'callWithWeirdParameterNames';
+export type ParametersOperation = 'Parameters.callWithParameters' | 'Parameters.callWithWeirdParameterNames';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}' },
-    'callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}' },
+const URLs: Record<ParametersOperation, { method: ApiRequestMethod; url: string; operation: ParametersOperation }> = {
+    'Parameters.callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}', operation: 'Parameters.callWithParameters' },
+    'Parameters.callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', operation: 'Parameters.callWithWeirdParameterNames' },
 };
 
+interface ParametersParameters {
+    'Parameters.callWithParameters': [parameterHeader?: string, parameterQuery?: string, parameterForm?: string, parameterBody?: string, parameterPath?: string];
+    'Parameters.callWithWeirdParameterNames': [parameterHeader?: string, parameterQuery?: string, parameterForm?: string, parameterBody?: string, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string];
+}
+
+const KEY = 'Parameters';
+
 export class ParametersService {
+    declare [OperationsType]: ParametersOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithParameters(...params: Partial<ParametersParameters['Parameters.callWithParameters']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', '{parameterPath}', ...params];
+        },
+        callWithWeirdParameterNames(...params: Partial<ParametersParameters['Parameters.callWithWeirdParameterNames']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', '{parameter.path.1}', '{parameter-path-2}', '{PARAMETER-PATH-3}', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -3941,48 +4122,24 @@ export class ParametersService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterHeader This is the parameter that goes into the header
-     * @param request.parameterQuery This is the parameter that goes into the query params
-     * @param request.parameterForm This is the parameter that goes into the form data
-     * @param request.parameterBody This is the parameter that is sent as request body
-     * @param request.parameterPath This is the parameter that goes into the path
+     * @param parameterHeader This is the parameter that goes into the header
+     * @param parameterQuery This is the parameter that goes into the query params
+     * @param parameterForm This is the parameter that goes into the form data
+     * @param parameterBody This is the parameter that is sent as request body
+     * @param parameterPath This is the parameter that goes into the path
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithParameters(
-        {
-            parameterHeader,
-            parameterQuery,
-            parameterForm,
-            parameterBody,
-            parameterPath,
-        }: {
-            /**
-             * This is the parameter that goes into the header
-             */
-            parameterHeader: string,
-            /**
-             * This is the parameter that goes into the query params
-             */
-            parameterQuery: string,
-            /**
-             * This is the parameter that goes into the form data
-             */
-            parameterForm: string,
-            /**
-             * This is the parameter that is sent as request body
-             */
-            parameterBody: string,
-            /**
-             * This is the parameter that goes into the path
-             */
-            parameterPath: string,
-        },
+        parameterHeader: string,
+        parameterQuery: string,
+        parameterForm: string,
+        parameterBody: string,
+        parameterPath: string,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithParameters'],
+            ...URLs['Parameters.callWithParameters'],
             path: {
                 'parameterPath': parameterPath,
             },
@@ -4001,66 +4158,30 @@ export class ParametersService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterHeader This is the parameter that goes into the request header
-     * @param request.parameterQuery This is the parameter that goes into the request query params
-     * @param request.parameterForm This is the parameter that goes into the request form data
-     * @param request.parameterBody This is the parameter that is sent as request body
-     * @param request.parameterPath1 This is the parameter that goes into the path
-     * @param request.parameterPath2 This is the parameter that goes into the path
-     * @param request.parameterPath3 This is the parameter that goes into the path
-     * @param request._default This is the parameter with a reserved keyword
+     * @param parameterHeader This is the parameter that goes into the request header
+     * @param parameterQuery This is the parameter that goes into the request query params
+     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterBody This is the parameter that is sent as request body
+     * @param parameterPath1 This is the parameter that goes into the path
+     * @param parameterPath2 This is the parameter that goes into the path
+     * @param parameterPath3 This is the parameter that goes into the path
+     * @param _default This is the parameter with a reserved keyword
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithWeirdParameterNames(
-        {
-            parameterHeader,
-            parameterQuery,
-            parameterForm,
-            parameterBody,
-            parameterPath1,
-            parameterPath2,
-            parameterPath3,
-            _default,
-        }: {
-            /**
-             * This is the parameter that goes into the request header
-             */
-            parameterHeader: string,
-            /**
-             * This is the parameter that goes into the request query params
-             */
-            parameterQuery: string,
-            /**
-             * This is the parameter that goes into the request form data
-             */
-            parameterForm: string,
-            /**
-             * This is the parameter that is sent as request body
-             */
-            parameterBody: string,
-            /**
-             * This is the parameter that goes into the path
-             */
-            parameterPath1?: string,
-            /**
-             * This is the parameter that goes into the path
-             */
-            parameterPath2?: string,
-            /**
-             * This is the parameter that goes into the path
-             */
-            parameterPath3?: string,
-            /**
-             * This is the parameter with a reserved keyword
-             */
-            _default?: string,
-        },
+        parameterHeader: string,
+        parameterQuery: string,
+        parameterForm: string,
+        parameterBody: string,
+        parameterPath1?: string,
+        parameterPath2?: string,
+        parameterPath3?: string,
+        _default?: string,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithWeirdParameterNames'],
+            ...URLs['Parameters.callWithWeirdParameterNames'],
             path: {
                 'parameter.path.1': parameterPath1,
                 'parameter-path-2': parameterPath2,
@@ -4089,6 +4210,7 @@ exports[`v2 should generate: ./test/generated/v2/services/ResponseService.ts 1`]
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
@@ -4098,19 +4220,49 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithResponse' | 'callWithDuplicateResponses' | 'callWithResponses';
+export type ResponseOperation = 'Response.callWithResponse' | 'Response.callWithDuplicateResponses' | 'Response.callWithResponses';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithResponse': { method: 'GET', url: '/api/v{api-version}/response' },
-    'callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response' },
-    'callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response' },
+const URLs: Record<ResponseOperation, { method: ApiRequestMethod; url: string; operation: ResponseOperation }> = {
+    'Response.callWithResponse': { method: 'GET', url: '/api/v{api-version}/response', operation: 'Response.callWithResponse' },
+    'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
+    'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
 };
 
+interface ResponseParameters {
+    'Response.callWithResponse': [];
+    'Response.callWithDuplicateResponses': [];
+    'Response.callWithResponses': [];
+}
+
+const KEY = 'Response';
+
 export class ResponseService {
+    declare [OperationsType]: ResponseOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithResponse(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'response', ];
+        },
+        callWithDuplicateResponses(): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'response', ];
+        },
+        callWithResponses(): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'response', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -4130,7 +4282,7 @@ export class ResponseService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<ModelWithString> {
         return __request(this.config, {
-            ...URLs['callWithResponse'],
+            ...URLs['Response.callWithResponse'],
             ...options,
         });
     }
@@ -4144,7 +4296,7 @@ export class ResponseService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<ModelWithString> {
         return __request(this.config, {
-            ...URLs['callWithDuplicateResponses'],
+            ...URLs['Response.callWithDuplicateResponses'],
             errors: {
                 500: \`Message for 500 error\`,
                 501: \`Message for 501 error\`,
@@ -4170,7 +4322,7 @@ export class ResponseService {
         readonly value?: Array<ModelWithString>;
     } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
         return __request(this.config, {
-            ...URLs['callWithResponses'],
+            ...URLs['Response.callWithResponses'],
             errors: {
                 500: \`Message for 500 error\`,
                 501: \`Message for 501 error\`,
@@ -4188,28 +4340,75 @@ exports[`v2 should generate: ./test/generated/v2/services/SimpleService.ts 1`] =
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'getCallWithoutParametersAndResponse' | 'putCallWithoutParametersAndResponse' | 'postCallWithoutParametersAndResponse' | 'deleteCallWithoutParametersAndResponse' | 'optionsCallWithoutParametersAndResponse' | 'headCallWithoutParametersAndResponse' | 'patchCallWithoutParametersAndResponse';
+export type SimpleOperation = 'Simple.getCallWithoutParametersAndResponse' | 'Simple.putCallWithoutParametersAndResponse' | 'Simple.postCallWithoutParametersAndResponse' | 'Simple.deleteCallWithoutParametersAndResponse' | 'Simple.optionsCallWithoutParametersAndResponse' | 'Simple.headCallWithoutParametersAndResponse' | 'Simple.patchCallWithoutParametersAndResponse';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'getCallWithoutParametersAndResponse': { method: 'GET', url: '/api/v{api-version}/simple' },
-    'putCallWithoutParametersAndResponse': { method: 'PUT', url: '/api/v{api-version}/simple' },
-    'postCallWithoutParametersAndResponse': { method: 'POST', url: '/api/v{api-version}/simple' },
-    'deleteCallWithoutParametersAndResponse': { method: 'DELETE', url: '/api/v{api-version}/simple' },
-    'optionsCallWithoutParametersAndResponse': { method: 'OPTIONS', url: '/api/v{api-version}/simple' },
-    'headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple' },
-    'patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple' },
+const URLs: Record<SimpleOperation, { method: ApiRequestMethod; url: string; operation: SimpleOperation }> = {
+    'Simple.getCallWithoutParametersAndResponse': { method: 'GET', url: '/api/v{api-version}/simple', operation: 'Simple.getCallWithoutParametersAndResponse' },
+    'Simple.putCallWithoutParametersAndResponse': { method: 'PUT', url: '/api/v{api-version}/simple', operation: 'Simple.putCallWithoutParametersAndResponse' },
+    'Simple.postCallWithoutParametersAndResponse': { method: 'POST', url: '/api/v{api-version}/simple', operation: 'Simple.postCallWithoutParametersAndResponse' },
+    'Simple.deleteCallWithoutParametersAndResponse': { method: 'DELETE', url: '/api/v{api-version}/simple', operation: 'Simple.deleteCallWithoutParametersAndResponse' },
+    'Simple.optionsCallWithoutParametersAndResponse': { method: 'OPTIONS', url: '/api/v{api-version}/simple', operation: 'Simple.optionsCallWithoutParametersAndResponse' },
+    'Simple.headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple', operation: 'Simple.headCallWithoutParametersAndResponse' },
+    'Simple.patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple', operation: 'Simple.patchCallWithoutParametersAndResponse' },
 };
 
+interface SimpleParameters {
+    'Simple.getCallWithoutParametersAndResponse': [];
+    'Simple.putCallWithoutParametersAndResponse': [];
+    'Simple.postCallWithoutParametersAndResponse': [];
+    'Simple.deleteCallWithoutParametersAndResponse': [];
+    'Simple.optionsCallWithoutParametersAndResponse': [];
+    'Simple.headCallWithoutParametersAndResponse': [];
+    'Simple.patchCallWithoutParametersAndResponse': [];
+}
+
+const KEY = 'Simple';
+
 export class SimpleService {
+    declare [OperationsType]: SimpleOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        getCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'simple', ];
+        },
+        putCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'simple', ];
+        },
+        postCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'simple', ];
+        },
+        deleteCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'DELETE', 'api', 'v{api-version}', 'simple', ];
+        },
+        optionsCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'OPTIONS', 'api', 'v{api-version}', 'simple', ];
+        },
+        headCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'HEAD', 'api', 'v{api-version}', 'simple', ];
+        },
+        patchCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'PATCH', 'api', 'v{api-version}', 'simple', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -4228,7 +4427,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['getCallWithoutParametersAndResponse'],
+            ...URLs['Simple.getCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -4241,7 +4440,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['putCallWithoutParametersAndResponse'],
+            ...URLs['Simple.putCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -4254,7 +4453,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['postCallWithoutParametersAndResponse'],
+            ...URLs['Simple.postCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -4267,7 +4466,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['deleteCallWithoutParametersAndResponse'],
+            ...URLs['Simple.deleteCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -4280,7 +4479,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['optionsCallWithoutParametersAndResponse'],
+            ...URLs['Simple.optionsCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -4293,7 +4492,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['headCallWithoutParametersAndResponse'],
+            ...URLs['Simple.headCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -4306,7 +4505,7 @@ export class SimpleService {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['patchCallWithoutParametersAndResponse'],
+            ...URLs['Simple.patchCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -4319,22 +4518,45 @@ exports[`v2 should generate: ./test/generated/v2/services/TypesService.ts 1`] = 
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'types';
+export type TypesOperation = 'Types.types';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'types': { method: 'GET', url: '/api/v{api-version}/types' },
+const URLs: Record<TypesOperation, { method: ApiRequestMethod; url: string; operation: TypesOperation }> = {
+    'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
 };
 
+interface TypesParameters {
+    'Types.types': [parameterArray?: Array<string>, parameterDictionary?: Record<string, string>, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterNumber?: number, parameterString?: string, parameterBoolean?: boolean, parameterObject?: any, id?: number];
+}
+
+const KEY = 'Types';
+
 export class TypesService {
+    declare [OperationsType]: TypesOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        types(...params: Partial<TypesParameters['Types.types']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'types', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -4346,15 +4568,14 @@ export class TypesService {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterArray This is an array parameter
-     * @param request.parameterDictionary This is a dictionary parameter
-     * @param request.parameterEnum This is an enum parameter
-     * @param request.parameterNumber This is a number parameter
-     * @param request.parameterString This is a string parameter
-     * @param request.parameterBoolean This is a boolean parameter
-     * @param request.parameterObject This is an object parameter
-     * @param request.id This is a number parameter
+     * @param parameterArray This is an array parameter
+     * @param parameterDictionary This is a dictionary parameter
+     * @param parameterEnum This is an enum parameter
+     * @param parameterNumber This is a number parameter
+     * @param parameterString This is a string parameter
+     * @param parameterBoolean This is a boolean parameter
+     * @param parameterObject This is an object parameter
+     * @param id This is a number parameter
      * @param options Request option overrides
      * @returns number Response is a simple number
      * @returns string Response is a simple string
@@ -4363,53 +4584,18 @@ export class TypesService {
      * @throws ApiError
      */
     public types(
-        {
-            parameterArray,
-            parameterDictionary,
-            parameterEnum,
-            parameterNumber = 123,
-            parameterString = 'default',
-            parameterBoolean = true,
-            parameterObject = null,
-            id,
-        }: {
-            /**
-             * This is an array parameter
-             */
-            parameterArray: Array<string>,
-            /**
-             * This is a dictionary parameter
-             */
-            parameterDictionary: Record<string, string>,
-            /**
-             * This is an enum parameter
-             */
-            parameterEnum: 'Success' | 'Warning' | 'Error',
-            /**
-             * This is a number parameter
-             */
-            parameterNumber?: number,
-            /**
-             * This is a string parameter
-             */
-            parameterString?: string,
-            /**
-             * This is a boolean parameter
-             */
-            parameterBoolean?: boolean,
-            /**
-             * This is an object parameter
-             */
-            parameterObject?: any,
-            /**
-             * This is a number parameter
-             */
-            id?: number,
-        },
+        parameterArray: Array<string>,
+        parameterDictionary: Record<string, string>,
+        parameterEnum: 'Success' | 'Warning' | 'Error',
+        parameterNumber: number = 123,
+        parameterString: string = 'default',
+        parameterBoolean: boolean = true,
+        parameterObject: any = null,
+        id?: number,
         options?: Partial<ApiRequestOptions>,
     ): Promise<number | string | boolean | any> {
         return __request(this.config, {
-            ...URLs['types'],
+            ...URLs['Types.types'],
             path: {
                 'id': id,
             },
@@ -4431,10 +4617,9 @@ export class TypesService {
 `;
 
 exports[`v3 should generate: ./test/generated/v3/core/ApiError.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 
@@ -4448,6 +4633,7 @@ export class ApiError extends Error {
     public readonly statusText: string;
     public readonly body: any;
     public readonly request: ApiRequestOptions;
+    public readonly operation: string;
 
     constructor(request: ApiRequestOptions, response: ApiResult, message: string, options?: ErrorOptions) {
         // @ts-ignore -- \\"options\\" only available in ES2022+
@@ -4464,11 +4650,13 @@ export class ApiError extends Error {
         this.statusText = response.statusText;
         this.body = response.body;
         this.request = request;
+        this.operation = request.operation;
     }
 }
 
 export class CancelError extends Error {
-  public readonly request: ApiRequestOptions;
+    public readonly request: ApiRequestOptions;
+    public readonly operation: string;
 
     constructor(request: ApiRequestOptions, message: string, options?: ErrorOptions) {
         // @ts-ignore -- \\"options\\" only available in ES2022+
@@ -4481,6 +4669,7 @@ export class CancelError extends Error {
 
         this.name = 'CancelError';
         this.request = request;
+        this.operation = request.operation;
     }
 
     public get isCancelled(): boolean {
@@ -4491,16 +4680,16 @@ export class CancelError extends Error {
 `;
 
 exports[`v3 should generate: ./test/generated/v3/core/ApiRequestOptions.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiResult } from './ApiResult';
 
 export type ApiRequestMethod = 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
 
 export interface ApiRequestOptions {
     readonly method: ApiRequestMethod;
+    readonly operation: string;
     readonly url: string;
     readonly path?: Record<string, any>;
     readonly cookies?: Record<string, any>;
@@ -4524,10 +4713,9 @@ export interface ApiRequestOptions {
 `;
 
 exports[`v3 should generate: ./test/generated/v3/core/ApiResult.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 export interface ApiResult {
     readonly url: string;
     readonly ok: boolean;
@@ -4539,10 +4727,9 @@ export interface ApiResult {
 `;
 
 exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiRequestOptions } from './ApiRequestOptions';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
@@ -4570,10 +4757,9 @@ export const OpenAPI: OpenAPIConfig = {
 `;
 
 exports[`v3 should generate: ./test/generated/v3/core/functions.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import { ApiError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
@@ -4794,10 +4980,9 @@ export const resolve = async <T>(options: ApiRequestOptions, resolver?: T | Reso
 `;
 
 exports[`v3 should generate: ./test/generated/v3/core/request.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import { CancelError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { OpenAPIConfig } from './OpenAPI';
@@ -4835,10 +5020,9 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
 `;
 
 exports[`v3 should generate: ./test/generated/v3/core/requestFetch.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import type { OpenAPIConfig } from './OpenAPI';
@@ -4930,10 +5114,9 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
 `;
 
 exports[`v3 should generate: ./test/generated/v3/core/requestXhr.ts 1`] = `
-"/* istanbul ignore file */
+"/* eslint-disable */
+/* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import type { OpenAPIConfig } from './OpenAPI';
@@ -5043,6 +5226,7 @@ export { ApiError } from './core/ApiError';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { OperationsType } from './models/_symbols';
 export type { ArrayWithArray } from './models/ArrayWithArray';
 export type { ArrayWithBooleans } from './models/ArrayWithBooleans';
 export type { ArrayWithNumbers } from './models/ArrayWithNumbers';
@@ -5173,27 +5357,27 @@ export { $SimpleReference } from './schemas/$SimpleReference';
 export { $SimpleString } from './schemas/$SimpleString';
 export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 
-export { CollectionFormatSvc } from './services/CollectionFormatSvc';
-export { ComplexSvc } from './services/ComplexSvc';
-export { DefaultSvc } from './services/DefaultSvc';
-export { DefaultsSvc } from './services/DefaultsSvc';
-export { DeprecatedSvc } from './services/DeprecatedSvc';
-export { DescriptionsSvc } from './services/DescriptionsSvc';
-export { DuplicateSvc } from './services/DuplicateSvc';
-export { ErrorSvc } from './services/ErrorSvc';
-export { FormDataSvc } from './services/FormDataSvc';
-export { HeaderSvc } from './services/HeaderSvc';
-export { MultipartSvc } from './services/MultipartSvc';
-export { MultipleTags1Svc } from './services/MultipleTags1Svc';
-export { MultipleTags2Svc } from './services/MultipleTags2Svc';
-export { MultipleTags3Svc } from './services/MultipleTags3Svc';
-export { NoContentSvc } from './services/NoContentSvc';
-export { ParametersSvc } from './services/ParametersSvc';
-export { RequestBodySvc } from './services/RequestBodySvc';
-export { ResponseSvc } from './services/ResponseSvc';
-export { SimpleSvc } from './services/SimpleSvc';
-export { TypesSvc } from './services/TypesSvc';
-export { UploadSvc } from './services/UploadSvc';
+export * from './services/CollectionFormatSvc';
+export * from './services/ComplexSvc';
+export * from './services/DefaultSvc';
+export * from './services/DefaultsSvc';
+export * from './services/DeprecatedSvc';
+export * from './services/DescriptionsSvc';
+export * from './services/DuplicateSvc';
+export * from './services/ErrorSvc';
+export * from './services/FormDataSvc';
+export * from './services/HeaderSvc';
+export * from './services/MultipartSvc';
+export * from './services/MultipleTags1Svc';
+export * from './services/MultipleTags2Svc';
+export * from './services/MultipleTags3Svc';
+export * from './services/NoContentSvc';
+export * from './services/ParametersSvc';
+export * from './services/RequestBodySvc';
+export * from './services/ResponseSvc';
+export * from './services/SimpleSvc';
+export * from './services/TypesSvc';
+export * from './services/UploadSvc';
 
 export type { CollectionFormatOperation } from './operations/CollectionFormatSvc';
 export type { ComplexTypesOperation } from './operations/ComplexSvc';
@@ -5236,6 +5420,11 @@ export type { HeadCallWithoutParametersAndResponseOperation } from './operations
 export type { PatchCallWithoutParametersAndResponseOperation } from './operations/SimpleSvc';
 export type { TypesOperation } from './operations/TypesSvc';
 export type { UploadFileOperation } from './operations/UploadSvc';
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/_symbols.ts 1`] = `
+"export declare const OperationsType: unique symbol;
 "
 `;
 
@@ -8408,22 +8597,45 @@ exports[`v3 should generate: ./test/generated/v3/services/CollectionFormatSvc.ts
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'collectionFormat';
+export type CollectionFormatOperation = 'CollectionFormat.collectionFormat';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat' },
+const URLs: Record<CollectionFormatOperation, { method: ApiRequestMethod; url: string; operation: CollectionFormatOperation }> = {
+    'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
 };
 
+interface CollectionFormatParameters {
+    'CollectionFormat.collectionFormat': [parameterArrayCsv?: Array<string> | null, parameterArraySsv?: Array<string> | null, parameterArrayTsv?: Array<string> | null, parameterArrayPipes?: Array<string> | null, parameterArrayMulti?: Array<string> | null];
+}
+
+const KEY = 'CollectionFormat';
+
 export class CollectionFormatSvc {
+    declare [OperationsType]: CollectionFormatOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        collectionFormat(...params: Partial<CollectionFormatParameters['CollectionFormat.collectionFormat']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'collectionFormat', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -8435,48 +8647,24 @@ export class CollectionFormatSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterArrayCsv This is an array parameter that is sent as csv format (comma-separated values)
-     * @param request.parameterArraySsv This is an array parameter that is sent as ssv format (space-separated values)
-     * @param request.parameterArrayTsv This is an array parameter that is sent as tsv format (tab-separated values)
-     * @param request.parameterArrayPipes This is an array parameter that is sent as pipes format (pipe-separated values)
-     * @param request.parameterArrayMulti This is an array parameter that is sent as multi format (multiple parameter instances)
+     * @param parameterArrayCsv This is an array parameter that is sent as csv format (comma-separated values)
+     * @param parameterArraySsv This is an array parameter that is sent as ssv format (space-separated values)
+     * @param parameterArrayTsv This is an array parameter that is sent as tsv format (tab-separated values)
+     * @param parameterArrayPipes This is an array parameter that is sent as pipes format (pipe-separated values)
+     * @param parameterArrayMulti This is an array parameter that is sent as multi format (multiple parameter instances)
      * @param options Request option overrides
      * @throws ApiError
      */
     public collectionFormat(
-        {
-            parameterArrayCsv,
-            parameterArraySsv,
-            parameterArrayTsv,
-            parameterArrayPipes,
-            parameterArrayMulti,
-        }: {
-            /**
-             * This is an array parameter that is sent as csv format (comma-separated values)
-             */
-            parameterArrayCsv: Array<string> | null,
-            /**
-             * This is an array parameter that is sent as ssv format (space-separated values)
-             */
-            parameterArraySsv: Array<string> | null,
-            /**
-             * This is an array parameter that is sent as tsv format (tab-separated values)
-             */
-            parameterArrayTsv: Array<string> | null,
-            /**
-             * This is an array parameter that is sent as pipes format (pipe-separated values)
-             */
-            parameterArrayPipes: Array<string> | null,
-            /**
-             * This is an array parameter that is sent as multi format (multiple parameter instances)
-             */
-            parameterArrayMulti: Array<string> | null,
-        },
+        parameterArrayCsv: Array<string> | null,
+        parameterArraySsv: Array<string> | null,
+        parameterArrayTsv: Array<string> | null,
+        parameterArrayPipes: Array<string> | null,
+        parameterArrayMulti: Array<string> | null,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['collectionFormat'],
+            ...URLs['CollectionFormat.collectionFormat'],
             query: {
                 'parameterArrayCSV': parameterArrayCsv,
                 'parameterArraySSV': parameterArraySsv,
@@ -8496,6 +8684,7 @@ exports[`v3 should generate: ./test/generated/v3/services/ComplexSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelWithArray } from '../models/ModelWithArray';
 import type { ModelWithDictionary } from '../models/ModelWithDictionary';
 import type { ModelWithEnum } from '../models/ModelWithEnum';
@@ -8506,18 +8695,62 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'complexTypes' | 'complexParams';
+export type ComplexOperation = 'Complex.complexTypes' | 'Complex.complexParams';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'complexTypes': { method: 'GET', url: '/api/v{api-version}/complex' },
-    'complexParams': { method: 'PUT', url: '/api/v{api-version}/complex/{id}' },
+const URLs: Record<ComplexOperation, { method: ApiRequestMethod; url: string; operation: ComplexOperation }> = {
+    'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
+    'Complex.complexParams': { method: 'PUT', url: '/api/v{api-version}/complex/{id}', operation: 'Complex.complexParams' },
 };
 
+interface ComplexParameters {
+    'Complex.complexTypes': [parameterObject?: {
+        first?: {
+            second?: {
+                third?: string;
+            };
+        };
+    }, parameterReference?: ModelWithString];
+    'Complex.complexParams': [id?: number, requestBody?: {
+        readonly key: string | null;
+        name: string | null;
+        enabled?: boolean;
+        readonly type: 'Monkey' | 'Horse' | 'Bird';
+        listOfModels?: Array<ModelWithString> | null;
+        listOfStrings?: Array<string> | null;
+        parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+        readonly user?: {
+            readonly id?: number;
+            readonly name?: string | null;
+        };
+    }];
+}
+
+const KEY = 'Complex';
+
 export class ComplexSvc {
+    declare [OperationsType]: ComplexOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        complexTypes(...params: Partial<ComplexParameters['Complex.complexTypes']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'complex', ...params];
+        },
+        complexParams(...params: Partial<ComplexParameters['Complex.complexParams']>): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'complex', '{id}', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -8529,37 +8762,25 @@ export class ComplexSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterObject Parameter containing object
-     * @param request.parameterReference Parameter containing reference
+     * @param parameterObject Parameter containing object
+     * @param parameterReference Parameter containing reference
      * @param options Request option overrides
      * @returns ModelWithString Successful response
      * @throws ApiError
      */
     public complexTypes(
-        {
-            parameterObject,
-            parameterReference,
-        }: {
-            /**
-             * Parameter containing object
-             */
-            parameterObject: {
-                first?: {
-                    second?: {
-                        third?: string;
-                    };
+        parameterObject: {
+            first?: {
+                second?: {
+                    third?: string;
                 };
-            },
-            /**
-             * Parameter containing reference
-             */
-            parameterReference: ModelWithString,
+            };
         },
+        parameterReference: ModelWithString,
         options?: Partial<ApiRequestOptions>,
     ): Promise<Array<ModelWithString>> {
         return __request(this.config, {
-            ...URLs['complexTypes'],
+            ...URLs['Complex.complexTypes'],
             query: {
                 'parameterObject': parameterObject,
                 'parameterReference': parameterReference,
@@ -8573,37 +8794,31 @@ export class ComplexSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.id
-     * @param request.requestBody
+     * @param id
+     * @param requestBody
      * @param options Request option overrides
      * @returns ModelWithString Success
      * @throws ApiError
      */
     public complexParams(
-        {
-            id,
-            requestBody,
-        }: {
-            id: number,
-            requestBody?: {
-                readonly key: string | null;
-                name: string | null;
-                enabled?: boolean;
-                readonly type: 'Monkey' | 'Horse' | 'Bird';
-                listOfModels?: Array<ModelWithString> | null;
-                listOfStrings?: Array<string> | null;
-                parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
-                readonly user?: {
-                    readonly id?: number;
-                    readonly name?: string | null;
-                };
-            },
+        id: number,
+        requestBody?: {
+            readonly key: string | null;
+            name: string | null;
+            enabled?: boolean;
+            readonly type: 'Monkey' | 'Horse' | 'Bird';
+            listOfModels?: Array<ModelWithString> | null;
+            listOfStrings?: Array<string> | null;
+            parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+            readonly user?: {
+                readonly id?: number;
+                readonly name?: string | null;
+            };
         },
         options?: Partial<ApiRequestOptions>,
     ): Promise<ModelWithString> {
         return __request(this.config, {
-            ...URLs['complexParams'],
+            ...URLs['Complex.complexParams'],
             path: {
                 'id': id,
             },
@@ -8621,22 +8836,45 @@ exports[`v3 should generate: ./test/generated/v3/services/DefaultSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'serviceWithEmptyTag';
+export type DefaultOperation = 'Default.serviceWithEmptyTag';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag' },
+const URLs: Record<DefaultOperation, { method: ApiRequestMethod; url: string; operation: DefaultOperation }> = {
+    'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
 };
 
+interface DefaultParameters {
+    'Default.serviceWithEmptyTag': [];
+}
+
+const KEY = 'Default';
+
 export class DefaultSvc {
+    declare [OperationsType]: DefaultOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        serviceWithEmptyTag(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'no-tag', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -8655,7 +8893,7 @@ export class DefaultSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['serviceWithEmptyTag'],
+            ...URLs['Default.serviceWithEmptyTag'],
             ...options,
         });
     }
@@ -8668,6 +8906,7 @@ exports[`v3 should generate: ./test/generated/v3/services/DefaultsSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -8675,19 +8914,49 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithDefaultParameters' | 'callWithDefaultOptionalParameters' | 'callToTestOrderOfParams';
+export type DefaultsOperation = 'Defaults.callWithDefaultParameters' | 'Defaults.callWithDefaultOptionalParameters' | 'Defaults.callToTestOrderOfParams';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithDefaultParameters': { method: 'GET', url: '/api/v{api-version}/defaults' },
-    'callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults' },
-    'callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults' },
+const URLs: Record<DefaultsOperation, { method: ApiRequestMethod; url: string; operation: DefaultsOperation }> = {
+    'Defaults.callWithDefaultParameters': { method: 'GET', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultParameters' },
+    'Defaults.callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultOptionalParameters' },
+    'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
 };
 
+interface DefaultsParameters {
+    'Defaults.callWithDefaultParameters': [parameterString?: string | null, parameterNumber?: number | null, parameterBoolean?: boolean | null, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString | null];
+    'Defaults.callWithDefaultOptionalParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
+    'Defaults.callToTestOrderOfParams': [parameterStringWithNoDefault?: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault?: string, parameterStringWithEmptyDefault?: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null];
+}
+
+const KEY = 'Defaults';
+
 export class DefaultsSvc {
+    declare [OperationsType]: DefaultsOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithDefaultParameters(...params: Partial<DefaultsParameters['Defaults.callWithDefaultParameters']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'defaults', ...params];
+        },
+        callWithDefaultOptionalParameters(...params: Partial<DefaultsParameters['Defaults.callWithDefaultOptionalParameters']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'defaults', ...params];
+        },
+        callToTestOrderOfParams(...params: Partial<DefaultsParameters['Defaults.callToTestOrderOfParams']>): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'defaults', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -8699,50 +8968,26 @@ export class DefaultsSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterString This is a simple string with default value
-     * @param request.parameterNumber This is a simple number with default value
-     * @param request.parameterBoolean This is a simple boolean with default value
-     * @param request.parameterEnum This is a simple enum with default value
-     * @param request.parameterModel This is a simple model with default value
+     * @param parameterString This is a simple string with default value
+     * @param parameterNumber This is a simple number with default value
+     * @param parameterBoolean This is a simple boolean with default value
+     * @param parameterEnum This is a simple enum with default value
+     * @param parameterModel This is a simple model with default value
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithDefaultParameters(
-        {
-            parameterString = 'Hello World!',
-            parameterNumber = 123,
-            parameterBoolean = true,
-            parameterEnum = 'Success',
-            parameterModel = {
-                \\"prop\\": \\"Hello World!\\"
-            },
-        }: {
-            /**
-             * This is a simple string with default value
-             */
-            parameterString?: string | null,
-            /**
-             * This is a simple number with default value
-             */
-            parameterNumber?: number | null,
-            /**
-             * This is a simple boolean with default value
-             */
-            parameterBoolean?: boolean | null,
-            /**
-             * This is a simple enum with default value
-             */
-            parameterEnum?: 'Success' | 'Warning' | 'Error',
-            /**
-             * This is a simple model with default value
-             */
-            parameterModel?: ModelWithString | null,
+        parameterString: string | null = 'Hello World!',
+        parameterNumber: number | null = 123,
+        parameterBoolean: boolean | null = true,
+        parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
+        parameterModel: ModelWithString | null = {
+            \\"prop\\": \\"Hello World!\\"
         },
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithDefaultParameters'],
+            ...URLs['Defaults.callWithDefaultParameters'],
             query: {
                 'parameterString': parameterString,
                 'parameterNumber': parameterNumber,
@@ -8755,50 +9000,26 @@ export class DefaultsSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterString This is a simple string that is optional with default value
-     * @param request.parameterNumber This is a simple number that is optional with default value
-     * @param request.parameterBoolean This is a simple boolean that is optional with default value
-     * @param request.parameterEnum This is a simple enum that is optional with default value
-     * @param request.parameterModel This is a simple model that is optional with default value
+     * @param parameterString This is a simple string that is optional with default value
+     * @param parameterNumber This is a simple number that is optional with default value
+     * @param parameterBoolean This is a simple boolean that is optional with default value
+     * @param parameterEnum This is a simple enum that is optional with default value
+     * @param parameterModel This is a simple model that is optional with default value
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithDefaultOptionalParameters(
-        {
-            parameterString = 'Hello World!',
-            parameterNumber = 123,
-            parameterBoolean = true,
-            parameterEnum = 'Success',
-            parameterModel = {
-                \\"prop\\": \\"Hello World!\\"
-            },
-        }: {
-            /**
-             * This is a simple string that is optional with default value
-             */
-            parameterString?: string,
-            /**
-             * This is a simple number that is optional with default value
-             */
-            parameterNumber?: number,
-            /**
-             * This is a simple boolean that is optional with default value
-             */
-            parameterBoolean?: boolean,
-            /**
-             * This is a simple enum that is optional with default value
-             */
-            parameterEnum?: 'Success' | 'Warning' | 'Error',
-            /**
-             * This is a simple model that is optional with default value
-             */
-            parameterModel?: ModelWithString,
+        parameterString: string = 'Hello World!',
+        parameterNumber: number = 123,
+        parameterBoolean: boolean = true,
+        parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
+        parameterModel: ModelWithString = {
+            \\"prop\\": \\"Hello World!\\"
         },
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithDefaultOptionalParameters'],
+            ...URLs['Defaults.callWithDefaultOptionalParameters'],
             query: {
                 'parameterString': parameterString,
                 'parameterNumber': parameterNumber,
@@ -8811,66 +9032,30 @@ export class DefaultsSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterStringWithNoDefault This is a string with no default
-     * @param request.parameterOptionalStringWithDefault This is a optional string with default
-     * @param request.parameterOptionalStringWithEmptyDefault This is a optional string with empty default
-     * @param request.parameterOptionalStringWithNoDefault This is a optional string with no default
-     * @param request.parameterStringWithDefault This is a string with default
-     * @param request.parameterStringWithEmptyDefault This is a string with empty default
-     * @param request.parameterStringNullableWithNoDefault This is a string that can be null with no default
-     * @param request.parameterStringNullableWithDefault This is a string that can be null with default
+     * @param parameterStringWithNoDefault This is a string with no default
+     * @param parameterOptionalStringWithDefault This is a optional string with default
+     * @param parameterOptionalStringWithEmptyDefault This is a optional string with empty default
+     * @param parameterOptionalStringWithNoDefault This is a optional string with no default
+     * @param parameterStringWithDefault This is a string with default
+     * @param parameterStringWithEmptyDefault This is a string with empty default
+     * @param parameterStringNullableWithNoDefault This is a string that can be null with no default
+     * @param parameterStringNullableWithDefault This is a string that can be null with default
      * @param options Request option overrides
      * @throws ApiError
      */
     public callToTestOrderOfParams(
-        {
-            parameterStringWithNoDefault,
-            parameterOptionalStringWithDefault = 'Hello World!',
-            parameterOptionalStringWithEmptyDefault = '',
-            parameterOptionalStringWithNoDefault,
-            parameterStringWithDefault = 'Hello World!',
-            parameterStringWithEmptyDefault = '',
-            parameterStringNullableWithNoDefault,
-            parameterStringNullableWithDefault = null,
-        }: {
-            /**
-             * This is a string with no default
-             */
-            parameterStringWithNoDefault: string,
-            /**
-             * This is a optional string with default
-             */
-            parameterOptionalStringWithDefault?: string,
-            /**
-             * This is a optional string with empty default
-             */
-            parameterOptionalStringWithEmptyDefault?: string,
-            /**
-             * This is a optional string with no default
-             */
-            parameterOptionalStringWithNoDefault?: string,
-            /**
-             * This is a string with default
-             */
-            parameterStringWithDefault?: string,
-            /**
-             * This is a string with empty default
-             */
-            parameterStringWithEmptyDefault?: string,
-            /**
-             * This is a string that can be null with no default
-             */
-            parameterStringNullableWithNoDefault?: string | null,
-            /**
-             * This is a string that can be null with default
-             */
-            parameterStringNullableWithDefault?: string | null,
-        },
+        parameterStringWithNoDefault: string,
+        parameterOptionalStringWithDefault: string = 'Hello World!',
+        parameterOptionalStringWithEmptyDefault: string = '',
+        parameterOptionalStringWithNoDefault?: string,
+        parameterStringWithDefault: string = 'Hello World!',
+        parameterStringWithEmptyDefault: string = '',
+        parameterStringNullableWithNoDefault?: string | null,
+        parameterStringNullableWithDefault: string | null = null,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callToTestOrderOfParams'],
+            ...URLs['Defaults.callToTestOrderOfParams'],
             query: {
                 'parameterOptionalStringWithDefault': parameterOptionalStringWithDefault,
                 'parameterOptionalStringWithEmptyDefault': parameterOptionalStringWithEmptyDefault,
@@ -8893,6 +9078,7 @@ exports[`v3 should generate: ./test/generated/v3/services/DeprecatedSvc.ts 1`] =
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { DeprecatedModel } from '../models/DeprecatedModel';
 
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -8900,17 +9086,39 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'deprecatedCall';
+export type DeprecatedOperation = 'Deprecated.deprecatedCall';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'deprecatedCall': { method: 'POST', url: '/api/v{api-version}/parameters/deprecated' },
+const URLs: Record<DeprecatedOperation, { method: ApiRequestMethod; url: string; operation: DeprecatedOperation }> = {
+    'Deprecated.deprecatedCall': { method: 'POST', url: '/api/v{api-version}/parameters/deprecated', operation: 'Deprecated.deprecatedCall' },
 };
 
+interface DeprecatedParameters {
+    'Deprecated.deprecatedCall': [parameter?: DeprecatedModel | null];
+}
+
+const KEY = 'Deprecated';
+
 export class DeprecatedSvc {
+    declare [OperationsType]: DeprecatedOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        deprecatedCall(...params: Partial<DeprecatedParameters['Deprecated.deprecatedCall']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', 'deprecated', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -8923,25 +9131,16 @@ export class DeprecatedSvc {
 
     /**
      * @deprecated
-     * @param request Request
-     * @param request.parameter This parameter is deprecated
+     * @param parameter This parameter is deprecated
      * @param options Request option overrides
      * @throws ApiError
      */
     public deprecatedCall(
-        {
-            parameter,
-        }: {
-            /**
-             * This parameter is deprecated
-             * @deprecated
-             */
-            parameter: DeprecatedModel | null,
-        },
+        parameter: DeprecatedModel | null,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['deprecatedCall'],
+            ...URLs['Deprecated.deprecatedCall'],
             headers: {
                 'parameter': parameter,
             },
@@ -8957,22 +9156,45 @@ exports[`v3 should generate: ./test/generated/v3/services/DescriptionsSvc.ts 1`]
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithDescriptions';
+export type DescriptionsOperation = 'Descriptions.callWithDescriptions';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/' },
+const URLs: Record<DescriptionsOperation, { method: ApiRequestMethod; url: string; operation: DescriptionsOperation }> = {
+    'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
 };
 
+interface DescriptionsParameters {
+    'Descriptions.callWithDescriptions': [parameterWithBreaks?: any, parameterWithBackticks?: any, parameterWithSlashes?: any, parameterWithExpressionPlaceholders?: any, parameterWithQuotes?: any, parameterWithReservedCharacters?: any];
+}
+
+const KEY = 'Descriptions';
+
 export class DescriptionsSvc {
+    declare [OperationsType]: DescriptionsOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithDescriptions(...params: Partial<DescriptionsParameters['Descriptions.callWithDescriptions']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'descriptions', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -8984,60 +9206,29 @@ export class DescriptionsSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterWithBreaks Testing multiline comments in string: First line
+     * @param parameterWithBreaks Testing multiline comments in string: First line
      * Second line
      *
      * Fourth line
-     * @param request.parameterWithBackticks Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
-     * @param request.parameterWithSlashes Testing slashes in string: \\\\backwards\\\\\\\\\\\\ and /forwards/// should work
-     * @param request.parameterWithExpressionPlaceholders Testing expression placeholders in string: \${expression} should work
-     * @param request.parameterWithQuotes Testing quotes in string: 'single quote''' and \\"double quotes\\"\\"\\" should work
-     * @param request.parameterWithReservedCharacters Testing reserved characters in string: * inline * and ** inline ** should work
+     * @param parameterWithBackticks Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
+     * @param parameterWithSlashes Testing slashes in string: \\\\backwards\\\\\\\\\\\\ and /forwards/// should work
+     * @param parameterWithExpressionPlaceholders Testing expression placeholders in string: \${expression} should work
+     * @param parameterWithQuotes Testing quotes in string: 'single quote''' and \\"double quotes\\"\\"\\" should work
+     * @param parameterWithReservedCharacters Testing reserved characters in string: * inline * and ** inline ** should work
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithDescriptions(
-        {
-            parameterWithBreaks,
-            parameterWithBackticks,
-            parameterWithSlashes,
-            parameterWithExpressionPlaceholders,
-            parameterWithQuotes,
-            parameterWithReservedCharacters,
-        }: {
-            /**
-             * Testing multiline comments in string: First line
-             * Second line
-             *
-             * Fourth line
-             */
-            parameterWithBreaks?: any,
-            /**
-             * Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
-             */
-            parameterWithBackticks?: any,
-            /**
-             * Testing slashes in string: \\\\backwards\\\\\\\\\\\\ and /forwards/// should work
-             */
-            parameterWithSlashes?: any,
-            /**
-             * Testing expression placeholders in string: \${expression} should work
-             */
-            parameterWithExpressionPlaceholders?: any,
-            /**
-             * Testing quotes in string: 'single quote''' and \\"double quotes\\"\\"\\" should work
-             */
-            parameterWithQuotes?: any,
-            /**
-             * Testing reserved characters in string: * inline * and ** inline ** should work
-             */
-            parameterWithReservedCharacters?: any,
-        },
+        parameterWithBreaks?: any,
+        parameterWithBackticks?: any,
+        parameterWithSlashes?: any,
+        parameterWithExpressionPlaceholders?: any,
+        parameterWithQuotes?: any,
+        parameterWithReservedCharacters?: any,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithDescriptions'],
+            ...URLs['Descriptions.callWithDescriptions'],
             query: {
                 'parameterWithBreaks': parameterWithBreaks,
                 'parameterWithBackticks': parameterWithBackticks,
@@ -9058,25 +9249,60 @@ exports[`v3 should generate: ./test/generated/v3/services/DuplicateSvc.ts 1`] = 
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'duplicateName' | 'duplicateName1' | 'duplicateName2' | 'duplicateName3';
+export type DuplicateOperation = 'Duplicate.duplicateName' | 'Duplicate.duplicateName1' | 'Duplicate.duplicateName2' | 'Duplicate.duplicateName3';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'duplicateName': { method: 'GET', url: '/api/v{api-version}/duplicate' },
-    'duplicateName1': { method: 'POST', url: '/api/v{api-version}/duplicate' },
-    'duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate' },
-    'duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate' },
+const URLs: Record<DuplicateOperation, { method: ApiRequestMethod; url: string; operation: DuplicateOperation }> = {
+    'Duplicate.duplicateName': { method: 'GET', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName' },
+    'Duplicate.duplicateName1': { method: 'POST', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName1' },
+    'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
+    'Duplicate.duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName3' },
 };
 
+interface DuplicateParameters {
+    'Duplicate.duplicateName': [];
+    'Duplicate.duplicateName1': [];
+    'Duplicate.duplicateName2': [];
+    'Duplicate.duplicateName3': [];
+}
+
+const KEY = 'Duplicate';
+
 export class DuplicateSvc {
+    declare [OperationsType]: DuplicateOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        duplicateName(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'duplicate', ];
+        },
+        duplicateName1(): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'duplicate', ];
+        },
+        duplicateName2(): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'duplicate', ];
+        },
+        duplicateName3(): readonly unknown[] {
+            return [KEY, 'DELETE', 'api', 'v{api-version}', 'duplicate', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9095,7 +9321,7 @@ export class DuplicateSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['duplicateName'],
+            ...URLs['Duplicate.duplicateName'],
             ...options,
         });
     }
@@ -9108,7 +9334,7 @@ export class DuplicateSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['duplicateName1'],
+            ...URLs['Duplicate.duplicateName1'],
             ...options,
         });
     }
@@ -9121,7 +9347,7 @@ export class DuplicateSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['duplicateName2'],
+            ...URLs['Duplicate.duplicateName2'],
             ...options,
         });
     }
@@ -9134,7 +9360,7 @@ export class DuplicateSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['duplicateName3'],
+            ...URLs['Duplicate.duplicateName3'],
             ...options,
         });
     }
@@ -9147,22 +9373,45 @@ exports[`v3 should generate: ./test/generated/v3/services/ErrorSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'testErrorCode';
+export type ErrorOperation = 'Error.testErrorCode';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'testErrorCode': { method: 'POST', url: '/api/v{api-version}/error' },
+const URLs: Record<ErrorOperation, { method: ApiRequestMethod; url: string; operation: ErrorOperation }> = {
+    'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
 };
 
+interface ErrorParameters {
+    'Error.testErrorCode': [status?: number];
+}
+
+const KEY = 'Error';
+
 export class ErrorSvc {
+    declare [OperationsType]: ErrorOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        testErrorCode(...params: Partial<ErrorParameters['Error.testErrorCode']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'error', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9174,25 +9423,17 @@ export class ErrorSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.status Status code to return
+     * @param status Status code to return
      * @param options Request option overrides
      * @returns any Custom message: Successful response
      * @throws ApiError
      */
     public testErrorCode(
-        {
-            status,
-        }: {
-            /**
-             * Status code to return
-             */
-            status: number,
-        },
+        status: number,
         options?: Partial<ApiRequestOptions>,
     ): Promise<any> {
         return __request(this.config, {
-            ...URLs['testErrorCode'],
+            ...URLs['Error.testErrorCode'],
             query: {
                 'status': status,
             },
@@ -9214,6 +9455,7 @@ exports[`v3 should generate: ./test/generated/v3/services/FormDataSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -9221,17 +9463,39 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'postApiFormData';
+export type FormDataOperation = 'FormData.postApiFormData';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'postApiFormData': { method: 'POST', url: '/api/v{api-version}/formData/' },
+const URLs: Record<FormDataOperation, { method: ApiRequestMethod; url: string; operation: FormDataOperation }> = {
+    'FormData.postApiFormData': { method: 'POST', url: '/api/v{api-version}/formData/', operation: 'FormData.postApiFormData' },
 };
 
+interface FormDataParameters {
+    'FormData.postApiFormData': [parameter?: string, formData?: ModelWithString];
+}
+
+const KEY = 'FormData';
+
 export class FormDataSvc {
+    declare [OperationsType]: FormDataOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        postApiFormData(...params: Partial<FormDataParameters['FormData.postApiFormData']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'formData', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9243,30 +9507,18 @@ export class FormDataSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameter This is a reusable parameter
-     * @param request.formData A reusable request body
+     * @param parameter This is a reusable parameter
+     * @param formData A reusable request body
      * @param options Request option overrides
      * @throws ApiError
      */
     public postApiFormData(
-        {
-            parameter,
-            formData,
-        }: {
-            /**
-             * This is a reusable parameter
-             */
-            parameter?: string,
-            /**
-             * A reusable request body
-             */
-            formData?: ModelWithString,
-        },
+        parameter?: string,
+        formData?: ModelWithString,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['postApiFormData'],
+            ...URLs['FormData.postApiFormData'],
             query: {
                 'parameter': parameter,
             },
@@ -9284,22 +9536,45 @@ exports[`v3 should generate: ./test/generated/v3/services/HeaderSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithResultFromHeader';
+export type HeaderOperation = 'Header.callWithResultFromHeader';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header' },
+const URLs: Record<HeaderOperation, { method: ApiRequestMethod; url: string; operation: HeaderOperation }> = {
+    'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
 };
 
+interface HeaderParameters {
+    'Header.callWithResultFromHeader': [];
+}
+
+const KEY = 'Header';
+
 export class HeaderSvc {
+    declare [OperationsType]: HeaderOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithResultFromHeader(): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'header', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9319,7 +9594,7 @@ export class HeaderSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<string> {
         return __request(this.config, {
-            ...URLs['callWithResultFromHeader'],
+            ...URLs['Header.callWithResultFromHeader'],
             responseHeader: 'operation-location',
             errors: {
                 400: \`400 server error\`,
@@ -9337,6 +9612,7 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipartSvc.ts 1`] = 
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -9344,18 +9620,47 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'multipartRequest' | 'multipartResponse';
+export type MultipartOperation = 'Multipart.multipartRequest' | 'Multipart.multipartResponse';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'multipartRequest': { method: 'POST', url: '/api/v{api-version}/multipart' },
-    'multipartResponse': { method: 'GET', url: '/api/v{api-version}/multipart' },
+const URLs: Record<MultipartOperation, { method: ApiRequestMethod; url: string; operation: MultipartOperation }> = {
+    'Multipart.multipartRequest': { method: 'POST', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartRequest' },
+    'Multipart.multipartResponse': { method: 'GET', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartResponse' },
 };
 
+interface MultipartParameters {
+    'Multipart.multipartRequest': [formData?: {
+        content?: Blob;
+        data?: ModelWithString | null;
+    }];
+    'Multipart.multipartResponse': [];
+}
+
+const KEY = 'Multipart';
+
 export class MultipartSvc {
+    declare [OperationsType]: MultipartOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        multipartRequest(...params: Partial<MultipartParameters['Multipart.multipartRequest']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'multipart', ...params];
+        },
+        multipartResponse(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multipart', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9367,24 +9672,19 @@ export class MultipartSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.formData
+     * @param formData
      * @param options Request option overrides
      * @throws ApiError
      */
     public multipartRequest(
-        {
-            formData,
-        }: {
-            formData?: {
-                content?: Blob;
-                data?: ModelWithString | null;
-            },
+        formData?: {
+            content?: Blob;
+            data?: ModelWithString | null;
         },
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['multipartRequest'],
+            ...URLs['Multipart.multipartRequest'],
             formData: formData,
             mediaType: 'multipart/form-data',
             ...options,
@@ -9406,7 +9706,7 @@ export class MultipartSvc {
         };
     }> {
         return __request(this.config, {
-            ...URLs['multipartResponse'],
+            ...URLs['Multipart.multipartResponse'],
             ...options,
         });
     }
@@ -9419,23 +9719,50 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags1Svc.ts 1`
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'dummyA' | 'dummyB';
+export type MultipleTags1Operation = 'MultipleTags1.dummyA' | 'MultipleTags1.dummyB';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a' },
-    'dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b' },
+const URLs: Record<MultipleTags1Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags1Operation }> = {
+    'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
+    'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
 };
 
+interface MultipleTags1Parameters {
+    'MultipleTags1.dummyA': [];
+    'MultipleTags1.dummyB': [];
+}
+
+const KEY = 'MultipleTags1';
+
 export class MultipleTags1Svc {
+    declare [OperationsType]: MultipleTags1Operation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        dummyA(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'a', ];
+        },
+        dummyB(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'b', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9455,7 +9782,7 @@ export class MultipleTags1Svc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyA'],
+            ...URLs['MultipleTags1.dummyA'],
             ...options,
         });
     }
@@ -9469,7 +9796,7 @@ export class MultipleTags1Svc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyB'],
+            ...URLs['MultipleTags1.dummyB'],
             ...options,
         });
     }
@@ -9482,23 +9809,50 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags2Svc.ts 1`
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'dummyA' | 'dummyB';
+export type MultipleTags2Operation = 'MultipleTags2.dummyA' | 'MultipleTags2.dummyB';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a' },
-    'dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b' },
+const URLs: Record<MultipleTags2Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags2Operation }> = {
+    'MultipleTags2.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags2.dummyA' },
+    'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
 };
 
+interface MultipleTags2Parameters {
+    'MultipleTags2.dummyA': [];
+    'MultipleTags2.dummyB': [];
+}
+
+const KEY = 'MultipleTags2';
+
 export class MultipleTags2Svc {
+    declare [OperationsType]: MultipleTags2Operation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        dummyA(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'a', ];
+        },
+        dummyB(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'b', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9518,7 +9872,7 @@ export class MultipleTags2Svc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyA'],
+            ...URLs['MultipleTags2.dummyA'],
             ...options,
         });
     }
@@ -9532,7 +9886,7 @@ export class MultipleTags2Svc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyB'],
+            ...URLs['MultipleTags2.dummyB'],
             ...options,
         });
     }
@@ -9545,22 +9899,45 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags3Svc.ts 1`
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'dummyB';
+export type MultipleTags3Operation = 'MultipleTags3.dummyB';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b' },
+const URLs: Record<MultipleTags3Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags3Operation }> = {
+    'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
 };
 
+interface MultipleTags3Parameters {
+    'MultipleTags3.dummyB': [];
+}
+
+const KEY = 'MultipleTags3';
+
 export class MultipleTags3Svc {
+    declare [OperationsType]: MultipleTags3Operation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        dummyB(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'multiple-tags', 'b', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9580,7 +9957,7 @@ export class MultipleTags3Svc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['dummyB'],
+            ...URLs['MultipleTags3.dummyB'],
             ...options,
         });
     }
@@ -9593,22 +9970,45 @@ exports[`v3 should generate: ./test/generated/v3/services/NoContentSvc.ts 1`] = 
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithNoContentResponse';
+export type NoContentOperation = 'NoContent.callWithNoContentResponse';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content' },
+const URLs: Record<NoContentOperation, { method: ApiRequestMethod; url: string; operation: NoContentOperation }> = {
+    'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
 };
 
+interface NoContentParameters {
+    'NoContent.callWithNoContentResponse': [];
+}
+
+const KEY = 'NoContent';
+
 export class NoContentSvc {
+    declare [OperationsType]: NoContentOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithNoContentResponse(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'no-content', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9628,7 +10028,7 @@ export class NoContentSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithNoContentResponse'],
+            ...URLs['NoContent.callWithNoContentResponse'],
             ...options,
         });
     }
@@ -9641,6 +10041,7 @@ exports[`v3 should generate: ./test/generated/v3/services/ParametersSvc.ts 1`] =
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { Pageable } from '../models/Pageable';
 
@@ -9649,20 +10050,54 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithParameters' | 'callWithWeirdParameterNames' | 'getCallWithOptionalParam' | 'postCallWithOptionalParam';
+export type ParametersOperation = 'Parameters.callWithParameters' | 'Parameters.callWithWeirdParameterNames' | 'Parameters.getCallWithOptionalParam' | 'Parameters.postCallWithOptionalParam';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}' },
-    'callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}' },
-    'getCallWithOptionalParam': { method: 'GET', url: '/api/v{api-version}/parameters/' },
-    'postCallWithOptionalParam': { method: 'POST', url: '/api/v{api-version}/parameters/' },
+const URLs: Record<ParametersOperation, { method: ApiRequestMethod; url: string; operation: ParametersOperation }> = {
+    'Parameters.callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}', operation: 'Parameters.callWithParameters' },
+    'Parameters.callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', operation: 'Parameters.callWithWeirdParameterNames' },
+    'Parameters.getCallWithOptionalParam': { method: 'GET', url: '/api/v{api-version}/parameters/', operation: 'Parameters.getCallWithOptionalParam' },
+    'Parameters.postCallWithOptionalParam': { method: 'POST', url: '/api/v{api-version}/parameters/', operation: 'Parameters.postCallWithOptionalParam' },
 };
 
+interface ParametersParameters {
+    'Parameters.callWithParameters': [parameterHeader?: string | null, parameterQuery?: string | null, parameterForm?: string | null, parameterCookie?: string | null, parameterPath?: string | null, requestBody?: ModelWithString | null];
+    'Parameters.callWithWeirdParameterNames': [parameterHeader?: string | null, parameterQuery?: string | null, parameterForm?: string | null, parameterCookie?: string | null, requestBody?: ModelWithString | null, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string];
+    'Parameters.getCallWithOptionalParam': [requestBody?: ModelWithString, parameter?: string];
+    'Parameters.postCallWithOptionalParam': [parameter?: Pageable, requestBody?: ModelWithString];
+}
+
+const KEY = 'Parameters';
+
 export class ParametersSvc {
+    declare [OperationsType]: ParametersOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithParameters(...params: Partial<ParametersParameters['Parameters.callWithParameters']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', '{parameterPath}', ...params];
+        },
+        callWithWeirdParameterNames(...params: Partial<ParametersParameters['Parameters.callWithWeirdParameterNames']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', '{parameter.path.1}', '{parameter-path-2}', '{PARAMETER-PATH-3}', ...params];
+        },
+        getCallWithOptionalParam(...params: Partial<ParametersParameters['Parameters.getCallWithOptionalParam']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'parameters', ...params];
+        },
+        postCallWithOptionalParam(...params: Partial<ParametersParameters['Parameters.postCallWithOptionalParam']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'parameters', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9674,54 +10109,26 @@ export class ParametersSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterHeader This is the parameter that goes into the header
-     * @param request.parameterQuery This is the parameter that goes into the query params
-     * @param request.parameterForm This is the parameter that goes into the form data
-     * @param request.parameterCookie This is the parameter that goes into the cookie
-     * @param request.parameterPath This is the parameter that goes into the path
-     * @param request.requestBody This is the parameter that goes into the body
+     * @param parameterHeader This is the parameter that goes into the header
+     * @param parameterQuery This is the parameter that goes into the query params
+     * @param parameterForm This is the parameter that goes into the form data
+     * @param parameterCookie This is the parameter that goes into the cookie
+     * @param parameterPath This is the parameter that goes into the path
+     * @param requestBody This is the parameter that goes into the body
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithParameters(
-        {
-            parameterHeader,
-            parameterQuery,
-            parameterForm,
-            parameterCookie,
-            parameterPath,
-            requestBody,
-        }: {
-            /**
-             * This is the parameter that goes into the header
-             */
-            parameterHeader: string | null,
-            /**
-             * This is the parameter that goes into the query params
-             */
-            parameterQuery: string | null,
-            /**
-             * This is the parameter that goes into the form data
-             */
-            parameterForm: string | null,
-            /**
-             * This is the parameter that goes into the cookie
-             */
-            parameterCookie: string | null,
-            /**
-             * This is the parameter that goes into the path
-             */
-            parameterPath: string | null,
-            /**
-             * This is the parameter that goes into the body
-             */
-            requestBody: ModelWithString | null,
-        },
+        parameterHeader: string | null,
+        parameterQuery: string | null,
+        parameterForm: string | null,
+        parameterCookie: string | null,
+        parameterPath: string | null,
+        requestBody: ModelWithString | null,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithParameters'],
+            ...URLs['Parameters.callWithParameters'],
             path: {
                 'parameterPath': parameterPath,
             },
@@ -9744,72 +10151,32 @@ export class ParametersSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterHeader This is the parameter that goes into the request header
-     * @param request.parameterQuery This is the parameter that goes into the request query params
-     * @param request.parameterForm This is the parameter that goes into the request form data
-     * @param request.parameterCookie This is the parameter that goes into the cookie
-     * @param request.requestBody This is the parameter that goes into the body
-     * @param request.parameterPath1 This is the parameter that goes into the path
-     * @param request.parameterPath2 This is the parameter that goes into the path
-     * @param request.parameterPath3 This is the parameter that goes into the path
-     * @param request._default This is the parameter with a reserved keyword
+     * @param parameterHeader This is the parameter that goes into the request header
+     * @param parameterQuery This is the parameter that goes into the request query params
+     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterCookie This is the parameter that goes into the cookie
+     * @param requestBody This is the parameter that goes into the body
+     * @param parameterPath1 This is the parameter that goes into the path
+     * @param parameterPath2 This is the parameter that goes into the path
+     * @param parameterPath3 This is the parameter that goes into the path
+     * @param _default This is the parameter with a reserved keyword
      * @param options Request option overrides
      * @throws ApiError
      */
     public callWithWeirdParameterNames(
-        {
-            parameterHeader,
-            parameterQuery,
-            parameterForm,
-            parameterCookie,
-            requestBody,
-            parameterPath1,
-            parameterPath2,
-            parameterPath3,
-            _default,
-        }: {
-            /**
-             * This is the parameter that goes into the request header
-             */
-            parameterHeader: string | null,
-            /**
-             * This is the parameter that goes into the request query params
-             */
-            parameterQuery: string | null,
-            /**
-             * This is the parameter that goes into the request form data
-             */
-            parameterForm: string | null,
-            /**
-             * This is the parameter that goes into the cookie
-             */
-            parameterCookie: string | null,
-            /**
-             * This is the parameter that goes into the body
-             */
-            requestBody: ModelWithString | null,
-            /**
-             * This is the parameter that goes into the path
-             */
-            parameterPath1?: string,
-            /**
-             * This is the parameter that goes into the path
-             */
-            parameterPath2?: string,
-            /**
-             * This is the parameter that goes into the path
-             */
-            parameterPath3?: string,
-            /**
-             * This is the parameter with a reserved keyword
-             */
-            _default?: string,
-        },
+        parameterHeader: string | null,
+        parameterQuery: string | null,
+        parameterForm: string | null,
+        parameterCookie: string | null,
+        requestBody: ModelWithString | null,
+        parameterPath1?: string,
+        parameterPath2?: string,
+        parameterPath3?: string,
+        _default?: string,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['callWithWeirdParameterNames'],
+            ...URLs['Parameters.callWithWeirdParameterNames'],
             path: {
                 'parameter.path.1': parameterPath1,
                 'parameter-path-2': parameterPath2,
@@ -9835,30 +10202,18 @@ export class ParametersSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.requestBody This is a required parameter
-     * @param request.parameter This is an optional parameter
+     * @param requestBody This is a required parameter
+     * @param parameter This is an optional parameter
      * @param options Request option overrides
      * @throws ApiError
      */
     public getCallWithOptionalParam(
-        {
-            requestBody,
-            parameter,
-        }: {
-            /**
-             * This is a required parameter
-             */
-            requestBody: ModelWithString,
-            /**
-             * This is an optional parameter
-             */
-            parameter?: string,
-        },
+        requestBody: ModelWithString,
+        parameter?: string,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['getCallWithOptionalParam'],
+            ...URLs['Parameters.getCallWithOptionalParam'],
             query: {
                 'parameter': parameter,
             },
@@ -9869,30 +10224,18 @@ export class ParametersSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameter This is a required parameter
-     * @param request.requestBody This is an optional parameter
+     * @param parameter This is a required parameter
+     * @param requestBody This is an optional parameter
      * @param options Request option overrides
      * @throws ApiError
      */
     public postCallWithOptionalParam(
-        {
-            parameter,
-            requestBody,
-        }: {
-            /**
-             * This is a required parameter
-             */
-            parameter: Pageable,
-            /**
-             * This is an optional parameter
-             */
-            requestBody?: ModelWithString,
-        },
+        parameter: Pageable,
+        requestBody?: ModelWithString,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['postCallWithOptionalParam'],
+            ...URLs['Parameters.postCallWithOptionalParam'],
             query: {
                 'parameter': parameter,
             },
@@ -9910,6 +10253,7 @@ exports[`v3 should generate: ./test/generated/v3/services/RequestBodySvc.ts 1`] 
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelWithString } from '../models/ModelWithString';
 
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
@@ -9917,17 +10261,39 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'postApiRequestBody';
+export type RequestBodyOperation = 'RequestBody.postApiRequestBody';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'postApiRequestBody': { method: 'POST', url: '/api/v{api-version}/requestBody/' },
+const URLs: Record<RequestBodyOperation, { method: ApiRequestMethod; url: string; operation: RequestBodyOperation }> = {
+    'RequestBody.postApiRequestBody': { method: 'POST', url: '/api/v{api-version}/requestBody/', operation: 'RequestBody.postApiRequestBody' },
 };
 
+interface RequestBodyParameters {
+    'RequestBody.postApiRequestBody': [parameter?: string, requestBody?: ModelWithString];
+}
+
+const KEY = 'RequestBody';
+
 export class RequestBodySvc {
+    declare [OperationsType]: RequestBodyOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        postApiRequestBody(...params: Partial<RequestBodyParameters['RequestBody.postApiRequestBody']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'requestBody', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -9939,30 +10305,18 @@ export class RequestBodySvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameter This is a reusable parameter
-     * @param request.requestBody A reusable request body
+     * @param parameter This is a reusable parameter
+     * @param requestBody A reusable request body
      * @param options Request option overrides
      * @throws ApiError
      */
     public postApiRequestBody(
-        {
-            parameter,
-            requestBody,
-        }: {
-            /**
-             * This is a reusable parameter
-             */
-            parameter?: string,
-            /**
-             * A reusable request body
-             */
-            requestBody?: ModelWithString,
-        },
+        parameter?: string,
+        requestBody?: ModelWithString,
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['postApiRequestBody'],
+            ...URLs['RequestBody.postApiRequestBody'],
             query: {
                 'parameter': parameter,
             },
@@ -9980,6 +10334,7 @@ exports[`v3 should generate: ./test/generated/v3/services/ResponseSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
@@ -9989,19 +10344,49 @@ import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'callWithResponse' | 'callWithDuplicateResponses' | 'callWithResponses';
+export type ResponseOperation = 'Response.callWithResponse' | 'Response.callWithDuplicateResponses' | 'Response.callWithResponses';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'callWithResponse': { method: 'GET', url: '/api/v{api-version}/response' },
-    'callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response' },
-    'callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response' },
+const URLs: Record<ResponseOperation, { method: ApiRequestMethod; url: string; operation: ResponseOperation }> = {
+    'Response.callWithResponse': { method: 'GET', url: '/api/v{api-version}/response', operation: 'Response.callWithResponse' },
+    'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
+    'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
 };
 
+interface ResponseParameters {
+    'Response.callWithResponse': [];
+    'Response.callWithDuplicateResponses': [];
+    'Response.callWithResponses': [];
+}
+
+const KEY = 'Response';
+
 export class ResponseSvc {
+    declare [OperationsType]: ResponseOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        callWithResponse(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'response', ];
+        },
+        callWithDuplicateResponses(): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'response', ];
+        },
+        callWithResponses(): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'response', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -10021,7 +10406,7 @@ export class ResponseSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<ModelWithString> {
         return __request(this.config, {
-            ...URLs['callWithResponse'],
+            ...URLs['Response.callWithResponse'],
             ...options,
         });
     }
@@ -10035,7 +10420,7 @@ export class ResponseSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<ModelWithString> {
         return __request(this.config, {
-            ...URLs['callWithDuplicateResponses'],
+            ...URLs['Response.callWithDuplicateResponses'],
             errors: {
                 500: \`Message for 500 error\`,
                 501: \`Message for 501 error\`,
@@ -10061,7 +10446,7 @@ export class ResponseSvc {
         readonly value?: Array<ModelWithString>;
     } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
         return __request(this.config, {
-            ...URLs['callWithResponses'],
+            ...URLs['Response.callWithResponses'],
             errors: {
                 500: \`Message for 500 error\`,
                 501: \`Message for 501 error\`,
@@ -10079,28 +10464,75 @@ exports[`v3 should generate: ./test/generated/v3/services/SimpleSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'getCallWithoutParametersAndResponse' | 'putCallWithoutParametersAndResponse' | 'postCallWithoutParametersAndResponse' | 'deleteCallWithoutParametersAndResponse' | 'optionsCallWithoutParametersAndResponse' | 'headCallWithoutParametersAndResponse' | 'patchCallWithoutParametersAndResponse';
+export type SimpleOperation = 'Simple.getCallWithoutParametersAndResponse' | 'Simple.putCallWithoutParametersAndResponse' | 'Simple.postCallWithoutParametersAndResponse' | 'Simple.deleteCallWithoutParametersAndResponse' | 'Simple.optionsCallWithoutParametersAndResponse' | 'Simple.headCallWithoutParametersAndResponse' | 'Simple.patchCallWithoutParametersAndResponse';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'getCallWithoutParametersAndResponse': { method: 'GET', url: '/api/v{api-version}/simple' },
-    'putCallWithoutParametersAndResponse': { method: 'PUT', url: '/api/v{api-version}/simple' },
-    'postCallWithoutParametersAndResponse': { method: 'POST', url: '/api/v{api-version}/simple' },
-    'deleteCallWithoutParametersAndResponse': { method: 'DELETE', url: '/api/v{api-version}/simple' },
-    'optionsCallWithoutParametersAndResponse': { method: 'OPTIONS', url: '/api/v{api-version}/simple' },
-    'headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple' },
-    'patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple' },
+const URLs: Record<SimpleOperation, { method: ApiRequestMethod; url: string; operation: SimpleOperation }> = {
+    'Simple.getCallWithoutParametersAndResponse': { method: 'GET', url: '/api/v{api-version}/simple', operation: 'Simple.getCallWithoutParametersAndResponse' },
+    'Simple.putCallWithoutParametersAndResponse': { method: 'PUT', url: '/api/v{api-version}/simple', operation: 'Simple.putCallWithoutParametersAndResponse' },
+    'Simple.postCallWithoutParametersAndResponse': { method: 'POST', url: '/api/v{api-version}/simple', operation: 'Simple.postCallWithoutParametersAndResponse' },
+    'Simple.deleteCallWithoutParametersAndResponse': { method: 'DELETE', url: '/api/v{api-version}/simple', operation: 'Simple.deleteCallWithoutParametersAndResponse' },
+    'Simple.optionsCallWithoutParametersAndResponse': { method: 'OPTIONS', url: '/api/v{api-version}/simple', operation: 'Simple.optionsCallWithoutParametersAndResponse' },
+    'Simple.headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple', operation: 'Simple.headCallWithoutParametersAndResponse' },
+    'Simple.patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple', operation: 'Simple.patchCallWithoutParametersAndResponse' },
 };
 
+interface SimpleParameters {
+    'Simple.getCallWithoutParametersAndResponse': [];
+    'Simple.putCallWithoutParametersAndResponse': [];
+    'Simple.postCallWithoutParametersAndResponse': [];
+    'Simple.deleteCallWithoutParametersAndResponse': [];
+    'Simple.optionsCallWithoutParametersAndResponse': [];
+    'Simple.headCallWithoutParametersAndResponse': [];
+    'Simple.patchCallWithoutParametersAndResponse': [];
+}
+
+const KEY = 'Simple';
+
 export class SimpleSvc {
+    declare [OperationsType]: SimpleOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        getCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'simple', ];
+        },
+        putCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'PUT', 'api', 'v{api-version}', 'simple', ];
+        },
+        postCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'simple', ];
+        },
+        deleteCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'DELETE', 'api', 'v{api-version}', 'simple', ];
+        },
+        optionsCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'OPTIONS', 'api', 'v{api-version}', 'simple', ];
+        },
+        headCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'HEAD', 'api', 'v{api-version}', 'simple', ];
+        },
+        patchCallWithoutParametersAndResponse(): readonly unknown[] {
+            return [KEY, 'PATCH', 'api', 'v{api-version}', 'simple', ];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -10119,7 +10551,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['getCallWithoutParametersAndResponse'],
+            ...URLs['Simple.getCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -10132,7 +10564,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['putCallWithoutParametersAndResponse'],
+            ...URLs['Simple.putCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -10145,7 +10577,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['postCallWithoutParametersAndResponse'],
+            ...URLs['Simple.postCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -10158,7 +10590,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['deleteCallWithoutParametersAndResponse'],
+            ...URLs['Simple.deleteCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -10171,7 +10603,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['optionsCallWithoutParametersAndResponse'],
+            ...URLs['Simple.optionsCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -10184,7 +10616,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['headCallWithoutParametersAndResponse'],
+            ...URLs['Simple.headCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -10197,7 +10629,7 @@ export class SimpleSvc {
         options?: Partial<ApiRequestOptions>,
     ): Promise<void> {
         return __request(this.config, {
-            ...URLs['patchCallWithoutParametersAndResponse'],
+            ...URLs['Simple.patchCallWithoutParametersAndResponse'],
             ...options,
         });
     }
@@ -10210,22 +10642,45 @@ exports[`v3 should generate: ./test/generated/v3/services/TypesSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'types';
+export type TypesOperation = 'Types.types';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'types': { method: 'GET', url: '/api/v{api-version}/types' },
+const URLs: Record<TypesOperation, { method: ApiRequestMethod; url: string; operation: TypesOperation }> = {
+    'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
 };
 
+interface TypesParameters {
+    'Types.types': [parameterArray?: Array<string> | null, parameterDictionary?: any, parameterEnum?: 'Success' | 'Warning' | 'Error' | null, parameterNumber?: number, parameterString?: string | null, parameterBoolean?: boolean | null, parameterObject?: any, id?: number];
+}
+
+const KEY = 'Types';
+
 export class TypesSvc {
+    declare [OperationsType]: TypesOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        types(...params: Partial<TypesParameters['Types.types']>): readonly unknown[] {
+            return [KEY, 'GET', 'api', 'v{api-version}', 'types', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -10237,15 +10692,14 @@ export class TypesSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.parameterArray This is an array parameter
-     * @param request.parameterDictionary This is a dictionary parameter
-     * @param request.parameterEnum This is an enum parameter
-     * @param request.parameterNumber This is a number parameter
-     * @param request.parameterString This is a string parameter
-     * @param request.parameterBoolean This is a boolean parameter
-     * @param request.parameterObject This is an object parameter
-     * @param request.id This is a number parameter
+     * @param parameterArray This is an array parameter
+     * @param parameterDictionary This is a dictionary parameter
+     * @param parameterEnum This is an enum parameter
+     * @param parameterNumber This is a number parameter
+     * @param parameterString This is a string parameter
+     * @param parameterBoolean This is a boolean parameter
+     * @param parameterObject This is an object parameter
+     * @param id This is a number parameter
      * @param options Request option overrides
      * @returns number Response is a simple number
      * @returns string Response is a simple string
@@ -10254,53 +10708,18 @@ export class TypesSvc {
      * @throws ApiError
      */
     public types(
-        {
-            parameterArray,
-            parameterDictionary,
-            parameterEnum,
-            parameterNumber = 123,
-            parameterString = 'default',
-            parameterBoolean = true,
-            parameterObject = null,
-            id,
-        }: {
-            /**
-             * This is an array parameter
-             */
-            parameterArray: Array<string> | null,
-            /**
-             * This is a dictionary parameter
-             */
-            parameterDictionary: any,
-            /**
-             * This is an enum parameter
-             */
-            parameterEnum: 'Success' | 'Warning' | 'Error' | null,
-            /**
-             * This is a number parameter
-             */
-            parameterNumber?: number,
-            /**
-             * This is a string parameter
-             */
-            parameterString?: string | null,
-            /**
-             * This is a boolean parameter
-             */
-            parameterBoolean?: boolean | null,
-            /**
-             * This is an object parameter
-             */
-            parameterObject?: any,
-            /**
-             * This is a number parameter
-             */
-            id?: number,
-        },
+        parameterArray: Array<string> | null,
+        parameterDictionary: any,
+        parameterEnum: 'Success' | 'Warning' | 'Error' | null,
+        parameterNumber: number = 123,
+        parameterString: string | null = 'default',
+        parameterBoolean: boolean | null = true,
+        parameterObject: any = null,
+        id?: number,
         options?: Partial<ApiRequestOptions>,
     ): Promise<number | string | boolean | any> {
         return __request(this.config, {
-            ...URLs['types'],
+            ...URLs['Types.types'],
             path: {
                 'id': id,
             },
@@ -10325,22 +10744,45 @@ exports[`v3 should generate: ./test/generated/v3/services/UploadSvc.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestMethod, ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 import type { OpenAPIConfig } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-type Operations = | 'uploadFile';
+export type UploadOperation = 'Upload.uploadFile';
 
-const URLs: Record<Operations, { method: ApiRequestMethod; url: string }> = {
-    'uploadFile': { method: 'POST', url: '/api/v{api-version}/upload' },
+const URLs: Record<UploadOperation, { method: ApiRequestMethod; url: string; operation: UploadOperation }> = {
+    'Upload.uploadFile': { method: 'POST', url: '/api/v{api-version}/upload', operation: 'Upload.uploadFile' },
 };
 
+interface UploadParameters {
+    'Upload.uploadFile': [file?: Blob];
+}
+
+const KEY = 'Upload';
+
 export class UploadSvc {
+    declare [OperationsType]: UploadOperation;
+
+    /**
+     * Service prefix for operation names.
+     */
+    public static readonly PREFIX = KEY;
+
     /**
      * Service URLs and methods.
      */
     public static readonly URLs = URLs;
+
+    /**
+     * Operation query keys.
+     */
+    public static readonly QUERY_KEYS = {
+        uploadFile(...params: Partial<UploadParameters['Upload.uploadFile']>): readonly unknown[] {
+            return [KEY, 'POST', 'api', 'v{api-version}', 'upload', ...params];
+        },
+    };
 
     /**
      * Configuration for the current service instance.
@@ -10352,25 +10794,17 @@ export class UploadSvc {
     }
 
     /**
-     * @param request Request
-     * @param request.file Supply a file reference for upload
+     * @param file Supply a file reference for upload
      * @param options Request option overrides
      * @returns boolean
      * @throws ApiError
      */
     public uploadFile(
-        {
-            file,
-        }: {
-            /**
-             * Supply a file reference for upload
-             */
-            file: Blob,
-        },
+        file: Blob,
         options?: Partial<ApiRequestOptions>,
     ): Promise<boolean> {
         return __request(this.config, {
-            ...URLs['uploadFile'],
+            ...URLs['Upload.uploadFile'],
             formData: {
                 'file': file,
             },

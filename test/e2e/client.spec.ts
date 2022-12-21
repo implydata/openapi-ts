@@ -107,7 +107,7 @@ describe('client', () => {
             try {
                 const { ApiClient } = (window as any).api;
                 const client = new ApiClient();
-                await client.error.testErrorCode({ status: 500 });
+                await client.error.testErrorCode(500);
             } catch (e) {
                 const error = e as any;
                 return JSON.stringify({
@@ -142,7 +142,7 @@ describe('client', () => {
             try {
                 const { ApiClient } = (window as any).api;
                 const client = new ApiClient();
-                await client.error.testErrorCode({ status: 409 });
+                await client.error.testErrorCode(409);
             } catch (e) {
                 const error = e as any;
                 return JSON.stringify({

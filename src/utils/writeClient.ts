@@ -74,10 +74,7 @@ export const writeClient = async (
         await writeClientModels(client.models, templates, outputPathModels, indent);
 
         const symbolsFile = resolve(outputPathModels, '_symbols.ts');
-        await writeFile(
-            symbolsFile,
-            `export declare const OperationsType: unique symbol;\nexport declare const ParametersType: unique symbol;\n`
-        );
+        await writeFile(symbolsFile, `export declare const OperationsType: unique symbol;\n`);
     }
 
     if (exportOperations) {

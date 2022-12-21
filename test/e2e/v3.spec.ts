@@ -97,7 +97,7 @@ describe('v3', () => {
         const error = await browser.evaluate(async () => {
             try {
                 const { ErrorService } = (window as any).api;
-                await new ErrorService().testErrorCode({ status: 500 });
+                await new ErrorService().testErrorCode(500);
             } catch (e) {
                 const error = e as any;
                 return JSON.stringify({
@@ -131,7 +131,7 @@ describe('v3', () => {
         const error = await browser.evaluate(async () => {
             try {
                 const { ErrorService } = (window as any).api;
-                await new ErrorService().testErrorCode({ status: 409 });
+                await new ErrorService().testErrorCode(409);
             } catch (e) {
                 const error = e as any;
                 return JSON.stringify({
@@ -164,11 +164,9 @@ describe('v3', () => {
         const result = await browser.evaluate(async () => {
             const { ParametersService } = (window as any).api;
             return (await new ParametersService().postCallWithOptionalParam({
-                parameter: {
-                    page: 0,
-                    size: 1,
-                    sort: ['location'],
-                },
+                page: 0,
+                size: 1,
+                sort: ['location'],
             })) as Promise<any>;
         });
         expect(result.query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
