@@ -14,7 +14,7 @@ export const base64 = (str: string): string => {
 	}
 };
 
-export const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void => {
+export const catchErrorCodes = (config: OpenAPIConfig, options: ApiRequestOptions, result: ApiResult): void => {
 	const errors: Record<number, string> = {
 		400: 'Bad Request',
 		401: 'Unauthorized',
@@ -31,10 +31,10 @@ export const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): 
 		options.errorHandler(options, result, error ?? 'Generic Error');
 	}
 	if (error) {
-		throw new ApiError(options, result, error);
+		throw new ApiError(options, result, error, { getErrorDetail: config.getErrorDetail });
 	}
 	if (!result.ok) {
-		throw new ApiError(options, result, 'Generic Error');
+		throw new ApiError(options, result, 'Generic Error', { getErrorDetail: config.getErrorDetail });
 	}
 };
 

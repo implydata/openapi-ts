@@ -26,9 +26,9 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
 	} catch (e) {
 		let error = e;
 		if (e instanceof Error && e.name === 'AbortError') {
-			error = new CancelError(options, 'Request aborted', { cause: e });
+			error = new CancelError(options, 'Request aborted', { cause: e, getErrorDetail: config.getErrorDetail });
 		} else if (options.signal?.aborted && options.signal?.reason) {
-			error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
+			error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason, getErrorDetail: config.getErrorDetail });
 		}
 		throw error;
 	}

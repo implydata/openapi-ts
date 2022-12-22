@@ -1,6 +1,8 @@
 {{>header}}
 
+import type { ApiErrorDetail } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiResult } from './ApiResult';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
@@ -15,6 +17,7 @@ export interface OpenAPIConfig {
 	password?: string | Resolver<string>;
 	headers?: Headers | Resolver<Headers>;
 	encodePath?: (path: string) => string;
+	getErrorDetail?: (message: string, response: ApiResult) => ApiErrorDetail;
 }
 
 export const OpenAPI: OpenAPIConfig = {

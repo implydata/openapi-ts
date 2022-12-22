@@ -9,6 +9,46 @@ import type { ApiResult } from './ApiResult';
 
 interface ErrorOptions {
     cause?: unknown;
+    getErrorDetail?: (message: string, response: ApiResult) => ApiErrorDetail;
+}
+
+export interface ApiInnerError {
+  code: string;
+  [key: string]: string | undefined;
+}
+
+export interface ApiErrorDetail {
+    /**
+     * Error message returned by the API.
+     *
+     * Defaults to the original error message.
+     */
+    message: string;
+
+    /**
+     * Brief description of the error.
+     */
+    shortText: string;
+
+    /**
+     * More detailed description of the error.
+     */
+    longText?: string;
+
+    /**
+     * Error code returned by the API.
+     */
+    code?: string;
+
+    /**
+     * Identifier for the error.
+     */
+    id?: string;
+
+    /**
+     * The target of the error.
+     */
+    target?: string;
 }
 
 export class ApiError extends Error {
@@ -18,14 +58,41 @@ export class ApiError extends Error {
     public readonly body: any;
     public readonly request: ApiRequestOptions;
     public readonly operation: string;
+    public readonly detail: ApiErrorDetail;
+    public readonly code?: string;
+
+    public static getInnerError(response: ApiResult): ApiInnerError | undefined {
+        let innerError: ApiInnerError | undefined;
+        if (typeof response.body === 'object' && response.body) {
+            innerError = response.body?.error?.innererror || response.body?.error;;
+        }
+        return innerError;
+    }
+
+    public static getApiErrorDetail(message: string, response: ApiResult): ApiErrorDetail {
+        const innerError = ApiError.getInnerError(response);
+        const detail: ApiErrorDetail = {
+            code: innerError?.code,
+            id: innerError?.id,
+            message: innerError?.message ?? message,
+            shortText: innerError?.shortText ?? response.statusText,
+            longText: innerError?.longText,
+            target: innerError?.target,
+        };
+        return detail;
+    }
+
+    public static isApiError(error: unknown): error is ApiError {
+        return error instanceof Error && error.name === 'ApiError';
+    }
 
     constructor(request: ApiRequestOptions, response: ApiResult, message: string, options?: ErrorOptions) {
         // @ts-ignore -- \\"options\\" only available in ES2022+
-        super(message, options);
+        super(message, { cause: options?.cause });
 
         // Maintains proper stack trace for where our error was thrown (only available on V8)
         if (Error.captureStackTrace) {
-          Error.captureStackTrace(this, ApiError);
+            Error.captureStackTrace(this, ApiError);
         }
 
         this.name = 'ApiError';
@@ -35,25 +102,42 @@ export class ApiError extends Error {
         this.body = response.body;
         this.request = request;
         this.operation = request.operation;
+
+        const getErrorDetail = options?.getErrorDetail ?? ApiError.getApiErrorDetail;
+        this.detail = getErrorDetail(message, response);
+        this.code = this.detail.code;
+    }
+
+    public get isCancelled(): boolean {
+        return false;
     }
 }
 
 export class CancelError extends Error {
     public readonly request: ApiRequestOptions;
     public readonly operation: string;
+    public readonly detail: ApiErrorDetail;
+    public readonly code?: string;
+
+    public static isCancelError(error: unknown): error is ApiError {
+        return error instanceof Error && error.name === 'CancelError';
+    }
 
     constructor(request: ApiRequestOptions, message: string, options?: ErrorOptions) {
         // @ts-ignore -- \\"options\\" only available in ES2022+
-        super(message, options);
+        super(message, { cause: options?.cause });
 
         // Maintains proper stack trace for where our error was thrown (only available on V8)
         if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, CancelError);
+            Error.captureStackTrace(this, CancelError);
         }
 
         this.name = 'CancelError';
         this.request = request;
         this.operation = request.operation;
+        const getErrorDetail = options?.getErrorDetail ?? ApiError.getApiErrorDetail;
+        this.detail = getErrorDetail(message, { url: request.url, status: 0, statusText: 'Cancelled', ok: false, body: undefined, cancelled: true });
+        this.code = this.detail.code;
     }
 
     public get isCancelled(): boolean {
@@ -106,6 +190,7 @@ export interface ApiResult {
     readonly status: number;
     readonly statusText: string;
     readonly body: any;
+    readonly cancelled?: boolean;
 }
 "
 `;
@@ -114,7 +199,9 @@ exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { ApiErrorDetail } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiResult } from './ApiResult';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
@@ -129,6 +216,7 @@ export interface OpenAPIConfig {
     password?: string | Resolver<string>;
     headers?: Headers | Resolver<Headers>;
     encodePath?: (path: string) => string;
+    getErrorDetail?: (message: string, response: ApiResult) => ApiErrorDetail;
 }
 
 export const OpenAPI: OpenAPIConfig = {
@@ -158,7 +246,7 @@ export const base64 = (str: string): string => {
     }
 };
 
-export const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void => {
+export const catchErrorCodes = (config: OpenAPIConfig, options: ApiRequestOptions, result: ApiResult): void => {
     const errors: Record<number, string> = {
         400: 'Bad Request',
         401: 'Unauthorized',
@@ -175,10 +263,10 @@ export const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): 
         options.errorHandler(options, result, error ?? 'Generic Error');
     }
     if (error) {
-        throw new ApiError(options, result, error);
+        throw new ApiError(options, result, error, { getErrorDetail: config.getErrorDetail });
     }
     if (!result.ok) {
-        throw new ApiError(options, result, 'Generic Error');
+        throw new ApiError(options, result, 'Generic Error', { getErrorDetail: config.getErrorDetail });
     }
 };
 
@@ -393,9 +481,9 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
     } catch (e) {
         let error = e;
         if (e instanceof Error && e.name === 'AbortError') {
-            error = new CancelError(options, 'Request aborted', { cause: e });
+            error = new CancelError(options, 'Request aborted', { cause: e, getErrorDetail: config.getErrorDetail });
         } else if (options.signal?.aborted && options.signal?.reason) {
-            error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
+            error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason, getErrorDetail: config.getErrorDetail });
         }
         throw error;
     }
@@ -490,7 +578,7 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
         body: responseHeader ?? responseBody,
     };
 
-    catchErrorCodes(options, result);
+    catchErrorCodes(config, options, result);
 
     return result.body;
 };
@@ -595,7 +683,7 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
         body: responseHeader ?? responseBody,
     };
 
-    catchErrorCodes(options, result);
+    catchErrorCodes(config, options, result);
 
     return result.body;
 };
@@ -4545,6 +4633,46 @@ import type { ApiResult } from './ApiResult';
 
 interface ErrorOptions {
     cause?: unknown;
+    getErrorDetail?: (message: string, response: ApiResult) => ApiErrorDetail;
+}
+
+export interface ApiInnerError {
+  code: string;
+  [key: string]: string | undefined;
+}
+
+export interface ApiErrorDetail {
+    /**
+     * Error message returned by the API.
+     *
+     * Defaults to the original error message.
+     */
+    message: string;
+
+    /**
+     * Brief description of the error.
+     */
+    shortText: string;
+
+    /**
+     * More detailed description of the error.
+     */
+    longText?: string;
+
+    /**
+     * Error code returned by the API.
+     */
+    code?: string;
+
+    /**
+     * Identifier for the error.
+     */
+    id?: string;
+
+    /**
+     * The target of the error.
+     */
+    target?: string;
 }
 
 export class ApiError extends Error {
@@ -4554,14 +4682,41 @@ export class ApiError extends Error {
     public readonly body: any;
     public readonly request: ApiRequestOptions;
     public readonly operation: string;
+    public readonly detail: ApiErrorDetail;
+    public readonly code?: string;
+
+    public static getInnerError(response: ApiResult): ApiInnerError | undefined {
+        let innerError: ApiInnerError | undefined;
+        if (typeof response.body === 'object' && response.body) {
+            innerError = response.body?.error?.innererror || response.body?.error;;
+        }
+        return innerError;
+    }
+
+    public static getApiErrorDetail(message: string, response: ApiResult): ApiErrorDetail {
+        const innerError = ApiError.getInnerError(response);
+        const detail: ApiErrorDetail = {
+            code: innerError?.code,
+            id: innerError?.id,
+            message: innerError?.message ?? message,
+            shortText: innerError?.shortText ?? response.statusText,
+            longText: innerError?.longText,
+            target: innerError?.target,
+        };
+        return detail;
+    }
+
+    public static isApiError(error: unknown): error is ApiError {
+        return error instanceof Error && error.name === 'ApiError';
+    }
 
     constructor(request: ApiRequestOptions, response: ApiResult, message: string, options?: ErrorOptions) {
         // @ts-ignore -- \\"options\\" only available in ES2022+
-        super(message, options);
+        super(message, { cause: options?.cause });
 
         // Maintains proper stack trace for where our error was thrown (only available on V8)
         if (Error.captureStackTrace) {
-          Error.captureStackTrace(this, ApiError);
+            Error.captureStackTrace(this, ApiError);
         }
 
         this.name = 'ApiError';
@@ -4571,25 +4726,42 @@ export class ApiError extends Error {
         this.body = response.body;
         this.request = request;
         this.operation = request.operation;
+
+        const getErrorDetail = options?.getErrorDetail ?? ApiError.getApiErrorDetail;
+        this.detail = getErrorDetail(message, response);
+        this.code = this.detail.code;
+    }
+
+    public get isCancelled(): boolean {
+        return false;
     }
 }
 
 export class CancelError extends Error {
     public readonly request: ApiRequestOptions;
     public readonly operation: string;
+    public readonly detail: ApiErrorDetail;
+    public readonly code?: string;
+
+    public static isCancelError(error: unknown): error is ApiError {
+        return error instanceof Error && error.name === 'CancelError';
+    }
 
     constructor(request: ApiRequestOptions, message: string, options?: ErrorOptions) {
         // @ts-ignore -- \\"options\\" only available in ES2022+
-        super(message, options);
+        super(message, { cause: options?.cause });
 
         // Maintains proper stack trace for where our error was thrown (only available on V8)
         if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, CancelError);
+            Error.captureStackTrace(this, CancelError);
         }
 
         this.name = 'CancelError';
         this.request = request;
         this.operation = request.operation;
+        const getErrorDetail = options?.getErrorDetail ?? ApiError.getApiErrorDetail;
+        this.detail = getErrorDetail(message, { url: request.url, status: 0, statusText: 'Cancelled', ok: false, body: undefined, cancelled: true });
+        this.code = this.detail.code;
     }
 
     public get isCancelled(): boolean {
@@ -4642,6 +4814,7 @@ export interface ApiResult {
     readonly status: number;
     readonly statusText: string;
     readonly body: any;
+    readonly cancelled?: boolean;
 }
 "
 `;
@@ -4650,7 +4823,9 @@ exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
 "/* eslint-disable */
 /* istanbul ignore file */
 /* tslint:disable */
+import type { ApiErrorDetail } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiResult } from './ApiResult';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
@@ -4665,6 +4840,7 @@ export interface OpenAPIConfig {
     password?: string | Resolver<string>;
     headers?: Headers | Resolver<Headers>;
     encodePath?: (path: string) => string;
+    getErrorDetail?: (message: string, response: ApiResult) => ApiErrorDetail;
 }
 
 export const OpenAPI: OpenAPIConfig = {
@@ -4694,7 +4870,7 @@ export const base64 = (str: string): string => {
     }
 };
 
-export const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void => {
+export const catchErrorCodes = (config: OpenAPIConfig, options: ApiRequestOptions, result: ApiResult): void => {
     const errors: Record<number, string> = {
         400: 'Bad Request',
         401: 'Unauthorized',
@@ -4711,10 +4887,10 @@ export const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): 
         options.errorHandler(options, result, error ?? 'Generic Error');
     }
     if (error) {
-        throw new ApiError(options, result, error);
+        throw new ApiError(options, result, error, { getErrorDetail: config.getErrorDetail });
     }
     if (!result.ok) {
-        throw new ApiError(options, result, 'Generic Error');
+        throw new ApiError(options, result, 'Generic Error', { getErrorDetail: config.getErrorDetail });
     }
 };
 
@@ -4929,9 +5105,9 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
     } catch (e) {
         let error = e;
         if (e instanceof Error && e.name === 'AbortError') {
-            error = new CancelError(options, 'Request aborted', { cause: e });
+            error = new CancelError(options, 'Request aborted', { cause: e, getErrorDetail: config.getErrorDetail });
         } else if (options.signal?.aborted && options.signal?.reason) {
-            error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason });
+            error = new CancelError(options, 'Request aborted', { cause: options.signal?.reason, getErrorDetail: config.getErrorDetail });
         }
         throw error;
     }
@@ -5026,7 +5202,7 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
         body: responseHeader ?? responseBody,
     };
 
-    catchErrorCodes(options, result);
+    catchErrorCodes(config, options, result);
 
     return result.body;
 };
@@ -5131,7 +5307,7 @@ export const request = async <T>(config: OpenAPIConfig, options: ApiRequestOptio
         body: responseHeader ?? responseBody,
     };
 
-    catchErrorCodes(options, result);
+    catchErrorCodes(config, options, result);
 
     return result.body;
 };

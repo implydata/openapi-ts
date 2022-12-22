@@ -5,6 +5,46 @@ import type { ApiResult } from './ApiResult';
 
 interface ErrorOptions {
 	cause?: unknown;
+	getErrorDetail?: (message: string, response: ApiResult) => ApiErrorDetail;
+}
+
+export interface ApiInnerError {
+  code: string;
+  [key: string]: string | undefined;
+}
+
+export interface ApiErrorDetail {
+	/**
+	 * Error message returned by the API.
+	 *
+	 * Defaults to the original error message.
+	 */
+	message: string;
+
+	/**
+	 * Brief description of the error.
+	 */
+	shortText: string;
+
+	/**
+	 * More detailed description of the error.
+	 */
+	longText?: string;
+
+	/**
+	 * Error code returned by the API.
+	 */
+	code?: string;
+
+	/**
+	 * Identifier for the error.
+	 */
+	id?: string;
+
+	/**
+	 * The target of the error.
+	 */
+	target?: string;
 }
 
 export class ApiError extends Error {
@@ -14,14 +54,41 @@ export class ApiError extends Error {
 	public readonly body: any;
 	public readonly request: ApiRequestOptions;
 	public readonly operation: string;
+	public readonly detail: ApiErrorDetail;
+	public readonly code?: string;
+
+	public static getInnerError(response: ApiResult): ApiInnerError | undefined {
+		let innerError: ApiInnerError | undefined;
+		if (typeof response.body === 'object' && response.body) {
+			innerError = response.body?.error?.innererror || response.body?.error;;
+		}
+		return innerError;
+	}
+
+	public static getApiErrorDetail(message: string, response: ApiResult): ApiErrorDetail {
+		const innerError = ApiError.getInnerError(response);
+		const detail: ApiErrorDetail = {
+			code: innerError?.code,
+			id: innerError?.id,
+			message: innerError?.message ?? message,
+			shortText: innerError?.shortText ?? response.statusText,
+			longText: innerError?.longText,
+			target: innerError?.target,
+		};
+		return detail;
+	}
+
+	public static isApiError(error: unknown): error is ApiError {
+		return error instanceof Error && error.name === 'ApiError';
+	}
 
 	constructor(request: ApiRequestOptions, response: ApiResult, message: string, options?: ErrorOptions) {
 		// @ts-ignore -- "options" only available in ES2022+
-		super(message, options);
+		super(message, { cause: options?.cause });
 
 		// Maintains proper stack trace for where our error was thrown (only available on V8)
 		if (Error.captureStackTrace) {
-		  Error.captureStackTrace(this, ApiError);
+			Error.captureStackTrace(this, ApiError);
 		}
 
 		this.name = 'ApiError';
@@ -31,25 +98,42 @@ export class ApiError extends Error {
 		this.body = response.body;
 		this.request = request;
 		this.operation = request.operation;
+
+		const getErrorDetail = options?.getErrorDetail ?? ApiError.getApiErrorDetail;
+		this.detail = getErrorDetail(message, response);
+		this.code = this.detail.code;
+	}
+
+	public get isCancelled(): boolean {
+		return false;
 	}
 }
 
 export class CancelError extends Error {
 	public readonly request: ApiRequestOptions;
 	public readonly operation: string;
+	public readonly detail: ApiErrorDetail;
+	public readonly code?: string;
+
+	public static isCancelError(error: unknown): error is ApiError {
+		return error instanceof Error && error.name === 'CancelError';
+	}
 
 	constructor(request: ApiRequestOptions, message: string, options?: ErrorOptions) {
 		// @ts-ignore -- "options" only available in ES2022+
-		super(message, options);
+		super(message, { cause: options?.cause });
 
 		// Maintains proper stack trace for where our error was thrown (only available on V8)
 		if (Error.captureStackTrace) {
-		Error.captureStackTrace(this, CancelError);
+			Error.captureStackTrace(this, CancelError);
 		}
 
 		this.name = 'CancelError';
 		this.request = request;
 		this.operation = request.operation;
+		const getErrorDetail = options?.getErrorDetail ?? ApiError.getApiErrorDetail;
+		this.detail = getErrorDetail(message, { url: request.url, status: 0, statusText: 'Cancelled', ok: false, body: undefined, cancelled: true });
+		this.code = this.detail.code;
 	}
 
 	public get isCancelled(): boolean {
