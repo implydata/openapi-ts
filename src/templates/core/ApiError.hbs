@@ -60,7 +60,7 @@ export class ApiError extends Error {
 	public static getInnerError(response: ApiResult): ApiInnerError | undefined {
 		let innerError: ApiInnerError | undefined;
 		if (typeof response.body === 'object' && response.body) {
-			innerError = response.body?.error?.innererror || response.body?.error;;
+			innerError = response.body?.error?.innererror || response.body?.error;
 		}
 		return innerError;
 	}
