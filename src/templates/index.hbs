@@ -34,6 +34,7 @@ export * from './services/{{{name}}}{{{@root.postfix}}}';
 {{#if services}}
 
 {{#each services}}
+export type { {{{pascalCase name}}}Operations } from './operations/{{{name}}}{{{@root.postfix}}}';
 {{#each operations}}
 export type { {{{pascalCase name}}}Operation } from './operations/{{{../name}}}{{{@root.postfix}}}';
 {{/each}}

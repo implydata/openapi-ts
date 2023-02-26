@@ -812,30 +812,45 @@ export * from './services/ResponseService';
 export * from './services/SimpleService';
 export * from './services/TypesService';
 
+export type { CollectionFormatOperations } from './operations/CollectionFormatService';
 export type { CollectionFormatOperation } from './operations/CollectionFormatService';
+export type { ComplexOperations } from './operations/ComplexService';
 export type { ComplexTypesOperation } from './operations/ComplexService';
+export type { DefaultOperations } from './operations/DefaultService';
 export type { ServiceWithEmptyTagOperation } from './operations/DefaultService';
+export type { DefaultsOperations } from './operations/DefaultsService';
 export type { CallWithDefaultParametersOperation } from './operations/DefaultsService';
 export type { CallWithDefaultOptionalParametersOperation } from './operations/DefaultsService';
 export type { CallToTestOrderOfParamsOperation } from './operations/DefaultsService';
+export type { DescriptionsOperations } from './operations/DescriptionsService';
 export type { CallWithDescriptionsOperation } from './operations/DescriptionsService';
+export type { DuplicateOperations } from './operations/DuplicateService';
 export type { DuplicateNameOperation } from './operations/DuplicateService';
 export type { DuplicateName1Operation } from './operations/DuplicateService';
 export type { DuplicateName2Operation } from './operations/DuplicateService';
 export type { DuplicateName3Operation } from './operations/DuplicateService';
+export type { ErrorOperations } from './operations/ErrorService';
 export type { TestErrorCodeOperation } from './operations/ErrorService';
+export type { HeaderOperations } from './operations/HeaderService';
 export type { CallWithResultFromHeaderOperation } from './operations/HeaderService';
+export type { MultipleTags1Operations } from './operations/MultipleTags1Service';
 export type { DummyAOperation } from './operations/MultipleTags1Service';
 export type { DummyBOperation } from './operations/MultipleTags1Service';
+export type { MultipleTags2Operations } from './operations/MultipleTags2Service';
 export type { DummyAOperation } from './operations/MultipleTags2Service';
 export type { DummyBOperation } from './operations/MultipleTags2Service';
+export type { MultipleTags3Operations } from './operations/MultipleTags3Service';
 export type { DummyBOperation } from './operations/MultipleTags3Service';
+export type { NoContentOperations } from './operations/NoContentService';
 export type { CallWithNoContentResponseOperation } from './operations/NoContentService';
+export type { ParametersOperations } from './operations/ParametersService';
 export type { CallWithParametersOperation } from './operations/ParametersService';
 export type { CallWithWeirdParameterNamesOperation } from './operations/ParametersService';
+export type { ResponseOperations } from './operations/ResponseService';
 export type { CallWithResponseOperation } from './operations/ResponseService';
 export type { CallWithDuplicateResponsesOperation } from './operations/ResponseService';
 export type { CallWithResponsesOperation } from './operations/ResponseService';
+export type { SimpleOperations } from './operations/SimpleService';
 export type { GetCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
 export type { PutCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
 export type { PostCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
@@ -843,6 +858,7 @@ export type { DeleteCallWithoutParametersAndResponseOperation } from './operatio
 export type { OptionsCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
 export type { HeadCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
 export type { PatchCallWithoutParametersAndResponseOperation } from './operations/SimpleService';
+export type { TypesOperations } from './operations/TypesService';
 export type { TypesOperation } from './operations/TypesService';
 "
 `;
@@ -1586,6 +1602,12 @@ export interface CollectionFormatOperation {
 }
 
 
+export type CollectionFormatOperations = {
+    /**
+     */
+    collectionFormat: CollectionFormatOperation;
+
+};
 "
 `;
 
@@ -1615,6 +1637,12 @@ export interface ComplexTypesOperation {
 }
 
 
+export type ComplexOperations = {
+    /**
+     */
+    complexTypes: ComplexTypesOperation;
+
+};
 "
 `;
 
@@ -1632,6 +1660,12 @@ export interface ServiceWithEmptyTagOperation {
 }
 
 
+export type DefaultOperations = {
+    /**
+     */
+    serviceWithEmptyTag: ServiceWithEmptyTagOperation;
+
+};
 "
 `;
 
@@ -1747,6 +1781,20 @@ export interface CallToTestOrderOfParamsOperation {
 }
 
 
+export type DefaultsOperations = {
+    /**
+     */
+    callWithDefaultParameters: CallWithDefaultParametersOperation;
+
+    /**
+     */
+    callWithDefaultOptionalParameters: CallWithDefaultOptionalParametersOperation;
+
+    /**
+     */
+    callToTestOrderOfParams: CallToTestOrderOfParamsOperation;
+
+};
 "
 `;
 
@@ -1793,6 +1841,12 @@ export interface CallWithDescriptionsOperation {
 }
 
 
+export type DescriptionsOperations = {
+    /**
+     */
+    callWithDescriptions: CallWithDescriptionsOperation;
+
+};
 "
 `;
 
@@ -1837,6 +1891,24 @@ export interface DuplicateName3Operation {
 }
 
 
+export type DuplicateOperations = {
+    /**
+     */
+    duplicateName: DuplicateNameOperation;
+
+    /**
+     */
+    duplicateName1: DuplicateName1Operation;
+
+    /**
+     */
+    duplicateName2: DuplicateName2Operation;
+
+    /**
+     */
+    duplicateName3: DuplicateName3Operation;
+
+};
 "
 `;
 
@@ -1860,6 +1932,12 @@ export interface TestErrorCodeOperation {
 }
 
 
+export type ErrorOperations = {
+    /**
+     */
+    testErrorCode: TestErrorCodeOperation;
+
+};
 "
 `;
 
@@ -1877,6 +1955,12 @@ export interface CallWithResultFromHeaderOperation {
 }
 
 
+export type HeaderOperations = {
+    /**
+     */
+    callWithResultFromHeader: CallWithResultFromHeaderOperation;
+
+};
 "
 `;
 
@@ -1903,6 +1987,16 @@ export interface DummyBOperation {
 }
 
 
+export type MultipleTags1Operations = {
+    /**
+     */
+    dummyA: DummyAOperation;
+
+    /**
+     */
+    dummyB: DummyBOperation;
+
+};
 "
 `;
 
@@ -1929,6 +2023,16 @@ export interface DummyBOperation {
 }
 
 
+export type MultipleTags2Operations = {
+    /**
+     */
+    dummyA: DummyAOperation;
+
+    /**
+     */
+    dummyB: DummyBOperation;
+
+};
 "
 `;
 
@@ -1946,6 +2050,12 @@ export interface DummyBOperation {
 }
 
 
+export type MultipleTags3Operations = {
+    /**
+     */
+    dummyB: DummyBOperation;
+
+};
 "
 `;
 
@@ -1963,6 +2073,12 @@ export interface CallWithNoContentResponseOperation {
 }
 
 
+export type NoContentOperations = {
+    /**
+     */
+    callWithNoContentResponse: CallWithNoContentResponseOperation;
+
+};
 "
 `;
 
@@ -2057,6 +2173,16 @@ export interface CallWithWeirdParameterNamesOperation {
 }
 
 
+export type ParametersOperations = {
+    /**
+     */
+    callWithParameters: CallWithParametersOperation;
+
+    /**
+     */
+    callWithWeirdParameterNames: CallWithWeirdParameterNamesOperation;
+
+};
 "
 `;
 
@@ -2097,6 +2223,20 @@ export interface CallWithResponsesOperation {
 }
 
 
+export type ResponseOperations = {
+    /**
+     */
+    callWithResponse: CallWithResponseOperation;
+
+    /**
+     */
+    callWithDuplicateResponses: CallWithDuplicateResponsesOperation;
+
+    /**
+     */
+    callWithResponses: CallWithResponsesOperation;
+
+};
 "
 `;
 
@@ -2168,6 +2308,36 @@ export interface PatchCallWithoutParametersAndResponseOperation {
 }
 
 
+export type SimpleOperations = {
+    /**
+     */
+    getCallWithoutParametersAndResponse: GetCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    putCallWithoutParametersAndResponse: PutCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    postCallWithoutParametersAndResponse: PostCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    deleteCallWithoutParametersAndResponse: DeleteCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    optionsCallWithoutParametersAndResponse: OptionsCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    headCallWithoutParametersAndResponse: HeadCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    patchCallWithoutParametersAndResponse: PatchCallWithoutParametersAndResponseOperation;
+
+};
 "
 `;
 
@@ -2221,6 +2391,12 @@ export interface TypesOperation {
 }
 
 
+export type TypesOperations = {
+    /**
+     */
+    types: TypesOperation;
+
+};
 "
 `;
 
@@ -5475,38 +5651,57 @@ export * from './services/SimpleSvc';
 export * from './services/TypesSvc';
 export * from './services/UploadSvc';
 
+export type { CollectionFormatOperations } from './operations/CollectionFormatSvc';
 export type { CollectionFormatOperation } from './operations/CollectionFormatSvc';
+export type { ComplexOperations } from './operations/ComplexSvc';
 export type { ComplexTypesOperation } from './operations/ComplexSvc';
 export type { ComplexParamsOperation } from './operations/ComplexSvc';
+export type { DefaultOperations } from './operations/DefaultSvc';
 export type { ServiceWithEmptyTagOperation } from './operations/DefaultSvc';
+export type { DefaultsOperations } from './operations/DefaultsSvc';
 export type { CallWithDefaultParametersOperation } from './operations/DefaultsSvc';
 export type { CallWithDefaultOptionalParametersOperation } from './operations/DefaultsSvc';
 export type { CallToTestOrderOfParamsOperation } from './operations/DefaultsSvc';
+export type { DeprecatedOperations } from './operations/DeprecatedSvc';
 export type { DeprecatedCallOperation } from './operations/DeprecatedSvc';
+export type { DescriptionsOperations } from './operations/DescriptionsSvc';
 export type { CallWithDescriptionsOperation } from './operations/DescriptionsSvc';
+export type { DuplicateOperations } from './operations/DuplicateSvc';
 export type { DuplicateNameOperation } from './operations/DuplicateSvc';
 export type { DuplicateName1Operation } from './operations/DuplicateSvc';
 export type { DuplicateName2Operation } from './operations/DuplicateSvc';
 export type { DuplicateName3Operation } from './operations/DuplicateSvc';
+export type { ErrorOperations } from './operations/ErrorSvc';
 export type { TestErrorCodeOperation } from './operations/ErrorSvc';
+export type { FormDataOperations } from './operations/FormDataSvc';
 export type { PostApiFormDataOperation } from './operations/FormDataSvc';
+export type { HeaderOperations } from './operations/HeaderSvc';
 export type { CallWithResultFromHeaderOperation } from './operations/HeaderSvc';
+export type { MultipartOperations } from './operations/MultipartSvc';
 export type { MultipartRequestOperation } from './operations/MultipartSvc';
 export type { MultipartResponseOperation } from './operations/MultipartSvc';
+export type { MultipleTags1Operations } from './operations/MultipleTags1Svc';
 export type { DummyAOperation } from './operations/MultipleTags1Svc';
 export type { DummyBOperation } from './operations/MultipleTags1Svc';
+export type { MultipleTags2Operations } from './operations/MultipleTags2Svc';
 export type { DummyAOperation } from './operations/MultipleTags2Svc';
 export type { DummyBOperation } from './operations/MultipleTags2Svc';
+export type { MultipleTags3Operations } from './operations/MultipleTags3Svc';
 export type { DummyBOperation } from './operations/MultipleTags3Svc';
+export type { NoContentOperations } from './operations/NoContentSvc';
 export type { CallWithNoContentResponseOperation } from './operations/NoContentSvc';
+export type { ParametersOperations } from './operations/ParametersSvc';
 export type { CallWithParametersOperation } from './operations/ParametersSvc';
 export type { CallWithWeirdParameterNamesOperation } from './operations/ParametersSvc';
 export type { GetCallWithOptionalParamOperation } from './operations/ParametersSvc';
 export type { PostCallWithOptionalParamOperation } from './operations/ParametersSvc';
+export type { RequestBodyOperations } from './operations/RequestBodySvc';
 export type { PostApiRequestBodyOperation } from './operations/RequestBodySvc';
+export type { ResponseOperations } from './operations/ResponseSvc';
 export type { CallWithResponseOperation } from './operations/ResponseSvc';
 export type { CallWithDuplicateResponsesOperation } from './operations/ResponseSvc';
 export type { CallWithResponsesOperation } from './operations/ResponseSvc';
+export type { SimpleOperations } from './operations/SimpleSvc';
 export type { GetCallWithoutParametersAndResponseOperation } from './operations/SimpleSvc';
 export type { PutCallWithoutParametersAndResponseOperation } from './operations/SimpleSvc';
 export type { PostCallWithoutParametersAndResponseOperation } from './operations/SimpleSvc';
@@ -5514,7 +5709,9 @@ export type { DeleteCallWithoutParametersAndResponseOperation } from './operatio
 export type { OptionsCallWithoutParametersAndResponseOperation } from './operations/SimpleSvc';
 export type { HeadCallWithoutParametersAndResponseOperation } from './operations/SimpleSvc';
 export type { PatchCallWithoutParametersAndResponseOperation } from './operations/SimpleSvc';
+export type { TypesOperations } from './operations/TypesSvc';
 export type { TypesOperation } from './operations/TypesSvc';
+export type { UploadOperations } from './operations/UploadSvc';
 export type { UploadFileOperation } from './operations/UploadSvc';
 "
 `;
@@ -6554,6 +6751,12 @@ export interface CollectionFormatOperation {
 }
 
 
+export type CollectionFormatOperations = {
+    /**
+     */
+    collectionFormat: CollectionFormatOperation;
+
+};
 "
 `;
 
@@ -6600,6 +6803,16 @@ export interface ComplexParamsOperation {
 }
 
 
+export type ComplexOperations = {
+    /**
+     */
+    complexTypes: ComplexTypesOperation;
+
+    /**
+     */
+    complexParams: ComplexParamsOperation;
+
+};
 "
 `;
 
@@ -6617,6 +6830,12 @@ export interface ServiceWithEmptyTagOperation {
 }
 
 
+export type DefaultOperations = {
+    /**
+     */
+    serviceWithEmptyTag: ServiceWithEmptyTagOperation;
+
+};
 "
 `;
 
@@ -6732,6 +6951,20 @@ export interface CallToTestOrderOfParamsOperation {
 }
 
 
+export type DefaultsOperations = {
+    /**
+     */
+    callWithDefaultParameters: CallWithDefaultParametersOperation;
+
+    /**
+     */
+    callWithDefaultOptionalParameters: CallWithDefaultOptionalParametersOperation;
+
+    /**
+     */
+    callToTestOrderOfParams: CallToTestOrderOfParamsOperation;
+
+};
 "
 `;
 
@@ -6758,6 +6991,13 @@ export interface DeprecatedCallOperation {
 }
 
 
+export type DeprecatedOperations = {
+    /**
+     * @deprecated
+     */
+    deprecatedCall: DeprecatedCallOperation;
+
+};
 "
 `;
 
@@ -6804,6 +7044,12 @@ export interface CallWithDescriptionsOperation {
 }
 
 
+export type DescriptionsOperations = {
+    /**
+     */
+    callWithDescriptions: CallWithDescriptionsOperation;
+
+};
 "
 `;
 
@@ -6848,6 +7094,24 @@ export interface DuplicateName3Operation {
 }
 
 
+export type DuplicateOperations = {
+    /**
+     */
+    duplicateName: DuplicateNameOperation;
+
+    /**
+     */
+    duplicateName1: DuplicateName1Operation;
+
+    /**
+     */
+    duplicateName2: DuplicateName2Operation;
+
+    /**
+     */
+    duplicateName3: DuplicateName3Operation;
+
+};
 "
 `;
 
@@ -6871,6 +7135,12 @@ export interface TestErrorCodeOperation {
 }
 
 
+export type ErrorOperations = {
+    /**
+     */
+    testErrorCode: TestErrorCodeOperation;
+
+};
 "
 `;
 
@@ -6904,6 +7174,12 @@ export interface PostApiFormDataOperation {
 }
 
 
+export type FormDataOperations = {
+    /**
+     */
+    postApiFormData: PostApiFormDataOperation;
+
+};
 "
 `;
 
@@ -6921,6 +7197,12 @@ export interface CallWithResultFromHeaderOperation {
 }
 
 
+export type HeaderOperations = {
+    /**
+     */
+    callWithResultFromHeader: CallWithResultFromHeaderOperation;
+
+};
 "
 `;
 
@@ -6951,6 +7233,16 @@ export interface MultipartResponseOperation {
 }
 
 
+export type MultipartOperations = {
+    /**
+     */
+    multipartRequest: MultipartRequestOperation;
+
+    /**
+     */
+    multipartResponse: MultipartResponseOperation;
+
+};
 "
 `;
 
@@ -6977,6 +7269,16 @@ export interface DummyBOperation {
 }
 
 
+export type MultipleTags1Operations = {
+    /**
+     */
+    dummyA: DummyAOperation;
+
+    /**
+     */
+    dummyB: DummyBOperation;
+
+};
 "
 `;
 
@@ -7003,6 +7305,16 @@ export interface DummyBOperation {
 }
 
 
+export type MultipleTags2Operations = {
+    /**
+     */
+    dummyA: DummyAOperation;
+
+    /**
+     */
+    dummyB: DummyBOperation;
+
+};
 "
 `;
 
@@ -7020,6 +7332,12 @@ export interface DummyBOperation {
 }
 
 
+export type MultipleTags3Operations = {
+    /**
+     */
+    dummyB: DummyBOperation;
+
+};
 "
 `;
 
@@ -7037,6 +7355,12 @@ export interface CallWithNoContentResponseOperation {
 }
 
 
+export type NoContentOperations = {
+    /**
+     */
+    callWithNoContentResponse: CallWithNoContentResponseOperation;
+
+};
 "
 `;
 
@@ -7200,6 +7524,24 @@ export interface PostCallWithOptionalParamOperation {
 }
 
 
+export type ParametersOperations = {
+    /**
+     */
+    callWithParameters: CallWithParametersOperation;
+
+    /**
+     */
+    callWithWeirdParameterNames: CallWithWeirdParameterNamesOperation;
+
+    /**
+     */
+    getCallWithOptionalParam: GetCallWithOptionalParamOperation;
+
+    /**
+     */
+    postCallWithOptionalParam: PostCallWithOptionalParamOperation;
+
+};
 "
 `;
 
@@ -7233,6 +7575,12 @@ export interface PostApiRequestBodyOperation {
 }
 
 
+export type RequestBodyOperations = {
+    /**
+     */
+    postApiRequestBody: PostApiRequestBodyOperation;
+
+};
 "
 `;
 
@@ -7273,6 +7621,20 @@ export interface CallWithResponsesOperation {
 }
 
 
+export type ResponseOperations = {
+    /**
+     */
+    callWithResponse: CallWithResponseOperation;
+
+    /**
+     */
+    callWithDuplicateResponses: CallWithDuplicateResponsesOperation;
+
+    /**
+     */
+    callWithResponses: CallWithResponsesOperation;
+
+};
 "
 `;
 
@@ -7344,6 +7706,36 @@ export interface PatchCallWithoutParametersAndResponseOperation {
 }
 
 
+export type SimpleOperations = {
+    /**
+     */
+    getCallWithoutParametersAndResponse: GetCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    putCallWithoutParametersAndResponse: PutCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    postCallWithoutParametersAndResponse: PostCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    deleteCallWithoutParametersAndResponse: DeleteCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    optionsCallWithoutParametersAndResponse: OptionsCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    headCallWithoutParametersAndResponse: HeadCallWithoutParametersAndResponseOperation;
+
+    /**
+     */
+    patchCallWithoutParametersAndResponse: PatchCallWithoutParametersAndResponseOperation;
+
+};
 "
 `;
 
@@ -7397,6 +7789,12 @@ export interface TypesOperation {
 }
 
 
+export type TypesOperations = {
+    /**
+     */
+    types: TypesOperation;
+
+};
 "
 `;
 
@@ -7420,6 +7818,12 @@ export interface UploadFileOperation {
 }
 
 
+export type UploadOperations = {
+    /**
+     */
+    uploadFile: UploadFileOperation;
+
+};
 "
 `;
 

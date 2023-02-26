@@ -114,3 +114,20 @@ export interface {{{pascalCase name}}}Operation {
 }
 
 {{/each}}
+
+export type {{{pascalCase name}}}Operations = {
+	{{#each operations}}
+	/**
+	{{#if deprecated}}
+	* @deprecated
+	{{/if}}
+	{{#if description}}
+	* {{{escapeComment description}}}
+	{{else if summary}}
+	* {{{escapeComment summary}}}
+	{{/if}}
+	*/
+	{{{camelCase name}}}: {{{pascalCase name}}}Operation;
+
+	{{/each}}
+};
