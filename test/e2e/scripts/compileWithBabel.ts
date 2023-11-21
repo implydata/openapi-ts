@@ -22,6 +22,7 @@ export const compileWithBabel = (dir: string) => {
                         '@babel/preset-typescript',
                         {
                             onlyRemoveTypeImports: true,
+                            allowDeclareFields: true,
                         },
                     ],
                 ],

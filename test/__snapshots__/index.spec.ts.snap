@@ -38,6 +38,7 @@ exports[`v2 should generate: test/generated/v2/core/ApiRequestOptions.ts 1`] = `
 /* eslint-disable */
 export type ApiRequestOptions = {
     readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
+    readonly operation: string;
     readonly url: string;
     readonly path?: Record<string, any>;
     readonly cookies?: Record<string, any>;
@@ -2998,11 +2999,12 @@ exports[`v2 should generate: test/generated/v2/services/CollectionFormatService.
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type CollectionFormatOperation = 'CollectionFormat.collectionFormat';
-const URLs: Record<CollectionFormatOperation, { method: ApiRequestMethod; url: string; operation: CollectionFormatOperation }> = {
+const URLs: Record<CollectionFormatOperation, { method: ApiRequestOptions['method']; url: string; operation: CollectionFormatOperation }> = {
     'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
 };
 interface CollectionFormatParameters {
@@ -3046,12 +3048,13 @@ exports[`v2 should generate: test/generated/v2/services/ComplexService.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type ComplexOperation = 'Complex.complexTypes';
-const URLs: Record<ComplexOperation, { method: ApiRequestMethod; url: string; operation: ComplexOperation }> = {
+const URLs: Record<ComplexOperation, { method: ApiRequestOptions['method']; url: string; operation: ComplexOperation }> = {
     'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
 };
 interface ComplexParameters {
@@ -3103,11 +3106,12 @@ exports[`v2 should generate: test/generated/v2/services/DefaultService.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DefaultOperation = 'Default.serviceWithEmptyTag';
-const URLs: Record<DefaultOperation, { method: ApiRequestMethod; url: string; operation: DefaultOperation }> = {
+const URLs: Record<DefaultOperation, { method: ApiRequestOptions['method']; url: string; operation: DefaultOperation }> = {
     'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
 };
 interface DefaultParameters {
@@ -3133,12 +3137,13 @@ exports[`v2 should generate: test/generated/v2/services/DefaultsService.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DefaultsOperation = 'Defaults.callWithDefaultParameters' | 'Defaults.callWithDefaultOptionalParameters' | 'Defaults.callToTestOrderOfParams';
-const URLs: Record<DefaultsOperation, { method: ApiRequestMethod; url: string; operation: DefaultsOperation }> = {
+const URLs: Record<DefaultsOperation, { method: ApiRequestOptions['method']; url: string; operation: DefaultsOperation }> = {
     'Defaults.callWithDefaultParameters': { method: 'GET', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultParameters' },
     'Defaults.callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultOptionalParameters' },
     'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
@@ -3251,11 +3256,12 @@ exports[`v2 should generate: test/generated/v2/services/DescriptionsService.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DescriptionsOperation = 'Descriptions.callWithDescriptions';
-const URLs: Record<DescriptionsOperation, { method: ApiRequestMethod; url: string; operation: DescriptionsOperation }> = {
+const URLs: Record<DescriptionsOperation, { method: ApiRequestOptions['method']; url: string; operation: DescriptionsOperation }> = {
     'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
 };
 interface DescriptionsParameters {
@@ -3305,11 +3311,12 @@ exports[`v2 should generate: test/generated/v2/services/DuplicateService.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DuplicateOperation = 'Duplicate.duplicateName' | 'Duplicate.duplicateName1' | 'Duplicate.duplicateName2' | 'Duplicate.duplicateName3';
-const URLs: Record<DuplicateOperation, { method: ApiRequestMethod; url: string; operation: DuplicateOperation }> = {
+const URLs: Record<DuplicateOperation, { method: ApiRequestOptions['method']; url: string; operation: DuplicateOperation }> = {
     'Duplicate.duplicateName': { method: 'GET', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName' },
     'Duplicate.duplicateName1': { method: 'POST', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName1' },
     'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
@@ -3365,11 +3372,12 @@ exports[`v2 should generate: test/generated/v2/services/ErrorService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type ErrorOperation = 'Error.testErrorCode';
-const URLs: Record<ErrorOperation, { method: ApiRequestMethod; url: string; operation: ErrorOperation }> = {
+const URLs: Record<ErrorOperation, { method: ApiRequestOptions['method']; url: string; operation: ErrorOperation }> = {
     'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
 };
 interface ErrorParameters {
@@ -3408,11 +3416,12 @@ exports[`v2 should generate: test/generated/v2/services/HeaderService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type HeaderOperation = 'Header.callWithResultFromHeader';
-const URLs: Record<HeaderOperation, { method: ApiRequestMethod; url: string; operation: HeaderOperation }> = {
+const URLs: Record<HeaderOperation, { method: ApiRequestOptions['method']; url: string; operation: HeaderOperation }> = {
     'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
 };
 interface HeaderParameters {
@@ -3444,11 +3453,12 @@ exports[`v2 should generate: test/generated/v2/services/MultipleTags1Service.ts 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type MultipleTags1Operation = 'MultipleTags1.dummyA' | 'MultipleTags1.dummyB';
-const URLs: Record<MultipleTags1Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags1Operation }> = {
+const URLs: Record<MultipleTags1Operation, { method: ApiRequestOptions['method']; url: string; operation: MultipleTags1Operation }> = {
     'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
     'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
 };
@@ -3486,11 +3496,12 @@ exports[`v2 should generate: test/generated/v2/services/MultipleTags2Service.ts 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type MultipleTags2Operation = 'MultipleTags2.dummyA' | 'MultipleTags2.dummyB';
-const URLs: Record<MultipleTags2Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags2Operation }> = {
+const URLs: Record<MultipleTags2Operation, { method: ApiRequestOptions['method']; url: string; operation: MultipleTags2Operation }> = {
     'MultipleTags2.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags2.dummyA' },
     'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
 };
@@ -3528,11 +3539,12 @@ exports[`v2 should generate: test/generated/v2/services/MultipleTags3Service.ts 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type MultipleTags3Operation = 'MultipleTags3.dummyB';
-const URLs: Record<MultipleTags3Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags3Operation }> = {
+const URLs: Record<MultipleTags3Operation, { method: ApiRequestOptions['method']; url: string; operation: MultipleTags3Operation }> = {
     'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
 };
 interface MultipleTags3Parameters {
@@ -3559,11 +3571,12 @@ exports[`v2 should generate: test/generated/v2/services/NoContentService.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type NoContentOperation = 'NoContent.callWithNoContentResponse';
-const URLs: Record<NoContentOperation, { method: ApiRequestMethod; url: string; operation: NoContentOperation }> = {
+const URLs: Record<NoContentOperation, { method: ApiRequestOptions['method']; url: string; operation: NoContentOperation }> = {
     'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
 };
 interface NoContentParameters {
@@ -3590,11 +3603,12 @@ exports[`v2 should generate: test/generated/v2/services/ParametersService.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type ParametersOperation = 'Parameters.callWithParameters' | 'Parameters.callWithWeirdParameterNames';
-const URLs: Record<ParametersOperation, { method: ApiRequestMethod; url: string; operation: ParametersOperation }> = {
+const URLs: Record<ParametersOperation, { method: ApiRequestOptions['method']; url: string; operation: ParametersOperation }> = {
     'Parameters.callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}', operation: 'Parameters.callWithParameters' },
     'Parameters.callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', operation: 'Parameters.callWithWeirdParameterNames' },
 };
@@ -3687,6 +3701,7 @@ exports[`v2 should generate: test/generated/v2/services/ResponseService.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
@@ -3694,7 +3709,7 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type ResponseOperation = 'Response.callWithResponse' | 'Response.callWithDuplicateResponses' | 'Response.callWithResponses';
-const URLs: Record<ResponseOperation, { method: ApiRequestMethod; url: string; operation: ResponseOperation }> = {
+const URLs: Record<ResponseOperation, { method: ApiRequestOptions['method']; url: string; operation: ResponseOperation }> = {
     'Response.callWithResponse': { method: 'GET', url: '/api/v{api-version}/response', operation: 'Response.callWithResponse' },
     'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
     'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
@@ -3760,11 +3775,12 @@ exports[`v2 should generate: test/generated/v2/services/SimpleService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type SimpleOperation = 'Simple.getCallWithoutParametersAndResponse' | 'Simple.putCallWithoutParametersAndResponse' | 'Simple.postCallWithoutParametersAndResponse' | 'Simple.deleteCallWithoutParametersAndResponse' | 'Simple.optionsCallWithoutParametersAndResponse' | 'Simple.headCallWithoutParametersAndResponse' | 'Simple.patchCallWithoutParametersAndResponse';
-const URLs: Record<SimpleOperation, { method: ApiRequestMethod; url: string; operation: SimpleOperation }> = {
+const URLs: Record<SimpleOperation, { method: ApiRequestOptions['method']; url: string; operation: SimpleOperation }> = {
     'Simple.getCallWithoutParametersAndResponse': { method: 'GET', url: '/api/v{api-version}/simple', operation: 'Simple.getCallWithoutParametersAndResponse' },
     'Simple.putCallWithoutParametersAndResponse': { method: 'PUT', url: '/api/v{api-version}/simple', operation: 'Simple.putCallWithoutParametersAndResponse' },
     'Simple.postCallWithoutParametersAndResponse': { method: 'POST', url: '/api/v{api-version}/simple', operation: 'Simple.postCallWithoutParametersAndResponse' },
@@ -3850,11 +3866,12 @@ exports[`v2 should generate: test/generated/v2/services/TypesService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type TypesOperation = 'Types.types';
-const URLs: Record<TypesOperation, { method: ApiRequestMethod; url: string; operation: TypesOperation }> = {
+const URLs: Record<TypesOperation, { method: ApiRequestOptions['method']; url: string; operation: TypesOperation }> = {
     'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
 };
 interface TypesParameters {
@@ -3945,6 +3962,7 @@ exports[`v3 should generate: test/generated/v3/core/ApiRequestOptions.ts 1`] = `
 /* eslint-disable */
 export type ApiRequestOptions = {
     readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
+    readonly operation: string;
     readonly url: string;
     readonly path?: Record<string, any>;
     readonly cookies?: Record<string, any>;
@@ -8063,11 +8081,12 @@ exports[`v3 should generate: test/generated/v3/services/CollectionFormatService.
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type CollectionFormatOperation = 'CollectionFormat.collectionFormat';
-const URLs: Record<CollectionFormatOperation, { method: ApiRequestMethod; url: string; operation: CollectionFormatOperation }> = {
+const URLs: Record<CollectionFormatOperation, { method: ApiRequestOptions['method']; url: string; operation: CollectionFormatOperation }> = {
     'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
 };
 interface CollectionFormatParameters {
@@ -8111,6 +8130,7 @@ exports[`v3 should generate: test/generated/v3/services/ComplexService.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithArray } from '../models/ModelWithArray';
 import type { ModelWithDictionary } from '../models/ModelWithDictionary';
 import type { ModelWithEnum } from '../models/ModelWithEnum';
@@ -8119,7 +8139,7 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type ComplexOperation = 'Complex.complexTypes' | 'Complex.complexParams';
-const URLs: Record<ComplexOperation, { method: ApiRequestMethod; url: string; operation: ComplexOperation }> = {
+const URLs: Record<ComplexOperation, { method: ApiRequestOptions['method']; url: string; operation: ComplexOperation }> = {
     'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
     'Complex.complexParams': { method: 'PUT', url: '/api/v{api-version}/complex/{id}', operation: 'Complex.complexParams' },
 };
@@ -8216,11 +8236,12 @@ exports[`v3 should generate: test/generated/v3/services/DefaultService.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DefaultOperation = 'Default.serviceWithEmptyTag';
-const URLs: Record<DefaultOperation, { method: ApiRequestMethod; url: string; operation: DefaultOperation }> = {
+const URLs: Record<DefaultOperation, { method: ApiRequestOptions['method']; url: string; operation: DefaultOperation }> = {
     'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
 };
 interface DefaultParameters {
@@ -8246,12 +8267,13 @@ exports[`v3 should generate: test/generated/v3/services/DefaultsService.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DefaultsOperation = 'Defaults.callWithDefaultParameters' | 'Defaults.callWithDefaultOptionalParameters' | 'Defaults.callToTestOrderOfParams';
-const URLs: Record<DefaultsOperation, { method: ApiRequestMethod; url: string; operation: DefaultsOperation }> = {
+const URLs: Record<DefaultsOperation, { method: ApiRequestOptions['method']; url: string; operation: DefaultsOperation }> = {
     'Defaults.callWithDefaultParameters': { method: 'GET', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultParameters' },
     'Defaults.callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultOptionalParameters' },
     'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
@@ -8364,12 +8386,13 @@ exports[`v3 should generate: test/generated/v3/services/DeprecatedService.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { DeprecatedModel } from '../models/DeprecatedModel';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DeprecatedOperation = 'Deprecated.deprecatedCall';
-const URLs: Record<DeprecatedOperation, { method: ApiRequestMethod; url: string; operation: DeprecatedOperation }> = {
+const URLs: Record<DeprecatedOperation, { method: ApiRequestOptions['method']; url: string; operation: DeprecatedOperation }> = {
     'Deprecated.deprecatedCall': { method: 'POST', url: '/api/v{api-version}/parameters/deprecated', operation: 'Deprecated.deprecatedCall' },
 };
 interface DeprecatedParameters {
@@ -8402,11 +8425,12 @@ exports[`v3 should generate: test/generated/v3/services/DescriptionsService.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DescriptionsOperation = 'Descriptions.callWithDescriptions';
-const URLs: Record<DescriptionsOperation, { method: ApiRequestMethod; url: string; operation: DescriptionsOperation }> = {
+const URLs: Record<DescriptionsOperation, { method: ApiRequestOptions['method']; url: string; operation: DescriptionsOperation }> = {
     'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
 };
 interface DescriptionsParameters {
@@ -8456,11 +8480,12 @@ exports[`v3 should generate: test/generated/v3/services/DuplicateService.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type DuplicateOperation = 'Duplicate.duplicateName' | 'Duplicate.duplicateName1' | 'Duplicate.duplicateName2' | 'Duplicate.duplicateName3';
-const URLs: Record<DuplicateOperation, { method: ApiRequestMethod; url: string; operation: DuplicateOperation }> = {
+const URLs: Record<DuplicateOperation, { method: ApiRequestOptions['method']; url: string; operation: DuplicateOperation }> = {
     'Duplicate.duplicateName': { method: 'GET', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName' },
     'Duplicate.duplicateName1': { method: 'POST', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName1' },
     'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
@@ -8516,11 +8541,12 @@ exports[`v3 should generate: test/generated/v3/services/ErrorService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type ErrorOperation = 'Error.testErrorCode';
-const URLs: Record<ErrorOperation, { method: ApiRequestMethod; url: string; operation: ErrorOperation }> = {
+const URLs: Record<ErrorOperation, { method: ApiRequestOptions['method']; url: string; operation: ErrorOperation }> = {
     'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
 };
 interface ErrorParameters {
@@ -8559,12 +8585,13 @@ exports[`v3 should generate: test/generated/v3/services/FormDataService.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type FormDataOperation = 'FormData.postApiFormData';
-const URLs: Record<FormDataOperation, { method: ApiRequestMethod; url: string; operation: FormDataOperation }> = {
+const URLs: Record<FormDataOperation, { method: ApiRequestOptions['method']; url: string; operation: FormDataOperation }> = {
     'FormData.postApiFormData': { method: 'POST', url: '/api/v{api-version}/formData/', operation: 'FormData.postApiFormData' },
 };
 interface FormDataParameters {
@@ -8600,11 +8627,12 @@ exports[`v3 should generate: test/generated/v3/services/HeaderService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type HeaderOperation = 'Header.callWithResultFromHeader';
-const URLs: Record<HeaderOperation, { method: ApiRequestMethod; url: string; operation: HeaderOperation }> = {
+const URLs: Record<HeaderOperation, { method: ApiRequestOptions['method']; url: string; operation: HeaderOperation }> = {
     'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
 };
 interface HeaderParameters {
@@ -8636,12 +8664,13 @@ exports[`v3 should generate: test/generated/v3/services/MultipartService.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type MultipartOperation = 'Multipart.multipartRequest' | 'Multipart.multipartResponse';
-const URLs: Record<MultipartOperation, { method: ApiRequestMethod; url: string; operation: MultipartOperation }> = {
+const URLs: Record<MultipartOperation, { method: ApiRequestOptions['method']; url: string; operation: MultipartOperation }> = {
     'Multipart.multipartRequest': { method: 'POST', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartRequest' },
     'Multipart.multipartResponse': { method: 'GET', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartResponse' },
 };
@@ -8695,11 +8724,12 @@ exports[`v3 should generate: test/generated/v3/services/MultipleTags1Service.ts 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type MultipleTags1Operation = 'MultipleTags1.dummyA' | 'MultipleTags1.dummyB';
-const URLs: Record<MultipleTags1Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags1Operation }> = {
+const URLs: Record<MultipleTags1Operation, { method: ApiRequestOptions['method']; url: string; operation: MultipleTags1Operation }> = {
     'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
     'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
 };
@@ -8737,11 +8767,12 @@ exports[`v3 should generate: test/generated/v3/services/MultipleTags2Service.ts 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type MultipleTags2Operation = 'MultipleTags2.dummyA' | 'MultipleTags2.dummyB';
-const URLs: Record<MultipleTags2Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags2Operation }> = {
+const URLs: Record<MultipleTags2Operation, { method: ApiRequestOptions['method']; url: string; operation: MultipleTags2Operation }> = {
     'MultipleTags2.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags2.dummyA' },
     'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
 };
@@ -8779,11 +8810,12 @@ exports[`v3 should generate: test/generated/v3/services/MultipleTags3Service.ts 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type MultipleTags3Operation = 'MultipleTags3.dummyB';
-const URLs: Record<MultipleTags3Operation, { method: ApiRequestMethod; url: string; operation: MultipleTags3Operation }> = {
+const URLs: Record<MultipleTags3Operation, { method: ApiRequestOptions['method']; url: string; operation: MultipleTags3Operation }> = {
     'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
 };
 interface MultipleTags3Parameters {
@@ -8810,11 +8842,12 @@ exports[`v3 should generate: test/generated/v3/services/NoContentService.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type NoContentOperation = 'NoContent.callWithNoContentResponse';
-const URLs: Record<NoContentOperation, { method: ApiRequestMethod; url: string; operation: NoContentOperation }> = {
+const URLs: Record<NoContentOperation, { method: ApiRequestOptions['method']; url: string; operation: NoContentOperation }> = {
     'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
 };
 interface NoContentParameters {
@@ -8841,13 +8874,14 @@ exports[`v3 should generate: test/generated/v3/services/ParametersService.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { Pageable } from '../models/Pageable';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type ParametersOperation = 'Parameters.callWithParameters' | 'Parameters.callWithWeirdParameterNames' | 'Parameters.getCallWithOptionalParam' | 'Parameters.postCallWithOptionalParam';
-const URLs: Record<ParametersOperation, { method: ApiRequestMethod; url: string; operation: ParametersOperation }> = {
+const URLs: Record<ParametersOperation, { method: ApiRequestOptions['method']; url: string; operation: ParametersOperation }> = {
     'Parameters.callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}', operation: 'Parameters.callWithParameters' },
     'Parameters.callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', operation: 'Parameters.callWithWeirdParameterNames' },
     'Parameters.getCallWithOptionalParam': { method: 'GET', url: '/api/v{api-version}/parameters/', operation: 'Parameters.getCallWithOptionalParam' },
@@ -8992,12 +9026,13 @@ exports[`v3 should generate: test/generated/v3/services/RequestBodyService.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type RequestBodyOperation = 'RequestBody.postApiRequestBody';
-const URLs: Record<RequestBodyOperation, { method: ApiRequestMethod; url: string; operation: RequestBodyOperation }> = {
+const URLs: Record<RequestBodyOperation, { method: ApiRequestOptions['method']; url: string; operation: RequestBodyOperation }> = {
     'RequestBody.postApiRequestBody': { method: 'POST', url: '/api/v{api-version}/requestBody/', operation: 'RequestBody.postApiRequestBody' },
 };
 interface RequestBodyParameters {
@@ -9033,6 +9068,7 @@ exports[`v3 should generate: test/generated/v3/services/ResponseService.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
@@ -9040,7 +9076,7 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type ResponseOperation = 'Response.callWithResponse' | 'Response.callWithDuplicateResponses' | 'Response.callWithResponses';
-const URLs: Record<ResponseOperation, { method: ApiRequestMethod; url: string; operation: ResponseOperation }> = {
+const URLs: Record<ResponseOperation, { method: ApiRequestOptions['method']; url: string; operation: ResponseOperation }> = {
     'Response.callWithResponse': { method: 'GET', url: '/api/v{api-version}/response', operation: 'Response.callWithResponse' },
     'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
     'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
@@ -9106,11 +9142,12 @@ exports[`v3 should generate: test/generated/v3/services/SimpleService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type SimpleOperation = 'Simple.getCallWithoutParametersAndResponse' | 'Simple.putCallWithoutParametersAndResponse' | 'Simple.postCallWithoutParametersAndResponse' | 'Simple.deleteCallWithoutParametersAndResponse' | 'Simple.optionsCallWithoutParametersAndResponse' | 'Simple.headCallWithoutParametersAndResponse' | 'Simple.patchCallWithoutParametersAndResponse';
-const URLs: Record<SimpleOperation, { method: ApiRequestMethod; url: string; operation: SimpleOperation }> = {
+const URLs: Record<SimpleOperation, { method: ApiRequestOptions['method']; url: string; operation: SimpleOperation }> = {
     'Simple.getCallWithoutParametersAndResponse': { method: 'GET', url: '/api/v{api-version}/simple', operation: 'Simple.getCallWithoutParametersAndResponse' },
     'Simple.putCallWithoutParametersAndResponse': { method: 'PUT', url: '/api/v{api-version}/simple', operation: 'Simple.putCallWithoutParametersAndResponse' },
     'Simple.postCallWithoutParametersAndResponse': { method: 'POST', url: '/api/v{api-version}/simple', operation: 'Simple.postCallWithoutParametersAndResponse' },
@@ -9196,11 +9233,12 @@ exports[`v3 should generate: test/generated/v3/services/TypesService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type TypesOperation = 'Types.types';
-const URLs: Record<TypesOperation, { method: ApiRequestMethod; url: string; operation: TypesOperation }> = {
+const URLs: Record<TypesOperation, { method: ApiRequestOptions['method']; url: string; operation: TypesOperation }> = {
     'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
 };
 interface TypesParameters {
@@ -9259,11 +9297,12 @@ exports[`v3 should generate: test/generated/v3/services/UploadService.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export type UploadOperation = 'Upload.uploadFile';
-const URLs: Record<UploadOperation, { method: ApiRequestMethod; url: string; operation: UploadOperation }> = {
+const URLs: Record<UploadOperation, { method: ApiRequestOptions['method']; url: string; operation: UploadOperation }> = {
     'Upload.uploadFile': { method: 'POST', url: '/api/v{api-version}/upload', operation: 'Upload.uploadFile' },
 };
 interface UploadParameters {

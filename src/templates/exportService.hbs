@@ -1,6 +1,7 @@
 {{>header}}
 
 import type { OperationsType } from '../models/_symbols';
+import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 {{#equals @root.httpClient 'angular'}}
 {{#if @root.exportClient}}
 import { Injectable } from '@angular/core';
@@ -34,7 +35,7 @@ import { request as __request } from '../core/request';
 
 export type {{{name}}}Operation ={{~#each operations}}{{~#unless @first}} |{{/unless}} '{{{@root.name}}}.{{{name}}}'{{/each}};
 
-const URLs: Record<{{{name}}}Operation, { method: ApiRequestMethod; url: string; operation: {{{name}}}Operation }> = {
+const URLs: Record<{{{name}}}Operation, { method: ApiRequestOptions['method']; url: string; operation: {{{name}}}Operation }> = {
 {{#each operations}}
 	'{{{@root.name}}}.{{{name}}}': { method: '{{{method}}}', url: '{{{path}}}', operation: '{{{@root.name}}}.{{{name}}}' },
 {{/each}}
