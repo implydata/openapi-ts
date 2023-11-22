@@ -23,7 +23,6 @@ describe('writeClientClass', () => {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
-                operation: () => 'operation',
             },
             core: {
                 settings: () => 'settings',

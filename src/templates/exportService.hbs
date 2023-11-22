@@ -16,6 +16,11 @@ import type { Observable } from 'rxjs';
 {{#each imports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
+{{#if @root.writeOperations}}
+{{#each errorImports}}
+import type { {{{this}}} } from '../models/{{{this}}}';
+{{/each}}
+{{/if}}
 
 {{/if}}
 {{#notEquals @root.httpClient 'angular'}}
@@ -39,6 +44,131 @@ const URLs: Record<{{{name}}}Operation, { method: ApiRequestOptions['method']; u
 	'{{{@root.name}}}.{{{name}}}': { method: '{{{method}}}', url: '{{{path}}}', operation: '{{{@root.name}}}.{{{name}}}' },
 {{/each}}
 };
+
+{{#if @root.writeOperations}}
+{{#each operations}}
+/**
+{{#if deprecated}}
+ * @deprecated
+{{/if}}
+{{#if description}}
+ * {{{escapeComment description}}}
+{{else if summary}}
+ * {{{escapeComment summary}}}
+{{/if}}
+ */
+export interface {{{pascalCase @root.name}}}{{{pascalCase name}}}Operation {
+	request: {
+		{{#if parametersPath}}
+		path: {
+			{{#each parametersPath}}
+			{{#if description}}
+			/**
+			* {{{escapeComment description}}}
+			*/
+			{{/if}}
+			'{{{prop}}}': {{{type}}};
+			{{/each}}
+		};
+		{{/if}}
+		{{#if parametersCookie}}
+		cookies: {
+			{{#each parametersCookie}}
+			{{#if description}}
+			/**
+			* {{{escapeComment description}}}
+			*/
+			{{/if}}
+			'{{{prop}}}': {{{type}}};
+			{{/each}}
+		};
+		{{/if}}
+		{{#if parametersHeader}}
+		headers: {
+			{{#each parametersHeader}}
+			{{#if description}}
+			/**
+			* {{{escapeComment description}}}
+			*/
+			{{/if}}
+			'{{{prop}}}': {{{type}}};
+			{{/each}}
+		};
+		{{/if}}
+		{{#if parametersQuery}}
+		query: {
+			{{#each parametersQuery}}
+			{{#if description}}
+			/**
+			* {{{escapeComment description}}}
+			*/
+			{{/if}}
+			'{{{prop}}}': {{{type}}};
+			{{/each}}
+		};
+		{{/if}}
+		{{#if parametersForm}}
+		formData: {
+			{{#each parametersForm}}
+			{{#if description}}
+			/**
+			* {{{escapeComment description}}}
+			*/
+			{{/if}}
+			'{{{prop}}}': {{{type}}};
+			{{/each}}
+		};
+		{{/if}}
+		{{#if parametersBody}}
+		{{#equals parametersBody.in 'formData'}}
+		{{#if parametersBody.description}}
+		/**
+		* {{{escapeComment parametersBody.description}}}
+		*/
+		{{/if}}
+		formData: {{{parametersBody.type}}};
+		{{/equals}}
+		{{#equals parametersBody.in 'body'}}
+		{{#if parametersBody.description}}
+		/**
+		* {{{escapeComment parametersBody.description}}}
+		*/
+		{{/if}}
+		body: {{{parametersBody.type}}};
+		{{/equals}}
+		{{#if parametersBody.mediaType}}
+		{{#if parametersBody.description}}
+		/**
+		* {{{escapeComment parametersBody.description}}}
+		*/
+		{{/if}}
+		mediaType: '{{{parametersBody.mediaType}}}';
+		{{/if}}
+		{{/if}}
+	};
+
+	response: {{~#each results}} | {{{type}}}{{/each}} {{~#each errors}} | {{{type}}}{{/each}};
+}
+
+{{/each}}
+
+export type {{{pascalCase name}}}Operations = {
+	{{#each operations}}
+	/**
+	{{#if deprecated}}
+	* @deprecated
+	{{/if}}
+	{{#if description}}
+	* {{{escapeComment description}}}
+	{{else if summary}}
+	* {{{escapeComment summary}}}
+	{{/if}}
+	*/
+	{{{camelCase name}}}: {{{pascalCase @root.name}}}{{{pascalCase name}}}Operation;
+
+	{{/each}}
+};
+{{/if}}
 
 {{#equals @root.httpClient 'angular'}}
 @Injectable({

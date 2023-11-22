@@ -28,7 +28,6 @@ describe('writeClientServices', () => {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
-                operation: () => 'operation',
             },
             core: {
                 settings: () => 'settings',
@@ -42,8 +41,18 @@ describe('writeClientServices', () => {
             },
         };
 
-        await writeClientServices(services, templates, '/', HttpClient.FETCH, false, false, Indent.SPACE_4, 'Service');
+        await writeClientServices(
+            services,
+            templates,
+            '/',
+            HttpClient.FETCH,
+            true,
+            false,
+            false,
+            Indent.SPACE_4,
+            'Service'
+        );
 
-        expect(writeFile).toBeCalledWith(resolve('/', '/UserService.ts'), `service${EOL}`);
+        expect(writeFile).toHaveBeenCalledWith(resolve('/', '/UserService.ts'), `service${EOL}`);
     });
 });

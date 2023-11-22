@@ -15,6 +15,7 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
+ * @param writeOperations Write operation types
  * @param useUnionTypes Use union types instead of enums
  * @param useOptions Use options or arguments functions
  * @param indent Indentation options (4, 2 or tab)
@@ -26,6 +27,7 @@ export const writeClientServices = async (
     templates: Templates,
     outputPath: string,
     httpClient: HttpClient,
+    writeOperations: boolean,
     useUnionTypes: boolean,
     useOptions: boolean,
     indent: Indent,
@@ -41,6 +43,7 @@ export const writeClientServices = async (
             useOptions,
             postfix,
             exportClient: isDefined(clientName),
+            writeOperations,
         });
         await writeFile(file, i(f(templateResult), indent));
     }
