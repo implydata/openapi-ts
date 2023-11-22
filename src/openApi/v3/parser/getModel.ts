@@ -95,13 +95,9 @@ export const getModel = (
         }
     }
 
-    if (
-        definition.type === 'object' &&
-        (typeof definition.additionalProperties === 'object' || definition.additionalProperties === true)
-    ) {
-        const ap = typeof definition.additionalProperties === 'object' ? definition.additionalProperties : {};
-        if (ap.$ref) {
-            const additionalProperties = getType(ap.$ref);
+    if (definition.type === 'object' && typeof definition.additionalProperties === 'object') {
+        if (definition.additionalProperties.$ref) {
+            const additionalProperties = getType(definition.additionalProperties.$ref);
             model.export = 'dictionary';
             model.type = additionalProperties.type;
             model.base = additionalProperties.base;
@@ -110,7 +106,7 @@ export const getModel = (
             model.default = getModelDefault(definition, model);
             return model;
         } else {
-            const additionalProperties = getModel(openApi, ap);
+            const additionalProperties = getModel(openApi, definition.additionalProperties);
             model.export = 'dictionary';
             model.type = additionalProperties.type;
             model.base = additionalProperties.base;
@@ -150,12 +146,12 @@ export const getModel = (
     }
 
     if (definition.type === 'object') {
-        if (definition.properties) {
-            model.export = 'interface';
-            model.type = 'any';
-            model.base = 'any';
-            model.default = getModelDefault(definition, model);
+        model.export = 'interface';
+        model.type = 'any';
+        model.base = 'any';
+        model.default = getModelDefault(definition, model);
 
+        if (definition.properties) {
             const modelProperties = getModelProperties(openApi, definition, getModel, model);
             modelProperties.forEach(modelProperty => {
                 model.imports.push(...modelProperty.imports);
@@ -165,18 +161,8 @@ export const getModel = (
                     model.enums.push(modelProperty);
                 }
             });
-            return model;
-        } else {
-            const additionalProperties = getModel(openApi, {});
-            model.export = 'dictionary';
-            model.type = additionalProperties.type;
-            model.base = additionalProperties.base;
-            model.template = additionalProperties.template;
-            model.link = additionalProperties;
-            model.imports.push(...additionalProperties.imports);
-            model.default = getModelDefault(definition, model);
-            return model;
         }
+        return model;
     }
 
     // If the schema has a type than it can be a basic or generic type.
