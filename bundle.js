@@ -46,6 +46,7 @@ configure({
     entryPoints: { index: 'src/index.ts' },
     outdir: 'dist',
     platform: 'node',
+    external: ['commander'],
     plugins: [hbs()],
     sourcemap: false,
     target: 'node16',
