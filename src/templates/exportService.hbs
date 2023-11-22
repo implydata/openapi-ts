@@ -41,12 +41,6 @@ const URLs: Record<{{{name}}}Operation, { method: ApiRequestOptions['method']; u
 {{/each}}
 };
 
-interface {{{name}}}Parameters {
-{{#each operations}}
-	'{{{@root.name}}}.{{{name}}}': [{{~#each parameters}}{{{name}}}?: {{>type}}{{~#unless @last}}, {{/unless}}{{/each}}];
-{{/each}}
-}
-
 {{#equals @root.httpClient 'angular'}}
 @Injectable({
   providedIn: 'root',

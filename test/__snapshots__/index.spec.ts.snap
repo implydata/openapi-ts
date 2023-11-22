@@ -3135,9 +3135,6 @@ export type CollectionFormatOperation = 'CollectionFormat.collectionFormat';
 const URLs: Record<CollectionFormatOperation, { method: ApiRequestOptions['method']; url: string; operation: CollectionFormatOperation }> = {
     'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
 };
-interface CollectionFormatParameters {
-    'CollectionFormat.collectionFormat': [parameterArrayCsv?: Array<string>, parameterArraySsv?: Array<string>, parameterArrayTsv?: Array<string>, parameterArrayPipes?: Array<string>, parameterArrayMulti?: Array<string>];
-}
 export class CollectionFormatService {
     declare [OperationsType]: CollectionFormatOperation;
     /**
@@ -3185,15 +3182,6 @@ export type ComplexOperation = 'Complex.complexTypes';
 const URLs: Record<ComplexOperation, { method: ApiRequestOptions['method']; url: string; operation: ComplexOperation }> = {
     'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
 };
-interface ComplexParameters {
-    'Complex.complexTypes': [parameterObject?: {
-        first?: {
-            second?: {
-                third?: string;
-            };
-        };
-    }, parameterReference?: ModelWithString];
-}
 export class ComplexService {
     declare [OperationsType]: ComplexOperation;
     /**
@@ -3242,9 +3230,6 @@ export type DefaultOperation = 'Default.serviceWithEmptyTag';
 const URLs: Record<DefaultOperation, { method: ApiRequestOptions['method']; url: string; operation: DefaultOperation }> = {
     'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
 };
-interface DefaultParameters {
-    'Default.serviceWithEmptyTag': [];
-}
 export class DefaultService {
     declare [OperationsType]: DefaultOperation;
     /**
@@ -3276,11 +3261,6 @@ const URLs: Record<DefaultsOperation, { method: ApiRequestOptions['method']; url
     'Defaults.callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultOptionalParameters' },
     'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
 };
-interface DefaultsParameters {
-    'Defaults.callWithDefaultParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
-    'Defaults.callWithDefaultOptionalParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
-    'Defaults.callToTestOrderOfParams': [parameterStringWithNoDefault?: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault?: string, parameterStringWithEmptyDefault?: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null];
-}
 export class DefaultsService {
     declare [OperationsType]: DefaultsOperation;
     /**
@@ -3392,9 +3372,6 @@ export type DescriptionsOperation = 'Descriptions.callWithDescriptions';
 const URLs: Record<DescriptionsOperation, { method: ApiRequestOptions['method']; url: string; operation: DescriptionsOperation }> = {
     'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
 };
-interface DescriptionsParameters {
-    'Descriptions.callWithDescriptions': [parameterWithBreaks?: string, parameterWithBackticks?: string, parameterWithSlashes?: string, parameterWithExpressionPlaceholders?: string, parameterWithQuotes?: string, parameterWithReservedCharacters?: string];
-}
 export class DescriptionsService {
     declare [OperationsType]: DescriptionsOperation;
     /**
@@ -3450,12 +3427,6 @@ const URLs: Record<DuplicateOperation, { method: ApiRequestOptions['method']; ur
     'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
     'Duplicate.duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName3' },
 };
-interface DuplicateParameters {
-    'Duplicate.duplicateName': [];
-    'Duplicate.duplicateName1': [];
-    'Duplicate.duplicateName2': [];
-    'Duplicate.duplicateName3': [];
-}
 export class DuplicateService {
     declare [OperationsType]: DuplicateOperation;
     /**
@@ -3508,9 +3479,6 @@ export type ErrorOperation = 'Error.testErrorCode';
 const URLs: Record<ErrorOperation, { method: ApiRequestOptions['method']; url: string; operation: ErrorOperation }> = {
     'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
 };
-interface ErrorParameters {
-    'Error.testErrorCode': [status?: string];
-}
 export class ErrorService {
     declare [OperationsType]: ErrorOperation;
     /**
@@ -3552,9 +3520,6 @@ export type HeaderOperation = 'Header.callWithResultFromHeader';
 const URLs: Record<HeaderOperation, { method: ApiRequestOptions['method']; url: string; operation: HeaderOperation }> = {
     'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
 };
-interface HeaderParameters {
-    'Header.callWithResultFromHeader': [];
-}
 export class HeaderService {
     declare [OperationsType]: HeaderOperation;
     /**
@@ -3590,10 +3555,6 @@ const URLs: Record<MultipleTags1Operation, { method: ApiRequestOptions['method']
     'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
     'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
 };
-interface MultipleTags1Parameters {
-    'MultipleTags1.dummyA': [];
-    'MultipleTags1.dummyB': [];
-}
 export class MultipleTags1Service {
     declare [OperationsType]: MultipleTags1Operation;
     /**
@@ -3633,10 +3594,6 @@ const URLs: Record<MultipleTags2Operation, { method: ApiRequestOptions['method']
     'MultipleTags2.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags2.dummyA' },
     'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
 };
-interface MultipleTags2Parameters {
-    'MultipleTags2.dummyA': [];
-    'MultipleTags2.dummyB': [];
-}
 export class MultipleTags2Service {
     declare [OperationsType]: MultipleTags2Operation;
     /**
@@ -3675,9 +3632,6 @@ export type MultipleTags3Operation = 'MultipleTags3.dummyB';
 const URLs: Record<MultipleTags3Operation, { method: ApiRequestOptions['method']; url: string; operation: MultipleTags3Operation }> = {
     'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
 };
-interface MultipleTags3Parameters {
-    'MultipleTags3.dummyB': [];
-}
 export class MultipleTags3Service {
     declare [OperationsType]: MultipleTags3Operation;
     /**
@@ -3707,9 +3661,6 @@ export type NoContentOperation = 'NoContent.callWithNoContentResponse';
 const URLs: Record<NoContentOperation, { method: ApiRequestOptions['method']; url: string; operation: NoContentOperation }> = {
     'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
 };
-interface NoContentParameters {
-    'NoContent.callWithNoContentResponse': [];
-}
 export class NoContentService {
     declare [OperationsType]: NoContentOperation;
     /**
@@ -3740,10 +3691,6 @@ const URLs: Record<ParametersOperation, { method: ApiRequestOptions['method']; u
     'Parameters.callWithParameters': { method: 'POST', url: '/api/v{api-version}/parameters/{parameterPath}', operation: 'Parameters.callWithParameters' },
     'Parameters.callWithWeirdParameterNames': { method: 'POST', url: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', operation: 'Parameters.callWithWeirdParameterNames' },
 };
-interface ParametersParameters {
-    'Parameters.callWithParameters': [parameterHeader?: string, parameterQuery?: string, parameterForm?: string, parameterBody?: string, parameterPath?: string];
-    'Parameters.callWithWeirdParameterNames': [parameterHeader?: string, parameterQuery?: string, parameterForm?: string, parameterBody?: string, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string];
-}
 export class ParametersService {
     declare [OperationsType]: ParametersOperation;
     /**
@@ -3842,11 +3789,6 @@ const URLs: Record<ResponseOperation, { method: ApiRequestOptions['method']; url
     'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
     'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
 };
-interface ResponseParameters {
-    'Response.callWithResponse': [];
-    'Response.callWithDuplicateResponses': [];
-    'Response.callWithResponses': [];
-}
 export class ResponseService {
     declare [OperationsType]: ResponseOperation;
     /**
@@ -3917,15 +3859,6 @@ const URLs: Record<SimpleOperation, { method: ApiRequestOptions['method']; url: 
     'Simple.headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple', operation: 'Simple.headCallWithoutParametersAndResponse' },
     'Simple.patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple', operation: 'Simple.patchCallWithoutParametersAndResponse' },
 };
-interface SimpleParameters {
-    'Simple.getCallWithoutParametersAndResponse': [];
-    'Simple.putCallWithoutParametersAndResponse': [];
-    'Simple.postCallWithoutParametersAndResponse': [];
-    'Simple.deleteCallWithoutParametersAndResponse': [];
-    'Simple.optionsCallWithoutParametersAndResponse': [];
-    'Simple.headCallWithoutParametersAndResponse': [];
-    'Simple.patchCallWithoutParametersAndResponse': [];
-}
 export class SimpleService {
     declare [OperationsType]: SimpleOperation;
     /**
@@ -4002,9 +3935,6 @@ export type TypesOperation = 'Types.types';
 const URLs: Record<TypesOperation, { method: ApiRequestOptions['method']; url: string; operation: TypesOperation }> = {
     'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
 };
-interface TypesParameters {
-    'Types.types': [parameterArray?: Array<string>, parameterDictionary?: Record<string, string>, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterNumber?: number, parameterString?: string, parameterBoolean?: boolean, parameterObject?: any, id?: number];
-}
 export class TypesService {
     declare [OperationsType]: TypesOperation;
     /**
@@ -8383,9 +8313,6 @@ export type CollectionFormatOperation = 'CollectionFormat.collectionFormat';
 const URLs: Record<CollectionFormatOperation, { method: ApiRequestOptions['method']; url: string; operation: CollectionFormatOperation }> = {
     'CollectionFormat.collectionFormat': { method: 'GET', url: '/api/v{api-version}/collectionFormat', operation: 'CollectionFormat.collectionFormat' },
 };
-interface CollectionFormatParameters {
-    'CollectionFormat.collectionFormat': [parameterArrayCsv?: Array<string> | null, parameterArraySsv?: Array<string> | null, parameterArrayTsv?: Array<string> | null, parameterArrayPipes?: Array<string> | null, parameterArrayMulti?: Array<string> | null];
-}
 export class CollectionFormatService {
     declare [OperationsType]: CollectionFormatOperation;
     /**
@@ -8437,28 +8364,6 @@ const URLs: Record<ComplexOperation, { method: ApiRequestOptions['method']; url:
     'Complex.complexTypes': { method: 'GET', url: '/api/v{api-version}/complex', operation: 'Complex.complexTypes' },
     'Complex.complexParams': { method: 'PUT', url: '/api/v{api-version}/complex/{id}', operation: 'Complex.complexParams' },
 };
-interface ComplexParameters {
-    'Complex.complexTypes': [parameterObject?: {
-        first?: {
-            second?: {
-                third?: string;
-            };
-        };
-    }, parameterReference?: ModelWithString];
-    'Complex.complexParams': [id?: number, requestBody?: {
-        readonly key: string | null;
-        name: string | null;
-        enabled?: boolean;
-        readonly type: 'Monkey' | 'Horse' | 'Bird';
-        listOfModels?: Array<ModelWithString> | null;
-        listOfStrings?: Array<string> | null;
-        parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
-        readonly user?: {
-            readonly id?: number;
-            readonly name?: string | null;
-        };
-    }];
-}
 export class ComplexService {
     declare [OperationsType]: ComplexOperation;
     /**
@@ -8538,9 +8443,6 @@ export type DefaultOperation = 'Default.serviceWithEmptyTag';
 const URLs: Record<DefaultOperation, { method: ApiRequestOptions['method']; url: string; operation: DefaultOperation }> = {
     'Default.serviceWithEmptyTag': { method: 'GET', url: '/api/v{api-version}/no-tag', operation: 'Default.serviceWithEmptyTag' },
 };
-interface DefaultParameters {
-    'Default.serviceWithEmptyTag': [];
-}
 export class DefaultService {
     declare [OperationsType]: DefaultOperation;
     /**
@@ -8572,11 +8474,6 @@ const URLs: Record<DefaultsOperation, { method: ApiRequestOptions['method']; url
     'Defaults.callWithDefaultOptionalParameters': { method: 'POST', url: '/api/v{api-version}/defaults', operation: 'Defaults.callWithDefaultOptionalParameters' },
     'Defaults.callToTestOrderOfParams': { method: 'PUT', url: '/api/v{api-version}/defaults', operation: 'Defaults.callToTestOrderOfParams' },
 };
-interface DefaultsParameters {
-    'Defaults.callWithDefaultParameters': [parameterString?: string | null, parameterNumber?: number | null, parameterBoolean?: boolean | null, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString | null];
-    'Defaults.callWithDefaultOptionalParameters': [parameterString?: string, parameterNumber?: number, parameterBoolean?: boolean, parameterEnum?: 'Success' | 'Warning' | 'Error', parameterModel?: ModelWithString];
-    'Defaults.callToTestOrderOfParams': [parameterStringWithNoDefault?: string, parameterOptionalStringWithDefault?: string, parameterOptionalStringWithEmptyDefault?: string, parameterOptionalStringWithNoDefault?: string, parameterStringWithDefault?: string, parameterStringWithEmptyDefault?: string, parameterStringNullableWithNoDefault?: string | null, parameterStringNullableWithDefault?: string | null];
-}
 export class DefaultsService {
     declare [OperationsType]: DefaultsOperation;
     /**
@@ -8689,9 +8586,6 @@ export type DeprecatedOperation = 'Deprecated.deprecatedCall';
 const URLs: Record<DeprecatedOperation, { method: ApiRequestOptions['method']; url: string; operation: DeprecatedOperation }> = {
     'Deprecated.deprecatedCall': { method: 'POST', url: '/api/v{api-version}/parameters/deprecated', operation: 'Deprecated.deprecatedCall' },
 };
-interface DeprecatedParameters {
-    'Deprecated.deprecatedCall': [parameter?: DeprecatedModel | null];
-}
 export class DeprecatedService {
     declare [OperationsType]: DeprecatedOperation;
     /**
@@ -8727,9 +8621,6 @@ export type DescriptionsOperation = 'Descriptions.callWithDescriptions';
 const URLs: Record<DescriptionsOperation, { method: ApiRequestOptions['method']; url: string; operation: DescriptionsOperation }> = {
     'Descriptions.callWithDescriptions': { method: 'POST', url: '/api/v{api-version}/descriptions/', operation: 'Descriptions.callWithDescriptions' },
 };
-interface DescriptionsParameters {
-    'Descriptions.callWithDescriptions': [parameterWithBreaks?: any, parameterWithBackticks?: any, parameterWithSlashes?: any, parameterWithExpressionPlaceholders?: any, parameterWithQuotes?: any, parameterWithReservedCharacters?: any];
-}
 export class DescriptionsService {
     declare [OperationsType]: DescriptionsOperation;
     /**
@@ -8785,12 +8676,6 @@ const URLs: Record<DuplicateOperation, { method: ApiRequestOptions['method']; ur
     'Duplicate.duplicateName2': { method: 'PUT', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName2' },
     'Duplicate.duplicateName3': { method: 'DELETE', url: '/api/v{api-version}/duplicate', operation: 'Duplicate.duplicateName3' },
 };
-interface DuplicateParameters {
-    'Duplicate.duplicateName': [];
-    'Duplicate.duplicateName1': [];
-    'Duplicate.duplicateName2': [];
-    'Duplicate.duplicateName3': [];
-}
 export class DuplicateService {
     declare [OperationsType]: DuplicateOperation;
     /**
@@ -8843,9 +8728,6 @@ export type ErrorOperation = 'Error.testErrorCode';
 const URLs: Record<ErrorOperation, { method: ApiRequestOptions['method']; url: string; operation: ErrorOperation }> = {
     'Error.testErrorCode': { method: 'POST', url: '/api/v{api-version}/error', operation: 'Error.testErrorCode' },
 };
-interface ErrorParameters {
-    'Error.testErrorCode': [status?: number];
-}
 export class ErrorService {
     declare [OperationsType]: ErrorOperation;
     /**
@@ -8888,9 +8770,6 @@ export type FormDataOperation = 'FormData.postApiFormData';
 const URLs: Record<FormDataOperation, { method: ApiRequestOptions['method']; url: string; operation: FormDataOperation }> = {
     'FormData.postApiFormData': { method: 'POST', url: '/api/v{api-version}/formData/', operation: 'FormData.postApiFormData' },
 };
-interface FormDataParameters {
-    'FormData.postApiFormData': [parameter?: string, formData?: ModelWithString];
-}
 export class FormDataService {
     declare [OperationsType]: FormDataOperation;
     /**
@@ -8929,9 +8808,6 @@ export type HeaderOperation = 'Header.callWithResultFromHeader';
 const URLs: Record<HeaderOperation, { method: ApiRequestOptions['method']; url: string; operation: HeaderOperation }> = {
     'Header.callWithResultFromHeader': { method: 'POST', url: '/api/v{api-version}/header', operation: 'Header.callWithResultFromHeader' },
 };
-interface HeaderParameters {
-    'Header.callWithResultFromHeader': [];
-}
 export class HeaderService {
     declare [OperationsType]: HeaderOperation;
     /**
@@ -8968,13 +8844,6 @@ const URLs: Record<MultipartOperation, { method: ApiRequestOptions['method']; ur
     'Multipart.multipartRequest': { method: 'POST', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartRequest' },
     'Multipart.multipartResponse': { method: 'GET', url: '/api/v{api-version}/multipart', operation: 'Multipart.multipartResponse' },
 };
-interface MultipartParameters {
-    'Multipart.multipartRequest': [formData?: {
-        content?: Blob;
-        data?: ModelWithString | null;
-    }];
-    'Multipart.multipartResponse': [];
-}
 export class MultipartService {
     declare [OperationsType]: MultipartOperation;
     /**
@@ -9027,10 +8896,6 @@ const URLs: Record<MultipleTags1Operation, { method: ApiRequestOptions['method']
     'MultipleTags1.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags1.dummyA' },
     'MultipleTags1.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags1.dummyB' },
 };
-interface MultipleTags1Parameters {
-    'MultipleTags1.dummyA': [];
-    'MultipleTags1.dummyB': [];
-}
 export class MultipleTags1Service {
     declare [OperationsType]: MultipleTags1Operation;
     /**
@@ -9070,10 +8935,6 @@ const URLs: Record<MultipleTags2Operation, { method: ApiRequestOptions['method']
     'MultipleTags2.dummyA': { method: 'GET', url: '/api/v{api-version}/multiple-tags/a', operation: 'MultipleTags2.dummyA' },
     'MultipleTags2.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags2.dummyB' },
 };
-interface MultipleTags2Parameters {
-    'MultipleTags2.dummyA': [];
-    'MultipleTags2.dummyB': [];
-}
 export class MultipleTags2Service {
     declare [OperationsType]: MultipleTags2Operation;
     /**
@@ -9112,9 +8973,6 @@ export type MultipleTags3Operation = 'MultipleTags3.dummyB';
 const URLs: Record<MultipleTags3Operation, { method: ApiRequestOptions['method']; url: string; operation: MultipleTags3Operation }> = {
     'MultipleTags3.dummyB': { method: 'GET', url: '/api/v{api-version}/multiple-tags/b', operation: 'MultipleTags3.dummyB' },
 };
-interface MultipleTags3Parameters {
-    'MultipleTags3.dummyB': [];
-}
 export class MultipleTags3Service {
     declare [OperationsType]: MultipleTags3Operation;
     /**
@@ -9144,9 +9002,6 @@ export type NoContentOperation = 'NoContent.callWithNoContentResponse';
 const URLs: Record<NoContentOperation, { method: ApiRequestOptions['method']; url: string; operation: NoContentOperation }> = {
     'NoContent.callWithNoContentResponse': { method: 'GET', url: '/api/v{api-version}/no-content', operation: 'NoContent.callWithNoContentResponse' },
 };
-interface NoContentParameters {
-    'NoContent.callWithNoContentResponse': [];
-}
 export class NoContentService {
     declare [OperationsType]: NoContentOperation;
     /**
@@ -9181,12 +9036,6 @@ const URLs: Record<ParametersOperation, { method: ApiRequestOptions['method']; u
     'Parameters.getCallWithOptionalParam': { method: 'GET', url: '/api/v{api-version}/parameters/', operation: 'Parameters.getCallWithOptionalParam' },
     'Parameters.postCallWithOptionalParam': { method: 'POST', url: '/api/v{api-version}/parameters/', operation: 'Parameters.postCallWithOptionalParam' },
 };
-interface ParametersParameters {
-    'Parameters.callWithParameters': [parameterHeader?: string | null, parameterQuery?: string | null, parameterForm?: string | null, parameterCookie?: string | null, parameterPath?: string | null, requestBody?: ModelWithString | null];
-    'Parameters.callWithWeirdParameterNames': [parameterHeader?: string | null, parameterQuery?: string | null, parameterForm?: string | null, parameterCookie?: string | null, requestBody?: ModelWithString | null, parameterPath1?: string, parameterPath2?: string, parameterPath3?: string, _default?: string];
-    'Parameters.getCallWithOptionalParam': [requestBody?: ModelWithString, parameter?: string];
-    'Parameters.postCallWithOptionalParam': [parameter?: Pageable, requestBody?: ModelWithString];
-}
 export class ParametersService {
     declare [OperationsType]: ParametersOperation;
     /**
@@ -9329,9 +9178,6 @@ export type RequestBodyOperation = 'RequestBody.postApiRequestBody';
 const URLs: Record<RequestBodyOperation, { method: ApiRequestOptions['method']; url: string; operation: RequestBodyOperation }> = {
     'RequestBody.postApiRequestBody': { method: 'POST', url: '/api/v{api-version}/requestBody/', operation: 'RequestBody.postApiRequestBody' },
 };
-interface RequestBodyParameters {
-    'RequestBody.postApiRequestBody': [parameter?: string, requestBody?: ModelWithString];
-}
 export class RequestBodyService {
     declare [OperationsType]: RequestBodyOperation;
     /**
@@ -9375,11 +9221,6 @@ const URLs: Record<ResponseOperation, { method: ApiRequestOptions['method']; url
     'Response.callWithDuplicateResponses': { method: 'POST', url: '/api/v{api-version}/response', operation: 'Response.callWithDuplicateResponses' },
     'Response.callWithResponses': { method: 'PUT', url: '/api/v{api-version}/response', operation: 'Response.callWithResponses' },
 };
-interface ResponseParameters {
-    'Response.callWithResponse': [];
-    'Response.callWithDuplicateResponses': [];
-    'Response.callWithResponses': [];
-}
 export class ResponseService {
     declare [OperationsType]: ResponseOperation;
     /**
@@ -9450,15 +9291,6 @@ const URLs: Record<SimpleOperation, { method: ApiRequestOptions['method']; url: 
     'Simple.headCallWithoutParametersAndResponse': { method: 'HEAD', url: '/api/v{api-version}/simple', operation: 'Simple.headCallWithoutParametersAndResponse' },
     'Simple.patchCallWithoutParametersAndResponse': { method: 'PATCH', url: '/api/v{api-version}/simple', operation: 'Simple.patchCallWithoutParametersAndResponse' },
 };
-interface SimpleParameters {
-    'Simple.getCallWithoutParametersAndResponse': [];
-    'Simple.putCallWithoutParametersAndResponse': [];
-    'Simple.postCallWithoutParametersAndResponse': [];
-    'Simple.deleteCallWithoutParametersAndResponse': [];
-    'Simple.optionsCallWithoutParametersAndResponse': [];
-    'Simple.headCallWithoutParametersAndResponse': [];
-    'Simple.patchCallWithoutParametersAndResponse': [];
-}
 export class SimpleService {
     declare [OperationsType]: SimpleOperation;
     /**
@@ -9535,9 +9367,6 @@ export type TypesOperation = 'Types.types';
 const URLs: Record<TypesOperation, { method: ApiRequestOptions['method']; url: string; operation: TypesOperation }> = {
     'Types.types': { method: 'GET', url: '/api/v{api-version}/types', operation: 'Types.types' },
 };
-interface TypesParameters {
-    'Types.types': [parameterArray?: Array<string> | null, parameterDictionary?: Record<string, any> | null, parameterEnum?: 'Success' | 'Warning' | 'Error' | null, parameterNumber?: number, parameterString?: string | null, parameterBoolean?: boolean | null, parameterObject?: Record<string, any> | null, id?: number];
-}
 export class TypesService {
     declare [OperationsType]: TypesOperation;
     /**
@@ -9599,9 +9428,6 @@ export type UploadOperation = 'Upload.uploadFile';
 const URLs: Record<UploadOperation, { method: ApiRequestOptions['method']; url: string; operation: UploadOperation }> = {
     'Upload.uploadFile': { method: 'POST', url: '/api/v{api-version}/upload', operation: 'Upload.uploadFile' },
 };
-interface UploadParameters {
-    'Upload.uploadFile': [file?: Blob];
-}
 export class UploadService {
     declare [OperationsType]: UploadOperation;
     /**
