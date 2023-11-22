@@ -1,6 +1,5 @@
 {{>header}}
 
-import type { OperationsType } from '../models/_symbols';
 import type { ApiRequestOptions } from '../core/ApiRequestOptions';
 {{#equals @root.httpClient 'angular'}}
 {{#if @root.exportClient}}
@@ -47,7 +46,7 @@ const URLs: Record<{{{name}}}Operation, { method: ApiRequestOptions['method']; u
 })
 {{/equals}}
 export class {{{name}}}{{{@root.postfix}}} {
-	declare [OperationsType]: {{{name}}}Operation;
+	public static readonly URLs = URLs;
 
 	{{#if @root.exportClient}}
 
