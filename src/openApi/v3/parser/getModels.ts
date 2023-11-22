@@ -21,7 +21,12 @@ export const getModels = (openApi: OpenApi): Model[] => {
                 const definitionType = getType(definitionName);
                 const schema = definition.schema;
                 if (schema) {
-                    const model = getModel(openApi, schema, true, definitionType.base.replace(reservedWords, '_$1'));
+                    const model = getModel(
+                        openApi,
+                        schema,
+                        true,
+                        definitionType.base.replace(reservedWords, '_$1') + 'Parameter'
+                    );
                     model.description = definition.description || null;
                     model.deprecated = definition.deprecated;
                     models.push(model);
