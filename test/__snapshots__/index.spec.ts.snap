@@ -2377,7 +2377,7 @@ export interface CollectionFormatCollectionFormatOperation {
             'parameterArrayMulti': string;
         };
     };
-    response:;
+    response: void;
 }
 export type CollectionFormatOperations = {
     /**
@@ -2445,7 +2445,7 @@ export interface ComplexComplexTypesOperation {
             'parameterReference': ModelWithString;
         };
     };
-    response: | ModelWithString | any | any;
+    response: Array<ModelWithString> | any | any;
 }
 export type ComplexOperations = {
     /**
@@ -2504,7 +2504,7 @@ const URLs: Record<DefaultOperation, { method: ApiRequestOptions['method']; url:
 export interface DefaultServiceWithEmptyTagOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 export type DefaultOperations = {
     /**
@@ -2568,7 +2568,7 @@ export interface DefaultsCallWithDefaultParametersOperation {
             'parameterModel': ModelWithString;
         };
     };
-    response:;
+    response: void;
 }
 /**
  */
@@ -2597,7 +2597,7 @@ export interface DefaultsCallWithDefaultOptionalParametersOperation {
             'parameterModel': ModelWithString;
         };
     };
-    response:;
+    response: void;
 }
 /**
  */
@@ -2638,7 +2638,7 @@ export interface DefaultsCallToTestOrderOfParamsOperation {
             'parameterStringNullableWithDefault': string;
         };
     };
-    response:;
+    response: void;
 }
 export type DefaultsOperations = {
     /**
@@ -2795,7 +2795,7 @@ export interface DescriptionsCallWithDescriptionsOperation {
             'parameterWithReservedCharacters': string;
         };
     };
-    response:;
+    response: void;
 }
 export type DescriptionsOperations = {
     /**
@@ -2861,28 +2861,28 @@ const URLs: Record<DuplicateOperation, { method: ApiRequestOptions['method']; ur
 export interface DuplicateDuplicateNameOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface DuplicateDuplicateName1Operation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface DuplicateDuplicateName2Operation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface DuplicateDuplicateName3Operation {
     request: {
     };
-    response:;
+    response: void;
 }
 export type DuplicateOperations = {
     /**
@@ -2960,7 +2960,7 @@ export interface ErrorTestErrorCodeOperation {
             'status': string;
         };
     };
-    response: | any | any | any | any | any;
+    response: any | any | any | any | any;
 }
 export type ErrorOperations = {
     /**
@@ -3012,7 +3012,7 @@ const URLs: Record<HeaderOperation, { method: ApiRequestOptions['method']; url: 
 export interface HeaderCallWithResultFromHeaderOperation {
     request: {
     };
-    response: | string | any | any;
+    response: string | any | any;
 }
 export type HeaderOperations = {
     /**
@@ -3058,14 +3058,14 @@ const URLs: Record<MultipleTags1Operation, { method: ApiRequestOptions['method']
 export interface MultipleTags1DummyAOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 /**
  */
 export interface MultipleTags1DummyBOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 export type MultipleTags1Operations = {
     /**
@@ -3118,14 +3118,14 @@ const URLs: Record<MultipleTags2Operation, { method: ApiRequestOptions['method']
 export interface MultipleTags2DummyAOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 /**
  */
 export interface MultipleTags2DummyBOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 export type MultipleTags2Operations = {
     /**
@@ -3177,7 +3177,7 @@ const URLs: Record<MultipleTags3Operation, { method: ApiRequestOptions['method']
 export interface MultipleTags3DummyBOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 export type MultipleTags3Operations = {
     /**
@@ -3217,7 +3217,7 @@ const URLs: Record<NoContentOperation, { method: ApiRequestOptions['method']; ur
 export interface NoContentCallWithNoContentResponseOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 export type NoContentOperations = {
     /**
@@ -3286,7 +3286,7 @@ export interface ParametersCallWithParametersOperation {
          */
         body: string;
     };
-    response:;
+    response: void;
 }
 /**
  */
@@ -3333,7 +3333,7 @@ export interface ParametersCallWithWeirdParameterNamesOperation {
          */
         body: string;
     };
-    response:;
+    response: void;
 }
 export type ParametersOperations = {
     /**
@@ -3446,21 +3446,25 @@ const URLs: Record<ResponseOperation, { method: ApiRequestOptions['method']; url
 export interface ResponseCallWithResponseOperation {
     request: {
     };
-    response: | ModelWithString;
+    response: ModelWithString;
 }
 /**
  */
 export interface ResponseCallWithDuplicateResponsesOperation {
     request: {
     };
-    response: | ModelWithString | ModelWithString | ModelWithString | ModelWithString;
+    response: ModelWithString | ModelWithString | ModelWithString | ModelWithString;
 }
 /**
  */
 export interface ResponseCallWithResponsesOperation {
     request: {
     };
-    response: | any | ModelWithString | ModelThatExtends | ModelThatExtendsExtends | ModelWithString | ModelWithString | ModelWithString;
+    response: {
+        readonly '@namespace.string'?: string;
+        readonly '@namespace.integer'?: number;
+        readonly value?: Array<ModelWithString>;
+    } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends | ModelWithString | ModelWithString | ModelWithString;
 }
 export type ResponseOperations = {
     /**
@@ -3547,49 +3551,49 @@ const URLs: Record<SimpleOperation, { method: ApiRequestOptions['method']; url: 
 export interface SimpleGetCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimplePutCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimplePostCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimpleDeleteCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimpleOptionsCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimpleHeadCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimplePatchCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 export type SimpleOperations = {
     /**
@@ -3730,7 +3734,7 @@ export interface TypesTypesOperation {
             'parameterEnum': string;
         };
     };
-    response: | number | string | boolean | any;
+    response: number | string | boolean | any;
 }
 export type TypesOperations = {
     /**
@@ -7010,7 +7014,7 @@ export interface CollectionFormatCollectionFormatOperation {
             'parameterArrayMulti': string;
         };
     };
-    response:;
+    response: void;
 }
 export type CollectionFormatOperations = {
     /**
@@ -7082,7 +7086,7 @@ export interface ComplexComplexTypesOperation {
             'parameterReference': ModelWithString;
         };
     };
-    response: | ModelWithString | any | any;
+    response: Array<ModelWithString> | any | any;
 }
 /**
  */
@@ -7094,7 +7098,7 @@ export interface ComplexComplexParamsOperation {
         body: any;
         mediaType: 'application/json-patch+json';
     };
-    response: | ModelWithString;
+    response: ModelWithString;
 }
 export type ComplexOperations = {
     /**
@@ -7187,7 +7191,7 @@ const URLs: Record<DefaultOperation, { method: ApiRequestOptions['method']; url:
 export interface DefaultServiceWithEmptyTagOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 export type DefaultOperations = {
     /**
@@ -7251,7 +7255,7 @@ export interface DefaultsCallWithDefaultParametersOperation {
             'parameterModel': ModelWithString;
         };
     };
-    response:;
+    response: void;
 }
 /**
  */
@@ -7280,7 +7284,7 @@ export interface DefaultsCallWithDefaultOptionalParametersOperation {
             'parameterModel': ModelWithString;
         };
     };
-    response:;
+    response: void;
 }
 /**
  */
@@ -7321,7 +7325,7 @@ export interface DefaultsCallToTestOrderOfParamsOperation {
             'parameterStringNullableWithDefault': string;
         };
     };
-    response:;
+    response: void;
 }
 export type DefaultsOperations = {
     /**
@@ -7457,7 +7461,7 @@ export interface DeprecatedDeprecatedCallOperation {
             'parameter': DeprecatedModel;
         };
     };
-    response:;
+    response: void;
 }
 export type DeprecatedOperations = {
     /**
@@ -7533,7 +7537,7 @@ export interface DescriptionsCallWithDescriptionsOperation {
             'parameterWithReservedCharacters': any;
         };
     };
-    response:;
+    response: void;
 }
 export type DescriptionsOperations = {
     /**
@@ -7599,28 +7603,28 @@ const URLs: Record<DuplicateOperation, { method: ApiRequestOptions['method']; ur
 export interface DuplicateDuplicateNameOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface DuplicateDuplicateName1Operation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface DuplicateDuplicateName2Operation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface DuplicateDuplicateName3Operation {
     request: {
     };
-    response:;
+    response: void;
 }
 export type DuplicateOperations = {
     /**
@@ -7698,7 +7702,7 @@ export interface ErrorTestErrorCodeOperation {
             'status': number;
         };
     };
-    response: | any | any | any | any | any;
+    response: any | any | any | any | any;
 }
 export type ErrorOperations = {
     /**
@@ -7765,7 +7769,7 @@ export interface FormDataPostApiFormDataOperation {
          */
         mediaType: 'multipart/form-data';
     };
-    response:;
+    response: void;
 }
 export type FormDataOperations = {
     /**
@@ -7814,7 +7818,7 @@ const URLs: Record<HeaderOperation, { method: ApiRequestOptions['method']; url: 
 export interface HeaderCallWithResultFromHeaderOperation {
     request: {
     };
-    response: | string | any | any;
+    response: string | any | any;
 }
 export type HeaderOperations = {
     /**
@@ -7863,14 +7867,20 @@ export interface MultipartMultipartRequestOperation {
         formData: any;
         mediaType: 'multipart/form-data';
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface MultipartMultipartResponseOperation {
     request: {
     };
-    response: | any;
+    response: {
+        file?: Blob;
+        metadata?: {
+            foo?: string;
+            bar?: string;
+        };
+    };
 }
 export type MultipartOperations = {
     /**
@@ -7936,14 +7946,14 @@ const URLs: Record<MultipleTags1Operation, { method: ApiRequestOptions['method']
 export interface MultipleTags1DummyAOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 /**
  */
 export interface MultipleTags1DummyBOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 export type MultipleTags1Operations = {
     /**
@@ -7996,14 +8006,14 @@ const URLs: Record<MultipleTags2Operation, { method: ApiRequestOptions['method']
 export interface MultipleTags2DummyAOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 /**
  */
 export interface MultipleTags2DummyBOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 export type MultipleTags2Operations = {
     /**
@@ -8055,7 +8065,7 @@ const URLs: Record<MultipleTags3Operation, { method: ApiRequestOptions['method']
 export interface MultipleTags3DummyBOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 export type MultipleTags3Operations = {
     /**
@@ -8095,7 +8105,7 @@ const URLs: Record<NoContentOperation, { method: ApiRequestOptions['method']; ur
 export interface NoContentCallWithNoContentResponseOperation {
     request: {
     };
-    response: | void;
+    response: void;
 }
 export type NoContentOperations = {
     /**
@@ -8178,7 +8188,7 @@ export interface ParametersCallWithParametersOperation {
          */
         mediaType: 'application/json';
     };
-    response:;
+    response: void;
 }
 /**
  */
@@ -8235,7 +8245,7 @@ export interface ParametersCallWithWeirdParameterNamesOperation {
          */
         mediaType: 'application/json';
     };
-    response:;
+    response: void;
 }
 /**
  */
@@ -8256,7 +8266,7 @@ export interface ParametersGetCallWithOptionalParamOperation {
          */
         mediaType: 'application/json';
     };
-    response:;
+    response: void;
 }
 /**
  */
@@ -8277,7 +8287,7 @@ export interface ParametersPostCallWithOptionalParamOperation {
          */
         mediaType: 'application/json';
     };
-    response:;
+    response: void;
 }
 export type ParametersOperations = {
     /**
@@ -8453,7 +8463,7 @@ export interface RequestBodyPostApiRequestBodyOperation {
          */
         mediaType: 'application/json';
     };
-    response:;
+    response: void;
 }
 export type RequestBodyOperations = {
     /**
@@ -8508,21 +8518,25 @@ const URLs: Record<ResponseOperation, { method: ApiRequestOptions['method']; url
 export interface ResponseCallWithResponseOperation {
     request: {
     };
-    response: | ModelWithString;
+    response: ModelWithString;
 }
 /**
  */
 export interface ResponseCallWithDuplicateResponsesOperation {
     request: {
     };
-    response: | ModelWithString | ModelWithString | ModelWithString | ModelWithString;
+    response: ModelWithString | ModelWithString | ModelWithString | ModelWithString;
 }
 /**
  */
 export interface ResponseCallWithResponsesOperation {
     request: {
     };
-    response: | any | ModelWithString | ModelThatExtends | ModelThatExtendsExtends | ModelWithString | ModelWithString | ModelWithString;
+    response: {
+        readonly '@namespace.string'?: string;
+        readonly '@namespace.integer'?: number;
+        readonly value?: Array<ModelWithString>;
+    } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends | ModelWithString | ModelWithString | ModelWithString;
 }
 export type ResponseOperations = {
     /**
@@ -8609,49 +8623,49 @@ const URLs: Record<SimpleOperation, { method: ApiRequestOptions['method']; url: 
 export interface SimpleGetCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimplePutCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimplePostCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimpleDeleteCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimpleOptionsCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimpleHeadCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 /**
  */
 export interface SimplePatchCallWithoutParametersAndResponseOperation {
     request: {
     };
-    response:;
+    response: void;
 }
 export type SimpleOperations = {
     /**
@@ -8792,7 +8806,7 @@ export interface TypesTypesOperation {
             'parameterEnum': string;
         };
     };
-    response: | number | string | boolean | any;
+    response: number | string | boolean | any;
 }
 export type TypesOperations = {
     /**
@@ -8870,7 +8884,7 @@ export interface UploadUploadFileOperation {
             'file': binary;
         };
     };
-    response: | boolean;
+    response: boolean;
 }
 export type UploadOperations = {
     /**

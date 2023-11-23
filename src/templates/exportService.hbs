@@ -147,7 +147,7 @@ export interface {{{pascalCase @root.name}}}{{{pascalCase name}}}Operation {
 		{{/if}}
 	};
 
-	response: {{~#each results}} | {{{type}}}{{/each}} {{~#each errors}} | {{{type}}}{{/each}};
+	response: {{>result}} {{~#each errors}} | {{{type}}}{{/each}};
 }
 
 {{/each}}
