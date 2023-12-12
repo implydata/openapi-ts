@@ -89,7 +89,7 @@
         "@apidevtools/json-schema-ref-parser": "^9.1.0",
         "@babel/cli": "7.23.4",
         "@babel/core": "7.23.5",
-        "@babel/preset-env": "7.23.5",
+        "@babel/preset-env": "7.23.6",
         "@babel/preset-typescript": "7.23.3",
         "@types/cross-spawn": "6.0.6",
         "@types/express": "4.17.21",
