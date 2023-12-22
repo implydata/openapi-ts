@@ -109,7 +109,7 @@
         "esbd": "^3.2.0",
         "esbuild": "^0.19.7",
         "eslint-config-prettier": "8.10.0",
-        "eslint-plugin-prettier": "5.1.0",
+        "eslint-plugin-prettier": "5.1.1",
         "eslint-plugin-simple-import-sort": "10.0.0",
         "eslint": "8.56.0",
         "express": "4.18.2",
