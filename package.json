@@ -100,7 +100,7 @@
         "@types/node": "20.11.13",
         "@types/qs": "6.9.11",
         "@typescript-eslint/eslint-plugin": "6.20.0",
-        "@typescript-eslint/parser": "6.19.1",
+        "@typescript-eslint/parser": "6.20.0",
         "abort-controller": "3.0.0",
         "axios": "1.6.7",
         "camelcase": "^6.3.0",
