@@ -16,6 +16,9 @@ import type { Observable } from 'rxjs';
 {{#each imports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
+
+{{/if}}
+{{#if errorImports}}
 {{#if @root.writeOperations}}
 {{#each errorImports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
